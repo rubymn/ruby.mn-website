@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+first:
+  id: 1
+  blurb: the first blurb
+  user_id: 1000001
+  email: blah1@blah.com
+second:
+  id: 2
+  blurb: the second blurb
+  user_id: 1000002
+  email: blah2@blah.com

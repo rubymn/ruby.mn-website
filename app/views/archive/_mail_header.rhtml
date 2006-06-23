@@ -1,0 +1,10 @@
+<%mail = mail_header%>
+<div class="mailheader">
+<%=link_to_remote(h(mail.subject), :update=>mail.id.to_s,:url=>{:action=>"message", :id=>mail.id }, :complete=>visual_effect(:blind_down, mail.id.to_s))%>
+<br><%=h(mail.stamp)%>
+<a style="float:right" href="#" onClick="new Effect.BlindUp('<%=mail.id%>')">Close</a>
+<br><%=h(mail.from).gsub(/@/, '.at.')%>
+<div id="<%=mail.id%>">
+
+</div>
+</div>

@@ -1,0 +1,22 @@
+# MySQL (default setup).  Versions 4.1 and 5.0 are recommended.
+#hey, don't check in passwords here. 
+
+development:
+  adapter: mysql
+  database: tcrbb_dev
+  username: root
+  socket: /tmp/mysql.sock
+
+test:
+  adapter: mysql
+  database: tcrbb_test
+  username: root
+  socket: /tmp/mysql.sock
+
+production:
+  adapter: mysql
+  database: tcrbb_prod
+  username: root
+  socket: /tmp/mysql.sock
+
+

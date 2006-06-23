@@ -1,0 +1,5 @@
+<h1>Archive#index</h1>
+<%=pagination_links @mail_pages, :window_size=>50 %>
+
+<%=render :partial=>"mail_header", :collection=>@mails%>
+

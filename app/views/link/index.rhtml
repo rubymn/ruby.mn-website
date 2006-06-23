@@ -1,0 +1,17 @@
+<h1>Link#index</h1>
+
+<p>Here we have the obligatory link festival. Post and browse your interesting Ruby related links here.
+
+<div id="links">
+<%=render :partial=>'links', :collection=>@links%>
+</div>
+
+
+<%=  form_remote_tag :url=>url_for(:action=>'create', :controller=>'link'), :update=>'links', :position=>'bottom' %> 
+<%=start_form_tag :action=>'create'%>
+<br>Title<br> <%=text_field 'link', 'title', :size=>'30'%>
+<br>Url<br> <%=text_field 'link', 'url', :size=>'30'%>
+<br>Description
+<br><%=text_area 'link', 'description', "rows"=>"3", "cols"=>"30"%>
+<br><%=submit_tag 'Post'%>
+  <%=end_form_tag%>

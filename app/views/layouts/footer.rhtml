@@ -1,0 +1,10 @@
+<div class="footer">
+  <%if !current_user.nil?%>
+  <p>You're logged in as <%=h(current_user.login)%>
+  <p><%=link_to "Logout", :controller=>'user', :action=>'logout'%>
+  <%else%>
+  <p><%=link_to "Login", :controller=>'user', :action=>'login'%>
+  <%end%>
+  <%=link_to "Home", :controller=>"welcome"%>
+  <p style="float:right">Another quick hack by <a href="http://www.loonsoft.com">LoonSoft</a>
+</div>
