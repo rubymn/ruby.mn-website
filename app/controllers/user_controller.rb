@@ -14,7 +14,7 @@ class UserController  < ApplicationController
     @user = User.new(params[:user]) # what does this achieve?
     if session[:user] = User.authenticate(params[:user][:login], params[:user][:password])
       flash[:notice] = 'Login successful'
-      redirect_back_or_default :controller => 'welcome'
+      redirect_to :controller => 'welcome'
     else
       @login = params[:user][:login]
       flash.now[:warning] = 'Login unsuccessful'
