@@ -5,8 +5,8 @@
 ActiveRecord::Schema.define(:version => 9) do
 
   create_table "events", :force => true do |t|
-    t.column "created_at", :datetime, :null => false
-    t.column "scheduled_time", :datetime, :null => false
+    t.column "created_at", :datetime
+    t.column "scheduled_time", :datetime
     t.column "headline", :string, :limit => 200, :default => "", :null => false
     t.column "body", :text, :default => "", :null => false
     t.column "user_id", :integer, :default => 0, :null => false
@@ -14,10 +14,9 @@ ActiveRecord::Schema.define(:version => 9) do
 
   create_table "for_hires", :force => true do |t|
     t.column "blurb", :text, :default => "", :null => false
-    t.column "created_at", :datetime, :null => false
     t.column "email", :string, :limit => 200, :default => "", :null => false
     t.column "title", :string, :limit => 200, :default => "", :null => false
-    t.column "user_id", :integer, :default => 0, :null => false
+    t.column "user_id", :integer
   end
 
   create_table "links", :force => true do |t|
@@ -30,22 +29,21 @@ ActiveRecord::Schema.define(:version => 9) do
   end
 
   create_table "list_mails", :force => true do |t|
-    t.column "subject", :string, :limit => 256, :default => "", :null => false
-    t.column "replyto", :string, :limit => 256
+    t.column "subject", :text, :default => "", :null => false
+    t.column "replyto", :text
     t.column "from", :string, :limit => 128, :default => "", :null => false
     t.column "to", :string, :limit => 128, :default => "", :null => false
     t.column "stamp", :datetime, :null => false
     t.column "body", :text, :default => "", :null => false
-    t.column "mailid", :string, :limit => 256, :default => "", :null => false
+    t.column "mailid", :text, :default => "", :null => false
     t.column "parent_id", :integer
   end
 
   create_table "openings", :force => true do |t|
-    t.column "created_at", :datetime, :null => false
+    t.column "create_at", :datetime
+    t.column "headline", :string, :limit => 100, :default => "", :null => false
     t.column "body", :text, :default => "", :null => false
-    t.column "headline", :string, :limit => 200, :default => "", :null => false
-    t.column "type", :string, :limit => 50, :default => "", :null => false
-    t.column "user_id", :integer, :default => 0, :null => false
+    t.column "user_id", :integer
   end
 
   create_table "sessions", :force => true do |t|
@@ -58,15 +56,17 @@ ActiveRecord::Schema.define(:version => 9) do
 
   create_table "users", :force => true do |t|
     t.column "login", :string, :limit => 80, :default => "", :null => false
-    t.column "salted_password", :string, :limit => 80, :default => "", :null => false
-    t.column "email", :string, :limit => 100, :default => "", :null => false
-    t.column "firstname", :string, :limit => 100, :default => "", :null => false
-    t.column "lastname", :string, :limit => 100, :default => "", :null => false
+    t.column "salted_password", :string, :limit => 40, :default => "", :null => false
+    t.column "email", :string, :limit => 60, :default => "", :null => false
+    t.column "firstname", :string, :limit => 40
+    t.column "lastname", :string, :limit => 40
     t.column "salt", :string, :limit => 40, :default => "", :null => false
-    t.column "verified", :boolean, :default => false, :null => false
+    t.column "verified", :integer, :default => 0
+    t.column "role", :string, :limit => 40
     t.column "security_token", :string, :limit => 40
     t.column "token_expiry", :datetime
-    t.column "deleted", :boolean, :default => false
+    t.column "deleted", :integer, :default => 0
+    t.column "delete_after", :datetime
   end
 
 end
