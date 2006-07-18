@@ -66,7 +66,7 @@ class UserController  < ApplicationController
       end
     rescue Exception => e
       flash.now[:notice] = nil
-      flash.now[:warning] = 'Error creating account: confirmation email not sent'
+      flash.now[:warning] = "Error creating account: #{e}"
       logger.error "Unable to send confirmation E-Mail:"
       logger.error e
     end

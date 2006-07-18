@@ -1,5 +1,10 @@
 <div title="<%= title_helper %>" class="form">
   <h3>Please Login</h3>
+  <% for name in [:notice, :warning, :message] %>
+    <% if flash[name] %>
+      <%= "<div id=\"#{name}\">#{flash[name]}</div>" %>
+    <% end %>
+  <%end%>
 
   <div class="form-padding">
     <%= start_form_tag :action => 'login'  %>
