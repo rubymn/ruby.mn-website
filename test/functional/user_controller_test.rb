@@ -31,4 +31,15 @@ class UserControllerTest < Test::Unit::TestCase
     assert assigns(:users)
   end
 
+  def test_signup
+    post :signup, {"user"=>{"password_confirmation"=>"standard", "lastname"=>"Looney", 
+      "firstname"=>"MCClain", "login"=>"mogwai", "password"=>"standard", "email"=>"m@loonsof
+      t.com"}, "commit"=>"Signup", "action"=>"signup", "controller"=>"user"}
+    assert_equal "Signup successful! Please check your registered email account to verify your account registration and continue with the login.", flash[:notice]
+    assert_nil flash[:warning]
+    assert_not_nil User.find_by_login("mogwai")
+    assert_response :redirect
+    assert_redirected_to  :action=>'login'
+  end
+
 end

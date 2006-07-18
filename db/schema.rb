@@ -12,13 +12,6 @@ ActiveRecord::Schema.define(:version => 9) do
     t.column "user_id", :integer, :default => 0, :null => false
   end
 
-  create_table "for_hires", :force => true do |t|
-    t.column "blurb", :text, :default => "", :null => false
-    t.column "email", :string, :limit => 200, :default => "", :null => false
-    t.column "title", :string, :limit => 200, :default => "", :null => false
-    t.column "user_id", :integer
-  end
-
   create_table "links", :force => true do |t|
     t.column "description", :string
     t.column "url", :string
@@ -37,13 +30,6 @@ ActiveRecord::Schema.define(:version => 9) do
     t.column "body", :text, :default => "", :null => false
     t.column "mailid", :text, :default => "", :null => false
     t.column "parent_id", :integer
-  end
-
-  create_table "openings", :force => true do |t|
-    t.column "create_at", :datetime
-    t.column "headline", :string, :limit => 100, :default => "", :null => false
-    t.column "body", :text, :default => "", :null => false
-    t.column "user_id", :integer
   end
 
   create_table "sessions", :force => true do |t|
@@ -65,6 +51,9 @@ ActiveRecord::Schema.define(:version => 9) do
     t.column "role", :string, :limit => 40
     t.column "security_token", :string, :limit => 40
     t.column "token_expiry", :datetime
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+    t.column "logged_in_at", :datetime
     t.column "deleted", :integer, :default => 0
     t.column "delete_after", :datetime
   end
