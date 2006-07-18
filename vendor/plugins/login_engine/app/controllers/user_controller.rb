@@ -29,39 +29,6 @@ class UserController < ApplicationController
     end
   end
 
-  # Register as a new user. Upon successful registration, the user will be sent to
-  # "/user/login" to enter their details.
-  def signup
-    return if generate_blank
-    params[:user].delete('form')
-    params[:user].delete('verified') # you CANNOT pass this as part of the request
-    @user = User.new(params[:user])
-    begin
-      User.transaction(@user) do
-        @user.new_password = true
-        unless LoginEngine.config(:use_email_notification) and LoginEngine.config(:confirm_account)
-          @user.verified = 1
-        end
-        if @user.save
-          key = @user.generate_security_token
-          url = url_for(:action => 'home', :user_id => @user.id, :key => key)
-          flash[:notice] = 'Signup successful!'
-          if LoginEngine.config(:use_email_notification) and LoginEngine.config(:confirm_account)
-            UserNotify.deliver_signup(@user, params[:user][:password], url)
-            flash[:notice] << ' Please check your registered email account to verify your account registration and continue with the login.'
-          else
-            flash[:notice] << ' Please log in.'
-          end
-          redirect_to :action => 'login'
-        end
-      end
-    rescue Exception => e
-      flash.now[:notice] = nil
-      flash.now[:warning] = 'Error creating account: confirmation email not sent'
-      logger.error "Unable to send confirmation E-Mail:"
-      logger.error e
-    end
-  end
 
   def logout
     session[:user] = nil
