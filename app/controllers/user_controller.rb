@@ -4,6 +4,23 @@
 class UserController  < ApplicationController
   before_filter :login_required,  :only=>[:list]
 
+  def home
+    if user?
+      @fullname = "#{current_user.firstname} #{current_user.lastname}"
+    else
+      u = User.find(params[:user_id])
+      key = params[:key]
+      if User.find_by_security_key(key).id == u.id
+        u.valid=1
+        u.save!
+        @fullname="#{u.firstname} #{u.lastname}"
+      end
+
+    end # this is a bit of a hack since the home action is used to verify user
+        # keys, where noone is logged in. We should probably create a unique
+        # 'validate_key' action instead.
+  end
+
   def logout
     session[:user]=nil
     redirect_to :controller=>"welcome"

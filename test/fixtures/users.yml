@@ -39,3 +39,18 @@ deletebob2:
   salt: d35a9cc89af83799d9a938a74cb06a11d295aa9c
   email: deletebob2@test.com
   verified: 1
+
+testyttest:
+  id: 130
+  login: testyttest
+  salted_password: 010243067c94887c902305e17f8f322b79b92894
+  email: mlooney@gmail.com
+  firstname: teset
+  lastname: testy
+  salt: 738133ad015e40aefffb23f2dc21ab69d9bd6dc5
+  verified: 0
+  role: NULL
+  security_token: baf41cc616ee9185c1769fc864e4b308e0a26046
+  token_expiry: 2006-07-19 10:32:17
+  deleted: 0
+  delete_after: NULL

@@ -42,4 +42,15 @@ class UserControllerTest < Test::Unit::TestCase
     assert_redirected_to  :action=>'login'
   end
 
+  def test_home_verify
+#http://www.ruby.mn/user/home?key=baf41cc616ee9185c1769fc864e4b308e0a26046&user_id=130
+    assert_not_nil User.find(130)
+    assert !User.find(130).verified?
+    get :home, {"key"=>"baf41cc616ee9185c1769fc864e4b308e0a26046", "user_id"=>"130"}
+
+    assert User.find(130).verified?
+
+  end
+
+
 end
