@@ -38,9 +38,8 @@ class UserController < ApplicationController
   def change_password
     return if generate_filled_in
     if do_change_password_for(@user)
-      # since sometimes we're changing the password from within another action/template...
-      #redirect_to :action => params[:back_to] if params[:back_to]
-      redirect_back_or_default :action => 'change_password'
+      session[:user]=nil
+      redirect_to :controller=>"user", :action=>"login"
     end
   end
 
@@ -49,21 +48,12 @@ class UserController < ApplicationController
       begin
         User.transaction(user) do
           user.change_password(params[:user][:password], params[:user][:password_confirmation])
-          if user.save
-            if LoginEngine.config(:use_email_notification)
-              UserNotify.deliver_change_password(user, params[:user][:password])
-              flash[:notice] = "Updated password emailed to #{@user.email}"
-            else
-              flash[:notice] = "Password updated."
-            end
-            return true
-          else
-            flash[:warning] = 'There was a problem saving the password. Please retry.'
-            return false
-          end
+          user.save!
+          flash[:notice] = "Password updated."
+          return true
         end
       rescue
-        flash[:warning] = 'Password could not be changed at this time. Please retry.'
+        flash[:warning] = "Password could not be changed at this time. Please retry. #{$!}"
       end
     end
     
@@ -75,13 +65,6 @@ class UserController < ApplicationController
     if user?
       flash[:message] = 'You are currently logged in. You may change your password now.'
       redirect_to :action => 'change_password'
-      return
-    end
-
-    # Email disabled... we are unable to provide the password
-    if !LoginEngine.config(:use_email_notification)
-      flash[:message] = "Please contact the system admin at #{LoginEngine.config(:admin_email)} to reset your password."
-      redirect_back_or_default :action => 'login'
       return
     end
 
@@ -223,6 +206,7 @@ class UserController < ApplicationController
   # returns the user object this method should act upon; only really
   # exists for other engines operating on top of this one to redefine...
   def get_user_to_act_on
-    @user = session[:user]
+    user?
+    @user=session[:user]
   end
 end
