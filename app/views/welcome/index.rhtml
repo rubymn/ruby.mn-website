@@ -2,11 +2,13 @@
 <p> This is the home of Ruby Users of Minnesota. A fine group of Ruby enthusiasts from around the Twin Cities metro area..
 <p>You'll want to <%=link_to "login", :controller=>'user', :action=>'login'%> or 
 <%=link_to "sign up", :action=>'signup', :controller=>'user'%> to use any of the nifty
-features, like the <%=link_to "help wanted", :controller=>'opening'%>, <%=link_to "events", :controller=>'event'%>, <%=link_to "member list", :controller=>'user', :action=>'list'%> and <%=link_to "for-hire", :controller=>"for_hire"%>, or <%=link_to "link collection", :action=>'index', :controller=>'link'%> sections.
+features, like the <%=link_to "help wanted", :controller=>'opening'%>, <%=link_to "events", :controller=>'event'%> or 
+<%=link_to "member list", :controller=>'user', :action=>'list'%> and <%=link_to "for-hire", :controller=>"for_hire"%> sections.
 
-<p>You may want to check out the mailing list <%=link_to "archive", :controller=>'archive', :action=>'index'%>.  To join the list yourself, just send mail to <a href="mailto:ruby.mn+help@ruby.mn">ruby.mn@ruby.mn</a>
-<p>We now have an <a href="http://www.google.com/calendar/ical/4g380qh7p0taroueuulfajauck@group.calendar.google.com/public/basic">Google Calendar iCal file</a> of upcoming events.
-
+<p>You may want to check out the mailing list <%=link_to "archive", :controller=>'archive', :action=>'index'%>.  
+To join the list yourself, just send mail to <a href="mailto:ruby.mn+help@ruby.mn">ruby.mn@ruby.mn</a></p>
+<p>We now have a <a href="http://www.google.com/calendar/ical/4g380qh7p0taroueuulfajauck@group.calendar.google.com/public/basic">Google Calendar iCal file</a> of upcoming events.
+</p>
 <%if !@events.empty?%>
 <h2>Announcements</h2>
 <%=render :partial=>"event/event", :collection=>@events%>
