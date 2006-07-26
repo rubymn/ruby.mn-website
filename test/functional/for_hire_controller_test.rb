@@ -5,7 +5,7 @@ require 'for_hire_controller'
 class ForHireController; def rescue_action(e) raise e end; end
 
 class ForHireControllerTest < Test::Unit::TestCase
-  fixtures :users
+  fixtures :users, :for_hires
   def setup
     @controller = ForHireController.new
     @request    = ActionController::TestRequest.new
