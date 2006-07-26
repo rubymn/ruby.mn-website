@@ -7,6 +7,8 @@ bob:
   salt: bf3c47e71c0bfeb6288c9b6b5e24e15256a0e407
   email: bob@test.com
   verified: 1
+  firstname: bob
+  lastname: dobs
   
 existingbob:
   id: 1000002

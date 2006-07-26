@@ -10,8 +10,8 @@ class UserController  < ApplicationController
     else
       u = User.find(params[:user_id])
       key = params[:key]
-      if User.find_by_security_key(key).id == u.id
-        u.valid=1
+      if User.find_by_security_token(key).id == u.id
+        u.verified=1
         u.save!
         @fullname="#{u.firstname} #{u.lastname}"
       end
