@@ -17,7 +17,7 @@ class UserControllerTest < Test::Unit::TestCase
     get :logout
     assert_nil session[:user]
     assert_response :redirect
-    assert_redirected_to :controller=>'welcome'
+    assert_redirected_to :action=>'login'
 
   end
 
@@ -34,7 +34,7 @@ class UserControllerTest < Test::Unit::TestCase
   def test_signup
     post :signup, {"user"=>{"password_confirmation"=>"standard", "lastname"=>"Looney", 
       "firstname"=>"MCClain", "login"=>"mogwai", "password"=>"standard", "email"=>"m@loonsof
-      t.com"}, "commit"=>"Signup", "action"=>"signup", "controller"=>"user"}
+      t.com"}}
     assert_equal "Signup successful! Please check your registered email account to verify your account registration and continue with the login.", flash[:notice]
     assert_nil flash[:warning]
     assert_not_nil User.find_by_login("mogwai")

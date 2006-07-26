@@ -3,7 +3,16 @@ class UserController < ApplicationController
 
   # Override this function in your own application to define a custom home action.
   def home
-    if user?
+    if request.get? and params[:key]
+      session[:user]=nil
+      session[:user]=User.find_by_security_token(params[:key])
+      if session[:user]
+      session[:user].verified=true
+      session[:user].save!
+      end
+    end
+
+    if session[:user]
       @fullname = "#{current_user.firstname} #{current_user.lastname}"
     else
       @fullname = "Not logged in..."
