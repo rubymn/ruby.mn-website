@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 11) do
+ActiveRecord::Schema.define(:version => 12) do
 
   create_table "events", :force => true do |t|
     t.column "created_at", :datetime
@@ -26,9 +26,11 @@ ActiveRecord::Schema.define(:version => 11) do
     t.column "to", :string, :limit => 128, :default => "", :null => false
     t.column "stamp", :datetime, :null => false
     t.column "body", :text, :default => "", :null => false
-    t.column "mailid", :text, :default => "", :null => false
+    t.column "mailid", :string, :limit => 100, :default => ""
     t.column "parent_id", :integer
   end
+
+  add_index "list_mails", ["mailid"], :name => "maild_idx"
 
   create_table "openings", :force => true do |t|
     t.column "create_at", :datetime
