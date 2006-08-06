@@ -1,3 +1,4 @@
 log/.*\.log
 config/scgi.yaml
 .*~
+db/schema.rb
