@@ -17,7 +17,8 @@ class UserControllerTest < Test::Unit::TestCase
     get :logout
     assert_nil session[:user]
     assert_response :redirect
-    assert_redirected_to :action=>'login'
+    assert_redirected_to :controller=>'welcome'
+
 
   end
 
