@@ -11,7 +11,6 @@ config.cache_classes = true
 # Full error reports are disabled and caching is turned on
 config.action_controller.consider_all_requests_local = false
 config.action_controller.perform_caching             = true
-config.action_controller.session_store=:mem_cache_store
 
 # Enable serving of images, stylesheets, and javascripts from an asset server
 # config.action_controller.asset_host                  = "http://assets.example.com"
@@ -20,5 +19,13 @@ config.action_controller.session_store=:mem_cache_store
 # config.action_mailer.raise_delivery_errors = false
 #
 #
-$archive_location='/home/mml/tcrbb/public/archive'
+CACHE=MemCache.new :c_threshold=>10_000, :compression=>true,\
+  :debug=>false, :namespace=>'tcrbb', :readonly=>false, :urlencode=>false
 
+CACHE.servers='127.0.0.1:11211'
+
+session_options={
+  :database_manager=>CGI::Session::MemCacheStore,
+  :cache=>CACHE
+}
+ActionController::CgiRequest::DEFAULT_SESSION_OPTIONS.update session_options
