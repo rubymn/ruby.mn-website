@@ -1,0 +1,14 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+first:
+  id: 1
+  title: "The Joy of cooking"
+  isbn: "1029-283-23823"
+  author: "some guy"
+  user_id: 1000001
+  description: "it's about cooking"
+second:
+  id: 2
+  title: "The Joy of smoking"
+  isbn: "1029"
+  author: "some other guy"
+  user_id: 1000001

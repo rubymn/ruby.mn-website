@@ -1,4 +1,5 @@
 log/.*\.log
+.*\.swp
 config/scgi.yaml
 .*~
 db/schema.rb
