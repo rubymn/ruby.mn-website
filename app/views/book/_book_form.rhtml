@@ -1,0 +1,15 @@
+<fieldset>
+  <legend>Book Form</legend>
+<%=form_remote_tag  :url=>{:action=>'new'}%>
+<label>Title</label><br>
+<%=text_field "book", "title"%>
+<br><label>Author</label><br>
+<%=text_field "book", "author"%>
+<br><label>ISBN #</label><br>
+<%=text_field "book", "isbn"%>
+<br><label>Description</label><br>
+<%=text_area "book", "description", :rows=>3%>
+<br><%=submit_tag%>
+<%=link_to_remote "hide", :url=>{:action=>'hide_form'}%>
+<%=end_form_tag%>
+</fieldset>

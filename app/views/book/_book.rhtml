@@ -1,0 +1,12 @@
+<tr id="<%="book#{book.id}"%>">
+  <td><%=book.title%></td>
+  <td><%=book.author%></td>
+  <td><%=book.isbn%></td>
+  <td><%=book.description%></td>
+  <td><%=mail_to book.user.email%></td>
+  <td>
+    <%if book.user.id == session[:user].id%>
+    <%=link_to_remote "Delete", :url=>{:controller=>'book', :action=>"delete", :id=>book.id}%>
+    <%end%>
+  </td>
+</tr>

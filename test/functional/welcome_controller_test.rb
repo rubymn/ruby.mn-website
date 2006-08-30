@@ -13,7 +13,6 @@ class WelcomeControllerTest < Test::Unit::TestCase
   
   fixtures :events
 
-  # Replace this with your real tests.
   def test_no_jacket_required
     get :index
     assert_response :success
