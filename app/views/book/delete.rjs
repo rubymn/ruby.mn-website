@@ -1,1 +1,1 @@
-page.remove "book#{@book.id}"
+page.visual_effect :fade, "book#{@book.id}"
