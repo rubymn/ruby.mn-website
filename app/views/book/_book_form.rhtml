@@ -12,6 +12,6 @@
 <br><label>Description (markdown supported)</label><br>
 <%=text_area "book", "description", :rows=>3%>
 <br><%=submit_tag%>
-<%=link_to_remote "hide", :url=>{:action=>'hide_form'}%>
+<%=link_to_remote "Cancel", :url=>{:action=>'hide_form'}%>
 <%=end_form_tag%>
 </fieldset>

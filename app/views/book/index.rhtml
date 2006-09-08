@@ -1,5 +1,6 @@
 <h1>Book#index</h1>
-<p>It's the Library!  You can add your books <%=link_to_remote "here", :url=>{:action=>'add'}%>
+<h2>It's the Library!</h2>   <%=link_to_remote "Add your books!", :url=>{:action=>'add'}%> 
+<p>Now featuring exactly <%=@books.size%> titles!</p>
 <div id="book_form">
 </div>
 <div id="book_table">

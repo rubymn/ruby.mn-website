@@ -1,1 +1,1 @@
-page.replace_html 'book.form', ''
+page.replace_html 'book_form', ''
