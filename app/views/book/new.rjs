@@ -2,5 +2,5 @@ if @success
   page.insert_html :top, 'book_table', :partial=>'book', :object=>@book
   page.visual_effect :highlight, "book_#{@book.id}"
 else
-  render_text "failed #{book.errors.each{}}"
+  page.replace_html 'errors', error_messages_for("book")
 end

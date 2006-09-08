@@ -3,6 +3,15 @@ require File.dirname(__FILE__) + '/../test_helper'
 class BookTest < Test::Unit::TestCase
   fixtures :books, :users
 
+  def test_book_validates
+    b = Book.new
+    assert !b.save
+    assert "can't be blank", b.errors.on(:title)
+    assert "can't be blank", b.errors.on(:author)
+    assert "can't be blank", b.errors.on(:isbn)
+    assert "can't be blank", b.errors.on(:description)
+  end
+
   def test_fixtures
     assert_not_nil books(:first)
     assert_not_nil books(:second)

@@ -38,6 +38,18 @@ class BookControllerTest < Test::Unit::TestCase
     assert_equal users(:bob), assigns(:book).user
   end
 
+  def test_bad_new
+    @request.session[:user]=users(:bob)
+    post :new, "book"=>{:title=>'', :author=>'', :isbn=>'', :description=>''}
+    assert_response :success
+    assert assigns(:success)==false
+    assert assigns(:book)
+    assert_equal "can't be blank", assigns(:book).errors.on(:title)
+    assert_equal "can't be blank", assigns(:book).errors.on(:author)
+    assert_equal "can't be blank", assigns(:book).errors.on(:isbn)
+    assert_equal "can't be blank", assigns(:book).errors.on(:description)
+  end
+
   def test_add
     @request.session[:user]=users(:bob)
     post :add
