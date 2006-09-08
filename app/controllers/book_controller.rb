@@ -12,6 +12,14 @@ class BookController < ApplicationController
     end
   end
 
+  def addme
+    @book = Book.find(params[:id])
+    if not @book.users.include?(session[:user])
+      @book.users << session[:user]
+      @success = true
+    end
+  end
+
   def index
     @books=Book.find(:all, :order=>'title')
   end

@@ -11,5 +11,7 @@
 
     <%if book.users.include?(session[:user])%>
     <br><%=link_to_remote "Delete Me from this book", :url=>{:controller=>'book', :action=>"delete", :id=>book.id}%>
+    <%else%>
+    <br><%=link_to_remote "Add Me to this book", :url=>{:controller=>'book', :action=>"addme", :id=>book.id}%>
     <%end%>
   </div>

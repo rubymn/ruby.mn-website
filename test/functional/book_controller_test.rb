@@ -66,6 +66,21 @@ class BookControllerTest < Test::Unit::TestCase
     assert_template 'hide_form'
   end
 
+  def test_addme
+    b = Book.new(:title=>'fubar', :author=>'abaz', :isbn=>'asdf', :description=>'blah')
+    b.save!
+    @request.session[:user]=users(:bob)
+    post :addme, :id=>b.id
+    assert_response :success
+    assert_template 'addme'
+    assert assigns(:book) != nil
+    assert assigns(:success)==true
+    b.reload
+    assert b.users.include?(users(:bob))
+    assert users(:bob).books.include?(b)
+
+  end
+
   def test_delete_book
     @request.session[:user]=users(:bob)
     post :delete, "id"=>books(:first).id
