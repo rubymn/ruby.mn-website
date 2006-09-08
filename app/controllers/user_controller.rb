@@ -3,6 +3,44 @@
 
 class UserController  < ApplicationController
   before_filter :login_required,  :only=>[:list]
+
+  def do_change_password_for(user)
+    begin
+      User.transaction(user) do
+        user.change_password(params[:user][:password], params[:user][:password_confirmation])
+        user.save!
+        flash[:notice] = "Password updated."
+        return true
+      end
+    rescue
+      flash[:warning] = "Password could not be changed at this time. Please retry. #{$!}"
+    end
+  end
+
+  # Generate a template user for certain actions on get
+  def generate_filled_in
+    get_user_to_act_on
+    case request.method
+    when :get
+      render
+      return true
+    end
+    return false
+  end
+
+  # returns the user object this method should act upon; only really
+  # exists for other engines operating on top of this one to redefine...
+  def get_user_to_act_on
+    user?
+    @user=session[:user]
+  end
+  def change_password
+    return if generate_filled_in
+    if do_change_password_for(@user)
+      session[:user]=nil
+      redirect_to :controller=>"user", :action=>"login"
+    end
+  end
   def forgot_password
     # Always redirect if logged in
     if user?
@@ -51,8 +89,8 @@ class UserController  < ApplicationController
       end
 
     end # this is a bit of a hack since the home action is used to verify user
-        # keys, where noone is logged in. We should probably create a unique
-        # 'validate_key' action instead.
+    # keys, where noone is logged in. We should probably create a unique
+    # 'validate_key' action instead.
   end
 
   def logout

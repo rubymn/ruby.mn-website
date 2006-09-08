@@ -82,27 +82,8 @@ class UserController < ApplicationController
     redirect_to :action => 'login'
   end
 
-  def change_password
-    return if generate_filled_in
-    if do_change_password_for(@user)
-      session[:user]=nil
-      redirect_to :controller=>"user", :action=>"login"
-    end
-  end
 
   protected
-    def do_change_password_for(user)
-      begin
-        User.transaction(user) do
-          user.change_password(params[:user][:password], params[:user][:password_confirmation])
-          user.save!
-          flash[:notice] = "Password updated."
-          return true
-        end
-      rescue
-        flash[:warning] = "Password could not be changed at this time. Please retry. #{$!}"
-      end
-    end
     
   public
 
@@ -205,21 +186,4 @@ class UserController < ApplicationController
     return false
   end
 
-  # Generate a template user for certain actions on get
-  def generate_filled_in
-    get_user_to_act_on
-    case request.method
-    when :get
-      render
-      return true
-    end
-    return false
-  end
-  
-  # returns the user object this method should act upon; only really
-  # exists for other engines operating on top of this one to redefine...
-  def get_user_to_act_on
-    user?
-    @user=session[:user]
-  end
 end
