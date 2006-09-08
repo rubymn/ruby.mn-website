@@ -3,9 +3,13 @@
     By <%=h book.author%>
     <br>ISBN: <%=h book.isbn%>
     <p class="book_desc"><%=h book.description%></p>
-    Contact: <%=mail_to h( book.user.email)%>
+    <div id="users">
+    Contact: <%book.users.each do |u|%>
+    <%=mail_to h( u.email)%>
+    <%end%>
+  </div>
 
-    <%if book.user.id == session[:user].id%>
-    <br><%=link_to_remote "Delete", :url=>{:controller=>'book', :action=>"delete", :id=>book.id}%>
+    <%if book.users.include?(session[:user])%>
+    <br><%=link_to_remote "Delete Me from this book", :url=>{:controller=>'book', :action=>"delete", :id=>book.id}%>
     <%end%>
   </div>
