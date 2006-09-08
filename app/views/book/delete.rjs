@@ -1,1 +1,1 @@
-page.visual_effect :fade, "book_#{@book.id}"
+page.replace_html 'users', @book.users.join(" ")

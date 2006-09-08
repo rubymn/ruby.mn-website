@@ -3,9 +3,9 @@ first:
   id: 1
   headline: firstheadline
   body: first.body
-  user_id: 1000001
+  user_id: 1
 another:
   id: 2
   headline: secondheadline
   body: secondbody
-  user_id: 1000002
+  user_id: 2

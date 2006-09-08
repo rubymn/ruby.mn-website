@@ -2,10 +2,10 @@
 first:
   id: 1
   blurb: the first blurb
-  user_id: 1000001
+  user_id: 1
   email: blah1@blah.com
 second:
   id: 2
   blurb: the second blurb
-  user_id: 1000002
+  user_id: 2
   email: blah2@blah.com

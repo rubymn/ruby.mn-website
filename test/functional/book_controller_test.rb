@@ -5,12 +5,13 @@ require 'book_controller'
 class BookController; def rescue_action(e) raise e end; end
 
 class BookControllerTest < Test::Unit::TestCase
-  fixtures :users, :books
+  fixtures :users, :books, :users_books
   def setup
     @controller = BookController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
   end
+
 
   def test_req_login
     get :index
@@ -31,11 +32,12 @@ class BookControllerTest < Test::Unit::TestCase
     post :new, "book"=>{"title"=>"foo","author"=>"bar", "isbn"=>"abcd", "description"=>"description"}
     assert_response :success
     assert assigns(:book)
-    assert assigns(:success)
+    assert assigns(:success) == true
     assert_template 'new'
     b= Book.find_by_title('foo')
     assert_not_nil b
-    assert_equal users(:bob), assigns(:book).user
+    assert users(:bob).books.include?(assigns(:book))
+    assert b.users.include?(users(:bob))
   end
 
   def test_bad_new
@@ -69,6 +71,13 @@ class BookControllerTest < Test::Unit::TestCase
     post :delete, "id"=>books(:first).id
     assert_response :success
     assert_template 'delete'
+    assert !users(:bob).books.include?(books(:first))
+    assert !books(:first).users.include?(users(:bob))
+    assert users(:existingbob).books.include?(books(:first))
+    assert books(:first).users.include?(users(:existingbob))
+    @request.session[:user]=users(:existingbob)
+    post :delete, "id"=>books(:first).id
+    assert !Book.exists?(books(:first).id)
   end
 
 end
