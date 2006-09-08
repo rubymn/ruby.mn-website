@@ -1,4 +1,16 @@
 body { background-color: #fff; color: #333; }
+div.book {
+  border:1px dotted gray line;
+  margin: 10px;
+  padding: 10px;
+  background:lightgray;
+
+}
+
+p.book_desc {
+  padding: 20px;
+  background: lightblue;
+}
 
 body, p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;

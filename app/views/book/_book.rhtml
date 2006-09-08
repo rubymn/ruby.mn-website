@@ -1,12 +1,13 @@
-<tr id="<%="book#{book.id}"%>">
-  <td><%=book.title%></td>
-  <td><%=book.author%></td>
-  <td><%=book.isbn%></td>
-  <td><%=book.description%></td>
-  <td><%=mail_to book.user.email%></td>
-  <td>
+<tr>
+  <div id="<%="book#{book.id}"%>" class="book">
+    <h3><%=h book.title%></h3>
+    By <%=h book.author%>
+    <br>ISBN: <%=h book.isbn%>
+    <p class="book_desc"><%=h book.description%></p>
+    Contact: <%=mail_to h( book.user.email)%>
+
     <%if book.user.id == session[:user].id%>
-    <%=link_to_remote "Delete", :url=>{:controller=>'book', :action=>"delete", :id=>book.id}%>
+    <br><%=link_to_remote "Delete", :url=>{:controller=>'book', :action=>"delete", :id=>book.id}%>
     <%end%>
-  </td>
+  </div>
 </tr>
