@@ -9,7 +9,7 @@
 <%=text_field "book", "author"%>
 <br><label>ISBN #</label><br>
 <%=text_field "book", "isbn"%>
-<br><label>Description</label><br>
+<br><label>Description (markdown supported)</label><br>
 <%=text_area "book", "description", :rows=>3%>
 <br><%=submit_tag%>
 <%=link_to_remote "hide", :url=>{:action=>'hide_form'}%>

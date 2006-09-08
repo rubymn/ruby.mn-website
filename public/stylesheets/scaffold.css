@@ -8,9 +8,10 @@ div.book {
 
 }
 
-p.book_desc {
+.book_description {
   padding: 20px;
   background: lightblue;
+  margin: 5px;
 }
 
 body, p, ol, ul, td {
