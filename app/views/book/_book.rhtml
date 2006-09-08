@@ -1,5 +1,4 @@
-<tr>
-  <div id="<%="book#{book.id}"%>" class="book">
+  <div id="<%="book_#{book.id}"%>" class="book">
     <h3><%=h book.title%></h3>
     By <%=h book.author%>
     <br>ISBN: <%=h book.isbn%>
@@ -10,4 +9,3 @@
     <br><%=link_to_remote "Delete", :url=>{:controller=>'book', :action=>"delete", :id=>book.id}%>
     <%end%>
   </div>
-</tr>

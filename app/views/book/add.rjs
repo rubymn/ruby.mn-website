@@ -1,1 +1,1 @@
-page.replace_html 'book.form', :partial=>"book_form"
+page.replace_html 'book_form', :partial=>"book_form"
