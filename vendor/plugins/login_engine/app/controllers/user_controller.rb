@@ -107,40 +107,6 @@ class UserController < ApplicationController
   public
 
 
-  def forgot_password
-    # Always redirect if logged in
-    if user?
-      flash[:message] = 'You are currently logged in. You may change your password now.'
-      redirect_to :action => 'change_password'
-      return
-    end
-
-    # Render on :get and render
-    return if generate_blank
-
-    # Handle the :post
-    if params[:user][:email].empty?
-      flash.now[:warning] = 'Please enter a valid email address.'
-    elsif (user = User.find_by_email(params[:user][:email])).nil?
-      flash.now[:warning] = "We could not find a user with the email address #{params[:user][:email]}"
-    else
-      begin
-        User.transaction(user) do
-          key = user.generate_security_token
-          url = url_for(:action => 'change_password', :user_id => user.id, :key => key)
-          UserNotify.deliver_forgot_password(user, url)
-          flash[:notice] = "Instructions on resetting your password have been emailed to #{params[:user][:email]}"
-        end  
-        unless user?
-          redirect_to :action => 'login'
-          return
-        end
-        redirect_back_or_default :action => 'home'
-      rescue
-        flash.now[:warning] = "Your password could not be emailed to #{params[:user][:email]}"
-      end
-    end
-  end
 
   def edit
     return if generate_filled_in
