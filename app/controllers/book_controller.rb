@@ -7,6 +7,7 @@ class BookController < ApplicationController
       @book.users.delete(session[:user])
       if @book.users.size == 0
         @book.destroy
+        @book=nil
       end
     end
   end

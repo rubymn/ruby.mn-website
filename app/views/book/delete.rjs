@@ -1,1 +1,5 @@
-page.replace_html 'users', @book.users.join(" ")
+if @book
+  page.replace_html "book_#{@book.id}", :partial=>'book', :object=>@book
+else
+  page.replace "book_#{@params[:id]}", ''
+end

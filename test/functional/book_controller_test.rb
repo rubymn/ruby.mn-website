@@ -78,6 +78,7 @@ class BookControllerTest < Test::Unit::TestCase
     @request.session[:user]=users(:existingbob)
     post :delete, "id"=>books(:first).id
     assert !Book.exists?(books(:first).id)
+    assert (assigns(:book)== nil)
   end
 
 end
