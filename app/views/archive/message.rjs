@@ -1,0 +1,4 @@
+id = "mail_#{@message.id}"
+page.hide  id
+page.replace_html id, :partial=>'body', :object=>@message.body
+page.visual_effect :blind_down, id

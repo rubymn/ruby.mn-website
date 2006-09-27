@@ -3,7 +3,7 @@
 #to automatically create MailList objects in the db.
 #be sure to configure the env appropriately.
 
-RAILS_ROOT='/home/mml/tcrbb'
+RAILS_ROOT='.'
 if not ENV["RAILS_ENV"].nil?
   RAILS_ENV=ENV["RAILS_ENV"]
 else
@@ -12,6 +12,7 @@ end
 puts "working with #{RAILS_ENV}"
 require 'rubygems'
 require 'rmail'
+require_gem 'activerecord'
 require 'fileutils'
 require 'yaml'
 require 'pp'
@@ -42,17 +43,24 @@ def read_msg(io)
   lm.replyto=header['Reply-to']
   lm.mailid=header['Message-id']
   lm.stamp=header['Date']
-  lm.save!
+  lm.irt=header['In-Reply-To']
+  
+  unless lm.irt
+  lm.save! 
+  puts "found root, saved it"
+  end
 
-
-  replyto = header['In-reply-to']
-
-
-  parent = ListMail.find_by_mailid(replyto)
-  if not parent.nil?
-    parent.children << lm
+  if lm.irt
+    parent = ListMail.find_by_mailid(lm.irt)
+    if parent
+      puts "found reply to #{parent.id}"
+      lm.parent_id = parent.id
+      lm.save!
+      parent.add_child lm
+      parent.save!
+      puts "saved child, siblings: #{parent.all_children.size}, depth: #{lm.depth}"
+    end
     lm.save!
-    parent.save!
   end
   lm
 end

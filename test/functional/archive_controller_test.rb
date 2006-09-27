@@ -5,14 +5,25 @@ require 'archive_controller'
 class ArchiveController; def rescue_action(e) raise e end; end
 
 class ArchiveControllerTest < Test::Unit::TestCase
+  fixtures :list_mails
   def setup
     @controller = ArchiveController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
   end
 
-  # Replace this with your real tests.
-  def test_truth
-    assert true
+  def test_message
+    post :message, :id=>list_mails(:list_mails_3285).id
+    assert_response  :success
+    assert assigns(:message)
+    assert_template 'message'
+  end
+
+  def test_show
+    get :show, :id=>list_mails(:list_mails_3285).id
+    assert_response :success
+    assert assigns(:message)
+    assert_equal list_mails(:list_mails_3285), assigns(:message)
+    assert_template 'show'
   end
 end

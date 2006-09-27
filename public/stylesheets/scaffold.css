@@ -109,6 +109,11 @@ div.footer p {
   color:gray;
 }
 
+div.messagebody {
+  background: #c0c0c0;
+  padding: 10px;
+}
+
 div.mailheader {
     border:1px dotted black ;
     width: 60%;
