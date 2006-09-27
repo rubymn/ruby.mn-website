@@ -9,7 +9,6 @@ if not ENV["RAILS_ENV"].nil?
 else
   RAILS_ENV='production'
 end
-puts "working with #{RAILS_ENV}"
 require 'rubygems'
 require 'rmail'
 require_gem 'activerecord'
@@ -47,18 +46,15 @@ def read_msg(io)
   
   unless lm.irt
   lm.save! 
-  puts "found root, saved it"
   end
 
   if lm.irt
     parent = ListMail.find_by_mailid(lm.irt)
     if parent
-      puts "found reply to #{parent.id}"
       lm.parent_id = parent.id
       lm.save!
       parent.add_child lm
       parent.save!
-      puts "saved child, siblings: #{parent.all_children.size}, depth: #{lm.depth}"
     end
     lm.save!
   end
