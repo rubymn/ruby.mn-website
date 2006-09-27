@@ -3,7 +3,7 @@
 #to automatically create MailList objects in the db.
 #be sure to configure the env appropriately.
 
-RAILS_ROOT='.'
+RAILS_ROOT='/home/mml/tcrbb'
 if not ENV["RAILS_ENV"].nil?
   RAILS_ENV=ENV["RAILS_ENV"]
 else
