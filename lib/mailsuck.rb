@@ -3,12 +3,8 @@
 #to automatically create MailList objects in the db.
 #be sure to configure the env appropriately.
 
-RAILS_ROOT='/home/mml/tcrbb'
-if not ENV["RAILS_ENV"].nil?
-  RAILS_ENV=ENV["RAILS_ENV"]
-else
-  RAILS_ENV='production'
-end
+RAILS_ROOT=File.dirname(__FILE__)
+RAILS_ENV=ENV["RAILS_ENV"] || 'production'
 require 'rubygems'
 require 'rmail'
 require_gem 'activerecord'
