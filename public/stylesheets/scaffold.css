@@ -99,7 +99,7 @@ div.opening {
   margin:5;
 }
 
-div.footer p {
+div#footer p {
 	font-size: 10px;
 	color:gray;
 }

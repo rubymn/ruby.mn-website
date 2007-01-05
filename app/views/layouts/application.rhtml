@@ -6,8 +6,26 @@
   </head>
 
   <body>
-    <%=@content_for_layout%>
-    <%=render 'layouts/footer'%>
+    
+    <div id="container">
+      <div id="header">
+        
+      </div>
+      <div id="page">
+        <div id="content">
+          <%= yield %>
+        </div>
+        <div id="sidebar">
+          <%- # if a view defines content_for :sidebar it will be used -%>
+          <%- # otherwise the partial in shared will be rendered -%>
+          <%= (yield :sidebar) || render(:partial => "shared/sidebar") %>
+        </div>
+      </div>
+      <div id="footer">
+         <%= (yield :footer) || render(:partial => "shared/footer") %>
+      </div>
+    </div>
+
     <script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
     </script>
     <script type="text/javascript">
