@@ -5,6 +5,7 @@
 # ENV['RAILS_ENV'] ||= 'production'
 
 # Bootstrap the Rails environment, frameworks, and default configuration
+RAILS_GEM_VERSION='1.1.6'
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
