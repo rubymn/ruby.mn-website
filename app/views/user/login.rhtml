@@ -1,0 +1,17 @@
+<% for name in [:notice, :warning, :message] %>
+  <% if flash[name] %>
+    <%= "<div id=\"#{name}\">#{flash[name]}</div>" %>
+  <% end %>
+<%end%>
+
+<% form_tag('/user/login') do  %>
+<fieldset>
+  <legend>Please Login</legend>
+  <label>Username<%=text_field "user", "login", :size => 30 %></label>
+  <label>Password <%=password_field "user", "password", :size => 30 %></label>
+
+    <%= submit_tag 'Login' %>
+    <%= link_to 'Register for an account', :action => 'signup' %> |
+    <%= link_to 'Forgot my password', :action => 'forgot_password' %>
+  </fieldset>
+  <% end %>
