@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :openings
   has_and_belongs_to_many :books, :join_table=>'users_books'
   attr_protected :verified, :form
+  before_save :generate_password
   attr_accessor :new_password
   def generate_security_token(hours = 1)
     if  self.security_token.nil? or self.token_expiry.nil? or (Time.now.to_i + (60*60) / 2) >= self.token_expiry.to_i

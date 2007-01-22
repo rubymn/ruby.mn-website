@@ -46,8 +46,6 @@ class UserController  < ApplicationController
       return
     end
 
-    # Render on :get and render
-    return if generate_blank
 
     # Handle the :post
     if params[:user][:email].empty?
@@ -108,16 +106,6 @@ class UserController  < ApplicationController
       @login = params[:user][:login]
       flash.now[:warning] = 'Login unsuccessful'
     end
-  end
-  # Generate a template user for certain actions on get
-  def generate_blank
-    case request.method
-    when :get
-      @user = User.new
-      render
-      return true
-    end
-    return false
   end
 
 
