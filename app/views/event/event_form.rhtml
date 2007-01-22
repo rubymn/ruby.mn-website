@@ -1,7 +1,7 @@
 <p>This is the event form
 <%=start_form_tag :action=>"create"%>
-<%if !@params[:id].nil?%>
-<%=hidden_field "event", "id", @params%>
+<%if !params[:id].nil?%>
+<%=hidden_field "event", "id", params%>
 <%end%>
 Headline <%=text_field "event", "headline"%>
 <br>Time &amp; Date:<br> <%=datetime_select "event", "scheduled_time"%>

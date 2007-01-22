@@ -1,6 +1,6 @@
 <%=start_form_tag :action=>"create"%>
-<%if !@params[:id].nil?%>
-<%=hidden_field "opening", "id", @params%>
+<%if !params[:id].nil?%>
+<%=hidden_field "opening", "id", params%>
 <%end%>
 Title<br> <%=text_field "opening", "headline"%><br>
 Body<br>

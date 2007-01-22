@@ -1,6 +1,6 @@
-<%=@params[:id]%>
+<%=params[:id]%>
 <%=start_form_tag%>
-<%if !@params[:id].nil? %>
+<%if !params[:id].nil? %>
 <%=hidden_field "for_hire", "id"%>
 <%end%>
 <p>Title<br>

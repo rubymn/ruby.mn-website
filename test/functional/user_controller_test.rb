@@ -30,12 +30,15 @@ class UserControllerTest < Test::Unit::TestCase
     assert_redirected_to :action=>'login', :controller=>"user"
     @request.session[:user]=users(:bob)
     get :list
+    assert_response :success
     assert assigns(:users)
   end
 
   def test_signup
     post :signup, {"user"=>{"password_confirmation"=>"standard", "lastname"=>"Looney", 
       "firstname"=>"MCClain", "login"=>"mogwai", "password"=>"standard", "email"=>"m@loonsoft.com"}}
+      assert_response :redirect
+      assert_nil flash[:warning]
     assert_equal "Signup successful! Please check your registered email account to verify your account registration and continue with the login.", flash[:notice]
     assert_nil flash[:warning]
     assert_not_nil User.find_by_login("mogwai")
@@ -43,11 +46,16 @@ class UserControllerTest < Test::Unit::TestCase
     assert_redirected_to  :action=>'login'
   end
 
-  def test_home_verify
+  def test_validate
 #http://www.ruby.mn/user/home?key=baf41cc616ee9185c1769fc864e4b308e0a26046&user_id=130
+    @request.session[:user] = nil
     assert_not_nil User.find(130)
     assert !User.find(130).verified?
-    get :home, {"key"=>"baf41cc616ee9185c1769fc864e4b308e0a26046", "user_id"=>"130"}
+    get :validate, "key"=>"baf41cc616ee9185c1769fc864e4b308e0a26046"
     assert User.find(130).verified?
+    assert_response :redirect
+    assert_redirected_to :controller=>'welcome', :action=>'index'
+  end
+  def test_redirection
   end
 end

@@ -1,9 +1,13 @@
 # Filters added to this controller will be run for all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
-require 'login_engine'
 class ApplicationController < ActionController::Base
-  include LoginEngine
-  helper :user
-  model :user
+
+  def login_required
+    session['return-to']=request.request_uri
+    if session[:user].nil?
+      redirect_to :controller=>'user', :action=>'login'
+    end
+    return true
+  end
   
 end

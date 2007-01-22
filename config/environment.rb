@@ -5,7 +5,7 @@
 # ENV['RAILS_ENV'] ||= 'production'
 
 # Bootstrap the Rails environment, frameworks, and default configuration
-RAILS_GEM_VERSION='1.1.6'
+RAILS_GEM_VERSION='1.2.1'
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
@@ -53,21 +53,5 @@ end
 
 # Include your application configuration below
 # 
-ActionController::CgiRequest::DEFAULT_SESSION_OPTIONS.update(:prefix => 'tcrbb.')
-ActionMailer::Base.server_settings = {
-    :address=>'mail.loonsoft.com',    # default: localhost
-    :port=>'25',                        # default: 25
-    :user_name=>'relay',
-    :password=>'relayok',
-    :domain=>'localhost',
-    :authentication=>:cram_md5             # :plain, :login or :cram_md5
-}
-module LoginEngine
-    config :salt, "kjfkuck6yl876i3i^$$I^izkyr75"
-    config :email_from, "m@loonsoft.com"
-    config :admin_email, "m@loonsoft.com"
-    config :app_name, "tcrbb app"
-end
-Engines.start :login
 
 

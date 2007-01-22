@@ -2,7 +2,7 @@
   <div id="errors">
   </div>
   <legend>Book Form</legend>
-<%=form_remote_tag  :url=>{:action=>'new'}%>
+  <%form_remote_tag(:url=>'/books/new') do%>
 <label>Title</label><br>
 <%=text_field "book", "title"%>
 <br><label>Author</label><br>
@@ -13,5 +13,5 @@
 <%=text_area "book", "description", :rows=>3%>
 <br><%=submit_tag%>
 <%=link_to_remote "Cancel", :url=>{:action=>'hide_form'}%>
-<%=end_form_tag%>
+<%end%>
 </fieldset>
