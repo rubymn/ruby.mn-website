@@ -1,0 +1,16 @@
+<fieldset>
+  <div id="message">
+    Please enter your username, and we'll send reset instructions to your registered address.
+  </div>
+    <%if flash[:error]%>
+  <div class="error">
+    <%=flash[:error]%>
+  </div>
+  <%end%>
+  <legend>Reset Password</legend>
+  <%form_tag("/user/reset") do%>
+  <label>Username<%=text_field_tag "login"%></label>
+  <%=submit_tag "mail it"%>
+  <%end%>
+</fieldset>
+

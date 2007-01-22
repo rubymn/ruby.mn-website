@@ -46,8 +46,35 @@ class UserControllerTest < Test::Unit::TestCase
     assert_redirected_to  :action=>'login'
   end
 
+  def test_password_conf
+    post :signup, "user"=>{"password_confirmation"=>"fu", "lastname"=>"looney", "firstname"=>"mcclain", "login"=>"mml", "password"=>"standard", "email"=>"m@loonsoft.com"} 
+
+    assert_response :success
+    assert_template 'signup'
+    assert assigns(:user)
+    assert_equal ["Password doesn't match confirmation"] ,assigns(:user).errors.each_full{}
+  end
+
+  def test_create
+    post :signup, "user"=>{"password_confirmation"=>"standard", "lastname"=>"looney", "firstname"=>"mcclain", "login"=>"tutu", "password"=>"standard", "email"=>"m@loonsoft.com"} 
+    assert_response :redirect
+    assert_redirected_to :action=>'login'
+    assert flash[:notice]
+    u = User.find_by_login('tutu')
+    assert_not_nil u
+    u.reload
+    assert !u.verified?
+    u.verified = true
+    u.save!
+    u.reload
+    u = User.find_by_login('tutu')
+    assert_not_nil u
+    assert u.verified?
+    assert_not_nil u.salted_password
+    assert_not_nil u.salt
+  end
+
   def test_validate
-#http://www.ruby.mn/user/home?key=baf41cc616ee9185c1769fc864e4b308e0a26046&user_id=130
     @request.session[:user] = nil
     assert_not_nil User.find(130)
     assert !User.find(130).verified?
@@ -56,6 +83,10 @@ class UserControllerTest < Test::Unit::TestCase
     assert_response :redirect
     assert_redirected_to :controller=>'welcome', :action=>'index'
   end
-  def test_redirection
+
+  def test_reset
+    post :reset, :login=>'bob'
+    assert_response :success
+    assert_template 'reset'
   end
 end

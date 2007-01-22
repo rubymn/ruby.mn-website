@@ -4,8 +4,15 @@ class User < ActiveRecord::Base
   has_many :openings
   has_and_belongs_to_many :books, :join_table=>'users_books'
   attr_protected :verified, :form
-  before_save :generate_password
-  attr_accessor :new_password
+  after_validation :encrypt_password
+  validates_confirmation_of :password , :msg=>"Confirmation password should match"
+  validates_uniqueness_of :login, :email
+  validates_presence_of :login, :email, :firstname, :lastname, :on=>:create 
+  validates_presence_of :password, :password_confirmation, :on=>:create
+  attr_protected :password
+  def crypt_new_password
+    encrypt_password
+  end
   def generate_security_token(hours = 1)
     if  self.security_token.nil? or self.token_expiry.nil? or (Time.now.to_i + (60*60) / 2) >= self.token_expiry.to_i
       return new_security_token(hours)
@@ -16,20 +23,29 @@ class User < ActiveRecord::Base
   def self.authenticate(login, password)
     u = find(:first, :conditions => ["login = ? AND verified = 1 AND deleted = 0", login])
     return nil if u.nil?
-    find(:first, :conditions => ["login = ? AND salted_password = ? AND verified = 1", login, "#{u.salt}#{hash(password)}"])
+    crypted = hashify(u.salt+hashify(password))
+    find(:first, :conditions => ["login = ? AND salted_password = ? AND verified = 1", login, crypted])
   end
 
+  attr_accessor :password, :password_confirmation
   protected
 
-  attr_accessor :password, :password_confirmation
   def new_security_token(hours = 1)
-    write_attribute('security_token', hash(self.salted_password + Time.now.to_i.to_s + rand.to_s))
+    write_attribute('security_token', User.hashify(self.salted_password + Time.now.to_i.to_s + rand.to_s))
     write_attribute('token_expiry', Time.at(Time.now.to_i + hours*60*60))
     update_without_callbacks
     return self.security_token
   end
-  def hash(str)
+  def self.hashify(str)
     salt = "kjfkuck6yl876i3i^$$I^izkyr75"
     return Digest::SHA1.hexdigest("#{salt}--#{str}--}")[0..39]
+  end
+  def encrypt_password
+    if password
+      salt = User.hashify("salt-#{Time.now}")
+      logger.debug "encrypting password : #{password}"
+      self[:salted_password]=User.hashify(salt+User.hashify(password))
+      self[:salt] = salt
+    end
   end
 end
