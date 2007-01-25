@@ -1,0 +1,32 @@
+html>body {
+	font-size:12px;
+}
+p {
+	font-size:1em;
+	line-height:1.5em;
+	margin:0 0 1.5em 0;
+}
+h1 {
+	line-height:1em;
+	font-size:1.5em;
+	font-weight:normal;
+	margin:0 0 1em 0;
+}
+h2 {
+	font-size:1.1667em;
+	line-height: 1.286em;
+	margin:1.929em 0 0.643em 0;
+	font-weight:normal;
+}
+.sidenote {
+	text-indent:-0.7em;
+	width:12em;
+	margin-right:0;
+	font-size:0.8333em;
+	line-height:1.8em;
+}
+.footnote {
+	border-top:0.08333em solid #000;
+	margin-top:2.25em;
+	padding-top:0.667em;
+}

@@ -1,10 +1,11 @@
-<p>
+        <p>
         <%- if !current_user.nil? -%>
         You're logged in as <%= h(current_user.login) %>
         <%=link_to "Logout", :controller=>'user', :action=>'logout' -%>
         <%-else-%>
         <%=link_to "Login", :controller=>'user', :action=>'login' -%>
         <%end%>
+        |
         <%=link_to "Home", :controller=>"welcome"%>
         <span style="float:right">Another quick hack by <a href="http://www.loonsoft.com">LoonSoft</a></span>
         </p>
