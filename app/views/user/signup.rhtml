@@ -10,13 +10,13 @@
 
     <fieldset>
       <legend>Signup</legend>
-      <% form_tag('signup') do %>
-      <label>First Name <%= text_field 'user', "firstname" %></label>
-      <label>Last Name <%= text_field 'user', "lastname"%></label>
-      <label>Username <%= text_field  'user', "login",  :size => 30 %></label>
-      <label>Email <%= text_field  'user', "email"  %></label>
-      <label>Password <%= password_field  'user', "password"  %></label>
-      <label>Confirm Password <%= password_field  'user', "password_confirmation"  %></label>
+      <% form_for :user, :url=>{:action=>'signup'} do |f| %>
+      <label>First Name <%= f.text_field  "firstname" %></label>
+      <label>Last Name <%= f.text_field  "lastname"%></label>
+      <label>Username <%= f.text_field   "login",  :size => 30 %></label>
+      <label>Email <%= f.text_field   "email"  %></label>
+      <label>Password <%= f.password_field   "password"  %></label>
+      <label>Confirm Password <%= f.password_field   "password_confirmation"  %></label>
       <%= submit_tag 'Signup' %>
       <%= link_to 'Cancel', :action => 'login' %>
       <%end%>

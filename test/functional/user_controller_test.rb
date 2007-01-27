@@ -54,6 +54,14 @@ class UserControllerTest < Test::Unit::TestCase
     assert assigns(:user)
     assert_equal ["Password doesn't match confirmation"] ,assigns(:user).errors.each_full{}
   end
+  def test_empty_pass
+    post :signup, "user"=>{ "lastname"=>"looney", "firstname"=>"mcclain", "login"=>"mml",  "email"=>"m@loonsoft.com"} 
+
+    assert_response :success
+    assert_template 'signup'
+    assert assigns(:user)
+    assert_equal ["Password can't be blank"] ,assigns(:user).errors.each_full{}
+  end
 
   def test_create
     post :signup, "user"=>{"password_confirmation"=>"standard", "lastname"=>"looney", "firstname"=>"mcclain", "login"=>"tutu", "password"=>"standard", "email"=>"m@loonsoft.com"} 
@@ -88,5 +96,13 @@ class UserControllerTest < Test::Unit::TestCase
     post :reset, :login=>'bob'
     assert_response :success
     assert_template 'reset'
+  end
+
+  def test_reset
+    @request.session[:user]=users(:bob)
+    post  :set_password, {"password"=>'test', "pass2"=>"not"}
+    assert_response :redirect 
+    assert_redirected_to :action=>'change_password'
+    assert_not_nil flash[:error]
   end
 end

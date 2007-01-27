@@ -5,13 +5,13 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :books, :join_table=>'users_books'
   attr_protected :verified, :form
   after_validation :encrypt_password
-  validates_confirmation_of :password , :msg=>"Confirmation password should match"
+  validates_confirmation_of :password , :msg=>"Confirmation password should match", :on=>:create
   validates_uniqueness_of :login, :email
-  validates_presence_of :login, :email, :firstname, :lastname, :on=>:create 
-  validates_presence_of :password, :password_confirmation, :on=>:create
-  attr_protected :password
+  validates_presence_of :login, :email, :firstname, :lastname
+  validates_presence_of :password, :on=>:create
   def crypt_new_password
     encrypt_password
+    save!
   end
   def generate_security_token(hours = 1)
     if  self.security_token.nil? or self.token_expiry.nil? or (Time.now.to_i + (60*60) / 2) >= self.token_expiry.to_i
