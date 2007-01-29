@@ -1,0 +1,40 @@
+html>body {
+  font-size:12px;
+}
+p {
+  font-size:100%; /*12pt in YUI terms*/
+  line-height:150%;
+  margin:0 0 1.5em 0;
+}
+h1, h2, h3, h4 {font-weight:bold;font-family: times, serif;}
+h1 {
+  line-height:90%;
+  font-size:182%; /*24pt in YUI terms*/
+  margin:0 0 .9em 0;
+}
+h2 {
+  line-height:100%;
+  font-size:136%; /*24pt in YUI terms*/
+  margin:1.0em 0 0.25em 0;
+}
+
+h3 {
+  line-height:112.5%;
+  font-size:122%; /*16pt in YUI terms*/
+  margin:0.75em 0 0.25em 0;
+}
+h4 {
+  line-height: 133%;
+  font-size:107%; /*14pt*/
+  margin:0.5em 0 0.25em 0;
+}
+h5 {
+  line-height: 150%;
+  font-size:100%; /*12pt*/
+  margin:0.5em 0 0.25em 0;
+}
+strong{font-weight:bold;}
+em{font-style: italic;}
+ul,ol{margin: 0 0 1em 1.5em;}
+ul{list-style-type: square;}
+ol{list-style-type: decimal;}
