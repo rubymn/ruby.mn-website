@@ -6,3 +6,19 @@ div#ft p {
   color:gray;
 }
 input{margin: 2px;margin-bottom:5px;}
+div.event, div.opening, div.for_hire, div.mailheader, div.linkpost, div.book {
+  border: 1px dotted gray ;
+  padding:4px;
+/*  width:75%;*/
+  margin:5px;
+}
+
+.control {
+  font-size: 10px;
+  color:gray;
+}
+
+div.messagebody {
+  background: #c0c0c0;
+  padding: 10px;
+}
