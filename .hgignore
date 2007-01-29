@@ -1,4 +1,4 @@
-.*\.log
+log\.*log
 .*.*\.pid
 .*\.swp
 config/scgi.yaml
