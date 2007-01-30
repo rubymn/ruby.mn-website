@@ -3,15 +3,22 @@
   </div>
   <legend>Book Form</legend>
   <%form_remote_tag(:url=>'/books/new') do%>
-<label>Title</label><br>
+<label for="book_title">Title</label>
 <%=text_field "book", "title"%>
-<br><label>Author</label><br>
+<br>
+<label for="book_author">Author</label>
 <%=text_field "book", "author"%>
-<br><label>ISBN #</label><br>
+<br>
+<label for="book_isbn">ISBN #</label>
 <%=text_field "book", "isbn"%>
-<br><label>Description (markdown supported)</label><br>
+<br>
+<label for="book_description">Description (markdown supported)</label>
 <%=text_area "book", "description", :rows=>3%>
-<br><%=submit_tag%>
-<%=link_to_remote "Cancel", :url=>{:action=>'hide_form'}%>
+<br>
+<div class="submit">
+<%=submit_tag%>
+<%=link_to_remote "Cancel", :url=>{:action=>'hide_form'}%>  
+</div>
+
 <%end%>
 </fieldset>

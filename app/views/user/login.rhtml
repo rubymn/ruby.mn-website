@@ -7,7 +7,7 @@
 <% form_tag('/user/login') do  %>
 <fieldset>
   <legend>Please Login</legend>
-  <label for="user_login">Username</label><%=text_field "user", "login", :size => 30 %><br>
+  <label for="user_login">Username:</label><%=text_field "user", "login", :size => 30 %><br>
   <label for="user_password">Password:</label><%=password_field "user", "password", :size => 30 %>
     <div class="submit">
     <%= submit_tag 'Login' %><br>
