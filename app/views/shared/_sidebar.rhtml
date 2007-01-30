@@ -1,7 +1,7 @@
 <div id="navbar">
   <ul>
   <%- if !current_user.nil? -%>
-  <li><%=link_to "Mailing List Archive", :controller=>'archive', :action=>'index'%></li>
+  <!--  <li><%=link_to "Mailing List Archive", :controller=>'archive', :action=>'index'%></li>-->
   <li><%=link_to "Member List", :controller=>'user', :action=>'list'%></li>
   <li><%=link_to "For-Hire", :controller=>"for_hire"%></li>
   <li><%=link_to "Help Wanted", :controller=>'opening'%></li>
