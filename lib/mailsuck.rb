@@ -3,7 +3,7 @@
 #to automatically create MailList objects in the db.
 #be sure to configure the env appropriately.
 
-RAILS_ROOT=File.dirname(__FILE__)
+RAILS_ROOT=File.dirname(__FILE__)+'/../'
 RAILS_ENV=ENV["RAILS_ENV"] || 'production'
 require 'rubygems'
 require 'rmail'
