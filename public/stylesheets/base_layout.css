@@ -22,3 +22,25 @@ div.messagebody {
   background: #c0c0c0;
   padding: 10px;
 }
+legend{display:none;}
+form label {
+  display: block;
+  float: left;
+  width: 25%;
+  padding: 3px 5px;
+  margin: 0 0 5px 0;
+  text-align: right;
+}
+form br{clear:both;}
+
+form  input, form select, form textarea {
+  padding: 1px 3px;
+}
+
+.submit
+{
+  margin: 0 25%;
+  text-align:center;
+}
+
+

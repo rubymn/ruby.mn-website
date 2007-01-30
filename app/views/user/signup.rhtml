@@ -8,16 +8,19 @@
     <% end %>
   <%end%>
 
-    <fieldset>
-      <legend>Signup</legend>
-      <% form_for :user, :url=>{:action=>'signup'} do |f| %>
-      <label>First Name <%= f.text_field  "firstname" %></label>
-      <label>Last Name <%= f.text_field  "lastname"%></label>
-      <label>Username <%= f.text_field   "login",  :size => 30 %></label>
-      <label>Email <%= f.text_field   "email"  %></label>
-      <label>Password <%= f.password_field   "password"  %></label>
-      <label>Confirm Password <%= f.password_field   "password_confirmation"  %></label>
-      <%= submit_tag 'Signup' %>
-      <%= link_to 'Cancel', :action => 'login' %>
-      <%end%>
-    </fieldset>
+  <fieldset>
+    <legend>Signup</legend>
+    <% form_for :user, :url=>{:action=>'signup'} do |f| %>
+    <label for="user_firstname">First Name:</label><%= f.text_field  "firstname" %><br>
+    <label for="user_lastname">Last Name:</label><%= f.text_field  "lastname"%><br>
+    <label for="user_login">Username:</label><%= f.text_field   "login",  :size => 30 %><br>
+    <label for="user_email">Email:</label><%= f.text_field   "email"  %><br>
+    <label for="user_password">Password:</label><%= f.password_field   "password"  %><br>
+    <label for="user_password_confirmation">Confirm Password:</label><%= f.password_field   "password_confirmation"  %><br>
+    <div class="submit">
+    <%= submit_tag 'Signup' %>
+    <%= link_to 'Cancel', :action => 'login' %>
+    </div>
+    <%end%>
+  </fieldset>
+</div>

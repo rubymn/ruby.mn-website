@@ -7,11 +7,12 @@
 <% form_tag('/user/login') do  %>
 <fieldset>
   <legend>Please Login</legend>
-  <label>Username<%=text_field "user", "login", :size => 30 %></label>
-  <label>Password <%=password_field "user", "password", :size => 30 %></label>
-
-    <%= submit_tag 'Login' %>
+  <label for="user_login">Username</label><%=text_field "user", "login", :size => 30 %><br>
+  <label for="user_password">Password:</label><%=password_field "user", "password", :size => 30 %>
+    <div class="submit">
+    <%= submit_tag 'Login' %><br>
     <%= link_to 'Register for an account', :action => 'signup' %> |
     <%= link_to 'Forgot my password', :action => 'forgot_password' %>
+    </div>
   </fieldset>
   <% end %>
