@@ -1,1 +1,2 @@
 page.replace_html 'book_form', :partial=>"book_form"
+page.show 'book_form'

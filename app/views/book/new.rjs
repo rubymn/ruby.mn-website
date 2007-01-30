@@ -1,6 +1,7 @@
 if @success
   page.insert_html :top, 'book_table', :partial=>'book', :object=>@book
   page.visual_effect :highlight, "book_#{@book.id}"
+  page.hide "book_form"
 else
   page.replace_html 'errors', error_messages_for("book")
 end
