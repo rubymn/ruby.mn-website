@@ -1,10 +1,10 @@
 <h1>Welcome</h1>
-<p> This is the home of Ruby Users of Minnesota &mdash; a fine group of Ruby enthusiasts from around the Twin Cities metro area (that is to say the fine cities of Minneapolis and Saint Paul as well as exotic locales like Dinkytown and Pig's Eye.)
+<p> This is the home of Ruby Users of Minnesota &mdash; a fine group of Ruby enthusiasts from around the Twin Cities metro area (that is to say the fine cities of Minneapolis and Saint Paul as well as exotic locales like Dinkytown and Pig's Eye.)</p>
 <p>You'll want to <%=link_to "login", :controller=>'user', :action=>'login'%> or 
 <%=link_to "sign up", :action=>'signup', :controller=>'user'%> to use any of the nifty
 features, like the <%=link_to "help wanted", :controller=>'opening'%>, <%=link_to "events", :controller=>'event'%> or 
 <%=link_to "member list", :controller=>'user', :action=>'list'%> and <%=link_to "for-hire", :controller=>"for_hire"%> sections. <em>And</em> if you're a member, you can <%=link_to "borrow a book", :controller=>'book'%>.  That's right, membership does have it's privileges!
-
+</p>
 <p>You may want to check out the mailing list <%=link_to "archive", :controller=>'archive', :action=>'index'%>.  
 To join the list yourself, just send mail to <a href="mailto:ruby.mn+subscribe@ruby.mn">ruby.mn+subscribe@ruby.mn</a></p>
 <p>Our group meets on the last Tuesday of each month at 7 PM (come early to hack Ruby code).  Our home is:<br /><a href="http://www.loringpark-mpls.dunnbros.com/">the Dunn Bros Coffee Shop on Loring Park</a><br />
@@ -13,7 +13,6 @@ Minneapolis, MN 55403<br />
 <span style="font-size:.8em"><a href="http://maps.google.com/maps?f=q&amp;hl=en&amp;q=DunnBros+Loring+Park+329+West+15th+St.&amp;sll=44.969383,-93.280706&amp;sspn=0.015485,0.03047&amp;ie=UTF8&amp;z=15&amp;om=1&amp;iwloc=A">Map</a></span><br />
 We now have a <a href="http://www.google.com/calendar/ical/4g380qh7p0taroueuulfajauck@group.calendar.google.com/public/basic">Google Calendar iCal file</a> of upcoming events.  We'll see you at the next meeting.</p>
 <p></p>
-</p>
 <%if !@events.empty?%>
 <h2>Announcements</h2>
 <%- if !current_user.nil? -%>

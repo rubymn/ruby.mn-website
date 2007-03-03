@@ -4,7 +4,7 @@ help with your project, or just hang around drinking beers
 all day, you could do worse than starting with this list.
 </p>
 
-<p>If you are a Ruby developer, click <%=link_to "here", :action=>'create'%> to
-add a listing.</p>
+<%if not session[:user].nil?%> <p>If you are a Ruby developer, click <%=link_to "here", :action=>'create'%> to
+add a listing.</p><%end%>
 
 <%=render :partial=>'for_hire', :collection=>@for_hires%>

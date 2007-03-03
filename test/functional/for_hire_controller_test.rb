@@ -11,10 +11,10 @@ class ForHireControllerTest < Test::Unit::TestCase
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
   end
-  def test_login_required
+  def test_login_not_required
     get :index
-    assert_response :redirect
-    assert_redirected_to :controller=>'user', :action=>'login'
+    assert_response :success
+    assert_template 'index'
 
   end
 

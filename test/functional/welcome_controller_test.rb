@@ -23,5 +23,5 @@ class WelcomeControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_equal 2,  assigns(:events).size()
   end
-  
+
 end
