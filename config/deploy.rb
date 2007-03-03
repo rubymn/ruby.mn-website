@@ -25,14 +25,9 @@ task :spinner, :roles=>:app do
   run "cd #{deploy_to}/#{current_dir} && mongrel_rails cluster::start"
 end
 
-task :before_update do
-  transaction do
-    run "cd #{deploy_to}/#{current_dir} && mongrel_rails cluster::stop"
-  end
-end
-
 task :restart, :roles=>:app do
   transaction do
+    run "cd #{deploy_to}/#{current_dir} && mongrel_rails cluster::stop"
     run "cd #{deploy_to}/#{current_dir} && mongrel_rails cluster::start"
   end
 end
