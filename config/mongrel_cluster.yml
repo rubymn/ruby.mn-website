@@ -3,4 +3,4 @@ port: 4000
 pid_file: log/mongrel.pid
 servers: 4
 environment: production
-cwd: /home/mml/tcrbb2/current
+cwd: /home/mml/tcrbb/current
