@@ -1,6 +1,7 @@
 
 set :application, "tcrbb"
 set :repository, "/usr/local/hg/tcrbb"
+set :use_sudo, false
 
 role :web, "looneys.net"
 role :app, "looneys.net"
