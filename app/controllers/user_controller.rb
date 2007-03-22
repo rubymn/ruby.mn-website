@@ -54,7 +54,7 @@ class UserController  < ApplicationController
   end
 
   def home
-    @fullname = "#{current_user.firstname} #{current_user.lastname}"
+    @fullname = "#{session[:user].firstname} #{session[:user].lastname}"
   end
 
   def logout
