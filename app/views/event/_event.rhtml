@@ -1,9 +1,0 @@
-<div class="event">
-  <h3>  <%if event.scheduled_time%><%=event.scheduled_time.strftime("%D %R")%><%end%> <%=h(event.headline)%> </h3>
-    <%if event.user == session[:user]%>
-    [<%=link_to "delete", :controller=>'event',:action=>'destroy', :id=>event.id%> 
-    <%=link_to "edit", :controller=>'event', :action=>'edit',:id=>event.id%>]
-  <%end%>
-  
-  <p><li><%=auto_link(markdown(h(event.body)))%></li></p>
-</div>

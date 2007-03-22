@@ -1,0 +1,12 @@
+.event
+  %h3
+    -if event.scheduled_time
+      =event.scheduled_time.to_s(:short)
+      =event.headline
+
+    -if event.user == session[:user]
+      =link_to "delete", :controller=>'event', :action=>'destroy', :id=>event.id
+      =link_to 'edit', :controller=>'event', :action=>'edit', :id=>event.id
+
+  %p
+    =mup(event.body)

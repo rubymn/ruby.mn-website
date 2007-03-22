@@ -45,8 +45,8 @@ locales like Dinkytown and Pig's Eye.)
 %p
   We now have <a href="http://www.google.com/calendar/ical/4g380qh7p0taroueuulfajauck@group.calendar.google.com/public/basic">Google Calendar iCal file</a> of upcoming events.  We'll see you at the next meeting.
 
--if defined?(@empty) && !@events.empty?
+-if defined?(@events) && !@events.empty?
   %h2='Announcements'
   -if !current_user.nil?
     %p=link_to "Add a New Event", :controller => 'event', :action => 'create'
-    =render :partial=>"event/event", :collection=>@events
+  =render :partial=>"event/event", :collection=>@events
