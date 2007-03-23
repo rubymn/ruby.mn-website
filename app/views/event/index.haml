@@ -1,0 +1,14 @@
+%h1
+  Events
+
+%p
+  You want to 
+  =link_to "create", :action=>"create"
+  an event?
+
+
+%h2
+  Your events
+
+%ul
+  =render :partial=>"event", :collection=>current_user.events

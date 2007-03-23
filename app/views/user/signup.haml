@@ -1,0 +1,36 @@
+
+.form{:title=>"Please Login"}
+  %h3
+    Signup
+  =error_messages_for 'user'
+  -form_for :user, :url=>{:action=>'signup'} do |f|
+    %fieldset
+
+      %label
+        First Name:
+      =f.text_field "firstname"
+      %br/
+      %label
+        Last Name:
+      =f.text_field "lastname"
+      %br/
+      %label
+        Username
+      =f.text_field "login"
+      %br/
+      %label
+        Email
+      =f.text_field "email"
+      %br/
+      %label
+        Password
+      =f.password_field "password"
+      %br/
+      %label
+        Confirm Password
+      =f.password_field "password_confirmation"
+      %br/
+      .submit
+        =submit_tag "signup"
+        =link_to "Cancel", :action=>'login'
+

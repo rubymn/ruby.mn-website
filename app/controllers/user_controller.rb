@@ -25,7 +25,7 @@ class UserController  < ApplicationController
     # Always redirect if logged in
     if session[:user] and request.get?
       flash[:message] = 'You are currently logged in. You may change your password now.'
-      render :action=> "reset_form"
+      render :action=> "change_password"
       return
     else
       render :action=>"forgot_form"

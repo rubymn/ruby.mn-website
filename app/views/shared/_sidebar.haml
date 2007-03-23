@@ -1,0 +1,22 @@
+#navbar
+  %ul
+    - if not current_user.nil?
+      %li
+        =link_to "Member List", :controller=>'user', :action=>'list'
+      %li
+        =link_to "Help Wanted", :controller=>'opening'
+      %li
+        =link_to "Help Wanted", :controller=>'opening'
+      %li
+        =link_to "Borrow a Book", :controller=>'book'
+      %li
+        =link_to "Logout", :controller=>'user', :action=>'logout' 
+    - else
+      
+      %li
+        =link_to "New User Registration", :controller=>'user', :action=>'signup'
+      %li 
+        =link_to "Login", :controller=>'user', :action=>'login'
+    %li
+      =link_to "For-Hire", :controller=>"for_hire"
+      
