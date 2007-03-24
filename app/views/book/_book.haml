@@ -1,0 +1,23 @@
+%div[book]
+  %h3=h book.title
+  %p
+    By 
+    =h book.author
+    %br/
+    ISBN: 
+    =h book.isbn
+  .book_description
+    =mup(book.description)
+    .users
+      Contact: 
+      %br/
+      - book.users.each do |u|
+        =mail_to h( u.email)
+        %br/
+
+      - if book.users.include?(session[:user])
+        %br
+        =link_to_remote "Delete Me from this book", :url=>{:controller=>'book', :action=>"delete", :id=>book.id}
+      - else
+        %br
+        =link_to_remote "Add Me to this book", :url=>{:controller=>'book', :action=>"addme", :id=>book.id}

@@ -1,0 +1,15 @@
+.form
+  - form_for :action=>"create" do |f|
+    - if !params[:id].nil?
+      =hidden_field "opening", "id", params
+    %fieldset
+      %legend
+        Opening
+      %label
+        Title 
+      =text_field "opening", "headline"
+      %label 
+        Body
+      =text_area "opening", "body"
+      .submit
+        =submit_tag

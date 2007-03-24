@@ -1,0 +1,16 @@
+%p.message
+  Please enter your username, and we'll send reset instructions to
+  your registered address.
+- if flash[:error]
+  .error
+    =flash[:error]
+
+- form_tag('/user/reset') do |f|
+  %fieldset
+    
+    %label
+      Username
+    =text_field_tag "login"
+    .submit
+      =submit_tag "mail it"
+

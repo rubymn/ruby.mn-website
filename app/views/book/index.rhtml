@@ -1,8 +1,0 @@
-<h1>Book#index</h1>
-<h2>It's the Library!</h2>   <%=link_to_remote "Add your books!", :url=>{:action=>'add'}%> 
-<p>Now featuring exactly <%=@books.size%> titles!</p>
-<div id="book_form">
-</div>
-<div id="book_table">
-<%=render :partial=>"book", :collection=>@books%>
-</div>

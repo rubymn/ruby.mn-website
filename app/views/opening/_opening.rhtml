@@ -1,9 +1,0 @@
-<div class="opening">
-    <h3><%=h(opening.headline)%> </h3>
-  <p><%=auto_link(markdown(h(opening.body)))%>
-  <h4><%=mail_to opening.user.email, "Contact #{opening.user.firstname} #{opening.user.lastname}"%></h4>
-  <%if session[:user]== opening.user%>
-  <%=link_to "delete", :action=>'destroy', :id=>opening.id%>
-  <%=link_to "edit", :action=>'edit', :id=>opening.id%>
-  <%end%>
-</div>

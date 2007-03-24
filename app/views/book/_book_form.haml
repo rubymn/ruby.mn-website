@@ -1,0 +1,22 @@
+#errors
+- form_remote_for(:book, :url=>'/book/new') do |f|
+  %fieldset
+    %label
+      Title
+    =f.text_field  "title"
+    %br/
+    %label
+      Author
+    =f.text_field "author"
+    %br/
+    %label
+      ISBN #
+    =f.text_field "isbn"
+    %br/
+    %label
+      Description
+    =f.text_area "description", :rows=>3
+    %br/
+    .submit
+      =submit_tag
+      =link_to_remote "Cancel", :url=>{:action=>'hide_form'}

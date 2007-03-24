@@ -18,11 +18,15 @@ div.event, div.opening, div.for_hire, div.mailheader, div.linkpost, div.book {
   color:gray;
 }
 
+legend {
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
 div.messagebody {
   background: #c0c0c0;
   padding: 10px;
 }
-legend{display:none;}
 form label {
   display: block;
   float: left;
