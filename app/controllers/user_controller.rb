@@ -75,7 +75,7 @@ class UserController  < ApplicationController
 
 
   def list
-    @users=User.find :all, :order=>'firstname'
+    @users=User.find :all, :order=>'firstname', :conditions=>'verified !=0'
   end
 
   # Register as a new user. Upon successful registration, the user will be sent to
