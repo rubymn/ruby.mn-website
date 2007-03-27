@@ -29,3 +29,4 @@ session_options={
   :cache=>CACHE
 }
 ActionController::CgiRequest::DEFAULT_SESSION_OPTIONS.update session_options
+TCRBB_LIST_ADDRESS='ruby.mn@ruby.mn'
