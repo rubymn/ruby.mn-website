@@ -1,18 +1,19 @@
 =render :partial=>'shared/flashdump'
 -form_tag('/user/login') do
   %fieldset
-  %legend
-    Please Login
-  %label
-    Username 
-  =text_field "user", "login", :size => 30 
-  %br/
-  %label 
-    Password:
-  =password_field "user", "password", :size => 30
-  .submit
-    =submit_tag 'Login' 
+    %legend
+      Please Login
+    %label
+      Username 
+    =text_field "user", "login", :size => 30 
     %br/
-    =link_to 'Register for an account', :action => 'signup' 
-    |
-    = link_to 'Forgot my password', :action => 'forgot_password' 
+    %label 
+      Password:
+    =password_field "user", "password", :size => 30
+
+    .submit
+      =submit_tag 'Login' 
+      %br/
+      =link_to 'Register for an account', :action => 'signup' 
+      |
+      = link_to 'Forgot my password', :action => 'forgot_password' 
