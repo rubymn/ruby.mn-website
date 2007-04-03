@@ -19,14 +19,5 @@ config.action_controller.perform_caching             = true
 # config.action_mailer.raise_delivery_errors = false
 #
 #
-CACHE=MemCache.new :c_threshold=>10_000, :compression=>true,\
-  :debug=>false, :namespace=>'tcrbb', :readonly=>false, :urlencode=>false
-
-CACHE.servers='127.0.0.1:11211'
-
-session_options={
-  :database_manager=>CGI::Session::MemCacheStore,
-  :cache=>CACHE
-}
-ActionController::CgiRequest::DEFAULT_SESSION_OPTIONS.update session_options
 TCRBB_LIST_ADDRESS='ruby.mn@ruby.mn'
+config.action_controller.session_store = :mem_cache_store
