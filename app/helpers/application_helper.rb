@@ -1,7 +1,5 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-
-
   def mup(text)
     markdown(auto_link(h(text)))
 
@@ -20,6 +18,9 @@ module ApplicationHelper
   end
 
   def current_user
-    @user = User.find(session[:uid]) if session[:uid] if @user.nil?
+    if session[:uid] and @uuu.nil?
+      @uuu = User.find(session[:uid])
+    end
+    @uuu
   end
 end
