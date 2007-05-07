@@ -8,7 +8,8 @@
       =link_to "delete", :controller=>'event', :action=>'destroy', :id=>event.id
       =link_to 'edit', :controller=>'event', :action=>'edit', :id=>event.id
   %h4
-    = event.approved? ? "Approved" : "Not Approved Yet"
+    - if event.user == current_user
+      = event.approved? ? "Approved" : "Not Approved Yet"
 
   %p
     =mup(event.body)

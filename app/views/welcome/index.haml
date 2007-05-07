@@ -25,25 +25,25 @@ locales like Dinkytown and Pig's Eye.)
     That's right, membership does have it's privileges!
 
 %p
-  = succeed '.' do
-    You may want to check out the mailing list 
-    =link_to "archive", :controller=>'archive', :action=>'index'
-  
-  To join the list yourself, just send mail to
+  To join the mailing list, just send mail to
   %a{:href=>"mailto:ruby.mn+subscribe@ruby.mn"}='ruby.mn+subscribe@ruby.mn'
 
 %p
   :plain
-    Our group meets on the last Tuesday of each month at 7 PM (come early to hack Ruby code).  Our home is:<br>
-    <a href="http://www.loringpark-mpls.dunnbros.com/">the Dunn Bros Coffee Shop on Loring Park</a><br>
+    Our group meets on the last Tuesday of each month at 7 PM (come early to hack Ruby code).  Our home is (usually):<br>
+    <a href="http://www.loringpark-mpls.dunnbros.com/">Dunn Bros Coffee Shop on Loring Park</a><br>
     329 West 15th St.<br>
     Minneapolis, MN 55403<br>
     <span style="font-size:.8em;">
       <a href="http://maps.google.com/maps?f=q&amp;hl=en&amp;q=DunnBros+Loring+Park+329+West+15th+St.&amp;sll=44.969383,-93.280706&amp;sspn=0.015485,0.03047&amp;ie=UTF8&amp;z=15&amp;om=1&amp;iwloc=A">Map</a><br>
     </span>
 
-%p
-  We now have <a href="http://www.google.com/calendar/ical/4g380qh7p0taroueuulfajauck@group.calendar.google.com/public/basic">Google Calendar iCal file</a> of upcoming events.  We'll see you at the next meeting.
+  %p
+    There's usually someone there 
+    %em
+      every 
+    Tuesday, keep an eye on the mailing list to see who's going to be there.
+
 
 -if defined?(@events) && !@events.empty?
   %h2='Announcements'
