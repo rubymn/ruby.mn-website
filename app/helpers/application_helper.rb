@@ -20,6 +20,6 @@ module ApplicationHelper
   end
 
   def current_user
-    User.find(session[:uid]) if session[:uid]
+    @user = User.find(session[:uid]) if session[:uid] if @user.nil?
   end
 end
