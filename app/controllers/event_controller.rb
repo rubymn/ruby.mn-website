@@ -12,6 +12,7 @@ class EventController < ApplicationController
       evt.user=current_user
       evt.save
       redirect_to :action=>"index"
+      Notifier.deliver_notify_event(evt)
     elsif request.post? and !params['event']['id'].nil?
       evt = Event.find(params['event']['id'])
       evt.update_attributes params["event"]

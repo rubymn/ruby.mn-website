@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class OpeningNotificationTest < Test::Unit::TestCase
-  fixtures :openings
+  fixtures :openings,:events, :users
   FIXTURES_PATH = File.dirname(__FILE__) + '/../fixtures'
   CHARSET = "utf-8"
 
@@ -17,13 +17,22 @@ class OpeningNotificationTest < Test::Unit::TestCase
     @expected.mime_version = '1.0'
   end
 
-  def test_send
+  def test_opening_notify
     o = openings(:first)
-    res = OpeningNotification.create_notify(o)
+    res = Notifier.create_notify_opening(o)
     assert_equal 'm@loonsoft.com', *res.to
     assert_equal "New Opening Posted: #{o.headline}", res.subject
     assert_equal 'notifications@ruby.mn', *res.from
   end
+
+  def test_event_notify
+    e = events(:notapproved)
+    res = Notifier.create_notify_event(e)
+    assert_equal 'm@loonsoft.com', *res.to
+    assert_equal "New Event Posted", res.subject
+    assert_equal 'notifications@ruby.mn', *res.from
+  end
+
 
   private
     def read_fixture(action)
