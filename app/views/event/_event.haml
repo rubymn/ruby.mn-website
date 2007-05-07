@@ -1,10 +1,10 @@
 .event
   %h3
-    -if event.scheduled_time
+    - if event.scheduled_time
       =event.scheduled_time.to_s(:short)
       =event.headline
 
-    -if event.user == session[:user]
+    - if event.user == current_user
       =link_to "delete", :controller=>'event', :action=>'destroy', :id=>event.id
       =link_to 'edit', :controller=>'event', :action=>'edit', :id=>event.id
 

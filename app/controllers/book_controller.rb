@@ -3,8 +3,8 @@ class BookController < ApplicationController
 
   def delete
     @book = Book.find(params[:id])
-    if @book.users.include?(session[:user])
-      @book.users.delete(session[:user])
+    if @book.users.include?(current_user)
+      @book.users.delete(current_user)
       if @book.users.size == 0
         @book.destroy
         @book=nil
@@ -14,8 +14,8 @@ class BookController < ApplicationController
 
   def addme
     @book = Book.find(params[:id])
-    if not @book.users.include?(session[:user])
-      @book.users << session[:user]
+    if not @book.users.include?(current_user)
+      @book.users << current_user
       @success = true
     end
   end
@@ -28,7 +28,7 @@ class BookController < ApplicationController
     @book=Book.new(params['book'])
     @success = @book.save
     if @success
-    @book.users << session[:user]
+    @book.users << current_user
     @success = @book.save
     end
   end

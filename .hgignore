@@ -6,3 +6,4 @@ config/scgi.yaml
 .*~
 db/schema.rb
 .*\.orig
+tmp/

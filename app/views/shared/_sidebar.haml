@@ -1,6 +1,6 @@
 #navbar
   %ul
-    - if not current_user.nil?
+    - if current_user
       %li
         =link_to "Member List", :controller=>'user', :action=>'list'
       %li
@@ -9,6 +9,9 @@
         =link_to "Borrow a Book", :controller=>'book'
       %li
         =link_to "Logout", :controller=>'user', :action=>'logout' 
+    - elsif current_user and current_user.admin?
+      %li
+        =link_to "Admin", :controller=>'admin', :action=>'index' 
     - else
       
       %li

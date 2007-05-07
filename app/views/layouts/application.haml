@@ -9,6 +9,11 @@
     =javascript_include_tag :defaults
 
   %body
+    .flashinfo
+      = flash[:info]
+      = flash[:notice]
+    .flasherror
+      = flash[:error]
 
     %div#doc.yui-t5
       %div#hd

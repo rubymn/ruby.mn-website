@@ -19,7 +19,7 @@ class OpeningControllerTest < Test::Unit::TestCase
   end
 
   def test_index
-    @request.session[:user] = users(:bob)
+    @request.session[:uid] = users(:bob).id
     get :index
     assert_response :success
     assert_template 'index'
@@ -27,7 +27,7 @@ class OpeningControllerTest < Test::Unit::TestCase
   end
 
   def test_create_no_id
-    @request.session[:user] = users(:bob)
+    @request.session[:uid] = users(:bob).id
     get :create
     assert_response :success
     assert_template 'opening_form'

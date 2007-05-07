@@ -12,10 +12,10 @@ module ApplicationHelper
   end
 
   def i_am user
-    session[:user] == user
+    session[:uid] == user.id
   end
 
   def current_user
-    session[:user]
+    User.find(session[:uid]) if session[:uid]
   end
 end

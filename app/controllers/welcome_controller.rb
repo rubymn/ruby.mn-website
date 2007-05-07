@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
 
   def index
-    @events = Event.find :all, :order=>"scheduled_time desc", :limit=>5
+    @events = Event.find :all, :order=>"scheduled_time desc",:conditions=>"approved=1", :limit=>5
   end
 end

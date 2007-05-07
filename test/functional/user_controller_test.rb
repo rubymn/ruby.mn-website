@@ -13,13 +13,40 @@ class UserControllerTest < Test::Unit::TestCase
   end
 
   def test_overridden_behavior
-    @request.session[:user]=users(:bob)
+    @request.session[:uid]=users(:bob).id
     get :logout
-    assert_nil session[:user]
+    assert_nil session[:uid]
     assert_response :redirect
     assert_redirected_to :controller=>'welcome'
+  end
+  def test_badpass
+    post :login, 'user'=>{'login'=>'admin', 'password'=>'fstandard'}
+    assert_response :success
+    assert_equal "Login Unsuccessful", flash[:error]
+    assert_template 'login'
+  end
+  def test_baduser
+    post :login, 'user'=>{'login'=>'fadmin', 'password'=>'standard'}
+    assert_response :success
+    assert_equal "Login Unsuccessful", flash[:error]
+    assert_template 'login'
+  end
+  def test_admin_login
+    assert_not_nil users(:admin)
+    assert_not_nil User.find_by_login('admin')
+    post :login, 'user'=>{'login'=>'admin', 'password'=>'standard'}
+    assert_response :redirect
+    assert_redirected_to :controller=>'welcome', :action=>'index'
+    assert_equal 'Admin Login Successful', flash[:notice]
+  end
 
-
+  def test_login
+    assert_not_nil users(:bob)
+    assert_not_nil User.find_by_login('existingbob')
+    post :login, 'user'=>{'login'=>'existingbob', 'password'=>'standard'}
+    assert_response :redirect
+    assert_redirected_to :controller=>'welcome', :action=>'index'
+    assert_equal flash[:notice], 'Login Successful'
   end
 
 
@@ -28,7 +55,7 @@ class UserControllerTest < Test::Unit::TestCase
     get :list
     assert_response :redirect
     assert_redirected_to :action=>'login', :controller=>"user"
-    @request.session[:user]=users(:bob)
+    @request.session[:uid]=users(:bob).id
     get :list
     assert_response :success
     assert assigns(:users)
@@ -83,7 +110,7 @@ class UserControllerTest < Test::Unit::TestCase
   end
 
   def test_validate
-    @request.session[:user] = nil
+    @request.session[:uid] = nil
     assert_not_nil User.find(130)
     assert !User.find(130).verified?
     get :validate, "key"=>"baf41cc616ee9185c1769fc864e4b308e0a26046"
@@ -99,7 +126,7 @@ class UserControllerTest < Test::Unit::TestCase
   end
 
   def test_reset
-    @request.session[:user]=users(:bob)
+    @request.session[:uid]=users(:bob).id
     post  :set_password, {"password"=>'test', "pass2"=>"not"}
     assert_response :redirect 
     assert_redirected_to :action=>'change_password'

@@ -20,7 +20,7 @@ class BookControllerTest < Test::Unit::TestCase
   end
 
   def test_index
-    @request.session[:user]=users(:bob)
+    @request.session[:uid]=users(:bob).id
     get :index
     assert_response :success
     assert_template 'index'
@@ -28,7 +28,7 @@ class BookControllerTest < Test::Unit::TestCase
   end
 
   def test_new
-    @request.session[:user]=users(:bob)
+    @request.session[:uid]=users(:bob).id
     post :new, "book"=>{"title"=>"foo","author"=>"bar", "isbn"=>"abcd", "description"=>"description"}
     assert_response :success
     assert assigns(:book)
@@ -41,7 +41,7 @@ class BookControllerTest < Test::Unit::TestCase
   end
 
   def test_bad_new
-    @request.session[:user]=users(:bob)
+    @request.session[:uid]=users(:bob).id
     post :new, "book"=>{:title=>'', :author=>'', :isbn=>'', :description=>''}
     assert_response :success
     assert assigns(:success)==false
@@ -53,14 +53,14 @@ class BookControllerTest < Test::Unit::TestCase
   end
 
   def test_add
-    @request.session[:user]=users(:bob)
+    @request.session[:uid]=users(:bob).id
     post :add
     assert_response :success
     assert_template 'add'
   end
 
   def test_hide_form
-    @request.session[:user]=users(:bob)
+    @request.session[:uid]=users(:bob).id
     post :hide_form
     assert_response :success
     assert_template 'hide_form'
@@ -69,7 +69,7 @@ class BookControllerTest < Test::Unit::TestCase
   def test_addme
     b = Book.new(:title=>'fubar', :author=>'abaz', :isbn=>'asdf', :description=>'blah')
     b.save!
-    @request.session[:user]=users(:bob)
+    @request.session[:uid]=users(:bob).id
     post :addme, :id=>b.id
     assert_response :success
     assert_template 'addme'
@@ -82,7 +82,7 @@ class BookControllerTest < Test::Unit::TestCase
   end
 
   def test_delete_book
-    @request.session[:user]=users(:bob)
+    @request.session[:uid]=users(:bob).id
     post :delete, "id"=>books(:first).id
     assert_response :success
     assert_template 'delete'
@@ -90,7 +90,7 @@ class BookControllerTest < Test::Unit::TestCase
     assert !books(:first).users.include?(users(:bob))
     assert users(:existingbob).books.include?(books(:first))
     assert books(:first).users.include?(users(:existingbob))
-    @request.session[:user]=users(:existingbob)
+    @request.session[:uid]=users(:existingbob).id
     post :delete, "id"=>books(:first).id
     assert !Book.exists?(books(:first).id)
     assert (assigns(:book)== nil)

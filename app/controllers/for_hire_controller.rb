@@ -8,7 +8,7 @@ class ForHireController < ApplicationController
   def create
     if request.post? and params['for_hire']['id'].nil?
       if (fh = ForHire.new params['for_hire'])
-        fh.user = session[:user]
+        fh.user = current_user
         fh.save
         redirect_to :action=>'index'
       else
@@ -23,11 +23,11 @@ class ForHireController < ApplicationController
 
   def destroy
     fh = ForHire.find(params[:id])
-    if fh.user == session[:user]
+    if fh.user == current_user
       fh.destroy
       redirect_to :action=>'index'
     else
-      session[:user] = nil;
+      session[:uid] = nil;
       redirect_to :controller=>'welcome', :action=>'index'
     end
   end
@@ -36,8 +36,8 @@ class ForHireController < ApplicationController
   def edit
     if !params[:id].nil?
       @for_hire=ForHire.find(params[:id])
-      if !(@for_hire.user == session[:user])
-        session[:user] = nil
+      if  not (@for_hire.user == current_user)
+        session[:uid] = nil
         redirect_to :controller=>'welcome', :action=>'index'
       else
         render :action=>'for_hire_form'
@@ -49,17 +49,16 @@ class ForHireController < ApplicationController
 
   end
 
-  protected
   def update 
     fh = ForHire.find params['for_hire'][:id]
-    if fh.user == session[:user]
+    if fh.user == session[:uid]
       if fh.update_attributes params['for_hire']
         redirect_to :action=>'index'
       else
         render_text 'Error Saving'
       end
     else
-      session[:user] = nil
+      session[:uid] = nil
       redirect_to :controller=>'welcome', :action=>'index'
     end
 

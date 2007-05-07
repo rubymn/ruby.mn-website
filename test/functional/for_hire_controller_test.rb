@@ -19,7 +19,7 @@ class ForHireControllerTest < Test::Unit::TestCase
   end
 
   def test_get_with_id
-    @request.session[:user]=users(:bob)
+    @request.session[:uid]=users(:bob).id
     get :edit, :id=>1
     assert_response :success
     assert assigns(:for_hire)
@@ -29,7 +29,7 @@ class ForHireControllerTest < Test::Unit::TestCase
 
   # Replace this with your real tests.
   def test_index
-    @request.session[:user]=users(:bob)
+    @request.session[:uid]=users(:bob)
     get :index
     assert_response :success
     assert assigns(:for_hires)
@@ -37,7 +37,7 @@ class ForHireControllerTest < Test::Unit::TestCase
   end
 
   def test_create_post
-    @request.session[:user]=users(:bob)
+    @request.session[:uid]=users(:bob).id
 
     post :create, {:for_hire=>{:title=>'title', 
       :blurb=>'blurb', :email=>'email@email.com'}}
@@ -49,14 +49,14 @@ class ForHireControllerTest < Test::Unit::TestCase
   end
 
   def test_create_get_noid
-    @request.session[:user]=users(:bob)
+    @request.session[:uid]=users(:bob).id
     get :create
     assert_response :success
     assert_template 'for_hire_form'
   end
 
   def test_create_post_with_id
-    @request.session[:user]=users(:bob)
+    @request.session[:uid]=users(:bob).id
     post :create, {:for_hire=>{:title=>'title', 
       :blurb=>'test', :email=>'email@email.com', :id=>'1'}}
     assert_response :redirect
@@ -65,25 +65,25 @@ class ForHireControllerTest < Test::Unit::TestCase
   end
 
   def test_evil_edit
-    @request.session[:user]=users(:bob)
+    @request.session[:uid]=users(:bob).id
     get :edit, :id=>2
     assert_response :redirect
     assert_redirected_to :controller=>'welcome', :action=>'index'
-    assert_nil session[:user]
+    assert_nil session[:uid]
   end
 
   def test_evil_update
-    @request.session[:user]=users(:bob)
+    @request.session[:uid]=users(:bob).id
     post :create, {:for_hire=>{:title=>'title', 
       :blurb=>'test', :email=>'email@email.com', :id=>'2'}}
     assert_response :redirect
     assert_redirected_to :controller=>'welcome', :action=>'index'
-    assert_nil session[:user]
+    assert_nil session[:uid]
 
   end
 
   def test_destroy
-    @request.session[:user]=users(:bob)
+    @request.session[:uid]=users(:bob).id
     get :destroy, :id=>1
     assert_response :redirect
     assert_redirected_to :action=>'index'
@@ -95,11 +95,11 @@ class ForHireControllerTest < Test::Unit::TestCase
   end
 
   def test_evil_destroy
-    @request.session[:user]=users(:bob)
+    @request.session[:uid]=users(:bob).id
     get :destroy, :id=>2
     assert_response :redirect
     assert_redirected_to :controller=>'welcome', :action=>'index'
-    assert_nil session[:user]
+    assert_nil session[:uid]
     assert ForHire.find(2)
   end
 end

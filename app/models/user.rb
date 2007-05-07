@@ -28,6 +28,9 @@ class User < ActiveRecord::Base
   end
 
   attr_accessor :password, :password_confirmation
+  def admin?
+    return role.to_i == 2
+  end
   protected
 
   def new_security_token(hours = 1)

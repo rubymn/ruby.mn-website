@@ -1,3 +1,11 @@
+.flashinfo {
+  float: left;
+  color: blue;
+}
+.flasherror {
+  float: left;
+  color: red;
+}
 #navbar{border-left: 2px solid #BBB; padding: 10px;}
 #hd{margin-top:10px;}
 #ft{margin-top:10px; border-top: 2px solid #BBB; padding-top: 10px;}

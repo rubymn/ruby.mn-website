@@ -22,6 +22,9 @@ class WelcomeControllerTest < Test::Unit::TestCase
     get :index
     assert_response :success
     assert_equal 2,  assigns(:events).size()
+    assigns(:events).each do|e|
+      assert e.approved?
+    end
   end
 
 end

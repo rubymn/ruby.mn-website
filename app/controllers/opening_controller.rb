@@ -10,7 +10,7 @@ class OpeningController < ApplicationController
     end
     if request.post? and params['opening']['id'].nil? 
       evt = Opening.new params["opening"]
-      evt.user=session[:user]
+      evt.user=current_user
       evt.save
       redirect_to :action=>"index"
       OpeningNotification.deliver_notify(evt)
@@ -26,23 +26,23 @@ class OpeningController < ApplicationController
     id = params[:id]
     if request.get? and @opening=Opening.find(id)
       @id=id
-      if @opening.user == session[:user]
+      if @opening.user == current_user
         render :action=> 'opening_form'
       else
-        session[:user] = nil
+        session[:uid] = nil
         redirect_to :controller=>'welcome'
       end
     end
   end
   def destroy
-    u = session[:user]
+    u = current_user
     id=params[:id]
     evt = Opening.find(id)
     if u.openings.include? evt
       evt.destroy
       redirect_to :action=>'index'
     else
-      session[:user]=nil
+      session[:uid]=nil
       redirect_to :controller=>"welcome", :action=>'index'
     end
 

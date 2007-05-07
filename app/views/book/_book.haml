@@ -15,7 +15,7 @@
         =mail_to h( u.email)
         %br/
 
-      - if book.users.include?(session[:user])
+      - if book.users.include?(current_user)
         %br
         =link_to_remote "Delete Me from this book", :url=>{:controller=>'book', :action=>"delete", :id=>book.id}
       - else

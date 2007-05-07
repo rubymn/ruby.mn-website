@@ -3,7 +3,7 @@ class UserController  < ApplicationController
 
   def change_password
     if (u = User.find_by_security_token(params[:key]))
-      session[:user]=u
+      session[:uid]=u.id
     else
       redirect_to :action=> 'login'
     end
@@ -11,9 +11,9 @@ class UserController  < ApplicationController
 
   def set_password
     if params[:password] == params[:pass2]
-    session[:user].password = params[:password]
-    session[:user].crypt_new_password
-    session[:user].reload
+    current_user.password = params[:password]
+    current_user.crypt_new_password
+    current_user.reload
     redirect_to :controller=>'welcome', :action=>'index'
     else
       flash[:error]="password confirmation mismatch"
@@ -45,7 +45,7 @@ class UserController  < ApplicationController
     if u
       u.verified = true
       u.save!
-      session[:user]=u
+      session[:uid]=u.id
       redirect_to :action=>'index', :controller=>'welcome'
     else
       redirect_to :action=>'login'
@@ -54,22 +54,23 @@ class UserController  < ApplicationController
   end
 
   def home
-    @fullname = "#{session[:user].firstname} #{session[:user].lastname}"
+    @fullname = "#{current_user.firstname} #{current_user.lastname}"
   end
 
   def logout
-    session[:user]=nil
+    session[:uid]=nil
     redirect_to :controller=>"welcome"
   end
 
   def login
     return if not params[:user]
-    if session[:user] = User.authenticate(params[:user][:login], params[:user][:password])
-      flash[:notice] = 'Login successful'
-      redirect_to :controller => 'welcome'
+    u=User.authenticate(params[:user][:login], params[:user][:password])
+    if u
+      session[:uid]=u.id
+      flash[:notice] = u.admin? ?  'Admin Login Successful' : 'Login Successful'
+      redirect_to :controller => 'welcome', :action=>'index'
     else
-      @login = params[:user][:login]
-      flash.now[:warning] = 'Login unsuccessful'
+      flash[:error] = 'Login Unsuccessful'
     end
   end
 

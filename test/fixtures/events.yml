@@ -4,8 +4,16 @@ first:
   headline: firstheadline
   body: first.body
   user_id: 1
+  approved: 1
 another:
   id: 2
   headline: secondheadline
   body: secondbody
   user_id: 2
+  approved: 1
+notapproved:
+  id: 3
+  headline: secondheadline
+  body: secondbody
+  user_id: 2
+  approved: 0

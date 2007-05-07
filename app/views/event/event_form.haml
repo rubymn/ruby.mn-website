@@ -1,21 +1,21 @@
 .form
-  - form_tag :action=>"create" do |f|
+  - form_for :event, :action=>"create" do |f|
     %fieldset
       %legend
         New Event
       - if !params[:id].nil?
-        =hidden_field "event", "id", params
+        =f.hidden_field  "id", params
     
       %label
         Headline 
-      =text_field "event", "headline"
+      = f.text_field  "headline"
       %br/
       %label
         Time &amp; Date:
-      =datetime_select "event", "scheduled_time"
+      = f.datetime_select  "scheduled_time"
       %br/
       %label
         Details
-      =text_area "event", "body"
+      = f.text_area  "body"
       .submit
         =submit_tag
