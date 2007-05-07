@@ -9,9 +9,9 @@
         =link_to "Borrow a Book", :controller=>'book'
       %li
         =link_to "Logout", :controller=>'user', :action=>'logout' 
-    - elsif current_user and current_user.admin?
-      %li
-        =link_to "Admin", :controller=>'admin', :action=>'index' 
+      - if current_user.admin?
+        %li
+          =link_to "Admin", :controller=>'admin', :action=>'index' 
     - else
       
       %li
