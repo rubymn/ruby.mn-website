@@ -41,4 +41,8 @@ class Test::Unit::TestCase
     test_methods.delete_if  {|t|  self.methods.include?(t)}
     fail "You haven't tested all the routes. \nRemaining:\n\t#{test_methods.join("\n\t")}" if test_methods.size != 0
   end
+  def assert_bounced
+    assert_redirected_to :controller=>'users', :action=>'login'
+    assert_nil session[:uid]
+  end
 end

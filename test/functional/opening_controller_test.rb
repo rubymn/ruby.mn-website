@@ -14,8 +14,7 @@ class OpeningControllerTest < Test::Unit::TestCase
 
   def test_requires_login 
     get :index
-    assert_response :redirect
-    assert_redirected_to :controller=>'user', :action=>'login'
+    assert_bounced
   end
 
   def test_index

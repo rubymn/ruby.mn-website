@@ -54,9 +54,7 @@ class EventsControllerTest < Test::Unit::TestCase
     login_as(:bob)
     assert !events(:notapproved).approved?
     get :approve, :id=>events(:notapproved).id
-    assert_response :redirect
-    assert_redirected_to :controller=>'user', :action=>'login'
-    assert_equal flash[:error], 'Access Denied'
+    assert_bounced
     assert !events(:notapproved).approved?
   end
 
@@ -88,9 +86,7 @@ class EventsControllerTest < Test::Unit::TestCase
   def test_destroy_as_notadmin
     login_as(:notadmin)
     get :admdestroy, :id=>events(:first).id
-    assert_response :redirect
-    assert_redirected_to :controller=>'user', :action=>'login'
-    assert_nil session[:uid]
+    assert_bounced
     assert Event.exists?(events(:first).id)
   end
   
@@ -99,10 +95,7 @@ class EventsControllerTest < Test::Unit::TestCase
       login_as(:bob)
       get :destroy, :id=>events(:another).id
       assert_not_nil events(:another)
-      assert_response :redirect
-      assert_redirected_to :controller=>"user", :action=>"login"
-      assert_nil @request.session[:uid]
-      
+      assert_bounced
   end
 
   
@@ -119,20 +112,14 @@ class EventsControllerTest < Test::Unit::TestCase
   def test_evil_edit
     login_as(:existingbob)
     get :edit, :id=>events(:first).id
-    assert_response :redirect
-    assert_redirected_to :controller=>'user', :action=>'login'
-    assert_equal "Access Denied", flash[:error]
-    assert_nil session[:uid]
+    assert_bounced
   end
   
 
   def test_edit_permission
       login_as(:bob)
       get :edit, :id=>2
-      assert_response :redirect
-      assert_redirected_to :controller=>'user', :action=>'login'
-      assert_nil session[:uid]
-
+      assert_bounced
   end
 
   def test_update

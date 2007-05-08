@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
 
   def admin_required
-    if current_user.admin?
+    if current_user and current_user.admin?
       return true
     else
       bounce
@@ -30,17 +30,15 @@ class ApplicationController < ActionController::Base
   end
 
   def res_matches_user
-    return true if @res.user_id==session[:uid] || current_user.admin?
-    flash[:error]="Access Denied"
-    session[:uid]=nil
-    redirect_to :controller=>'user', :action=>'login'
+    return true if @res.user_id==session[:uid] || (current_user && current_user.admin?)
+    bounce
     return false
   end
 
   def bounce
     flash[:error] = "Access Denied"
     session[:uid]=nil
-    redirect_to :controller=>'user', :action=>'login'
+    redirect_to :controller=>'users', :action=>'login'
     @current_user = nil
   end
 

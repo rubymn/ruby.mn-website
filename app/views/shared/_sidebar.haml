@@ -10,7 +10,7 @@
       %li
         =link_to "My Events", events_path
       %li
-        =link_to "Logout", :controller=>'user', :action=>'logout' 
+        = link_to "Logout", session_path, :method=>'delete'
       - if current_user.admin?
         %li
           =link_to "Admin", :controller=>'admin', :action=>'index' 
@@ -19,7 +19,7 @@
       %li
         =link_to "New User Registration", :controller=>'user', :action=>'signup'
       %li 
-        =link_to "Login", :controller=>'user', :action=>'login'
+        =link_to "Login", new_session_path
     %li
       =link_to "For-Hire", :controller=>"for_hire"
       

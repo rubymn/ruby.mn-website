@@ -1,6 +1,12 @@
-class UserController  < ApplicationController
-  before_filter :login_required,  :only=>[:list, :set_password]
+class UsersController  < ApplicationController
+  before_filter :login_required,  :only=>[:index, :set_password]
+  before_filter :admin_required, :only=>:destroy
 
+  def destroy
+    User.destroy(params[:id])
+    flash[:info]="User Deleted"
+    redirect_to users_path
+  end
   def change_password
     if (u = User.find_by_security_token(params[:key]))
       session[:uid]=u.id
@@ -53,38 +59,18 @@ class UserController  < ApplicationController
 
   end
 
-  def home
-    @fullname = "#{current_user.firstname} #{current_user.lastname}"
-  end
 
-  def logout
-    session[:uid]=nil
-    redirect_to :controller=>"welcome"
-  end
-
-  def login
-    return if not params[:user]
-    u=User.authenticate(params[:user][:login], params[:user][:password])
-    if u
-      session[:uid]=u.id
-      flash[:notice] = u.admin? ?  'Admin Login Successful' : 'Login Successful'
-      redirect_to :controller => 'welcome', :action=>'index'
-    else
-      flash[:error] = 'Login Unsuccessful'
-    end
-  end
-
-
-  def list
+  def index
     @users=User.find :all, :order=>'firstname', :conditions=>'verified !=0'
   end
 
   # Register as a new user. Upon successful registration, the user will be sent to
   # "/user/login" to enter their details.
-  def signup
-    if not params[:user]
-      return
-    end
+  def new
+    @user = User.new
+  end
+
+  def create
     @user = User.new(params[:user])
     if @user.save
       key = @user.generate_security_token
@@ -93,9 +79,9 @@ class UserController  < ApplicationController
       SignupMailer.create_confirm(@user)
       SignupMailer.deliver_confirm(@user)
       flash[:notice] << ' Please check your registered email account to verify your account registration and continue with the login.'
-      redirect_to :action => 'login'
+      redirect_to :controller=>'welcome', :action=>'index'
     else
-      render :action=>'signup'
+      render :action=>'new'
     end
   end
 

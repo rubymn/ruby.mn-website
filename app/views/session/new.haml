@@ -1,0 +1,18 @@
+-form_tag session_path do
+  %fieldset
+    %legend
+      Please Login
+    %label
+      Username 
+    =text_field_tag  "login", :size => 30 
+    %br/
+    %label 
+      Password:
+    =password_field_tag "password", :size => 30
+
+    .submit
+      =submit_tag 'Login' 
+      %br/
+      =link_to 'Register for an account', :action => 'signup' 
+      |
+      = link_to 'Forgot my password', :action => 'forgot_password' 
