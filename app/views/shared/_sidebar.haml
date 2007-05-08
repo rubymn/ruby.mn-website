@@ -8,7 +8,7 @@
       %li
         =link_to "Borrow a Book", :controller=>'book'
       %li
-        =link_to "My Events", :controller=>'event', :action=>'index'
+        =link_to "My Events", events_path
       %li
         =link_to "Logout", :controller=>'user', :action=>'logout' 
       - if current_user.admin?

@@ -1,28 +1,26 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'event_controller'
+require 'events_controller'
 
 # Re-raise errors caught by the controller.
-class EventController; def rescue_action(e) raise e end; end
+class EventsController; def rescue_action(e) raise e end; end
 
-class EventControllerTest < Test::Unit::TestCase
+class EventsControllerTest < Test::Unit::TestCase
   fixtures :users,:events
   def setup
-    @controller = EventController.new
+    @controller = EventsController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
   end
 
-
-
-  def test_create_got
-    @request.session[:uid]=users(:bob).id
-    get :create
-    assert_response :success
-    assert_template 'event_form'
+  def test_routes
+    assert_restful_routes(:events)
+    assert_recognizes({:controller=>"events", :action=>'approve', :id=>'1'}, {:path=> "/events/1;approve", :method=>:put})
   end
 
-  def test_create_post
-    @request.session[:uid]=users(:bob).id
+
+
+  def test_create
+    login_as(:bob)
     time = Time.now.strftime("%R %F")
     post :create, {:event=>{:headline=>"foo", :body=>"bar", :scheduled_time=>time}}
     saved = users(:bob).events[1]
@@ -35,11 +33,19 @@ class EventControllerTest < Test::Unit::TestCase
     assert_equal users(:bob), saved.user
   end
 
+  def test_badcreate
+    login_as(:bob)
+    time = Time.now.strftime("%R %F")
+    post :create, {:event=>{}}
+    assert assigns(:event)
+    assert_equal "can't be blank", assigns(:event).errors[:headline]
+  end
+
   def test_index
-    @request.session[:uid]=users(:bob).id
+    login_as(:bob)
     get :index
     assert_template "index"
-
+    assert assigns(:events)
   end
 
 
@@ -68,11 +74,7 @@ class EventControllerTest < Test::Unit::TestCase
   def test_destroy
     @request.session[:uid]=users(:bob).id
     get :destroy, :id=>events(:first).id
-    begin
-    Event.find(1)
-    fail "shouldn't work."
-    rescue
-    end
+    assert !Event.exists?(1)
     assert_redirected_to :action=>'index'
   end
 
@@ -94,45 +96,69 @@ class EventControllerTest < Test::Unit::TestCase
   
   def test_destroy_permission
       
-      @request.session[:uid]=users(:bob).id
+      login_as(:bob)
       get :destroy, :id=>events(:another).id
       assert_not_nil events(:another)
       assert_response :redirect
-      assert_redirected_to :controller=>"welcome", :action=>"index"
+      assert_redirected_to :controller=>"user", :action=>"login"
       assert_nil @request.session[:uid]
       
   end
 
   
-
-  def test_edit_directs_to_form
-    @request.session[:uid]=users(:bob).id
-    get :edit, :id=>1
+  def test_edit
+    login_as(:bob)
+    get :edit, :id=>events(:first).id
     assert_response :success
-    assert_template 'event_form'
-    assert assigns(:id)
+    assert assigns(:event)
+    assert_template 'edit'
+    assert assigns(:event)
+    assert_equal events(:first), assigns(:event)
+  end
 
+  def test_evil_edit
+    login_as(:existingbob)
+    get :edit, :id=>events(:first).id
+    assert_response :redirect
+    assert_redirected_to :controller=>'user', :action=>'login'
+    assert_equal "Access Denied", flash[:error]
+    assert_nil session[:uid]
   end
   
-  def test_edit_posting
-      @request.session[:uid]=users(:bob).id
-    time = Time.now.strftime("%R %F")
-    post :create, {:event=>{:headline=>"foo", :body=>"bar", :scheduled_time=>time, :id=>events(:another).id}}
-    assert_response :redirect
-    assert_redirected_to :action=>'index'
-    saved = Event.find(events(:another).id)
-    assert_equal "bar", saved.body
-    assert_equal "foo", saved.headline
 
+  def test_edit_permission
+      login_as(:bob)
+      get :edit, :id=>2
+      assert_response :redirect
+      assert_redirected_to :controller=>'user', :action=>'login'
+      assert_nil session[:uid]
 
   end
 
-  def test_edit_permission
-      @request.session[:uid]=users(:bob).id
-      get :edit, :id=>2
-      assert_response :redirect
-      assert_redirected_to :controller=>'welcome'
-      assert_nil session[:uid]
+  def test_update
+    login_as(:bob)
+    put :update, :id=>events(:first).id, :event=>{:headline=>'fubar'}
+    assert assigns(:event)
+    assert_response :redirect
+    assert_redirected_to event_path(assigns(:event))
+    assert_equal "fubar", assigns(:event).headline
+  end
 
+
+  def test_show
+    login_as(:admin)
+    get :show, :id=>1
+    assert_response :success
+    assert_template 'show'
+    assert assigns(:event)
+
+  end
+  def test_new
+    login_as(:bob)
+    get :new
+    assert_response :success
+    assert_template 'new'
+    assert assigns(:event)
+    assert assigns(:event).new_record?
   end
 end

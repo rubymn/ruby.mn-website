@@ -49,4 +49,4 @@ locales like Dinkytown and Pig's Eye.)
   %h2='Announcements'
   -if !current_user.nil?
     %p=link_to "Add a New Event", :controller => 'event', :action => 'create'
-  =render :partial=>"event/event", :collection=>@events
+  =render :partial=>"events/event", :collection=>@events

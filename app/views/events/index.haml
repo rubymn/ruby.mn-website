@@ -3,7 +3,7 @@
 
 %p
   You want to 
-  =link_to "create", :action=>"create"
+  =link_to "create", new_event_path
   an event?
 
 
@@ -12,7 +12,7 @@
 
 
 %ul
-  =render :partial=>"event", :collection=>current_user.events(:order=>'scheduled_time desc')
+  =render :partial=>"event", :collection=>@events
 %h3
   Note: events have to be approved by an administrator before they show up on the front page. If this is a commercial "event", it will probably be denied, unless you contact 
   =  mail_to 'm@loonsoft.com', 'the administrators'

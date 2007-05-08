@@ -5,15 +5,18 @@ first:
   body: first.body
   user_id: 1
   approved: 1
+  scheduled_time: <%=Time.now.to_s(:db)%>
 another:
   id: 2
   headline: secondheadline
   body: secondbody
   user_id: 2
   approved: 1
+  scheduled_time: <%=Time.now.to_s(:db)%>
 notapproved:
   id: 3
   headline: secondheadline
   body: secondbody
   user_id: 2
+  scheduled_time: <%=Time.now.to_s(:db)%>
   approved: 0
