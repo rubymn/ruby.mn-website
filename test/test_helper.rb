@@ -42,7 +42,7 @@ class Test::Unit::TestCase
     fail "You haven't tested all the routes. \nRemaining:\n\t#{test_methods.join("\n\t")}" if test_methods.size != 0
   end
   def assert_bounced
-    assert_redirected_to :controller=>'users', :action=>'login'
+    assert_redirected_to new_session_path
     assert_nil session[:uid]
   end
 end
