@@ -26,7 +26,7 @@ class EventsController < ApplicationController
     @event = @res
     @event.update_attributes(params[:event])
     if @event.save
-      redirect_to event_path(@event)
+      redirect_to event_path(@user, @event)
     else
       render :template=>'events/edit'
     end

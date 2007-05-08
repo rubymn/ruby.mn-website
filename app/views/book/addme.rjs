@@ -1,2 +1,0 @@
-page.replace_html "book_#{@book.id}", :partial=>'book', :object=>@book
-page.visual_effect :highlight,  "book_#{@book.id}"

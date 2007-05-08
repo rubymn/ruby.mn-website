@@ -2,11 +2,6 @@ class UsersController  < ApplicationController
   before_filter :login_required,  :only=>[:index, :set_password]
   before_filter :admin_required, :only=>:destroy
 
-  def destroy
-    User.destroy(params[:id])
-    flash[:info]="User Deleted"
-    redirect_to users_path
-  end
   def change_password
     if (u = User.find_by_security_token(params[:key]))
       session[:uid]=u.id

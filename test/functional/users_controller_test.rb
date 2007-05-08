@@ -23,21 +23,9 @@ class UsersControllerTest < Test::Unit::TestCase
     assert assigns(:user).new_record?
   end
 
+
   def test_destroy
-    delete :destroy, :id=>users(:bob).id
-    assert_bounced
-    login_as(:bob)
-    delete :destroy, :id=>users(:bob).id
-    assert_bounced
-    login_as(:admin)
-    delete :destroy, :id=>users(:bob).id
-    assert_response :redirect
-    assert_redirected_to users_path
-    assert_equal "User Deleted", flash[:info]
   end
-
-
-
   def test_index
     get :index
     assert_bounced
@@ -53,7 +41,7 @@ class UsersControllerTest < Test::Unit::TestCase
     assert_response :redirect
     assert_redirected_to  :controller=>'welcome', :action=>'index'
     assert_nil flash[:warning]
-    assert_equal "Signup successful! Please check your registered email account to verify your account registration and continue with the login.", flash[:notice]
+    assert_equal "Signup successful! Please check your registered email account to verify your account.", flash[:notice]
     assert_nil flash[:warning]
     assert assigns(:user)
     assert_response :redirect

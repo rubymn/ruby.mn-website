@@ -2,7 +2,7 @@
   =error_messages_for 'event'
 
 .form
-  - form_for :event, :url=>events_path do |f|
+  - form_for :event, :url=>events_path(current_user) do |f|
     %fieldset
       %legend
         New Event
