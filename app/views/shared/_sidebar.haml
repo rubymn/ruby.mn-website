@@ -2,13 +2,13 @@
   %ul
     - if current_user
       %li
-        =link_to "Member List", :controller=>'user', :action=>'list'
+        =link_to "Member List", users_path
       %li
         =link_to "Help Wanted", :controller=>'opening'
       %li
         =link_to "Borrow a Book", :controller=>'book'
       %li
-        =link_to "My Events", events_path
+        =link_to "My Events", events_path(current_user)
       %li
         = link_to "Logout", session_path, :method=>'delete'
       - if current_user.admin?
@@ -17,7 +17,7 @@
     - else
       
       %li
-        =link_to "New User Registration", :controller=>'user', :action=>'signup'
+        =link_to "New User Registration", new_user_path
       %li 
         =link_to "Login", new_session_path
     %li

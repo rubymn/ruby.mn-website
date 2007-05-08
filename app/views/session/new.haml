@@ -13,6 +13,6 @@
     .submit
       =submit_tag 'Login' 
       %br/
-      =link_to 'Register for an account', :action => 'signup' 
+      =link_to 'Register for an account', new_user_path
       |
-      = link_to 'Forgot my password', :action => 'forgot_password' 
+      = link_to 'Forgot my password', :controller=>'users', :action=>'forgot_password'

@@ -11,7 +11,7 @@ class UsersController  < ApplicationController
     if (u = User.find_by_security_token(params[:key]))
       session[:uid]=u.id
     else
-      redirect_to :action=> 'login'
+      redirect_to new_session_path
     end
   end
 
@@ -20,21 +20,22 @@ class UsersController  < ApplicationController
     current_user.password = params[:password]
     current_user.crypt_new_password
     current_user.reload
+    flash[:info]="Password successfully changed"
     redirect_to :controller=>'welcome', :action=>'index'
     else
-      flash[:error]="password confirmation mismatch"
-      redirect_to :action=>'change_password'
+      flash[:error]="Password Confirmation mismatch"
+      render :template=>'users/change_password'
     end
   end
 
   def forgot_password
     # Always redirect if logged in
-    if session[:user] and request.get?
+    if session[:uid] and request.get?
       flash[:message] = 'You are currently logged in. You may change your password now.'
-      render :action=> "change_password"
+      render :template=> "users/change_password"
       return
     else
-      render :action=>"forgot_form"
+      render :template=>"users/forgot_form"
     end
   end
 
@@ -46,22 +47,22 @@ class UsersController  < ApplicationController
   end
 
   def validate
-    t = params[:key]
-    u = User.find_by_security_token(t)
+    u = User.find_by_security_token(params[:key])
     if u
       u.verified = true
       u.save!
       session[:uid]=u.id
+      flash[:notice]='Your account ahs been confirmed. Thanks!'
       redirect_to :action=>'index', :controller=>'welcome'
     else
-      redirect_to :action=>'login'
+      redirect_to new_session_path
     end
 
   end
 
 
   def index
-    @users=User.find :all, :order=>'firstname', :conditions=>'verified !=0'
+    @users=User.find :all, :order=>'firstname', :conditions=>'verified !=0', :select=>'firstname, lastname, id,email'
   end
 
   # Register as a new user. Upon successful registration, the user will be sent to
@@ -78,7 +79,7 @@ class UsersController  < ApplicationController
       flash[:notice] = 'Signup successful!'
       SignupMailer.create_confirm(@user)
       SignupMailer.deliver_confirm(@user)
-      flash[:notice] << ' Please check your registered email account to verify your account registration and continue with the login.'
+      flash[:notice] << ' Please check your registered email account to verify your account.'
       redirect_to :controller=>'welcome', :action=>'index'
     else
       render :action=>'new'

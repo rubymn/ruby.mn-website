@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
     encrypt_password
     save!
   end
+
+  def to_param
+    self[:login]
+  end
   def generate_security_token(hours = 1)
     if  self.security_token.nil? or self.token_expiry.nil? or (Time.now.to_i + (60*60) / 2) >= self.token_expiry.to_i
       return new_security_token(hours)

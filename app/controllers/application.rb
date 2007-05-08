@@ -26,11 +26,14 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-      User.find(session[:uid]) if session[:uid]
+    if not @cu
+      @cu = User.find(session[:uid]) if session[:uid]
+    end
+    @cu
   end
 
   def res_matches_user
-    return true if @res.user_id==session[:uid] || (current_user && current_user.admin?)
+    return true if @user.id == session[:uid] || (current_user && current_user.admin?)
     bounce
     return false
   end

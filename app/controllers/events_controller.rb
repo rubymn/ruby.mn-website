@@ -1,16 +1,21 @@
 class EventsController < ApplicationController
   before_filter :login_required
   before_filter :admin_required, :only=>:show
+  before_filter :find_user
   before_filter :find_res, :res_matches_user, :except=>[:index, :create, :new]
 
   def index
-    @events = Event.find(:all, :order=>'scheduled_time desc')
+    if @user.admin?
+      @events = Event.find(:all, :order=>'scheduled_time DESC')
+    else
+      @events = @user.events
+    end
   end
 
   def create
-    @event = current_user.events.create(params[:event])
+    @event = @user.events.create(params[:event])
     if @event.save
-      redirect_to :action=>"index"
+      redirect_to events_path(@user)
       Notifier.deliver_notify_event(@event)
     else
       render :template=>'events/new'
@@ -41,31 +46,11 @@ class EventsController < ApplicationController
     end
   end
   def destroy
-    u = current_user
-    id=params[:id]
-    evt = Event.find(id)
-    if u.events.include? evt
-      evt.destroy
-      redirect_to :controller=>'welcome', :action=>'index'
-    else
-      bounce
-    end
-
+    @res.destroy
+    flash[:info]='Record Deleted'
+    redirect_to events_path(current_user)
   end
 
-  def approve
-    if current_user.admin?
-      e = Event.find(params[:id])
-      e.approved= true
-      e.save!
-      flash[:info] = 'Event Approved'
-      redirect_to :controller=>'admin', :action=>'index'
-    else
-      flash[:error] = 'Access Denied'
-      redirect_to :controller=>'user', :action=>'login'
-    end
-
-  end
 
   def edit
     @event=@res
@@ -77,6 +62,9 @@ class EventsController < ApplicationController
 
   private
   def find_res
-    @res = Event.find(params[:id]) if params[:id]
+    @res = @user.events.find(params[:id])
+  end
+  def find_user
+    @user = User.find_by_login(params[:user_id], :include=>:events)
   end
 end

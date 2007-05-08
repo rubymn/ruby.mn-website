@@ -10,16 +10,17 @@
     =javascript_include_tag :defaults
 
   %body
-    .flashinfo
-      = flash[:info]
-      = flash[:notice]
-    .flasherror
-      = flash[:error]
 
     %div#doc.yui-t5
       %div#hd
         %h1
           %a{:href=>"/"}="Ruby Users of Minnesota"
+        .flashinfo
+          = flash[:info]
+          = flash[:notice]
+        .flasherror
+          = flash[:error]
+          = flash[:warning]
 
       %div.bd
         %div#yui-main

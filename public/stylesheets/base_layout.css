@@ -1,10 +1,12 @@
 .flashinfo {
-  float: left;
   color: blue;
+  margin-top:10px;
+  margin-bottom:10px;
 }
 .flasherror {
-  float: left;
   color: red;
+  margin-top:10px;
+  margin-bottom:10px;
 }
 #navbar{border-left: 2px solid #BBB; padding: 10px;}
 #hd{margin-top:10px;}

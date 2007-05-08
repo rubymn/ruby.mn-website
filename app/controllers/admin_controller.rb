@@ -4,6 +4,18 @@ class AdminController < ApplicationController
   def index
     @events = Event.find(:all, :conditions=>"approved = 0")
   end
+  def approve
+    if current_user.admin?
+      e = Event.find(params[:id])
+      e.approved= true
+      e.save!
+      flash[:info] = 'Event Approved'
+      redirect_to :controller=>'admin', :action=>'index'
+    else
+      bounce
+    end
+
+  end
 
   private
   def admin_required
