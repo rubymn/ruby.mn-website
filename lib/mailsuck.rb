@@ -13,7 +13,6 @@ require 'yaml'
 require 'pp'
 require 'breakpoint'
 include RMail::Utils
-require_gem  'activerecord'
 myconfig = YAML.load(File.open("#{RAILS_ROOT}/config/database.yml"))
 ActiveRecord::Base.establish_connection(myconfig[RAILS_ENV])
 require "#{RAILS_ROOT}/app/models/list_mail"
@@ -62,7 +61,5 @@ if(ARGV.empty?)
 else
   ARGV.each do |file|
     msg = read_msg(File.open(file))
-  end
-  ListMail.find(:all).each do |msg|
   end
 end
