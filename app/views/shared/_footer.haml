@@ -2,9 +2,9 @@
   -if !current_user.nil?
     You're logged in as 
     =h(current_user.login)
-    =link_to "Logout", :controller=>'user', :action=>'logout' 
+    =link_to "Logout", session_path, :method=>'delete'
   -else
-    =link_to "Login", :controller=>'user', :action=>'login'
+    =link_to "Login", new_session_path
   |
   =link_to "Home", :controller=>"welcome"
 

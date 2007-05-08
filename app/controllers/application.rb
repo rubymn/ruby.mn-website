@@ -33,6 +33,7 @@ class ApplicationController < ActionController::Base
   end
 
   def res_matches_user
+    @user = User.find_by_login(params[:user_id])
     return true if @user.id == session[:uid] || (current_user && current_user.admin?)
     bounce
     return false
@@ -41,7 +42,7 @@ class ApplicationController < ActionController::Base
   def bounce
     flash[:error] = "Access Denied"
     session[:uid]=nil
-    redirect_to :controller=>'users', :action=>'login'
+    redirect_to new_session_path
     @current_user = nil
   end
 

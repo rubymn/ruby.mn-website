@@ -48,6 +48,12 @@ class EventsControllerTest < Test::Unit::TestCase
     assert assigns(:events)
   end
 
+  def test_evil_index
+    login_as(:bob)
+    get :index, :user_id=>users(:existingbob).login
+    assert_bounced
+  end
+
 
 
   def test_approve_badlogin

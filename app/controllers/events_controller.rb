@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   before_filter :login_required
   before_filter :admin_required, :only=>:show
   before_filter :find_user
-  before_filter :find_res, :res_matches_user, :except=>[:index, :create, :new]
+  before_filter :find_res, :res_matches_user, :except=>[:create, :new]
 
   def index
     if @user.admin?
@@ -62,7 +62,7 @@ class EventsController < ApplicationController
 
   private
   def find_res
-    @res = @user.events.find(params[:id])
+    @res = @user.events.find(params[:id]) if params[:id]
   end
   def find_user
     @user = User.find_by_login(params[:user_id], :include=>:events)
