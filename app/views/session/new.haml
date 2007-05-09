@@ -4,11 +4,11 @@
       Please Login
     %label
       Username 
-    =text_field_tag  "login", :size => 30 
+    =text_field_tag  "login", "", {:size => 30 }
     %br/
     %label 
       Password:
-    =password_field_tag "password", :size => 30
+    =password_field_tag "password","", {:size => 30}
 
     .submit
       =submit_tag 'Login' 
