@@ -1,7 +1,7 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   def mup(text)
-    markdown(auto_link(h(text)))
+    auto_link(markdown(text))
 
   end
 
