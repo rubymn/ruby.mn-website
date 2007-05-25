@@ -5,7 +5,7 @@ require 'archive_controller'
 class ArchiveController; def rescue_action(e) raise e end; end
 
 class ArchiveControllerTest < Test::Unit::TestCase
-  fixtures :list_mails
+  fixtures :list_mails, :users
   def setup
     @controller = ArchiveController.new
     @request    = ActionController::TestRequest.new
@@ -13,6 +13,7 @@ class ArchiveControllerTest < Test::Unit::TestCase
   end
 
   def test_message
+    login_as(:bob)
     post :message, :id=>list_mails(:list_mails_3285).id
     assert_response  :success
     assert assigns(:message)
@@ -20,6 +21,7 @@ class ArchiveControllerTest < Test::Unit::TestCase
   end
 
   def test_show
+    login_as(:bob)
     get :show, :id=>list_mails(:list_mails_3285).id
     assert_response :success
     assert assigns(:message)

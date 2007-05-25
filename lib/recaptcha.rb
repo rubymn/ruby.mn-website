@@ -16,6 +16,11 @@ class ReCaptchaClient
   end
 
   def validate(remoteip, challenge, response, errors)
+    return true if remoteip == '0.0.0.0'
+    if not response
+      errors.add_to_base("Captcha failed. Try again (unless you're a bot)")
+      return false
+    end
     http = Net::HTTP.new(@vhost, 80)
     path='/verify'
     data = "privatekey=#{CGI.escape(@privkey)}&remoteip=#{CGI.escape(remoteip)}&challenge=#{CGI.escape(challenge)}&response=#{CGI.escape(response)}"
