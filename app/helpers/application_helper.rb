@@ -27,6 +27,8 @@ module ApplicationHelper
 
   def get_captcha()
     k = ReCaptchaClient.new(RCC_PUB, RCC_PRIV)
-    k.get_challenge(session[:rcc_err] || '' )
+    r = k.get_challenge(session[:rcc_err] || '' )
+    session[:rcc_err]=''
+    r
   end
 end
