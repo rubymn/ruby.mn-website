@@ -47,7 +47,7 @@ class UsersController  < ApplicationController
       u.verified = true
       u.save!
       session[:uid]=u.id
-      flash[:notice]='Your account ahs been confirmed. Thanks!'
+      flash[:notice]='Your account has been confirmed. Thanks!'
       redirect_to :action=>'index', :controller=>'welcome'
     else
       redirect_to new_session_path
