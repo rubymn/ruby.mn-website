@@ -25,8 +25,8 @@ module ApplicationHelper
     @uuu
   end
 
-  def get_captcha
+  def get_captcha()
     k = ReCaptchaClient.new(RCC_PUB, RCC_PRIV)
-    k.get_challenge
+    k.get_challenge(session[:rcc_err] || '' )
   end
 end

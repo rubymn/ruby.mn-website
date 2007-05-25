@@ -7,8 +7,10 @@ class ApplicationController < ActionController::Base
 
   def validate_recap(p, errors)
     rcc=ReCaptchaClient.new(RCC_PUB, RCC_PRIV)
-    rcc.validate(request.remote_ip, p[:recaptcha_challenge_field], p[:recaptcha_response_field], errors)
+    res = rcc.validate(request.remote_ip, p[:recaptcha_challenge_field], p[:recaptcha_response_field], errors)
+    session[:rcc_err]=rcc.last_error
 
+    res
   end
 
   def admin_required

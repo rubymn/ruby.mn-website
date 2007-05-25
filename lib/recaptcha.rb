@@ -11,14 +11,18 @@ class ReCaptchaClient
     @ssl = ssl
   end
   
-  def get_challenge
-    "<script type=\"text/javascript\" src=\"#{@proto}://#{@host}/challenge?k=#{@pubkey}\"> </script>"
+  def get_challenge(error='')
+    "<script type=\"text/javascript\" src=\"#{@proto}://#{@host}/challenge?k=#{CGI.escape(@pubkey)}&error=#{CGI.escape(error)}\"> </script>"
   end
 
+  def last_error
+    @last_error
+  end
   def validate(remoteip, challenge, response, errors)
+    msg = "Captcha failed."
     return true if remoteip == '0.0.0.0'
     if not response
-      errors.add_to_base("Captcha failed. Try again (unless you're a bot)")
+      errors.add_to_base(msg)
       return false
     end
     http = Net::HTTP.new(@vhost, 80)
@@ -27,9 +31,9 @@ class ReCaptchaClient
     resp, data = http.post(path, data, {'Content-Type'=>'application/x-www-form-urlencoded'})
     response = data.split
     result = response[0].chomp
-    err = response[1].chomp
-    errors.add_to_base("Captcha failed. Try again (unless you're a bot).") if (errors and  result != 'true')
-    return result == 'true' 
+    @last_error=response[1].chomp
+    errors.add_to_base(msg) if  result != 'true'
+    result == 'true' 
 
   end
 
