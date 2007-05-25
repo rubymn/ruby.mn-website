@@ -53,4 +53,6 @@ end
 # Include your application configuration below
 # 
 
+RCC_PUB='6LcOAQAAAAAAAFa480w6dsuwPiDNHqsaeF6zPLrI'
+RCC_PRIV='6LcOAQAAAAAAACOXzb9FrgxDtoGi8NeOzlf1uvjD'
 

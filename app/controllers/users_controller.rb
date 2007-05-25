@@ -68,7 +68,7 @@ class UsersController  < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    if @user.save
+    if validate_recap(params, @user.errors ) && @user.save
       key = @user.generate_security_token
       url = url_for(:action => 'home', :user_id => @user.id, :key => key)
       flash[:notice] = 'Signup successful!'

@@ -1,4 +1,5 @@
 # Methods added to this helper will be available to all templates in the application.
+require 'recaptcha'
 module ApplicationHelper
   def mup(text)
     auto_link(markdown(text))
@@ -22,5 +23,10 @@ module ApplicationHelper
       @uuu = User.find(session[:uid])
     end
     @uuu
+  end
+
+  def get_captcha
+    k = ReCaptchaClient.new(RCC_PUB, RCC_PRIV)
+    k.get_challenge
   end
 end

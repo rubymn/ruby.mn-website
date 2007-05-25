@@ -30,6 +30,7 @@
         Confirm Password
       =f.password_field "password_confirmation"
       %br/
+      =get_captcha
       .submit
         =submit_tag "signup"
         =link_to "Cancel", :action=>'login'
