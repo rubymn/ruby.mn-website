@@ -1,6 +1,7 @@
 # Methods added to this helper will be available to all templates in the application.
 require 'recaptcha'
 module ApplicationHelper
+  include ReCaptcha::ViewHelper
   def mup(text)
     auto_link(markdown(text))
 
@@ -26,7 +27,7 @@ module ApplicationHelper
   end
 
   def get_captcha()
-    k = ReCaptchaClient.new(RCC_PUB, RCC_PRIV)
+    k = ReCaptcha::Client.new(RCC_PUB, RCC_PRIV)
     r = k.get_challenge(session[:rcc_err] || '' )
     session[:rcc_err]=''
     r

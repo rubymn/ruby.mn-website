@@ -2,16 +2,8 @@ gem 'recaptcha'
 # Filters added to this controller will be run for all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 class ApplicationController < ActionController::Base
+  include ReCaptcha::AppHelper
 
-  private
-
-  def validate_recap(p, errors)
-    rcc=ReCaptchaClient.new(RCC_PUB, RCC_PRIV)
-    res = rcc.validate(request.remote_ip, p[:recaptcha_challenge_field], p[:recaptcha_response_field], errors)
-    session[:rcc_err]=rcc.last_error
-
-    res
-  end
 
   def admin_required
     if current_user and current_user.admin?
