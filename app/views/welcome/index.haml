@@ -24,20 +24,33 @@ locales like Dinkytown and Pig's Eye.)
   %a{:href=>"mailto:ruby.mn+subscribe@ruby.mn"}='ruby.mn+subscribe@ruby.mn'
 
 %p
-  :plain
-    Our group meets on the last Monday of each month at 7 PM (come early to hack Ruby code).  Our home is (usually):<br>
-    <a href="http://www.loringpark-mpls.dunnbros.com/">Dunn Bros Coffee Shop on Loring Park</a><br>
-    329 West 15th St.<br>
-    Minneapolis, MN 55403<br>
-    <span style="font-size:.8em;">
-      <a href="http://maps.google.com/maps?f=q&amp;hl=en&amp;q=DunnBros+Loring+Park+329+West+15th+St.&amp;sll=44.969383,-93.280706&amp;sspn=0.015485,0.03047&amp;ie=UTF8&amp;z=15&amp;om=1&amp;iwloc=A">Map</a><br>
-    </span>
+  Our group meets on the 
+  %b
+    last Monday of each month at 7 PM 
+  (come early to hack Ruby code).  
+  %b
+    Our meetings are held at:
+  %div#meeting-place
+    %span.big
+      %b
+        %a{:href=>"http://www.acadiacafe.com/"}='Acadia Caf&eacute;'
+    %br/
+    1931 Nicollet Avenue South
+    %br/
+    Minneapolis, MN 55403
+    %br/
+    Phone: 612-874-8702
+    %br/
+    %span.small
+      %a{:href=>"http://maps.google.com/maps?f=q&hl=en&geocode=&q=Acadia+cafe+55403&ie=UTF8&ll=44.965193,-93.280749&spn=0.009944,0.023518&z=16&iwloc=A&om=1"}='Map'
 
-  %p
-    There's usually someone there 
-    %em
-      every 
-    Monday, keep an eye on the mailing list to see who's going to be there.
+%p
+  There's usually someone there 
+  %em
+    every 
+  Monday, keep an eye on the 
+  %a{:href=>"mailto:ruby.mn+subscribe@ruby.mn"}='mailing list'
+  to see who's going to be there.
 
 
 -if defined?(@events) && !@events.empty?

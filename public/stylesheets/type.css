@@ -38,3 +38,5 @@ em{font-style: italic;}
 ul,ol{margin: 0 0 1em 1.5em;}
 ul{list-style-type: square;}
 ol{list-style-type: decimal;}
+.big{font-size:1.5em;}
+.small{font-size:0.8em;}
