@@ -1,0 +1,8 @@
+.mailheader
+  =link_to_remote(h(mail.subject),:url=>{:controller=>'archive', :action=>"message", :id=>mail.id })
+  %br/
+  =h(mail.stamp)
+  %br/
+  =h(mail.from).gsub(/@/, ' from ')
+  %br/
+  %div[mail]

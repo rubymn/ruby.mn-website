@@ -12,6 +12,7 @@ class ArchiveControllerTest < Test::Unit::TestCase
     @response   = ActionController::TestResponse.new
   end
 
+
   def test_message
     login_as(:bob)
     post :message, :id=>list_mails(:list_mails_3285).id

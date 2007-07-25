@@ -1,3 +1,4 @@
+config/sphinx_data/.*
 .*.hg
 log/.*\.log
 .*.*\.pid

@@ -1,19 +1,26 @@
 require 'mailread'
 require 'fileutils'
+
 class ArchiveController < ApplicationController
   before_filter :login_required
     include FileUtils
 
-  def index
-      @mail_pages, @mails = paginate :list_mails, :order=>'stamp desc', :per_page=>50, :conditions=>"parent_id is null"
-  end
+
+    def search
+      @page=params[:page]
+      session[:last_search]=params[:search] if params[:search]
+      @results = ListMail.find_with_sphinx(session[:last_search], :sphinx=>{:limit=>PER_PAGE, :page=>@page})
+      @lm_pages = pages_for(@results.total, :page=>@page)
+    end
+
+
+
 
   def message
       @message = ListMail.find(params[:id])
   end
 
   def show
-    @message = ListMail.find(params[:id])
   end
 
 end

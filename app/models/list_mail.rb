@@ -1,5 +1,6 @@
 class ListMail < ActiveRecord::Base
   acts_as_nested_set :scope=>:root
+  acts_as_sphinx
 
   def before_create
     # Update the child object with its parents attrs

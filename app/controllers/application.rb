@@ -4,6 +4,14 @@ gem 'recaptcha'
 class ApplicationController < ActionController::Base
   include ReCaptcha::AppHelper
 
+  PER_PAGE = 10 unless defined? PER_PAGE
+
+  private
+  def pages_for(size, options = {})
+    default_options = {:per_page => PER_PAGE}
+    options = default_options.merge(options)
+    Paginator.new self, size, options[:per_page], (options[:page] || 1)
+  end
 
   def admin_required
     if current_user and current_user.admin?

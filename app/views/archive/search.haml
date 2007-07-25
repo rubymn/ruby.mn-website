@@ -1,0 +1,12 @@
+= render :partial=>'search_form'
+%h1
+  Search Results for
+  = "'#{h(session[:last_search])}'"
+  found
+  = @results.total
+  results.
+
+=pagination_links @lm_pages
+
+.items
+  = render :collection=>@results, :partial=>'mail'

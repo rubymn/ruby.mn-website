@@ -1,2 +1,7 @@
-=render :partial=>'mail_header', :locals=>{:mail_header=>@message}
-=render :partial=>'body', :locals=>{:body=>@message.body}
+
+%h1
+  Search
+  = ListMail.count.to_s
+  documents
+
+=render :partial => 'search_form'
