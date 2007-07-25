@@ -1,2 +1,3 @@
+= link_to_function("Close", update_page{ |p| p.visual_effect :slide_up, "list_mail_#{body.id}"})
 .messagebody
-  =(h body).gsub(/\n/,'<br>')
+  =(h body.body).gsub(/\n/,'<br>')
