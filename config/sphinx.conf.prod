@@ -48,7 +48,7 @@ source tcrbb_prod
 	#
 	# mandatory
 	sql_query			= \
-  SELECT id, subject, body from list_mails
+  SELECT id, subject, body, list_mails.from, list_mails.to  from list_mails
 
 	# query range setup
 	#
