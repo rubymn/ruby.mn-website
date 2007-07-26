@@ -14,10 +14,6 @@ before 'deploy:restart', 'deploy:create_index'
 
 
 namespace :deploy do
-  task :link_indexes, :roles=>:app do
-    run "ln -s #{shared_path}/sphinx_data #{current_path}/config/sphinx_data"
-    run "cd #{current_path} && rake sphinx:stop && rake sphinx:start"
-  end
   desc "start up the cluster"
   task :spinner, :roles=>:app do
     run "cd #{current_path} && mongrel_rails cluster::start"
@@ -30,6 +26,7 @@ namespace :deploy do
 
   task :create_index, :roles=>:app do
     transaction do
+      run "cp #{current_path}/config/sphinx.conf.prod #{current_path}/config/sphinx.conf"
       run "mkdir -p #{shared_path}/sphinx_data/log"
       run "ln -s #{shared_path}/sphinx_data #{current_path}/config/sphinx_data"
       run "cd #{current_path} && rake sphinx:stop && rake sphinx:index && rake sphinx:start"
