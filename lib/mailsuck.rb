@@ -5,9 +5,12 @@
 
 RAILS_ROOT=File.dirname(__FILE__)+'/../'
 RAILS_ENV=ENV["RAILS_ENV"] || 'production'
+$LOAD_PATH << "#{RAILS_ROOT}/vendor/plugins/acts_as_sphinx/lib"
 require 'rubygems'
-require 'rmail'
+require_gem 'rmail'
 require_gem 'activerecord'
+require 'sphinx'
+require 'acts_as_sphinx'
 require 'fileutils'
 require 'yaml'
 require 'pp'
