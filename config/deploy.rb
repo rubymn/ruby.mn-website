@@ -31,7 +31,7 @@ namespace :deploy do
     end
   end
 
-  task :link_indexes :roles=>:app do
+  task :link_indexes, :roles=>:app do
       run "ln -s #{shared_path}/sphinx_data #{current_path}/config/sphinx_data"
       run "cd #{current_path} && rake sphinx:stop && rake sphinx:start"
   end
