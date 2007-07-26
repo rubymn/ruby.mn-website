@@ -10,7 +10,7 @@ role :db,  "looneys.net", :primary=>true
 set :deploy_to, "/home/mml/tcrbb" # defaults to "/u/apps/#{application}"
 set :scm, :mercurial               # defaults to :subversion
 
-before :restart, :link_indexes
+after :update_code, :link_indexes
 
 namespace :deploy do
   desc "start up the cluster"
