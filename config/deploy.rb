@@ -10,14 +10,14 @@ role :db,  "looneys.net", :primary=>true
 set :deploy_to, "/home/mml/tcrbb" # defaults to "/u/apps/#{application}"
 set :scm, :mercurial               # defaults to :subversion
 
-after deploy.update_code, :link_indexes
+before 'deploy:restart', 'deploy:create_index'
 
-task :link_indexes, :roles=>:app do
-  run "ln -s #{shared_path}/sphinx_data #{current_path}/config/sphinx_data"
-  run "cd #{current_path} && rake sphinx:stop && rake sphinx:start"
-end
 
 namespace :deploy do
+  task :link_indexes, :roles=>:app do
+    run "ln -s #{shared_path}/sphinx_data #{current_path}/config/sphinx_data"
+    run "cd #{current_path} && rake sphinx:stop && rake sphinx:start"
+  end
   desc "start up the cluster"
   task :spinner, :roles=>:app do
     run "cd #{current_path} && mongrel_rails cluster::start"
