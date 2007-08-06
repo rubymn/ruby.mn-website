@@ -1,7 +1,7 @@
 class OpeningController < ApplicationController
   before_filter :login_required
   def index
-    @openings = Opening.find(:all)
+    @openings = Opening.find(:all, :order=>'created_at desc')
   end
 
   def create
