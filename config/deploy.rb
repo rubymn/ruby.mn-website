@@ -7,7 +7,7 @@ role :web, "looneys.net"
 role :app, "looneys.net"
 role :db,  "looneys.net", :primary=>true
 
-set :deploy_to, "/home/mml/tcrbb" # defaults to "/u/apps/#{application}"
+set :deploy_to, "/var/apps/tcrbb" # defaults to "/u/apps/#{application}"
 set :scm, :mercurial               # defaults to :subversion
 
 before 'deploy:restart', 'deploy:create_index'

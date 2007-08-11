@@ -17,6 +17,7 @@ production:
   adapter: mysql
   database: tcrbb_prod
   username: root
-#  socket: /tmp/mysql.sock
+  socket: /var/run/mysqld/mysqld.sock
+
 
 
