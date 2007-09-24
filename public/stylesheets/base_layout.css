@@ -1,3 +1,7 @@
+
+#modal_overlay {  
+  background-color:#909090;
+}  
 .flashinfo {
   color: blue;
   margin-top:10px;
@@ -19,7 +23,7 @@ input{margin: 2px;margin-bottom:5px;}
 div.event, div.opening, div.for_hire, div.mailheader, div.linkpost, div.book {
   border: 1px dotted gray ;
   padding:4px;
-/*  width:75%;*/
+  /*  width:75%;*/
   margin:5px;
 }
 

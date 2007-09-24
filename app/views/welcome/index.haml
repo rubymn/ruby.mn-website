@@ -35,14 +35,12 @@ locales like Dinkytown and Pig's Eye.)
       %b
         %a{:href=>"http://www.acadiacafe.com/"}='Acadia Caf&eacute;'
     %br/
-    1931 Nicollet Avenue South
+    %a{:id=>'maplink', :href=>'#map'}
+      1931 Nicollet Avenue South
     %br/
     Minneapolis, MN 55403
     %br/
     Phone: 612-874-8702
-    %br/
-    %span.small
-      %a{:href=>"http://maps.google.com/maps?f=q&hl=en&geocode=&q=Acadia+cafe+55403&ie=UTF8&ll=44.965193,-93.280749&spn=0.009944,0.023518&z=16&iwloc=A&om=1"}='Map'
 
 %p
   There's usually someone there 
@@ -58,3 +56,12 @@ locales like Dinkytown and Pig's Eye.)
   -if !current_user.nil?
     %p=link_to "Add a New Event", new_event_path(current_user)
   =render :partial=>"events/event", :collection=>@events
+
+#map
+  %iframe{:width=>"425", :height=>"350", :frameborder=>"0", :scrolling=>"no", :marginheight=>"0", :marginwidth=>"0", :src=>"http://maps.google.com/maps?f=q&amp;hl=en&amp;geocode=&amp;q=1931+Nicollet+Avenue+South+55403&amp;sll=37.0625,-95.677068&amp;sspn=41.275297,64.599609&amp;ie=UTF8&amp;z=14&amp;iwloc=addr&amp;om=1&amp;ll=44.970688,-93.273582&amp;output=embed&amp;s=AARTsJp-PZbTaKEq8TcjqGTQrw3GCRelZg"}>
+
+%script
+  new Control.Modal('maplink', {
+  opacity:0.8,
+  width:425,
+  height:350});
