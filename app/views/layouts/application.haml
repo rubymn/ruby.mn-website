@@ -1,9 +1,11 @@
+-@version= `hg tip`.split[1].split(':')[1]
 =doctype_header
 %html
   %head
     = encoding
     %title
-      RUM :: Ruby Users of Minnesota
+      RUM :: Ruby Users of Minnesota Version
+      = @version
     =stylesheet_link_tag 'reset-fonts-grids'
     =stylesheet_link_tag 'type'
     =stylesheet_link_tag 'base_layout'
