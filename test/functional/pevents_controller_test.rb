@@ -21,7 +21,7 @@ class PeventsControllerTest < Test::Unit::TestCase
   end
 
   def test_rss
-    get :index, :format=>'rss'
+    get :rss, :format=>'rss'
     assert_response :success
   end
 end

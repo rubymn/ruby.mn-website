@@ -3,7 +3,7 @@ class PeventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
-  def index
+  def rss
     render :xml=> Event.rss
   end
 end

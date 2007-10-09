@@ -2,6 +2,6 @@
 port: 4000
 pid_file: log/mongrel.pid
 address: 127.0.0.1
-servers: 4
+servers: 2
 environment: production
 cwd: /var/apps/tcrbb/current
