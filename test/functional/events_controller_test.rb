@@ -12,10 +12,6 @@ class EventsControllerTest < Test::Unit::TestCase
     @response   = ActionController::TestResponse.new
   end
 
-  def test_routes
-    assert_restful_routes(:events)
-    assert_recognizes({:controller=>"events", :action=>'approve', :id=>'1'}, {:path=> "/events/1;approve", :method=>:put})
-  end
 
 
 

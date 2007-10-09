@@ -27,4 +27,9 @@ class WelcomeControllerTest < Test::Unit::TestCase
     end
   end
 
+  def test_rss_feed
+    get :index, :format=>'xml'
+    assert_response :success
+  end
+
 end

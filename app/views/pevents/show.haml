@@ -1,0 +1,10 @@
+%h2
+  = h @event.headline
+  %br/
+  = @event.scheduled_time
+
+%p
+  Created At: 
+  = @event.created_at.to_s
+%p
+  = h @event.body
