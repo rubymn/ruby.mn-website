@@ -15,7 +15,7 @@ class EventsController < ApplicationController
   def create
     @event = @user.events.create(params[:event])
     if @event.save
-      redirect_to events_path(@user)
+      redirect_to user_events_path(@user)
       Notifier.deliver_notify_event(@event)
     else
       render :template=>'events/new'
@@ -26,7 +26,7 @@ class EventsController < ApplicationController
     @event = @res
     @event.update_attributes(params[:event])
     if @event.save
-      redirect_to event_path(@user, @event)
+      redirect_to user_event_path(@user, @event)
     else
       render :template=>'events/edit'
     end
@@ -48,7 +48,7 @@ class EventsController < ApplicationController
   def destroy
     @res.destroy
     flash[:info]='Record Deleted'
-    redirect_to events_path(current_user)
+    redirect_to user_events_path(current_user)
   end
 
 

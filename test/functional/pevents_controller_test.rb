@@ -23,6 +23,8 @@ class PeventsControllerTest < Test::Unit::TestCase
   def test_rss
     get :rss, :format=>'rss'
     assert_response :success
+    assert_match /http:\/\/test.host\/pevents\/1/, @response.body
+
   end
 end
 

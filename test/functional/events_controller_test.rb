@@ -119,7 +119,7 @@ class EventsControllerTest < Test::Unit::TestCase
     put :update, :id=>events(:first).id, :user_id=>users(:bob).login, :event=>{:headline=>'fubar'}
     assert assigns(:event)
     assert_response :redirect
-    assert_redirected_to event_path(users(:bob), assigns(:event))
+    assert_redirected_to user_event_path(users(:bob), assigns(:event))
     assert_equal "fubar", assigns(:event).headline
   end
 

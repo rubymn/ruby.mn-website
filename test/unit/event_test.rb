@@ -3,9 +3,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 class EventTest < Test::Unit::TestCase
   fixtures :events, :users
 
-  def test_rss
-    assert_not_nil Event.rss
-  end
   def test_create
     assert_not_nil users(:bob)
     evt = Event.new(:scheduled_time=>Time.now, :user_id=>users(:bob).id, :body=>'voo', :headline=>'bar')
