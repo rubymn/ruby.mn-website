@@ -8,8 +8,6 @@ config.cache_classes     = false
 # Log error messages when you accidentally call methods on nil.
 config.whiny_nils        = true
 
-# Enable the breakpoint server that script/breakpointer connects to
-config.breakpoint_server = true
 
 ActionMailer::Base.delivery_method=:sendmail
 

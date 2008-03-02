@@ -1,5 +1,5 @@
 .form
-  - form_for :action=>"create" do |f|
+  - form_for :opening, :action=>"create" do |f|
     - if !params[:id].nil?
       =hidden_field "opening", "id", params
     %fieldset

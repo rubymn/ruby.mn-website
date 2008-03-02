@@ -8,9 +8,9 @@
 
 %p
   Created by:
-  = mail_to @event.user.email, h(@event.user.login)
+  = mail_to(@event.user.email, h(@event.user.login))
   %br/
   Created At: 
   = @event.created_at.to_s
 %p
-  =  mup h @event.body
+  =  mup h(@event.body)
