@@ -13,7 +13,6 @@ class OpeningController < ApplicationController
       evt.user=current_user
       evt.save
       redirect_to :action=>"index"
-      Notifier.deliver_notify_opening(evt)
 
 
     elsif request.post? and !params['opening']['id'].nil?

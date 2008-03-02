@@ -36,22 +36,14 @@
   %div#meeting-place
     %span.big
       %b
-        %a{:href=>"http://www.acadiacafe.com/"}='Acadia Caf&eacute;'
+        Green Mill
     %br/
     %a{:id=>'maplink', :href=>'#map'}
-      1931 Nicollet Avenue South
+      2626 Hennepin Avenue South
     %br/
-    Minneapolis, MN 55403
+    Minneapolis, MN 55408
     %br/
-    Phone: 612-874-8702
-
-%p
-  There's usually someone there 
-  %em
-    every 
-  Monday, keep an eye on the 
-  %a{:href=>"mailto:ruby.mn+subscribe@ruby.mn"}='mailing list'
-  to see who's going to be there.
+    Phone: 612-374-2131
 
 
 -if defined?(@events) && !@events.empty?
@@ -59,9 +51,10 @@
   -if !current_user.nil?
     %p=link_to "Add a New Event", new_user_event_path(current_user)
   =render :partial=>"events/event", :collection=>@events
-
 #map
-  %iframe{:width=>"425", :height=>"350", :frameborder=>"0", :scrolling=>"no", :marginheight=>"0", :marginwidth=>"0", :src=>"http://maps.google.com/maps?f=q&amp;hl=en&amp;geocode=&amp;q=1931+Nicollet+Avenue+South+55403&amp;sll=37.0625,-95.677068&amp;sspn=41.275297,64.599609&amp;ie=UTF8&amp;z=14&amp;iwloc=addr&amp;om=1&amp;ll=44.970688,-93.273582&amp;output=embed&amp;s=AARTsJp-PZbTaKEq8TcjqGTQrw3GCRelZg"}>
+  :plain
+    <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?q=2626+Hennepin+Ave+S,+Minneapolis,+MN+55408,+USA&amp;ie=UTF8&amp;om=0&amp;ll=44.963583,-93.293066&amp;spn=0.008944,0.023539&amp;z=14&amp;iwloc=addr&amp;output=embed&amp;s=AARTsJq_prCAzBTuVqrOLJiPBalG5B0jYQ"></iframe><br /><small><a href="http://maps.google.com/maps?q=2626+Hennepin+Ave+S,+Minneapolis,+MN+55408,+USA&amp;ie=UTF8&amp;om=0&amp;ll=44.963583,-93.293066&amp;spn=0.008944,0.023539&amp;z=14&amp;iwloc=addr&amp;source=embed" style="color:#0000FF;text-align:left">View Larger Map</a></small>
+
 
 %script
   new Control.Modal('maplink', {
