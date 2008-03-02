@@ -1,7 +1,7 @@
 require 'mailread'
 require 'fileutils'
 
-class ArchiveController < ApplicationController
+class ArchivesController < ApplicationController
   before_filter :login_required
     include FileUtils
 

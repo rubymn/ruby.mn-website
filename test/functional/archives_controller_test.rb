@@ -1,13 +1,13 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'archive_controller'
+require 'archives_controller'
 
 # Re-raise errors caught by the controller.
-class ArchiveController; def rescue_action(e) raise e end; end
+class ArchivesController; def rescue_action(e) raise e end; end
 
-class ArchiveControllerTest < Test::Unit::TestCase
+class ArchivesControllerTest < Test::Unit::TestCase
   fixtures :list_mails, :users
   def setup
-    @controller = ArchiveController.new
+    @controller = ArchivesController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
   end

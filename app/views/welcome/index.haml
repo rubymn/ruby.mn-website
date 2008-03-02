@@ -36,28 +36,31 @@
   %div#meeting-place
     %span.big
       %b
-        Green Mill
+      %a{:href=>'http://www.refactr.com', :target=>'_blank'}
+        Refactr
     %br/
     %a{:id=>'maplink', :href=>'#map'}
-      2626 Hennepin Avenue South
+      Eleven North-East Fourth Street
     %br/
-    Minneapolis, MN 55408
+    Suite 300
     %br/
-    Phone: 612-374-2131
+    Minneapolis, MN 55413
+    %br/
+    Phone: 612-605-9740
 
 
--if defined?(@events) && !@events.empty?
+-if defined?(@events) and !@events.empty?
   %h2='Announcements'
   -if !current_user.nil?
     %p=link_to "Add a New Event", new_user_event_path(current_user)
   =render :partial=>"events/event", :collection=>@events
 #map
   :plain
-    <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?q=2626+Hennepin+Ave+S,+Minneapolis,+MN+55408,+USA&amp;ie=UTF8&amp;om=0&amp;ll=44.963583,-93.293066&amp;spn=0.008944,0.023539&amp;z=14&amp;iwloc=addr&amp;output=embed&amp;s=AARTsJq_prCAzBTuVqrOLJiPBalG5B0jYQ"></iframe><br /><small><a href="http://maps.google.com/maps?q=2626+Hennepin+Ave+S,+Minneapolis,+MN+55408,+USA&amp;ie=UTF8&amp;om=0&amp;ll=44.963583,-93.293066&amp;spn=0.008944,0.023539&amp;z=14&amp;iwloc=addr&amp;source=embed" style="color:#0000FF;text-align:left">View Larger Map</a></small>
+    <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps/ms?ie=UTF8&amp;hl=en&amp;msa=0&amp;msid=110795490152792313911.00044058471e2e0d3f1c0&amp;om=0&amp;ll=44.988666,-93.254855&amp;spn=0,0&amp;output=embed&amp;s=AARTsJpJhpAEX63WWk35O0Ydu7bNR3mOeA"></iframe>
 
 
 %script
   new Control.Modal('maplink', {
-  opacity:0.8,
+  opacity:0.4,
   width:425,
   height:350});
