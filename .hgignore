@@ -1,6 +1,5 @@
 config/sphinx_data/.*
 .*.hg
-log/.*\.log
 .*.*\.pid
 .*\.swp
 config/scgi.yaml
@@ -8,3 +7,6 @@ config/scgi.yaml
 db/schema.rb
 .*\.orig
 tmp/
+REVISION
+config/sphinx_data
+log
