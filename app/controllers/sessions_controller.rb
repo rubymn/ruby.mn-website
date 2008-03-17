@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  caches_action :new
   def show
     bounce
   end
@@ -20,7 +21,7 @@ class SessionsController < ApplicationController
       redirect_to :controller => 'welcome', :action=>'index'
     else
       flash[:error] = 'Login Unsuccessful'
-      render :template=>'session/new'
+      redirect_to new_session_path
     end
   end
 
