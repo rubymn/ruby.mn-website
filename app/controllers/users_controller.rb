@@ -77,7 +77,7 @@ class UsersController  < ApplicationController
       flash[:notice] << ' Please check your registered email account to verify your account.'
       redirect_to :controller=>'welcome', :action=>'index'
     else
-      render :action=>'new'
+      render :template=>'new'
     end
   end
 
