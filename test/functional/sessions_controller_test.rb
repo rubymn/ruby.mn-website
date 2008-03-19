@@ -22,10 +22,12 @@ class SessionsControllerTest < Test::Unit::TestCase
   end
 
   def test_new
+    assert_routing '/session/new', :action=>'new', :controller=>'sessions'
     get :new
     assert_response :success
     assert_template 'new'
     assert_nil session[:uid]
+    assert_nil flash[:error]
   end
 
   def test_create

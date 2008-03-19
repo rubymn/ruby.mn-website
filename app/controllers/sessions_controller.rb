@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-  caches_action :new
   def show
     bounce
   end
