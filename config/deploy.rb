@@ -16,12 +16,13 @@ before 'deploy:restart', 'deploy:create_index'
 namespace :deploy do
   desc "start up the cluster"
   task :spinner, :roles=>:app do
-    run "cd #{current_path} && mongrel_rails cluster::start"
+    run "thin -s  2 -d  -p 400 -c #{current_path} start"
   end
 
   desc "restart the cluster"
   task :restart, :roles=>:app do
-    run "cd #{current_path} && mongrel_rails cluster::restart"
+    run "thin -s  2 -d  -p 4000 -c #{current_path} stop"
+    run "thin -s  2 -d  -p 4000 -c #{current_path} start"
   end
 
   task :create_index, :roles=>:app do
