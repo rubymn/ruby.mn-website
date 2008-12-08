@@ -13,7 +13,7 @@ Rails::Initializer.run do |config|
   config.action_controller.session = { :session_key => "_tcrbb_session", :secret => "your momyour moyour moyour moyour moyour moyour moyour mommmmmmm" }
   
   # Skip frameworks you're not going to use
-  # config.frameworks -= [ :action_web_service, :action_mailer ]
+  config.frameworks -= [ :action_web_service]
 
   # Add additional load paths for your own custom dirs
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
