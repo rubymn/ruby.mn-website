@@ -3,6 +3,8 @@ gem 'recaptcha'
 # Likewise, all the methods added will be available for all controllers.
 class ApplicationController < ActionController::Base
   include ReCaptcha::AppHelper
+  protect_from_forgery
+  helper :all
 
   PER_PAGE = 10 unless defined? PER_PAGE
 

@@ -1,0 +1,6 @@
+RCC_PRIV='meh'
+MH_PRIV='meh'
+require '/etc/recaptcha.rb' if RAILS_ENV=='production'
+RCC_PUB='6LcOAQAAAAAAAFa480w6dsuwPiDNHqsaeF6zPLrI'
+MH_PUB='01PpOGl8-DHpxYCsKzQMSdTw=='
+require 'rss'
