@@ -1,13 +1,13 @@
 
-set :application, "tcrbb"
-set :repository, "/usr/local/hg/tcrbb"
+set :application, "ruby-mn"
 set :use_sudo, false
 
 role :web, "looneys.net"
 role :app, "looneys.net"
 role :db,  "looneys.net", :primary=>true
 
-set :deploy_to, "http://bitbucket.org/mml/ruby-mn-site"
+set :repository, "http://bitbucket.org/mml/ruby-mn-site"
+set :deploy_to, "/var/apps/#{application}"
 set :scm, :mercurial               # defaults to :subversion
 
 before 'deploy:restart', 'deploy:create_index'
