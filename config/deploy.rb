@@ -19,9 +19,6 @@ namespace :deploy do
   task :restart, :roles=>:app do
     run "sudo /etc/init.d/apache2 restart"
   end
-  task :after_update_code do
-    run "ln -s /var/www/localhost/htdocs/recaptcha #{release_path}/public/recaptcha"
-  end
   task :restart, :roles=>:app do
     run "sudo /etc/init.d/apache2 restart"
   end
