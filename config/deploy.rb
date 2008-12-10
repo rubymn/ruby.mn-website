@@ -7,7 +7,7 @@ role :web, "looneys.net"
 role :app, "looneys.net"
 role :db,  "looneys.net", :primary=>true
 
-set :deploy_to, "/var/apps/tcrbb" # defaults to "/u/apps/#{application}"
+set :deploy_to, "http://bitbucket.org/mml/ruby-mn-site"
 set :scm, :mercurial               # defaults to :subversion
 
 before 'deploy:restart', 'deploy:create_index'
@@ -15,24 +15,18 @@ before 'deploy:restart', 'deploy:create_index'
 
 namespace :deploy do
   desc "start up the cluster"
-  task :spinner, :roles=>:app do
-    run "thin -s  2 -d  -p 400 -c #{current_path} start"
-  end
 
   desc "restart the cluster"
   task :restart, :roles=>:app do
-    run "thin -s  2 -d  -p 4000 -c #{current_path} stop"
-    run "thin -s  2 -d  -p 4000 -c #{current_path} start"
+    run "sudo /etc/init.d/apache2 restart"
+  end
+  task :after_update_code do
+    run "ln -s /var/www/localhost/htdocs/recaptcha #{current_path}/public/recaptcha"
+  end
+  task :restart, :roles=>:app do
+    run "sudo /etc/init.d/apache2 restart"
   end
 
-  task :create_index, :roles=>:app do
-    transaction do
-      run "cp #{current_path}/config/sphinx.conf.prod #{current_path}/config/sphinx.conf"
-      run "mkdir -p #{shared_path}/sphinx_data/log"
-      run "ln -s #{shared_path}/sphinx_data #{current_path}/config/sphinx_data"
-      run "cd #{current_path} && rake sphinx:stop && rake sphinx:index && rake sphinx:start"
-    end
-  end
 
 
 end
