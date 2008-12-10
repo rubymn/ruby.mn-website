@@ -10,7 +10,6 @@ set :repository, "http://bitbucket.org/mml/ruby-mn-site"
 set :deploy_to, "/var/apps/#{application}"
 set :scm, :mercurial               # defaults to :subversion
 
-before 'deploy:restart', 'deploy:create_index'
 
 
 namespace :deploy do
@@ -21,7 +20,7 @@ namespace :deploy do
     run "sudo /etc/init.d/apache2 restart"
   end
   task :after_update_code do
-    run "ln -s /var/www/localhost/htdocs/recaptcha #{current_path}/public/recaptcha"
+    run "ln -s /var/www/localhost/htdocs/recaptcha #{release_path}/public/recaptcha"
   end
   task :restart, :roles=>:app do
     run "sudo /etc/init.d/apache2 restart"
