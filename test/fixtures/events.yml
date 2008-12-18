@@ -1,22 +1,19 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 first:
-  id: 1
   headline: firstheadline
   body: first.body
-  user_id: 1
+  user: bob
   approved: 1
   scheduled_time: <%=Time.now.to_s(:db)%>
 another:
-  id: 2
   headline: secondheadline
   body: secondbody
-  user_id: 2
+  user: existingbob
   approved: 1
   scheduled_time: <%=Time.now.to_s(:db)%>
 notapproved:
-  id: 3
   headline: secondheadline
   body: secondbody
-  user_id: 2
+  user: existingbob
   scheduled_time: <%=Time.now.to_s(:db)%>
   approved: 0

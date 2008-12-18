@@ -12,7 +12,7 @@ class ForHireTest < Test::Unit::TestCase
     assert_equal fh.email, 'bar'
   end
   def test_has_title
-    assert ForHire.find(1).title
+    assert ForHire.find(for_hires(:first).id).title
 
   end
 end

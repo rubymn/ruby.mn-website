@@ -31,7 +31,9 @@ class SessionsControllerTest < Test::Unit::TestCase
   end
 
   def test_create
-    post :create, :password=>'standard', :login=>users(:bob).login
+    u = users(:bob)
+    User.expects(:authenticate).with('bob', 'standard').returns(u)
+    post :create, :password=>'standard', :login=>u.login
     assert_response :redirect
     assert_redirected_to :controller=>'welcome', :action=>'index'
     assert_equal session[:uid], users(:bob).id

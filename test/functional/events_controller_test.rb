@@ -10,6 +10,9 @@ class EventsControllerTest < Test::Unit::TestCase
     @controller = EventsController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
+    @ev1=events(:first)
+    @ev2=events(:another)
+    @ev_nappr=events(:notapproved)
   end
 
 
@@ -85,7 +88,7 @@ class EventsControllerTest < Test::Unit::TestCase
   def test_destroy_permission
       
       login_as(:bob)
-      get :destroy, :id=>2, :user_id=>users(:existingbob).login
+      get :destroy, :id=>@ev2.id, :user_id=>users(:existingbob).login
       assert_not_nil events(:another)
       assert_bounced
   end
@@ -110,7 +113,7 @@ class EventsControllerTest < Test::Unit::TestCase
 
   def test_edit_permission
       login_as(:bob)
-      get :edit, :id=>2, :user_id=>users(:existingbob).login
+      get :edit, :id=>@ev2.id, :user_id=>users(:existingbob).login
       assert_bounced
   end
 
@@ -126,7 +129,7 @@ class EventsControllerTest < Test::Unit::TestCase
 
   def test_show
     login_as(:admin)
-    get :show, :user_id=>users(:bob).login, :id=>1
+    get :show, :user_id=>users(:bob).login, :id=>@ev1.id
     assert_response :success
     assert_template 'show'
     assert assigns(:event)

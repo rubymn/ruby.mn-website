@@ -1,7 +1,6 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 bob:
-  id: 1
   login: bob
   salted_password: dcd09adae379018012f5b30e65dc5a8e8f044169
   salt: f22c76aea1ee3faf5440369de1d4de539e4b4852
@@ -11,40 +10,43 @@ bob:
   lastname: dobs
   
 existingbob:
-  id: 2
   login: existingbob
   salted_password: dcd09adae379018012f5b30e65dc5a8e8f044169
   salt: f22c76aea1ee3faf5440369de1d4de539e4b4852
+  firstname: bob
+  lastname: dobelina
   email: existingbob@test.com
   verified: 1  
   deleted: 0
 
 longbob:
-  id: 3
   login: longbob
   email: longbob@test.com
   verified: 1
   salted_password: dcd09adae379018012f5b30e65dc5a8e8f044169
   salt: f22c76aea1ee3faf5440369de1d4de539e4b4852
+  firstname: bob
+  lastname: dobelina
 
 deletebob1:
-  id: 4
   login: deletebob1
   email: deletebob1@test.com
   verified: 1
   salted_password: dcd09adae379018012f5b30e65dc5a8e8f044169
   salt: f22c76aea1ee3faf5440369de1d4de539e4b4852
+  firstname: bob
+  lastname: dobelina
 
 deletebob2:
-  id: 5
   login: deletebob2
   salted_password: dcd09adae379018012f5b30e65dc5a8e8f044169
   salt: f22c76aea1ee3faf5440369de1d4de539e4b4852
   email: deletebob2@test.com
   verified: 1
+  firstname: bob
+  lastname: dobelina
 
 testyttest:
-  id: 130
   login: testyttest
   salted_password: dcd09adae379018012f5b30e65dc5a8e8f044169
   salt: f22c76aea1ee3faf5440369de1d4de539e4b4852
@@ -58,13 +60,14 @@ testyttest:
   deleted: 0
   delete_after: NULL
 notadmin:
-  id: 131 
   salted_password: dcd09adae379018012f5b30e65dc5a8e8f044169
   salt: f22c76aea1ee3faf5440369de1d4de539e4b4852
   login: notadmin
   email: notadmin@test.com
   verified: 1
   role: NULL
+  firstname: bob
+  lastname: dobelina
 admin:
   salted_password: dcd09adae379018012f5b30e65dc5a8e8f044169
   salt: f22c76aea1ee3faf5440369de1d4de539e4b4852
@@ -73,3 +76,5 @@ admin:
   email: notadmin@test.com
   verified: 1
   role: 2
+  firstname: bob
+  lastname: dobelina

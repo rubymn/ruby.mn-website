@@ -1,7 +1,6 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 first:
-  id: 1
-  user_id: 1
+  user: bob
   created_at: "<%=Time.now.to_s(:db)%>"
   headline: "new opening"
   body: "foo"

@@ -48,10 +48,10 @@ class UsersControllerTest < Test::Unit::TestCase
   end
 
   def test_password_conf
-    post :create, "user"=>{"password_confirmation"=>"fu", "lastname"=>"looney", "firstname"=>"mcclain", "login"=>"mml", "password"=>"standard", "email"=>"m@loonsoft.com"} 
+    post :create, "user"=>{"password_confirmation"=>"fu", "lastname"=>"looney", "firstname"=>"mcclain", "login"=>"mml", "password"=>"standard", "email"=>"m@loonsoft.com"} , :recatcha_challenge_field=>'foo', :recaptcha_response_field=>'foo'
 
     assert_response :success
-    assert_template 'new'
+    assert_template 'users/new'
     assert assigns(:user)
     assert_equal ["Password doesn't match confirmation"] ,assigns(:user).errors.each_full{}
   end
@@ -92,10 +92,10 @@ class UsersControllerTest < Test::Unit::TestCase
 
   def test_validate
     @request.session[:uid] = nil
-    assert_not_nil User.find(130)
-    assert !User.find(130).verified?
+    u = users(:testyttest)
+    assert !User.find(u.id).verified?
     get :validate, "key"=>"baf41cc616ee9185c1769fc864e4b308e0a26046"
-    assert User.find(130).verified?
+    assert u.reload.verified?
     assert_response :redirect
     assert_redirected_to :controller=>'welcome', :action=>'index'
   end

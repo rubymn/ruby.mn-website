@@ -1,4 +1,5 @@
 config/sphinx_data/.*
+db/.*\.sqlite3
 .*.hg
 .*.*\.pid
 .*\.swp

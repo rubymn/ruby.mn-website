@@ -1,1 +1,1 @@
-VERSION=`hg log -r tip --template '{node|short}'`
+SVERSION=`hg log -r tip --template '{node|short}'`

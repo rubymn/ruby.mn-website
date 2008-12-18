@@ -6,7 +6,7 @@ class OpeningTest < Test::Unit::TestCase
   # Replace this with your real tests.
   def test_create
     Opening.destroy_all
-    op = Opening.new
+    op = Opening.new(:body=>'fubar', :headline=>'meh')
     op.user = users(:bob)
     assert op.save
     users(:bob).openings << op

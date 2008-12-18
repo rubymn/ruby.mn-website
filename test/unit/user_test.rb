@@ -16,7 +16,4 @@ class UserTest < Test::Unit::TestCase
     assert_equal evt.body, "foo"
   end
 
-  def test_extension
-
-  end
 end

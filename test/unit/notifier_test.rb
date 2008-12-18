@@ -20,7 +20,7 @@ class OpeningNotificationTest < Test::Unit::TestCase
   def test_opening_notify
     o = openings(:first)
     res = Notifier.create_notify_opening(o)
-    assert_equal 'm@loonsoft.com', *res.to
+    assert_equal 'test@example.com', *res.to
     assert_equal "New Opening Posted: #{o.headline}", res.subject
     assert_equal 'notifications@ruby.mn', *res.from
   end
