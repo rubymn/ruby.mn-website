@@ -5,7 +5,7 @@ class MoreMailHeaders < ActiveRecord::Migration
       t.column :parent_id, :integer, :null=>false
       t.column :child_id, :integer, :null=>false
     end
-    add_column :list_mails, :mailid, :string, :limit=>256, :null=>false
+    add_column :list_mails, :mailid, :string, :limit=>256, :null=>false, :default=>''
     
   end
 
