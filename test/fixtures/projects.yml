@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+first:
+  title: ruby.mn
+  url: http://ruby.mn
+  source_url: http://bitbucket.org/mml/ruby-mn-site
+  description: Main web site for Rubu Users of Minnesota
+  user: bob
+second:
+  title: rails
+  url: http://rubyonrails.org/
+  source_url: http://github.com/rails/rails/tree/master
+  description: It's Rails, Yo!
+  user: existingbob
+  

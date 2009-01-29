@@ -13,6 +13,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users, :member=>{:login=>:get}, :new=>{:validate=>:get, :forgot_password=>:get, :reset=>:post, :change_password=>:get, :set_password=>:post} do |users|
     users.resources :events
   end
+  map.resources :projects
   map.resource :session
   map.connect '', :controller => "welcome", :action=>'index'
 
