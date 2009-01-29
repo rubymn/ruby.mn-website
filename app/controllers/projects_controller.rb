@@ -19,7 +19,6 @@ class ProjectsController < ApplicationController
       flash[:notice] = 'Project was successfully added.'
       redirect_to projects_path
     else
-      flash[:error] = "Project data was invalid."
       render :action => "new"
     end
   end
@@ -41,7 +40,6 @@ class ProjectsController < ApplicationController
         flash[:notice] = 'Project was successfully updated.'
         redirect_to projects_path
       else
-        flash[:error] = "Project data was invalid."
         render :action => "edit"
       end
     else
