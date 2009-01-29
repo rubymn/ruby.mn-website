@@ -96,4 +96,25 @@ class ProjectControllerTest < Test::Unit::TestCase
     assert_nil session[:uid]
     assert Project.find(p.id)
   end
+
+  def test_bad_create_shows_errors
+    post :create
+    assert_response :success
+    assert_template "new"
+    assert_select "#errorExplanation" do
+      assert_select "ul>li", 3
+    end
+    assert_not_nil assigns(:project)
+    assert !assigns(:project).valid?
+  end
+  def test_bad_edit_shows_errors
+    put :update
+    assert_response :success
+    assert_template "new"
+    assert_select "#errorExplanation" do
+      assert_select "ul>li", 3
+    end
+    assert_not_nil assigns(:project)
+    assert !assigns(:project).valid?
+  end
 end

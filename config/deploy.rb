@@ -23,6 +23,4 @@ namespace :deploy do
     run "sudo /etc/init.d/apache2 restart"
   end
 
-
-
 end
