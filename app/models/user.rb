@@ -2,6 +2,7 @@ require 'digest/sha1'
 class User < ActiveRecord::Base
   has_many :events
   has_many :openings
+  has_many :projects
   has_and_belongs_to_many :books, :join_table=>'users_books'
   attr_protected :verified, :form
   after_validation :encrypt_password

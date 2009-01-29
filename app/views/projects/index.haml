@@ -1,0 +1,13 @@
+%h1
+  Projects by Ruby.mn Members
+%p
+  These projects are the work of Ruby.mn members.  Some are ruby related. Some are not.
+
+- if current_user
+  %p
+    To add your project click 
+    =link_to "here", new_project_path
+    
+
+.list
+  =render :partial => 'project', :collection => @projects
