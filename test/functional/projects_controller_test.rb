@@ -108,12 +108,11 @@ class ProjectControllerTest < Test::Unit::TestCase
     assert !assigns(:project).valid?
   end
   def test_bad_edit_shows_errors
-    put :update
+    assert_equal projects(:first).user, users(:bob)
+    put :update, :id=>projects(:first).id, :project=>{:title=>''}
     assert_response :success
-    assert_template "new"
-    assert_select "#errorExplanation" do
-      assert_select "ul>li", 3
-    end
+    assert_template "edit"
+    assert_select "#errorExplanation"
     assert_not_nil assigns(:project)
     assert !assigns(:project).valid?
   end
