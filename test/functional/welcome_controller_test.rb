@@ -13,6 +13,12 @@ class WelcomeControllerTest < Test::Unit::TestCase
   
   fixtures :events
 
+  def test_works_logged_in
+    login_as(:bob)
+    get :index
+    assert_response :success
+  end
+
   def test_no_jacket_required
     get :index
     assert_response :success

@@ -16,10 +16,6 @@ class SessionsControllerTest < Test::Unit::TestCase
     get :show
     assert_bounced
   end
-  def test_index
-    get :index
-    assert_bounced
-  end
 
   def test_new
     assert_routing '/session/new', :action=>'new', :controller=>'sessions'

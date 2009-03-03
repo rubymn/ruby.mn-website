@@ -10,7 +10,7 @@ class AdminController < ApplicationController
       e.approved= true
       e.save!
       flash[:info] = 'Event Approved'
-      redirect_to :controller=>'admin', :action=>'index'
+      redirect_to admindex_path
     else
       bounce
     end
@@ -24,7 +24,7 @@ class AdminController < ApplicationController
         return true
       else
         flash[:error]= 'Access Denied (hoser).'
-        redirect_to :controller=>'user', :action=>'login'
+        redirect_to new_session_path
         session[:uid]=nil
       end
     end

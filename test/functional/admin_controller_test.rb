@@ -26,7 +26,7 @@ class AdminControllerTest < Test::Unit::TestCase
     login_as(:notadmin)
     get :index
     assert_response :redirect
-    assert_redirected_to :controller=>'user', :action=>'login'
+    assert_redirected_to new_session_path
     assert_equal flash[:error], 'Access Denied (hoser).'
     assert_nil session[:uid]
   end

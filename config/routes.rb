@@ -10,14 +10,15 @@ ActionController::Routing::Routes.draw do |map|
   # -- just remember to delete public/index.html.
   map.resource :archive, :member=>{:search=>:any}
   map.resources :pevents, :member=>{:approve=>:put}, :collection=>{:rss=>:get}
+  map.resources :openings
+  map.resources :for_hires
   map.resources :users, :member=>{:login=>:get}, :new=>{:validate=>:get, :forgot_password=>:get, :reset=>:post, :change_password=>:get, :set_password=>:post} do |users|
-    users.resources :events
+    users.resources :events, :member=>{:admdestroy=>:delete, :approve=>:put}
   end
   map.resources :projects
   map.resource :session
-  map.connect '', :controller => "welcome", :action=>'index'
+  map.root  :controller => "welcome", :action=>'index'
+  map.admin '/admin/:action/:id', :controller=>'admin'
+  map.admindex '/admin', :controller=>'admin', :action=>'index'
 
-  # Install the default route as the lowest priority.
-  map.connect ':controller/:action/:id.:format'
-  map.connect ':controller/:action/:id'
 end

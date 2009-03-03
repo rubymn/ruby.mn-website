@@ -1,26 +1,35 @@
-class OpeningController < ApplicationController
+class OpeningsController < ApplicationController
   before_filter :login_required
   def index
     @openings = Opening.find(:all, :order=>'created_at desc')
   end
 
-  def create
-    if request.get?
+  def new
+    @opening = Opening.new
+    render :action=>'opening_form'
+  end
+
+  def update
+    @opening = Opening.find(params[:id])
+    if @opening.update_attributes params[:opening]
+      flash.now[:notice]="Event created, admin notified."
+      redirect_to :action=>'index'
+    else
       render :action=>'opening_form'
     end
-    if request.post? and params['opening']['id'].nil? 
-      evt = Opening.new params["opening"]
-      evt.user=current_user
-      evt.save
-      redirect_to :action=>"index"
+  end
 
-
-    elsif request.post? and !params['opening']['id'].nil?
-      evt = Opening.find(params['opening']['id'])
-      evt.update_attributes params["opening"]
+  def create
+    @opening = Opening.new params[:opening]
+    @opening.user=current_user
+    if @opening.save
+      flash.now[:info]="Opening Created. Thanks."
       redirect_to :action=>'index'
+    else
+      render :action=>'opening_form'
     end
   end
+
   def edit
     id = params[:id]
     if request.get? and @opening=Opening.find(id)

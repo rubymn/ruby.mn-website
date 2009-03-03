@@ -1,4 +1,3 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 first:
   headline: firstheadline
   body: first.body

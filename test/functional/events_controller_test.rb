@@ -58,7 +58,7 @@ class EventsControllerTest < Test::Unit::TestCase
   def test_approve_badlogin
     login_as(:bob)
     assert !events(:notapproved).approved?
-    get :approve, :id=>events(:notapproved).id, :user_id=>users(:existingbob).login
+    put :approve, :id=>events(:notapproved).id, :user_id=>users(:existingbob).login
     assert_bounced
     assert !events(:notapproved).approved?
   end
@@ -80,7 +80,7 @@ class EventsControllerTest < Test::Unit::TestCase
   end
   def test_destroy_as_notadmin
     login_as(:notadmin)
-    get :admdestroy, :id=>events(:first).id, :user_id=>users(:bob).login
+    delete :admdestroy, :id=>events(:first).id, :user_id=>users(:bob).login
     assert_bounced
     assert Event.exists?(events(:first).id)
   end
@@ -137,7 +137,7 @@ class EventsControllerTest < Test::Unit::TestCase
   end
   def test_new
     login_as(:bob)
-    get :new
+    get :new, :user_id=>users(:bob).id
     assert_response :success
     assert_template 'new'
     assert assigns(:event)

@@ -4,11 +4,9 @@
       %li
         =link_to "Member List", users_path
       %li
-        =link_to "Help Wanted", :controller=>'opening'
+        =link_to "Help Wanted", openings_path
       %li
         =link_to "My Events", user_events_path(current_user)
-      %li
-        =link_to "Search Mailing List", archive_path
       %li
         = link_to "Logout", session_path, :method=>'delete'
       - if current_user.admin?
@@ -23,7 +21,7 @@
     %li
       =link_to "Projects", projects_path
     %li
-      =link_to "For-Hire", :controller=>"for_hire"
+      =link_to "For-Hire", for_hires_path
     %li
       =link_to SVERSION, 'http://bitbucket.org/mml/ruby-mn-site/'
     %hr/

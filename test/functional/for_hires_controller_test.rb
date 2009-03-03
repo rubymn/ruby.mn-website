@@ -1,13 +1,13 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'for_hire_controller'
+require 'for_hires_controller'
 
 # Re-raise errors caught by the controller.
-class ForHireController; def rescue_action(e) raise e end; end
+class ForHiresController; def rescue_action(e) raise e end; end
 
-class ForHireControllerTest < Test::Unit::TestCase
+class ForHiresControllerTest < Test::Unit::TestCase
   fixtures :users, :for_hires
   def setup
-    @controller = ForHireController.new
+    @controller = ForHiresController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
     @u = users(:bob)

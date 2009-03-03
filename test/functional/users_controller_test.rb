@@ -64,12 +64,9 @@ class UsersControllerTest < Test::Unit::TestCase
     assert_equal ["Password can't be blank"] ,assigns(:user).errors.each_full{}
   end
 
-  def test_update
-  end
-  def test_show
-  end
-  def test_edit
-  end
+  def test_update;end
+  def test_edit;end
+  def test_show;end
 
   def test_create2
     post :create, "user"=>{"password_confirmation"=>"standard", "lastname"=>"looney", "firstname"=>"mcclain", "login"=>"tutu", "password"=>"standard", "email"=>"m@loonsoft.com"} 
