@@ -13,8 +13,6 @@ set :scm, :mercurial               # defaults to :subversion
 
 
 namespace :deploy do
-  desc "start up the cluster"
-
   desc "restart the cluster"
   task :restart, :roles=>:app do
     run "sudo /etc/init.d/apache2 restart"
