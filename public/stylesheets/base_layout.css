@@ -1,17 +1,7 @@
-
 #modal_overlay {  
   background-color:#909090;
 }  
-.flashinfo {
-  color: blue;
-  margin-top:10px;
-  margin-bottom:10px;
-}
-.flasherror {
-  color: red;
-  margin-top:10px;
-  margin-bottom:10px;
-}
+
 #navbar{border-left: 2px solid #BBB; padding: 10px;}
 #hd{margin-top:10px;}
 #ft{margin-top:10px; border-top: 2px solid #BBB; padding-top: 10px;}
@@ -63,4 +53,13 @@ form  input, form select, form textarea {
 
 #meeting-place{margin: -15px 10px;padding:10px;}
 
-
+html>body {
+  font-size:12px;
+}
+strong{font-weight:bold;}
+em{font-style: italic;}
+ul,ol{margin: 0 0 1em 1.5em;}
+ul{list-style-type: square;}
+ol{list-style-type: decimal;}
+.big{font-size:1.5em;}
+.small{font-size:0.8em;}
