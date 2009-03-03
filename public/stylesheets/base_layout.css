@@ -31,19 +31,6 @@ div.messagebody {
   background: #c0c0c0;
   padding: 10px;
 }
-form label {
-  display: block;
-  float: left;
-  width: 25%;
-  padding: 3px 5px;
-  margin: 0 0 5px 0;
-  text-align: right;
-}
-form br{clear:both;}
-
-form  input, form select, form textarea {
-  padding: 1px 3px;
-}
 
 .submit
 {
@@ -53,9 +40,6 @@ form  input, form select, form textarea {
 
 #meeting-place{margin: -15px 10px;padding:10px;}
 
-html>body {
-  font-size:12px;
-}
 strong{font-weight:bold;}
 em{font-style: italic;}
 ul,ol{margin: 0 0 1em 1.5em;}
