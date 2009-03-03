@@ -39,6 +39,9 @@ div.messagebody {
 }
 
 #meeting-place{margin: -15px 10px;padding:10px;}
+a#banner {
+  text-decoration: none;
+}
 
 strong{font-weight:bold;}
 em{font-style: italic;}
