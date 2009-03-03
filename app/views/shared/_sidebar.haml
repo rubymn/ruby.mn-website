@@ -2,7 +2,7 @@
   %ul
     - if current_user
       %li
-        =link_to "Member List", users_path
+        =link_to "Member List (#{User.count})", users_path
       %li
         =link_to "Help Wanted", openings_path
       %li
@@ -15,11 +15,11 @@
     - else
       
       %li
-        =link_to "New User Registration", new_user_path
+        =link_to "Join!", new_user_path
       %li 
         =link_to "Login", new_session_path
     %li
-      =link_to "Projects", projects_path
+      =link_to "Member Projects", projects_path
     %li
       =link_to "For-Hire", for_hires_path
     %li
