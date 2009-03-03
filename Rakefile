@@ -6,5 +6,7 @@ require(File.join(File.dirname(__FILE__), 'config', 'boot'))
 require 'rake'
 require 'rake/testtask'
 require 'rake/rdoctask'
+require 'rake/clean'
 
 require 'tasks/rails'
+CLEAN+= FileList['**/*.orig']
