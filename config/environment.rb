@@ -67,4 +67,3 @@ Rails::Initializer.run do |config|
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
 end
-TCRBB_LIST_ADDRESS='test@example.com'
