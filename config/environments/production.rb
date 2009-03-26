@@ -19,5 +19,13 @@ config.action_controller.perform_caching             = true
 # config.action_controller.asset_host                  = "http://assets.example.com"
 
 # Disable delivery errors, bad email addresses will be ignored
-config.action_mailer.raise_delivery_errors = false
+# rake db:test:data:load
+config.action_mailer.raise_delivery_errors = true
+ActionMailer::Base.smtp_settings = {
+  :address => "mail.loonsoft.com",
+  :port => 25,
+  :domain => "ruby.mn",
+  :enable_starttls_auto => false
+}
+config.action_mailer.delivery_method = :smtp
 TCRBB_LIST_ADDRESS='ruby.mn@ruby.mn'

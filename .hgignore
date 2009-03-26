@@ -1,13 +1,13 @@
-config/sphinx_data/.*
-db/.*\.sqlite3
-.*.hg
-.*.*\.pid
-.*\.swp
-config/scgi.yaml
-.*~
+syntax: glob
+public/system
+db/*.sqlite3
+.hg
+*.pid
+*.swp
+*~
 db/schema.rb
-.*\.orig
+*.orig
 tmp/
 REVISION
-config/sphinx_data
 log
+public/stylesheets/all.css

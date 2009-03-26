@@ -67,15 +67,16 @@ class UsersController  < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
-    if (RAILS_ENV=='production' ? validate_recap(params, @user.errors) : true) && @user.save
-      key = @user.generate_security_token
-      flash[:notice] = 'Signup successful!'
-      SignupMailer.deliver_confirm(@user)
-      flash[:notice] << ' Please check your registered email account to verify your account.'
-      redirect_to :controller=>'welcome', :action=>'index'
-    else
-      render :action=>:new
+    User.transaction do
+      @user = User.new(params[:user])
+      if ( validate_recap(params, @user.errors) || RAILS_ENV!='production') && @user.save
+        key = @user.generate_security_token
+        SignupMailer.deliver_confirm(@user)
+        flash[:notice] = ' Please check your registered email account to verify your account.'
+        redirect_to :controller=>'welcome', :action=>'index'
+      else
+        render :action=>:new
+      end
     end
   end
 
