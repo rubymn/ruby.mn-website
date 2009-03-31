@@ -26,18 +26,21 @@ class UsersController  < ApplicationController
   def forgot_password
     # Always redirect if logged in
     if session[:uid] and request.get?
-      flash[:message] = 'You are currently logged in. You may change your password now.'
+      flash.now[:notice] = 'You are currently logged in. You may change your password now.'
       render :template=> "users/change_password"
-      return
     else
       render :template=>"users/forgot_form"
     end
   end
 
   def reset
-    if u= User.find_by_login(params[:login])
+    if u= User.find(:first, :conditions=>['email=? or login=?',params[:login], params[:login]])
       u.generate_security_token
       SignupMailer.deliver_pass_inst(u)
+      flash.now[:success]='Sweet. We sent the mail!'
+    else
+      flash.now[:error]="Couldn't find that guy, guy."
+      render :template=> 'users/forgot_form'
     end
   end
 
