@@ -1,6 +1,6 @@
 class Approvals < ActiveRecord::Migration
   def self.up
-    add_column :events, :approved, :boolean, :default=>0
+    add_column :events, :approved, :boolean, :default=>false
   end
 
   def self.down

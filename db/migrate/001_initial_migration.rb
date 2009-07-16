@@ -32,7 +32,7 @@ class InitialMigration < ActiveRecord::Migration
       t.column :verified, :boolean, :null=>false, :default=>false
       t.column :security_token, :string, :limit=>40
       t.column :token_expiry, :datetime
-      t.column :deleted, :boolean, :default=>0
+      t.column :deleted, :boolean, :default=>false
     end
 
   end
