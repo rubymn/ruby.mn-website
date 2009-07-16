@@ -4,7 +4,7 @@ task :mkuser=>:environment do |t|
   u.change_password 'standard'
   u.firstname='McClain'
   u.lastname='Looney'
-  u.verified=1
+  u.verified=true
   u.email='m@loonsoft.com'
   u.save!
 end
