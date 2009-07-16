@@ -10,7 +10,7 @@ class PeventsController < ApplicationController
       m.channel.link="http://www.ruby.mn"
       m.channel.description="Ruby Users of Minnesota Events"
       m.items.do_sort=true
-      Event.find(:all, :conditions=>'approved=1').each do |e|
+      Event.find(:all, :conditions=>'approved=true').each do |e|
         i = m.items.new_item
         i.title=e.headline
         i.link = pevent_url(e)
