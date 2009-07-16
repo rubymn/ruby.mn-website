@@ -1,2 +1,3 @@
 ruby-recaptcha --version '>= 1.0.0'
 RedCloth --version '>= 4.1.9'
+BlueCloth --version '>= 1.0.0' --lib 'bluecloth'
