@@ -1,6 +1,10 @@
 RCC_PRIV='meh'
 MH_PRIV='meh'
-require '/etc/recaptcha.rb' if RAILS_ENV=='production'
-RCC_PUB='6LcOAQAAAAAAAFa480w6dsuwPiDNHqsaeF6zPLrI'
-MH_PUB='01PpOGl8-DHpxYCsKzQMSdTw=='
+if RAILS_ENV=='production'
+  MH_PRIV='6DD023ED74AAEF4C8C37B850EDA92F71'
+  RCC_PRIV='6LcOAQAAAAAAACOXzb9FrgxDtoGi8NeOzlf1uvjD'
+else
+  RCC_PUB='6LcOAQAAAAAAAFa480w6dsuwPiDNHqsaeF6zPLrI'
+  MH_PUB='01PpOGl8-DHpxYCsKzQMSdTw=='
+end
 require 'rss'
