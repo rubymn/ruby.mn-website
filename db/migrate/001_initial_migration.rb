@@ -29,7 +29,7 @@ class InitialMigration < ActiveRecord::Migration
       t.column :firstname, :string, :limit=>100, :null=>false
       t.column :lastname, :string, :limit=>100, :null=>false
       t.column :salt, :string, :limit=>40, :null=>false
-      t.column :verified, :boolean, :null=>false, :default=>0
+      t.column :verified, :boolean, :null=>false, :default=>false
       t.column :security_token, :string, :limit=>40
       t.column :token_expiry, :datetime
       t.column :deleted, :boolean, :default=>0
