@@ -3,8 +3,8 @@
 
 
 development:
-  adapter: sqlite3
-  database: db/development.sqlite3
+  adapter: postgresql
+  database: tcrbb_dev
   pool: 5
   timeout: 5000
 
