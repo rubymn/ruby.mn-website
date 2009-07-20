@@ -60,7 +60,7 @@ class UsersController  < ApplicationController
 
 
   def index
-    @users=User.find :all, :order=>'firstname', :conditions=>'verified !=0', :select=>'firstname, lastname, id,email'
+    @users=User.find :all, :order=>'firstname', :conditions=>'verified !=false', :select=>'firstname, lastname, id,email'
   end
 
   # Register as a new user. Upon successful registration, the user will be sent to

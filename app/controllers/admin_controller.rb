@@ -2,7 +2,7 @@ class AdminController < ApplicationController
   before_filter :admin_required
 
   def index
-    @events = Event.find(:all, :conditions=>"approved = 0")
+    @events = Event.find(:all, :conditions=>"approved = false")
   end
   def approve
     if current_user.admin?
