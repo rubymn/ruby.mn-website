@@ -22,3 +22,12 @@ config.action_controller.perform_caching             = true
 # rake db:test:data:load
 config.action_mailer.raise_delivery_errors = true
 TCRBB_LIST_ADDRESS='ruby_mn@googlegroups.com'
+ActionMailer::Base.smtp_settings = {
+  :address  => "smtp.gmail.com",
+  :port  => 587,
+  :user_name  => "ruby.mn.bot@gmail.com",
+  :password  => "thisisanexample",
+  :authentication  => :plain,
+  :enable_starttls_auto => true
+}
+
