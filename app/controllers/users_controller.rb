@@ -47,7 +47,7 @@ class UsersController  < ApplicationController
   def validate
     u = User.find_by_security_token(params[:key])
     if u
-      u.verified = true
+      u.verified = 1
       u.save!
       session[:uid]=u.id
       flash[:notice]='Your account has been confirmed. Thanks!'
@@ -60,7 +60,7 @@ class UsersController  < ApplicationController
 
 
   def index
-    @users=User.find :all, :order=>'firstname', :conditions=>'verified !=false', :select=>'firstname, lastname, id,email'
+    @users=User.find :all, :order=>'firstname', :conditions=>'verified !=0', :select=>'firstname, lastname, id,email'
   end
 
   # Register as a new user. Upon successful registration, the user will be sent to

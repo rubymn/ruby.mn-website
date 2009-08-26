@@ -26,10 +26,10 @@ class User < ActiveRecord::Base
     end
   end
   def self.authenticate(login, password)
-    u = find(:first, :conditions => ["login = ? AND verified = true AND deleted = false", login])
+    u = find(:first, :conditions => ["login = ? AND verified = 1 AND deleted = 0", login])
     return nil if u.nil?
     crypted = hashify(u.salt+hashify(password))
-    find(:first, :conditions => ["login = ? AND salted_password = ? AND verified = true", login, crypted])
+    find(:first, :conditions => ["login = ? AND salted_password = ? AND verified = 1", login, crypted])
   end
 
   attr_accessor :password, :password_confirmation
