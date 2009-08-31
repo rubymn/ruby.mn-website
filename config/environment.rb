@@ -26,7 +26,7 @@ Rails::Initializer.run do |config|
   config.gem "ruby-recaptcha"
   config.gem "haml"
   config.gem "RedCloth"
-  config.gem "openrain-action_mailer_tls", :source=>'http://gems.github.com'
+  config.gem "ambethia-smtp-tls", lib=>'smtp-tls', :source=>'http://gems.github.com'
 
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.
