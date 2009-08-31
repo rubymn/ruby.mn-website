@@ -1,3 +1,3 @@
 ruby-recaptcha
 BlueCloth
-ambethia-smtp-tls
+ambethia-smtp-tls --source http://gems.github.com
