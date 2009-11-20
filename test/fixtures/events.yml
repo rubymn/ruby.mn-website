@@ -2,17 +2,17 @@ first:
   headline: firstheadline
   body: first.body
   user: bob
-  approved: 1
+  approved: true
   scheduled_time: <%=Time.now.to_s(:db)%>
 another:
   headline: secondheadline
   body: secondbody
   user: existingbob
-  approved: 1
+  approved: true
   scheduled_time: <%=Time.now.to_s(:db)%>
 notapproved:
   headline: secondheadline
   body: secondbody
   user: existingbob
   scheduled_time: <%=Time.now.to_s(:db)%>
-  approved: 0
+  approved: false
