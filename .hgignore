@@ -1,4 +1,5 @@
 syntax: glob
+.git
 public/system
 db/*.sqlite3
 .hg
