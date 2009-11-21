@@ -7,5 +7,5 @@
   %h4
     =mail_to opening.user.email, "Contact #{opening.user.firstname} #{opening.user.lastname}", :encode=>'javascript'
   - if current_user == opening.user || current_user.admin?
-    =link_to "delete", :action=>'destroy', :id=>opening.id
-    =link_to "edit", :action=>'edit', :id=>opening.id
+    =link_to "delete", opening_path(opening), :method=>:delete
+    =link_to "edit", edit_opening_path(opening)

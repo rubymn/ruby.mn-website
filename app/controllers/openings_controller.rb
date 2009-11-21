@@ -43,12 +43,13 @@ class OpeningsController < ApplicationController
     end
   end
   def destroy
-    if current_user && current_user.admin
+    if current_user && current_user.admin?
       Opening.destroy(params[:id])
     else
       current_user.openings.find(params[:id]).destroy
     end
     flash[:success]="Deleted opening."
+    redirect_to openings_path
   end
 
 end
