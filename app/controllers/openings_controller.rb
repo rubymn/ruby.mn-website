@@ -43,17 +43,12 @@ class OpeningsController < ApplicationController
     end
   end
   def destroy
-    u = current_user
-    id=params[:id]
-    evt = Opening.find(id)
-    if u.openings.include? evt
-      evt.destroy
-      redirect_to :action=>'index'
+    if current_user && current_user.admin
+      Opening.destroy(params[:id])
     else
-      session[:uid]=nil
-      redirect_to :controller=>"welcome", :action=>'index'
+      current_user.openings.find(params[:id]).destroy
     end
-
+    flash[:success]="Deleted opening."
   end
 
 end
