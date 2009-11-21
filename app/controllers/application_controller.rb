@@ -35,17 +35,14 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    if not @cu
+    unless @cu
       @cu = User.find(session[:uid]) if session[:uid]
     end
     @cu
   end
 
-  def res_matches_user
-    @user = User.find_by_login(params[:user_id])
-    return true if @user.id == session[:uid] || (current_user && current_user.admin?)
-    bounce
-    return false
+  def logged_in?
+    !current_user.nil?
   end
 
   def bounce

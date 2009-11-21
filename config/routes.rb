@@ -9,12 +9,12 @@ ActionController::Routing::Routes.draw do |map|
   # You can have the root of your site routed by hooking up '' 
   # -- just remember to delete public/index.html.
   map.resource :archive, :member=>{:search=>:any}
-  map.resources :pevents, :member=>{:approve=>:put}, :collection=>{:rss=>:get}
   map.resources :openings
-  map.resources :for_hires
   map.resources :users, :member=>{:login=>:get}, :new=>{:validate=>:get, :forgot_password=>:get, :reset=>:post, :change_password=>:get, :set_password=>:post} do |users|
-    users.resources :events, :member=>{:admdestroy=>:delete, :approve=>:put}
+    users.resource :for_hire
   end
+  map.resources :for_hires
+  map.resources :events, :member=>{:admdestroy=>:delete, :approve=>:put}, :collection=>{:user_index=>:get}
   map.resources :projects
   map.resource :session
   map.root  :controller => "welcome", :action=>'index'

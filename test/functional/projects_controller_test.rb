@@ -1,24 +1,12 @@
-require File.dirname(__FILE__) + '/../test_helper'
-require 'projects_controller'
-
-# Re-raise errors caught by the controller.
-class ProjectController; def rescue_action(e) raise e end; end
-
-class ProjectControllerTest < Test::Unit::TestCase
-  fixtures :users, :for_hires
-  
+require 'test_helper'
+class ProjectsControllerTest < ActionController::TestCase
   def setup
-    @controller = ProjectsController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-    @u = users(:bob)
-    @p1 = projects(:first)
-    @p2 = projects(:second)
-    @request.session[:uid]=@u.id
+    @p1 = Factory.create :project
+    @p2 = Factory.create :project
+    @request.session[:uid]=@p1.user.id
   end
   
   def test_login_not_required
-    @request.session[:uid] = nil
     get :index
     assert_response :success
     assert_template 'index'
@@ -40,17 +28,16 @@ class ProjectControllerTest < Test::Unit::TestCase
   end
   
   def test_create_post
-    @request.session[:uid]=@u.id
 
     post :create, {:project => {:title => 'title', 
                                 :url => 'http://example.com', 
                                 :source_url => 'http://example.com',
                                 :description => "desc"}}
     assert_response :redirect
-    assert_redirected_to :action => 'index'
+    assert_redirected_to :action => 'index', :controller=> 'projects'
     p = Project.find_by_title 'title'
     assert_not_nil p
-    assert_equal @u, p.user
+    assert_equal @p1.user, p.user
   end
   
   def test_create_get_noid
@@ -66,7 +53,7 @@ class ProjectControllerTest < Test::Unit::TestCase
                                 :description => "desc",
                                 :id => @p1.id}}
     assert_response :redirect
-    assert_redirected_to :action => 'index'
+    assert_redirected_to :action => 'index', :controller => 'projects'
     assert @p1.reload.description = 'desc'
   end
   
@@ -80,7 +67,7 @@ class ProjectControllerTest < Test::Unit::TestCase
   def test_destroy
     get :destroy, :id => @p1.id
     assert_response :redirect
-    assert_redirected_to :action=>'index'
+    assert_redirected_to :action=>'index', :controller => 'projects'
     begin
       Project.find(1)
       fail "shouldn't be able to find deleted item"
@@ -89,7 +76,7 @@ class ProjectControllerTest < Test::Unit::TestCase
   end
   
   def test_evil_destroy
-    p = projects(:second)
+    p = @p2
     get :destroy, :id => p.id
     assert_response :redirect
     assert_redirected_to :controller=>'welcome', :action=>'index'
@@ -108,8 +95,8 @@ class ProjectControllerTest < Test::Unit::TestCase
     assert !assigns(:project).valid?
   end
   def test_bad_edit_shows_errors
-    assert_equal projects(:first).user, users(:bob)
-    put :update, :id=>projects(:first).id, :project=>{:title=>''}
+    assert_not_nil  @p1.user
+    put :update, :id=>@p1.id, :project=>{:title=>''}
     assert_response :success
     assert_template "edit"
     assert_select "#errorExplanation"

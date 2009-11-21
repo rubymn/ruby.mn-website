@@ -1,21 +1,40 @@
 class EventsController < ApplicationController
   before_filter :login_required
   before_filter :admin_required, :only=>:show
-  before_filter :find_user
-  before_filter :find_res, :res_matches_user, :except=>[:create, :new]
 
   def index
-    if @user.admin?
+    if current_user.admin?
       @events = Event.find(:all, :order=>'scheduled_time DESC')
     else
       @events = @user.events
     end
   end
 
+  def user_index
+    if logged_in? 
+      if current_user.admin? 
+        @events = User.find(params[:user_id]).events
+      else
+        @events = current_user.events
+      end
+      render :template=>'events/index'
+    else
+      bounce
+    end
+  end
+
+  def approve
+    if current_user and current_user.admin?
+      Event.find(params[:id]).approved=true
+    else
+      current_user.events.find(params[:id]).approved=true
+    end
+  end
+
   def create
-    @event = @user.events.create(params[:event])
+    @event = current_user.events.create(params[:event])
     if @event.save
-      redirect_to user_events_path(@user)
+      redirect_to user_index_events_path
       Notifier.deliver_notify_event(@event)
     else
       render :template=>'events/new'
@@ -23,10 +42,10 @@ class EventsController < ApplicationController
   end
 
   def update
-    @event = @res
+    @event = Event.find(params[:id])
     @event.update_attributes(params[:event])
     if @event.save
-      redirect_to user_event_path(@user, @event)
+      redirect_to event_path(@event)
     else
       render :template=>'events/edit'
     end
@@ -37,34 +56,27 @@ class EventsController < ApplicationController
   end
 
 
-  def admdestroy
-    if current_user.admin?
-      Event.destroy(params[:id])
-      redirect_to :controller=>'admin', :action=>'index'
-    else
-      bounce
-    end
-  end
   def destroy
-    @res.destroy
+    if current_user && current_user.admin?
+      Event.destroy(params[:id])
+    else
+      current_user.events.find(params[:id]).destroy
+    end
     flash[:info]='Record Deleted'
-    redirect_to user_events_path(current_user)
+    redirect_to admin_path
   end
 
 
   def edit
-    @event=@res
+    if current_user && current_user.admin?
+      @event = Event.find(params[:id])
+    else
+      @event=current_user.events.find(params[:id])
+    end
   end
 
   def show
-    @event = @res
+    @event= Event.find(params[:id])
   end
 
-  private
-  def find_res
-    @res = @user.events.find(params[:id]) if params[:id]
-  end
-  def find_user
-    @user = User.find_by_login(params[:user_id], :include=>:events)
-  end
 end

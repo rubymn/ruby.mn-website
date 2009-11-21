@@ -1,19 +1,22 @@
-require File.dirname(__FILE__) + '/../test_helper'
-require 'for_hires_controller'
+require 'test_helper'
 
-# Re-raise errors caught by the controller.
-class ForHiresController; def rescue_action(e) raise e end; end
-
-class ForHiresControllerTest < Test::Unit::TestCase
-  fixtures :users, :for_hires
+class ForHiresControllerTest < ActionController::TestCase
+  should_route :get, "/for_hires/new", :action=>'new'
+  context "logged in" do
+    setup {@u=login}
+    context "get new" do
+      setup {get :new}
+      should_render_template 'for_hire_form'
+      should_assign_to(:for_hire) do
+        assert assigns(:for_hire).new_record?
+      end
+    end
+  end
   def setup
-    @controller = ForHiresController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-    @u = users(:bob)
-    @fh1 = for_hires(:first)
-    @fh2 = for_hires(:second)
-    @request.session[:uid]=@u.id
+    @fh1 = Factory.create(:for_hire)
+    @fh2 = Factory.create(:for_hire)
+    @u = @fh1.user
+    login_as(@u)
   end
   def test_login_not_required
     @request.session[:uid]=nil
@@ -40,16 +43,15 @@ class ForHiresControllerTest < Test::Unit::TestCase
     assert_template 'index'
   end
 
-  def test_create_post
-    @request.session[:uid]=@u.id
-
+  def test_create
+    u =login
     post :create, {:for_hire=>{:title=>'title', 
       :blurb=>'blurb', :email=>'email@email.com'}}
     assert_response :redirect
-    assert_redirected_to :action=>'index'
-    fh = ForHire.find_by_title 'title'
-    assert_not_nil fh
-    assert_equal @u, fh.user
+    assert_redirected_to user_for_hire_path(u)
+    assert assigns(:for_hire)
+    assert_equal assigns(:for_hire).user, u
+
   end
 
   def test_create_get_noid
@@ -58,29 +60,28 @@ class ForHiresControllerTest < Test::Unit::TestCase
     assert_template 'for_hire_form'
   end
 
-  def test_create_post_with_id
-    post :create, {:for_hire=>{:title=>'title', 
-      :blurb=>'test', :email=>'email@email.com', :id=>@fh1.id}}
+  def test_update
+    put :update, {:for_hire=>{:title=>'title', 
+      :blurb=>'test', :email=>'email@email.com'}, :user_id=>@u.id}
     assert_response :redirect
-    assert_redirected_to :action=>'index'
+    assert_redirected_to user_for_hire_path(@u)
     assert @fh1.reload.blurb='test'
   end
 
   def test_evil_edit
     get :edit, :id=>@fh2.id
-    assert_response :redirect
-    assert_redirected_to :controller=>'welcome', :action=>'index'
-    assert_nil session[:uid]
+    assert_response :success
+    assert_equal assigns(:for_hire), @u.for_hire
   end
 
   def test_evil_update
-    post :create, {:for_hire=>{:title=>'title', 
-      :blurb=>'test', :email=>'email@email.com', :id=>@fh1.id}}
+    login_as Factory.create(:user)
+    post :create, :for_hire=>{:title=>'title', 
+      :blurb=>'zz', :email=>'email@email.com', :user_id=>@u.id}
     assert_response :redirect
-    assert_redirected_to :controller=>'welcome', :action=>'index'
-    assert_nil session[:uid]
-
+    assert_equal assigns(:for_hire).blurb, 'zz'
   end
+
 
   def test_destroy
     get :destroy, :id=>@fh1.id
@@ -94,7 +95,7 @@ class ForHiresControllerTest < Test::Unit::TestCase
   end
 
   def test_evil_destroy
-    fh = for_hires(:second)
+    fh = Factory.create(:for_hire)
     get :destroy, :id=>fh.id
     assert_response :redirect
     assert_redirected_to :controller=>'welcome', :action=>'index'

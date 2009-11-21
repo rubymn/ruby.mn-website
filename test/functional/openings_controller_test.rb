@@ -1,19 +1,8 @@
-require File.dirname(__FILE__) + '/../test_helper'
-require 'openings_controller'
-
-# Re-raise errors caught by the controller.
-class OpeningsController; def rescue_action(e) raise e end; end
-
-class OpeningControllerTest < Test::Unit::TestCase
-  fixtures :users, :openings
-  def setup
-    @controller = OpeningsController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-  end
+require 'test_helper'
+class OpeningsControllerTest < ActionController::TestCase
 
   def test_new
-    login_as(:bob)
+    login
     get :new
     assert assigns(:opening)
     assert_response :success
@@ -21,8 +10,10 @@ class OpeningControllerTest < Test::Unit::TestCase
   end
 
   def test_update
-    login_as(:bob)
-    put :update, :id=>openings(:first).id, :opening=>{:headline=>'feh'}
+    login
+    o = Factory.create(:opening)
+
+    put :update, :id=>o.id, :opening=>{:headline=>'feh'}
     assert_response :redirect 
     assert_redirected_to openings_path
     assert assigns(:opening)
@@ -36,7 +27,7 @@ class OpeningControllerTest < Test::Unit::TestCase
   end
 
   def test_index
-    @request.session[:uid] = users(:bob).id
+    login
     get :index
     assert_response :success
     assert_template 'index'
@@ -44,7 +35,7 @@ class OpeningControllerTest < Test::Unit::TestCase
   end
 
   def test_create
-    login_as(:bob)
+    login
     post :create, :opening=>{:body=>'foo', :headline=>'bar'}
     assert_response :redirect
     assert_redirected_to openings_path

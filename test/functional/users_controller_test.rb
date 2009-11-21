@@ -1,16 +1,6 @@
-require File.dirname(__FILE__) + '/../test_helper'
-require 'users_controller'
+require 'test_helper'
 
-# Re-raise errors caught by the controller.
-class UsersController; def rescue_action(e) raise e end; end
-
-class UsersControllerTest < Test::Unit::TestCase
-  fixtures :users
-  def setup
-    @controller = UsersController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-  end
+class UsersControllerTest < ActionController::TestCase
 
   def test_restful
     assert_restful_routes(:users)
@@ -29,7 +19,9 @@ class UsersControllerTest < Test::Unit::TestCase
   def test_index
     get :index
     assert_bounced
-    login_as(:bob)
+  end
+  def test_index_logged_in
+    login
     get :index
     assert_response :success
     assert assigns(:users)
@@ -37,11 +29,11 @@ class UsersControllerTest < Test::Unit::TestCase
 
   def test_create
     post :create, {"user"=>{"password_confirmation"=>"standard", "lastname"=>"Looney", 
-    "firstname"=>"MCClain", "login"=>"mogwai", "password"=>"standard", "email"=>"m@loonsoft.com"}}
+      "firstname"=>"MCClain", "login"=>"mogwai", "password"=>"standard", "email"=>"m@loonsoft.com"}}
     assert_response :redirect
     assert_redirected_to  :controller=>'welcome', :action=>'index'
     assert_nil flash[:warning]
-    assert_equal "Signup successful! Please check your registered email account to verify your account.", flash[:notice]
+    assert_equal "Please check your registered email account to verify your account.", flash[:notice]
     assert_nil flash[:warning]
     assert assigns(:user)
     assert_response :redirect
@@ -89,9 +81,9 @@ class UsersControllerTest < Test::Unit::TestCase
 
   def test_validate
     @request.session[:uid] = nil
-    u = users(:testyttest)
+    u = Factory.create(:user, :verified=>false, :security_token=>'meh')
     assert !User.find(u.id).verified?
-    get :validate, "key"=>"baf41cc616ee9185c1769fc864e4b308e0a26046"
+    get :validate, "key"=>'meh'
     assert u.reload.verified?
     assert_response :redirect
     assert_redirected_to :controller=>'welcome', :action=>'index'

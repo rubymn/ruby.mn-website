@@ -3,13 +3,14 @@ class User < ActiveRecord::Base
   has_many :events
   has_many :openings
   has_many :projects
-  has_and_belongs_to_many :books, :join_table=>'users_books'
+  has_one :for_hire
   attr_protected :verified, :form
   after_validation :encrypt_password
   validates_confirmation_of :password , :msg=>"Confirmation password should match", :on=>:create
   validates_uniqueness_of :login, :email
   validates_presence_of :login, :email, :firstname, :lastname
   validates_presence_of :password, :on=>:create
+
   def crypt_new_password
     encrypt_password
     save!
@@ -34,7 +35,7 @@ class User < ActiveRecord::Base
 
   attr_accessor :password, :password_confirmation
   def admin?
-    return role.to_i == 2
+    return role == 'admin'
   end
   protected
 

@@ -9,6 +9,8 @@ config.cache_classes = true
 # Log error messages when you accidentally call methods on nil.
 config.whiny_nils = true
 
+config.gem 'thoughtbot-shoulda', :lib=>'shoulda'
+config.gem 'thoughtbot-factory_girl', :lib=>'factory_girl'
 # Show full error reports and disable caching
 config.action_controller.consider_all_requests_local = true
 config.action_controller.perform_caching             = false

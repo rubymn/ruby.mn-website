@@ -1,29 +1,23 @@
-require File.dirname(__FILE__) + '/../test_helper'
-require 'admin_controller'
+require 'test_helper'
 
-# Re-raise errors caught by the controller.
-class AdminController; def rescue_action(e) raise e end; end
-
-class AdminControllerTest < Test::Unit::TestCase
-  fixtures :users, :events
-  def setup
-    @controller = AdminController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-  end
+class AdminControllerTest < ActionController::TestCase
+  
   def test_admin_approve
-    login_as(:admin)
-    assert !events(:notapproved).approved?
-    get :approve, :id=>events(:notapproved).id, :user_id=>users(:existingbob).login
+    u = login(:role=>'admin')
+    assert u.admin?
+    e = Factory.create(:event, :approved=> false, :user_id=>u.id)
+    assert !e.approved?
+    assert_equal e.reload.user, u
+    get :approve, :id=>e.id, :user_id=>e.user.id
     assert_response :redirect
     assert_redirected_to :controller=>'admin', :action=>'index'
-    events(:notapproved).reload
-    assert events(:notapproved).approved?
+    e.reload
+    assert e.approved?
     assert_equal flash[:info], 'Event Approved'
   end
 
   def test_admin_role_required
-    login_as(:notadmin)
+    u = login
     get :index
     assert_response :redirect
     assert_redirected_to new_session_path
@@ -32,7 +26,10 @@ class AdminControllerTest < Test::Unit::TestCase
   end
 
   def test_index
-    login_as(:admin)
+    u = login(:role=>'admin')
+    e = Factory.create(:event)
+    e.user=u
+    e.save
     get :index
     assert_response :success
     assert_template 'index'

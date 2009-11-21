@@ -1,20 +1,10 @@
 require 'test_helper'
-require 'welcome_controller'
 
-# Re-raise errors caught by the controller.
-class WelcomeController; def rescue_action(e) raise e end; end
-
-class WelcomeControllerTest < Test::Unit::TestCase
-  def setup
-    @controller = WelcomeController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-  end
+class WelcomeControllerTest < ActionController::TestCase
   
-  fixtures :events
 
   def test_works_logged_in
-    login_as(:bob)
+    u = login
     get :index
     assert_response :success
   end
@@ -25,6 +15,8 @@ class WelcomeControllerTest < Test::Unit::TestCase
   end
   
   def test_lists_events
+    Factory :event
+    Factory :event
     get :index
     assert_response :success
     assert_equal 2,  assigns(:events).size()

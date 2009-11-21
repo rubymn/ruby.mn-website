@@ -20,7 +20,7 @@ class AdminController < ApplicationController
   private
   def admin_required
     if session[:uid]
-      if current_user.role.to_i == 2
+      if current_user.role==  'admin'
         return true
       else
         flash[:error]= 'Access Denied (hoser).'

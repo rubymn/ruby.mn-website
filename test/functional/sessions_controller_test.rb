@@ -1,17 +1,6 @@
-require File.dirname(__FILE__) + '/../test_helper'
-require 'sessions_controller'
+require 'test_helper'
 
-# Re-raise errors caught by the controller.
-class SessionsController; def rescue_action(e) raise e end; end
-
-class SessionsControllerTest < Test::Unit::TestCase
-  fixtures :users
-  def setup
-    @controller = SessionsController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-  end
-
+class SessionsControllerTest < ActionController::TestCase
   def test_show
     get :show
     assert_bounced
@@ -27,12 +16,12 @@ class SessionsControllerTest < Test::Unit::TestCase
   end
 
   def test_create
-    u = users(:bob)
-    User.expects(:authenticate).with('bob', 'standard').returns(u)
-    post :create, :password=>'standard', :login=>u.login
+    u = Factory.create(:user)
+    User.expects(:authenticate).with(u.login, u.password).returns(u)
+    post :create, :password=>u.password, :login=>u.login
     assert_response :redirect
     assert_redirected_to :controller=>'welcome', :action=>'index'
-    assert_equal session[:uid], users(:bob).id
+    assert_equal session[:uid], u.id
   end
 
   def test_destroy

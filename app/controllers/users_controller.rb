@@ -75,7 +75,7 @@ class UsersController  < ApplicationController
       if ( validate_recap(params, @user.errors) || RAILS_ENV!='production') && @user.save
         key = @user.generate_security_token
         SignupMailer.deliver_confirm(@user)
-        flash[:notice] = ' Please check your registered email account to verify your account.'
+        flash[:notice] = 'Please check your registered email account to verify your account.'
         redirect_to :controller=>'welcome', :action=>'index'
       else
         render :action=>:new

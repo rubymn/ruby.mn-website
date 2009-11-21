@@ -5,19 +5,20 @@ class ForHiresController < ApplicationController
     @for_hires = ForHire.find :all, :order=>'title'
   end
 
+  def new
+    @for_hire = current_user.build_for_hire
+    render :template => 'for_hires/for_hire_form'
+  end
+
   def create
-    if request.post? and params['for_hire']['id'].nil?
-      if (fh = ForHire.new params['for_hire'])
-        fh.user = current_user
-        fh.save
-        redirect_to :action=>'index'
-      else
-        render_text 'Error saving.'
-      end
-    elsif request.post? and !params['for_hire'][:id].nil?
-      update 
+    @for_hire = current_user.build_for_hire(params[:for_hire])
+
+    if @for_hire.save
+      flash[:success]="created for hire profile"
+      redirect_to user_for_hire_path(current_user)
     else
-      render :action=>'for_hire_form'
+      flash[:error]="error creating for hire profile"
+      render :template=>'for_hires/for_hire_form'
     end
   end
 
@@ -28,39 +29,23 @@ class ForHiresController < ApplicationController
       redirect_to :action=>'index'
     else
       session[:uid] = nil;
-      redirect_to :controller=>'welcome', :action=>'index'
+      redirect_to root_path
     end
   end
 
 
   def edit
-    if !params[:id].nil?
-      @for_hire=ForHire.find(params[:id])
-      if  not (@for_hire.user == current_user)
-        session[:uid] = nil
-        redirect_to :controller=>'welcome', :action=>'index'
-      else
-        render :action=>'for_hire_form'
-      end
-
-    else
-        render :action=>'for_hire_form'
-    end
+    @for_hire=current_user.for_hire
+    render :action=>'for_hire_form'
 
   end
 
   def update 
-    fh = ForHire.find params['for_hire'][:id]
-    if fh.user == session[:uid]
-      if fh.update_attributes params['for_hire']
-        redirect_to :action=>'index'
-      else
-        render_text 'Error Saving'
-      end
+    @for_hire = current_user.for_hire
+    if @for_hire.update_attributes params['for_hire']
+      redirect_to user_for_hire_path(current_user)
     else
-      session[:uid] = nil
-      redirect_to :controller=>'welcome', :action=>'index'
+      render :template=> 'for_hires/for_hire_form'
     end
-
   end
 end

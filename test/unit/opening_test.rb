@@ -1,17 +1,17 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
-class OpeningTest < Test::Unit::TestCase
-  fixtures :openings, :users
-
-  # Replace this with your real tests.
-  def test_create
-    Opening.destroy_all
-    op = Opening.new(:body=>'fubar', :headline=>'meh')
-    op.user = users(:bob)
-    assert op.save
-    users(:bob).openings << op
-
-    u = User.find(users(:bob).id)
-    assert_equal 1, u.openings.size
+class OpeningTest < ActiveSupport::TestCase
+  should_belong_to :user
+  should_validate_presence_of :body, :headline
+  context "an instance" do
+    setup {
+      @u = Factory.create(:user)
+      @o = @u.openings.build(:body=>'foo', :headline=>'meh')
+      @o.expects(:deliver_notification)
+    }
+    should "call deliver" do
+      assert @o.new_record?
+      assert @o.save
+    end
   end
 end
