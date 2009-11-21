@@ -52,7 +52,7 @@
   %h2
     Announcements
   -unless current_user.nil?
-    %p=link_to "Add a New Event", new_user_event_path(current_user)
+    %p=link_to "Add a New Event", new_event_path
   =render :partial=>"events/event", :collection=>@events
 #map
   %iframe{:width=>"425", :height=>"350", :frameborder=>"0", :scrolling=>"no", :marginheight=>"0", :marginwidth=>"0", :src=>"http://maps.google.com/maps/ms?ie=UTF8&amp;hl=en&amp;msa=0&amp;msid=110795490152792313911.00044058471e2e0d3f1c0&amp;om=0&amp;ll=44.988666,-93.254855&amp;spn=0,0&amp;output=embed&amp;s=AARTsJpJhpAEX63WWk35O0Ydu7bNR3mOeA"}

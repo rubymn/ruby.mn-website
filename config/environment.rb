@@ -25,7 +25,7 @@ Rails::Initializer.run do |config|
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   config.gem "ruby-recaptcha"
   config.gem "haml"
-  config.gem "BlueCloth"
+  config.gem "BlueCloth", :lib=>'bluecloth'
 
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.
@@ -65,4 +65,8 @@ Rails::Initializer.run do |config|
 
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
+  RCC_PUB=ENV['RCC_PUB']
+  RCC_PRIV=ENV['RCC_PRIV']
+  MH_PRIV=ENV['MH_PRIV']
+  MH_PUB=ENV['MH_PUB']
 end
