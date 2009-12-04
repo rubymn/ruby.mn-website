@@ -79,7 +79,7 @@ body {
 #header .logo h1 {
   text-indent:-9999px;
 }
-.wrapper .inner {
+.inner {
   width:800px;
   margin:0 auto;
 }
@@ -117,9 +117,22 @@ body {
   width:100%;
 min-width:960px;
 }
-#footer .pride {
-  margin: 0 auto;
-  color:#777;
-  width: 400px;
-  padding:10px;
+#footer .inner a {
+  color:#aaa;
+  text-decoration:none;
+}
+#footer .inner a:hover {
+  text-decoration:underline;
+}
+#footer .inner {
+  font-family:"helvetica neue";
+  color:#aaa;
+  padding-top:14px;
+  font-size:12px;
+}
+#footer .inner #copyright {
+  float:left;
+}
+#footer .inner #credits {
+  float:right;
 }

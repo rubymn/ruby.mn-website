@@ -53,6 +53,11 @@
                   %br/
                   Phone: 612-605-9740
     #footer
+      .inner
+        #copyright
+          = "&copy; #{Time.now.year} #{link_to 'Ruby Users of Minnesota', '/'}"
+        #credits
+          = "Original site #{link_to 'mml', 'http://bitbucket.org/mml'}, Design #{link_to '@marknutter', 'http://nuttersmark.com/'}, Implementation #{link_to '@webandy', 'http://webandy.com/'}"
       
     %script{ :src=>"http://www.google-analytics.com/urchin.js", :type=>"text/javascript"}
     %script{:type=>"text/javascript"}
