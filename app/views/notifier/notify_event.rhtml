@@ -1,0 +1,11 @@
+The following event was posted by <%=@e.user.firstname%> <%=@e.user.lastname%>  (<%=@e.user.login%>) at or around <%=Time.now.to_s(:short)%>:
+
+Headline: <%=@e.headline%>
+
+Body: 
+
+--
+<%=@e.body%>
+--
+
+Contact: <%=@e.user.email%>

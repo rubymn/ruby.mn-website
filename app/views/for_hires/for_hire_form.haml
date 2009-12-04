@@ -1,0 +1,18 @@
+.form
+  -form_for :for_hire do |f| 
+    %fieldset
+      %label
+        Title
+      =text_field "for_hire", "title"
+      %br/
+      %label
+        Email
+      =text_field "for_hire", "email"
+      %br/
+      %label
+        Blurb
+      =text_area "for_hire", "blurb"
+      %br/
+      .submit
+        =submit_tag "Save"
+    

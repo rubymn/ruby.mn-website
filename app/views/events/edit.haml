@@ -1,0 +1,24 @@
+- @event.body.gsub!(/\r\n/,"\r")
+.errors
+  =error_messages_for 'event'
+
+.form
+  - form_for :event, :url=>event_path(@event), :html=>{:method=>:put} do |f|
+    %fieldset
+      %legend
+        Edit Event
+      %label
+        Headline 
+      = f.text_field  :headline
+      %br/
+      %label
+        Time &amp; Date:
+      = f.datetime_select  :scheduled_time
+      %br/
+      (That's 24 hour time bub.)
+      %br/
+      %label
+        Details
+      =f.text_area  :body
+      .submit
+        =submit_tag

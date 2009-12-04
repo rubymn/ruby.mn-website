@@ -1,0 +1,17 @@
+.event
+  %h3
+    - if event.scheduled_time
+      =event.scheduled_time.to_s(:short)
+      =event.headline
+
+    - if current_user and (event.user == current_user || current_user.admin?)
+      =link_to "delete", event_path(event), :method=>:delete
+      =link_to 'edit', edit_event_path(event)
+    - if current_user and current_user.admin?
+      = link_to "details", event_path(event)
+  %h4
+    - if event.user == current_user
+      = event.approved? ? "Approved" : "Not Approved Yet"
+
+  %p
+    =mup(event.body)

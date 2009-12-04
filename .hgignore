@@ -1,0 +1,14 @@
+syntax: glob
+.git
+public/system
+db/*.sqlite3
+.hg
+*.pid
+*.swp
+*~
+db/schema.rb
+*.orig
+tmp/
+REVISION
+log
+public/stylesheets/all.css

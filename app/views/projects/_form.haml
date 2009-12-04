@@ -1,0 +1,19 @@
+%fieldset
+  %label
+    Title
+  =text_field "project", "title"
+  %br/
+  %label
+    Url
+  =text_field "project", "url"
+  %br/
+  %label
+    Source Url
+  =text_field "project", "source_url"
+  %br/
+  %label
+    Description
+  =text_area "project", "description"
+  %br/
+  .submit
+    =submit_tag "Save"

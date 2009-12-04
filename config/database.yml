@@ -1,0 +1,16 @@
+# MySQL (default setup).  Versions 4.1 and 5.0 are recommended.
+#hey, don't check in passwords here. 
+
+
+development:
+  adapter: postgresql
+  database: rubymn_dev
+  pool: 5
+  timeout: 5000
+
+test:
+  adapter: postgresql
+  database: rubymn_test
+  pool: 5
+  timeout: 5000
+

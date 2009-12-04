@@ -1,0 +1,12 @@
+.event
+  %h2
+    = event.headline
+    = event.scheduled_time
+  %p
+    Posted by
+    = mail_to event.user.email, h(event.user.login)
+    =link_to "[Destroy]", event_path(event), :method=>:delete
+    =link_to "[Approve]", :controller=>'admin', :action=>'approve', :id=>event.id
+  %p
+    = mup event.body
+

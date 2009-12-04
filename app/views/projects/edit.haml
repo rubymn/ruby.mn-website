@@ -1,0 +1,4 @@
+=error_messages_for 'project'
+.form
+  -form_for(@project, :method => :put) do |f|
+    =render :partial => 'form', :object => @project, :locals => {:f => f}

@@ -1,0 +1,50 @@
+#navbar
+  %ul
+    - if current_user
+      %li
+        =link_to "Member List (#{User.count})", users_path
+      %li
+        =link_to "Help Wanted", openings_path
+      %li
+        =link_to "My Events", events_path
+      %li
+        = link_to "Logout", session_path, :method=>'delete'
+      - if current_user.admin?
+        %li
+          =link_to "Admin", :controller=>'admin', :action=>'index' 
+    - else
+      
+      %li
+        =link_to "Join!", new_user_path
+      %li 
+        =link_to "Login", new_session_path
+    %li
+      =link_to "Member Projects", projects_path
+    %li
+      =link_to "For-Hire", for_hires_path
+    %li
+      =link_to "Source", 'http://bitbucket.org/mml/ruby-mn-site/'
+    %hr/
+    %p
+      Hosting provided by
+      =link_to 'Heroku', "http://www.heroku.com"
+    %p
+      %table{:border=>0, :style=>"background-color: #fff; padding: 5px;", :cellspacing=>0}
+        %tr
+          %td
+            %img{:src=>"http://groups.google.com/intl/en/images/logos/groups_logo_sm.gif", :height=>30, :width=>140, :alt=>"Google Groups"}/
+        %tr 
+          %td{ :style=>"padding-left: 5px"}
+            %b
+              Subscribe to ruby.mn
+        %form{:action=>"http://groups.google.com/group/rubymn/boxsubscribe"}
+          =hidden_field_tag "hl", "en"
+          %tr
+            %td{:style=>"padding-left: 5px;"} 
+              Email: 
+              =text_field_tag :email
+              =submit_tag "Subscribe"
+        %tr
+          %td{ :align=>'right'}
+            -link_to "http://groups.google.com/group/rubymn?hl=en" do
+              Visit this group

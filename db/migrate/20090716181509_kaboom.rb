@@ -1,0 +1,72 @@
+class Kaboom < ActiveRecord::Migration
+  def self.up
+
+    create_table "engine_schema_info", :id => false, :force => true do |t|
+      t.string  "engine_name"
+      t.integer "version"
+    end
+
+    create_table "events", :force => true do |t|
+      t.datetime "created_at"
+      t.datetime "scheduled_time"
+      t.string   "headline",       :limit => 200, :default => "",    :null => false
+      t.text     "body",                                             :null => false
+      t.integer  "user_id",                       :default => 0,     :null => false
+      t.boolean  "approved",                      :default => false
+    end
+
+    create_table "for_hires", :force => true do |t|
+      t.text    "blurb",                                  :null => false
+      t.string  "email",   :limit => 200, :default => "", :null => false
+      t.string  "title",   :limit => 200, :default => "", :null => false
+      t.integer "user_id"
+    end
+
+    create_table "openings", :force => true do |t|
+      t.datetime "created_at"
+      t.string   "headline",   :limit => 100, :default => "", :null => false
+      t.text     "body",                                      :null => false
+      t.integer  "user_id"
+    end
+
+    create_table "projects", :force => true do |t|
+      t.integer  "user_id"
+      t.string   "title"
+      t.string   "url"
+      t.string   "source_url"
+      t.text     "description"
+      t.datetime "created_at"
+      t.datetime "updated_at"
+    end
+
+    create_table "sessions", :force => true do |t|
+      t.string   "session_id"
+      t.text     "data"
+      t.datetime "updated_at"
+    end
+
+    add_index "sessions", ["session_id"], :name => "sessions_session_id_index"
+
+    create_table "users", :force => true do |t|
+      t.string   "login",           :limit => 80, :default => "", :null => false
+      t.string   "salted_password", :limit => 40, :default => "", :null => false
+      t.string   "email",           :limit => 60, :default => "", :null => false
+      t.string   "firstname",       :limit => 40
+      t.string   "lastname",        :limit => 40
+      t.string   "salt",            :limit => 40, :default => "", :null => false
+      t.integer  "verified",                      :default => 0
+      t.string   "security_token",  :limit => 40
+      t.datetime "token_expiry"
+      t.integer  "deleted",                       :default => 0
+      t.datetime "logged_in_at"
+      t.date     "delete_after"
+      t.string   "role",            :limit => 10
+    end
+
+    add_index "users", ["login"], :name => "uidx"
+
+  end
+
+  def self.down
+  end
+end
