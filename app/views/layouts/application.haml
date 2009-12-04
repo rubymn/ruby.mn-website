@@ -14,9 +14,10 @@
         = image_tag 'header_bg.png', :id => 'main_header_logo'
       #navigation
         %ul
-          %li= "<a href='#{root_path}' class='#{"selected" if current_page?(root_path)}'><strong>Home</strong><p>Overview of everything</p></a>"
+          %li= "<a href='#{root_path}' class='#{"selected" if current_page?(root_path)}'><strong>Home</strong><p>Welcome and Events</p></a>"
           %li= "<a href='#{projects_path}' class='#{"selected" if current_page?(projects_path)}'><strong>Members</strong><p>People and Projects</p></a>"
-          %li= "<a href='#{for_hires_path}' class='#{"selected" if current_page?(for_hires_path)}'><strong>For Hire</strong><p>Ruby developers</p></a>"
+          %li= "<a href='#{for_hires_path}' class='#{"selected" if current_page?(for_hires_path)}'><strong>For Hire</strong><p>Developers for hire</p></a>"
+          %li= "<a href='#{openings_path}' class='#{"selected" if current_page?(openings_path)}'><strong>Need Help?</strong><p>Seeking developers</p></a>"
     .wrapper
       .inner
         #body
@@ -38,26 +39,17 @@
             %div
               %p= "Our meetings are held at:"
               %div#meeting-place
-                %span.big
-                  %b
-                  %a{:href=>'http://www.refactr.com', :target=>'_blank'}
-                    Refactr
-                %p
-                  %a{:id=>'maplink', :href=>'#map'}
-                    Eleven North-East Fourth Street
-                  %br/
-                  Suite 300
-                  %br/
-                  Minneapolis, MN 55413
-                  %br/
-                  Phone: 612-605-9740
+                %h2= "#{link_to 'Refactr', 'http://www.refactr.com'}"
+                %p= "<strong>Eleven North-East Fourth Street</strong>"
+                %p= "Suite 300"
+                %p= "Minneapolis, MN 55413"
+                %p= "Phone: 612-605-9740"
     #footer
       .inner
         #copyright
           = "&copy; #{Time.now.year} #{link_to 'Ruby Users of Minnesota', '/'}"
         #credits
-          = "Original site #{link_to 'mml', 'http://bitbucket.org/mml'}, Design #{link_to '@marknutter', 'http://nuttersmark.com/'}, Implementation #{link_to '@webandy', 'http://webandy.com/'}"
-      
+          = "Original site #{link_to 'mml', 'http://bitbucket.org/mml'} <span class='amp'>&amp;</span> design #{link_to '@marknutter', 'http://nuttersmark.com/'} <span class='amp'>&amp;</span> implementation #{link_to '@webandy', 'http://webandy.com/'}"
     %script{ :src=>"http://www.google-analytics.com/urchin.js", :type=>"text/javascript"}
     %script{:type=>"text/javascript"}
       _uacct = "UA-755912-2";

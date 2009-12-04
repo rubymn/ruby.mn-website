@@ -118,8 +118,9 @@ body {
 min-width:960px;
 }
 #footer .inner a {
-  color:#aaa;
+  color:#ccc;
   text-decoration:none;
+  font-weight:bold;
 }
 #footer .inner a:hover {
   text-decoration:underline;
@@ -128,7 +129,7 @@ min-width:960px;
   font-family:"helvetica neue";
   color:#aaa;
   padding-top:14px;
-  font-size:12px;
+  font-size:13px;
 }
 #footer .inner #copyright {
   float:left;
@@ -136,3 +137,7 @@ min-width:960px;
 #footer .inner #credits {
   float:right;
 }
+#map {
+  padding:20px 0;
+}
+.amp {font-style:"fantasy";font-size:15px;font-style:italic;}
