@@ -1,7 +1,5 @@
-!!!
-%html
+%html{html_attrs}
   %head
-    = encoding
     %link{:rel => 'alternate', :href => '/pevents/rss', :type => 'application/rss+xml', :title => "Ruby Users of Minnesota Feed"}
     %title= "Ruby Users of Minnesota"
     %meta{:content => 'Ruby Users of Minnesota is a monthly meeting held by programmers discussing varied topics' :name => 'description'}
@@ -16,9 +14,8 @@
         = image_tag 'header_bg.png', :id => 'main_header_logo'
       #navigation
         %ul
-          %li
-            = "<a href='#{root_path}'><strong>Home</strong><p>Overview of everything</p></a>"
-            = "<a href='#'><strong>Events</strong><p>Meetups and more</p></a>"
+          %li= "<a href='#{root_path}' class='#{"selected"}'><strong>Home</strong><p>Overview of everything</p></a>"
+          %li= "<a href='#'><strong>Events</strong><p>Meetups and more</p></a>"
     .wrapper
       .inner
         #body
