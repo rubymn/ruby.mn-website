@@ -1,0 +1,126 @@
+/*global styles*/
+a,a:visited {text-decoration:none;color:#000;}
+a:hover{text-decoration:underline;}
+.clear {clear:both;}
+body {
+  background:#ddd url(/images/main_bg_plain.png);
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+#header{
+  width:100%;
+  min-width:960px;
+  overflow:hidden;
+  background:url(/images/header_repeated_bg.png) repeat-x top center;
+  height:334px;
+  position:relative;
+  margin:0px auto;
+}
+.wrapper {
+  width:auto;
+  min-width:960px;
+  margin:0 auto;
+}
+#header .logo {
+  height:258px;
+  width:800px;
+  padding:0px;
+  margin:0px auto;
+  position:relative;
+}
+#header .logo img#main_header_logo{
+  position:absolute;
+  left:-194px;
+  top:13px;
+}
+#nav_wrapper {
+  height:100px;
+  margin:0px auto;
+  background:url(/images/header_repeated_bg.png) repeat-x 0px -280px;
+}
+
+#navigation {
+  width:800px;
+  margin:13 auto;
+  height:30px
+}
+#navigation a {
+  background:url(/images/main_nav_sprite.png) no-repeat -134px 0px;
+  font-family:Arial, sans-serif;
+  height:61px;
+  width:136px;
+  float:left;
+  margin:0px -6px 0px 0px;
+  color:#fff;
+  text-decoration:none;
+}
+#navigation a:hover {
+  background:url(/images/main_nav_sprite.png) no-repeat -269px 0px;
+}
+#navigation a.selected {
+  background:url(/images/main_nav_sprite.png) no-repeat -0px 0px;
+}
+#navigation a strong {
+  font-weight:normal;
+  font-size:22px;
+  position:relative;
+  top:15px;
+  left:10px;
+}
+#navigation a p {
+  font-size:9px;
+  color:#ddd;
+  position:relative;
+  top:15px;
+  left:10px;
+}
+#navigation li {
+  float:left;
+}
+#header .logo h1 {
+  text-indent:-9999px;
+}
+.wrapper .inner {
+  width:800px;
+  margin:0 auto;
+}
+#body #left-column {
+  float:left;
+  width:475px;
+  background:#fff;
+  margin:20px 0;
+  padding:20px;
+  -moz-border-radius:5px;
+  border:1px solid #ccc;
+}
+#body #left-column h2 {padding:10px 0;font-size:2em;color:#999;text-shadow:-1px 1px 0 #333333;}
+#body #right-column {
+  float:right;
+  width:225px;
+  background:#fff;
+  margin:20px 0;
+  padding:20px;
+  -moz-border-radius:5px;
+  border:1px solid #ccc;
+}
+#body #right-column h2 {padding:10px 0;}
+#body #bottom-column {
+  width:100%;
+  padding:20px;
+  margin:30px 0;
+  background:#fff;
+  -moz-border-radius:5px;
+  border:1px solid #ccc;
+}
+#footer {
+  height:47px;
+  background:url(/images/footer_repeated_bg.png) repeat-x top left;
+  width:100%;
+min-width:960px;
+}
+#footer .pride {
+  margin: 0 auto;
+  color:#777;
+  width: 400px;
+  padding:10px;
+}
