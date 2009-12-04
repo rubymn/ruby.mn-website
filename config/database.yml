@@ -3,14 +3,14 @@
 
 
 development:
-  adapter: postgresql
-  database: rubymn_dev
+  adapter: sqlite3
+  database: db/development.sqlite3
   pool: 5
   timeout: 5000
 
-test:
-  adapter: postgresql
-  database: rubymn_test
-  pool: 5
-  timeout: 5000
-
+# test:
+#   adapter: postgresql
+#   database: rubymn_test
+#   pool: 5
+#   timeout: 5000
+# 
