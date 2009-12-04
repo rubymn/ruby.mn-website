@@ -1,33 +1,19 @@
 #navbar
   %ul
     - if current_user
-      %li
-        =link_to "Member List (#{User.count})", users_path
-      %li
-        =link_to "Help Wanted", openings_path
-      %li
-        =link_to "My Events", events_path
-      %li
-        = link_to "Logout", session_path, :method=>'delete'
+      %li= link_to "Member List (#{User.count})", users_path
+      %li= link_to "Help Wanted", openings_path
+      %li= link_to "My Events", events_path
+      %li= link_to "Logout", session_path, :method=>'delete'
       - if current_user.admin?
-        %li
-          =link_to "Admin", :controller=>'admin', :action=>'index' 
+        %li= link_to "Admin", :controller=>'admin', :action=>'index' 
     - else
-      
-      %li
-        =link_to "Join!", new_user_path
-      %li 
-        =link_to "Login", new_session_path
-    %li
-      =link_to "Member Projects", projects_path
-    %li
-      =link_to "For-Hire", for_hires_path
+      %li= link_to "Join!", new_user_path
+      %li= link_to "Login", new_session_path
     %li
       =link_to "Source", 'http://bitbucket.org/mml/ruby-mn-site/'
     %hr/
-    %p
-      Hosting provided by
-      =link_to 'Heroku', "http://www.heroku.com"
+    %div= "Hosting provided by #{link_to 'Heroku', "http://www.heroku.com"}"
     %p
       %table{:border=>0, :style=>"background-color: #fff; padding: 5px;", :cellspacing=>0}
         %tr

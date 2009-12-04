@@ -1,6 +1,18 @@
+%h2= "Welcome to RUM"
 %p
-  To join the mailing list, just send mail to
-  %a{:href=>"mailto:ruby.mn+subscribe@ruby.mn"}='ruby.mn+subscribe@ruby.mn'
+  = "This is the home of Ruby Users of Minnesota &mdash; a fine group of Ruby enthusiasts from around the Twin Cities metro area, or pretty much wherever they feel like driving from."
+%div
+  You'll want to 
+  = link_to "login", new_session_path
+  or
+  = link_to "sign up", new_user_path
+  to use any of the nifty features, like the
+  = link_to "help wanted", openings_path
+  ,
+  = link_to "for-hire", for_hires_path
+  and
+  = link_to "projects", projects_url
+  sections.
 
 - if @events.any?
   %h2= Announcements
