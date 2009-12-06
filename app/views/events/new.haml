@@ -1,23 +1,20 @@
-.errors
-  =error_messages_for 'event'
-
+%h2= "New Event"
 .form
-  - form_for :event, :url=>events_path do |f|
+  - form_for :event, :url => events_path do |f|
+    = error_messages_for 'event'
     %fieldset
       %legend
-        New Event
-      %label
-        Headline 
-      = f.text_field  :headline
-      %br/
-      %label
-        Time &amp; Date:
-      = f.datetime_select  :scheduled_time
-      %br/
-      (That's 24 hour time bub.)
-      %br/
-      %label
-        Details
-      = f.text_area  "body"
+      %div
+        %label= "Headline"
+        %br/
+        = f.text_field  :headline
+      %div
+        %label= "Time &amp; Date"
+        %br/
+        = f.datetime_select  :scheduled_time
+      %div
+        %label= "Details"
+        %br/
+        = f.text_area  "body"
       .submit
-        =submit_tag
+        = submit_tag "Submit event"

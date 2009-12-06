@@ -203,3 +203,14 @@ form label {
 form div {
   padding:5px 0;
 }
+
+
+
+.opening {
+  padding:20px 0;
+}
+.opening .body {
+  padding-left:5px;
+  font-style:italic;
+  color:#222;
+}

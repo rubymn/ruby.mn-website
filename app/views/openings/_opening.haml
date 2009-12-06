@@ -2,7 +2,7 @@
   %h3
     =h(opening.headline)  
     =h(opening.created_at.to_date.to_s(:db))
-  %p
+  .body
     =mup(opening.body)
   %h4
     =mail_to opening.user.email, "Contact #{opening.user.firstname} #{opening.user.lastname}", :encode=>'javascript'
