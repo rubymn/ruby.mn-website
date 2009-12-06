@@ -6,7 +6,7 @@ class EventsController < ApplicationController
     if current_user.admin?
       @events = Event.find(:all, :order=>'scheduled_time DESC')
     else
-      @events = @user.events
+      @events = [] # TODO is this used anymore? @user.events
     end
   end
 

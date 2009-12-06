@@ -20,7 +20,7 @@ class OpeningsController < ApplicationController
   end
 
   def create
-    @opening = Opening.new params[:opening]
+    @opening = Opening.new(params[:opening])
     @opening.user=current_user
     if @opening.save
       flash.now[:info]="Opening Created. Thanks."

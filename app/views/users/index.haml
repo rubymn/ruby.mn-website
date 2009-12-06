@@ -1,3 +1,4 @@
 %h1="Members (#{@users.size}):"
 
-=render :partial=>'user', :collection=>@users
+%ul
+  = render :partial => 'user', :collection => @users
