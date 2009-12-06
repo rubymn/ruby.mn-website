@@ -9,7 +9,7 @@ $(function() {
     e.preventDefault();
     var link = $(this);
     $.get(link.attr('href'), function(data) {
-      data += "<a href='#' id='hide_map'>Hide Map</a>";
+      data += "<br/><a href='#' id='hide_map'>Hide Map</a>";
       $('#map').html(data).fadeIn().show();
     });
   });

@@ -92,7 +92,11 @@ body {
   -moz-border-radius:5px;
   border:1px solid #ccc;
 }
-#body #left-column h2 {padding:10px 0;font-size:2em;color:#999;text-shadow:-1px 1px 0 #333333;}
+#body #left-column h2 {
+  padding:10px 0;
+  font-size:22px;
+  color:#999;
+}
 #body #right-column {
   float:right;
   width:225px;
@@ -142,3 +146,60 @@ min-width:960px;
   
 }
 .amp {font-style:"fantasy";font-size:15px;font-style:italic;}
+
+
+.notice,.error {
+  padding:5px 8px;
+  margin: 10px 0; 
+}
+.notice {
+  background-color: #CFC;
+  border-top: solid 1px #6C6;
+  border-bottom: solid 1px #6C6;
+}
+.error {
+  background-color: #FCC;
+  border-top: solid 1px #C66;
+  border-bottom: solid 1px #C66;
+}
+
+
+h3 {
+  padding:3px 0;
+}
+#navbar div {
+  padding:10px 0;
+}
+#meeting-place {
+  padding-top:10px;
+  margin-left:10px;
+}
+#meeting-place .address {
+  width:442px;
+}
+#meeting-place #view_map {
+  font-family:Arial;
+  font-size:12px;
+  font-style:italic;
+  color:#555;
+  float:right;
+}
+
+h2.refactr {
+  background:url(/images/refactr.gif) no-repeat top left;
+  text-indent:-9999px;
+  height:56px;
+}
+
+
+
+/*form styles*/
+form {
+  padding:10px 0;
+}
+form label {
+  color:#333;
+}
+form div {
+  padding:5px 0;
+}
