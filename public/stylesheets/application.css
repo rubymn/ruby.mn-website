@@ -61,10 +61,12 @@ body {
 }
 #navigation a strong {
   font-weight:normal;
-  font-size:22px;
+  font-size:17px;
   position:relative;
   top:15px;
   left:10px;
+  text-transform:uppercase;
+  text-shadow: #660000 -1px -1px 0;
 }
 #navigation a p {
   font-size:9px;
@@ -86,24 +88,27 @@ body {
 #body #left-column {
   float:left;
   width:475px;
-  background:#fff;
+  background:#ededed;
   margin:20px 0;
   padding:20px;
-  -moz-border-radius:5px;
+  -moz-border-radius:3px;
   border:1px solid #ccc;
+  color:#333;
 }
 #body #left-column h2 {
   padding:10px 0;
-  font-size:22px;
-  color:#999;
+  font-size:20px;
+  color:#333;
+  text-shadow: #fff 1px 1px 0;
+  text-transform:uppercase;
 }
 #body #right-column {
   float:right;
   width:225px;
-  background:#fff;
+  background:#ededed;
   margin:20px 0;
   padding:20px;
-  -moz-border-radius:5px;
+  -moz-border-radius:3px;
   border:1px solid #ccc;
 }
 #body #right-column h2 {padding:10px 0;}
@@ -111,15 +116,19 @@ body {
   width:100%;
   padding:20px;
   margin:30px 0;
-  background:#fff;
-  -moz-border-radius:5px;
-  border:1px solid #ccc;
+  background:#ededed;
+  -moz-border-radius:3px;
+  -webkit-border-radius:3px;
+}
+#body #bottom-column h3 {
+  text-transform:uppercase;
+  text-shadow: #fff -1px -1px 0;
 }
 #footer {
   height:47px;
   background:url(/images/footer_repeated_bg.png) repeat-x top left;
   width:100%;
-min-width:960px;
+  min-width:960px;
 }
 #footer .inner a {
   color:#ccc;
@@ -139,6 +148,7 @@ min-width:960px;
   float:left;
 }
 #footer .inner #credits {
+  font-size:11px;
   float:right;
 }
 #map {
@@ -171,8 +181,13 @@ h3 {
   padding:10px 0;
 }
 #meeting-place {
-  padding-top:10px;
-  margin-left:10px;
+  padding:10px;
+  margin:20px 0 0 10px;
+  background:#fff;
+  -moz-border-radius:3px;
+  border:1px solid #ccc;
+  width:460px;
+  -webkit-border-radius:3px;
 }
 #meeting-place .address {
   width:442px;
@@ -212,5 +227,5 @@ form div {
 .opening .body {
   padding-left:5px;
   font-style:italic;
-  color:#222;
+  color:#333;
 }
