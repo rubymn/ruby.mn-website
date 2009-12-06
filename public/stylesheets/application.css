@@ -148,6 +148,7 @@ body {
   float:left;
 }
 #footer .inner #credits {
+  margin-top:-6px;
   font-size:11px;
   float:right;
 }
@@ -228,4 +229,38 @@ form div {
   padding-left:5px;
   font-style:italic;
   color:#333;
+}
+
+
+
+.cancel {
+  font-size:12px;
+  color:#666;
+}
+.signup {
+  font-family:georgia;
+  color:#555;
+  padding-left:10px;
+  font-size:14px;
+  border-left:3px solid #aaa;
+}
+
+#links li {
+  background:#ddd;
+  padding:5px 5px 5px 10px;
+  margin:3px;
+  width:100px;
+}
+#links li:hover {
+  background:#ccc;
+}
+#links a {
+  font-weight:bold;
+  text-transform:uppercase;
+  text-shadow:1px 1px 0 #fff;
+  font-size:14px;
+  text-decoration:none;
+}
+#links a:hover {
+  text-decoration:none;
 }
