@@ -1,1 +1,2 @@
-Or don't.
+- recaptcha removed from user validation. Optionally add this back in if invalid/spam user signups really are a problem.
+- WARNING: ignoring activemailer delivery errors in production. This is because the new site is in a test mode. If merged back into the main site, will probably want to flip this back. This setting is in config/environments/production.rb.

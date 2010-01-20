@@ -20,5 +20,5 @@ config.action_controller.perform_caching             = true
 
 # Disable delivery errors, bad email addresses will be ignored
 # rake db:test:data:load
-config.action_mailer.raise_delivery_errors = true
+config.action_mailer.raise_delivery_errors = false
 TCRBB_LIST_ADDRESS='rubymn@googlegroups.com'

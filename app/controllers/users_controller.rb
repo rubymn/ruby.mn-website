@@ -70,21 +70,19 @@ class UsersController  < ApplicationController
   end
 
   def create
-    User.transaction do
-      @user = User.new(params[:user])
-      # TODO FIXME -- Ignoring recaptcha, do not have setup information. Contact Mcclain for this.
-      # replacing original 'if' condition with a simple check for a valid record
-      #
-      # if ( validate_recap(params, @user.errors) || RAILS_ENV!='production') && @user.save
-      #
-      if @user.save
-        key = @user.generate_security_token
-        SignupMailer.deliver_confirm(@user)
-        flash[:notice] = 'Please check your registered email account to verify your account.'
-        redirect_to :controller=>'welcome', :action=>'index'
-      else
-        render :action=>:new
-      end
+    @user = User.new(params[:user])
+    # TODO FIXME -- Ignoring recaptcha, do not have setup information. Contact Mcclain for this.
+    # replacing original 'if' condition with a simple check for a valid record
+    #
+    # if ( validate_recap(params, @user.errors) || RAILS_ENV!='production') && @user.save
+    #
+    if @user.save
+      key = @user.generate_security_token
+      SignupMailer.deliver_confirm(@user)
+      flash[:notice] = 'Please check your registered email account to verify your account.'
+      redirect_to root_url
+    else
+      render :new
     end
   end
 
