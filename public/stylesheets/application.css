@@ -95,10 +95,17 @@ body {
   border:1px solid #ccc;
   color:#333;
 }
-#body #left-column h2 {
+#body #left-column .introduction {
+  font-family:Georgia, serif;
+  color:#444;
+  font-style: italic;
+  font-size:15px;
   padding:10px 0;
+}
+#body #left-column h2 {
+  padding:5px 0 0 0;
   font-size:20px;
-  color:#333;
+  color:#222;
   text-shadow: #fff 1px 1px 0;
   text-transform:uppercase;
 }
@@ -263,4 +270,30 @@ form div {
 }
 #links a:hover {
   text-decoration:none;
+}
+.event {
+  padding:15px 0;
+}
+.event h3 {
+  font-size:20px;
+  text-decoration:1px 1px 0 #fff;
+  color:#444;
+}
+.event .time {
+  width:300px;
+  color:#777;
+  font-style:italic;
+}
+.event .content {
+  padding:5px 0;
+}
+.event .content p {
+  padding:3px 0;
+}
+.event .content ul {
+  padding-left:15px;
+}
+.event .content ul li {
+  padding:2px 0;
+  list-style-type:disc;
 }

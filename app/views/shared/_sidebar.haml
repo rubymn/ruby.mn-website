@@ -12,12 +12,11 @@
         %li= link_to "Join", new_user_path
         %li= link_to "Login", new_session_path
   #email_list
-    %h4= "<a href='http://groups.google.com/group/rubymn?hl=en'>Visit Group</a>"
+    %h4= "<a href='http://groups.google.com/group/rubymn?hl=en'>Visit Google Group</a>"
     %form{:action=>"http://groups.google.com/group/rubymn/boxsubscribe"}
       = hidden_field_tag "hl", "en"
-      %p= "Subscribe by email"
       %div
-        %label= "Your Email"
+        %label= "Subscribe By Email"
         %br/
         = text_field_tag :email
       %div

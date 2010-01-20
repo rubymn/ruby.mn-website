@@ -29,8 +29,7 @@
               .notice= flash[:notice]
             - if flash[:error]
               .error= flash[:error]
-            %div
-              = yield
+            = yield
           #right-column
             = render(:partial => "shared/sidebar")
           .clear
