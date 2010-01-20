@@ -30,7 +30,7 @@
         %br/
         = f.password_field "password_confirmation", :class => 'text'
       %div
-        / = get_captcha
+        = get_captcha
       .submit
         = submit_tag "Sign Up"
         = link_to "Cancel", new_session_path, :class => 'cancel'
