@@ -2,7 +2,7 @@ class Notifier < ActionMailer::Base
 
   def notify_opening(opening)
     @subject="New Opening Posted: #{opening.headline}"
-    @recipients='rubymn@googlegroups.com'
+    @recipients=TCRBB_LIST_ADDRESS
     @from = "notifications@ruby.mn"
     @body[:o]=opening
 

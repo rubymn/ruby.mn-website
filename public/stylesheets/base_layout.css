@@ -1,0 +1,52 @@
+#modal_overlay {  
+  background-color:#909090;
+}  
+
+#navbar{border-left: 2px solid #BBB; padding: 10px;}
+#hd{margin-top:10px;}
+#ft{margin-top:10px; border-top: 2px solid #BBB; padding-top: 10px;}
+div#ft p {
+  font-size: 10px;
+  color:gray;
+}
+input{margin: 2px;margin-bottom:5px;}
+div.event, div.opening, div.for_hire, div.project, div.mailheader, div.linkpost, div.book {
+  border: 1px dotted gray ;
+  padding:4px;
+  /*  width:75%;*/
+  margin:5px;
+}
+
+.control {
+  font-size: 10px;
+  color:gray;
+}
+
+legend {
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+div.messagebody {
+  background: #c0c0c0;
+  padding: 10px;
+}
+
+.submit
+{
+  margin: 0 25%;
+  text-align:center;
+}
+
+#meeting-place{margin: -15px 10px;padding:10px;}
+a#banner {
+  text-decoration: none;
+}
+
+strong{font-weight:bold;}
+em{font-style: italic;}
+ul,ol{margin: 0 0 1em 1.5em;}
+ul{list-style-type: square;}
+ol{list-style-type: decimal;}
+.big{font-size:1.5em;}
+.small{font-size:0.8em;}

@@ -18,13 +18,10 @@ module ApplicationHelper
     @uuu
   end
 
-  def get_captcha
-    # TODO Mcclain has access to this and asked for access, but was not given any help
-    # not sure what to do, someone needs to implement this
-    #
-    # k = ReCaptcha::Client.new(ENV['RCC_PUB'], ENV['RCC_PRIV'])
-    # r = k.get_challenge(session[:rcc_err] || '' )
-    # session[:rcc_err]=''
-    # r
+  def get_captcha()
+    k = ReCaptcha::Client.new(ENV['RCC_PUB'], ENV['RCC_PRIV'])
+    r = k.get_challenge(session[:rcc_err] || '' )
+    session[:rcc_err]=''
+    r
   end
 end
