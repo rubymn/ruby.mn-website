@@ -9,4 +9,4 @@ require 'rake/rdoctask'
 require 'rake/clean'
 
 require 'tasks/rails'
-CLEAN+= FileList['**/*.orig']
+CLEAN+= FileList['**/*.orig', 'log/**', 'tmp/*']
