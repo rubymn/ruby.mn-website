@@ -1,0 +1,11 @@
+%h1
+  The current Ruby.mn BeardDex is:
+
+
+  %h1
+    - if @bearddex < 0.5
+      (sadly)
+    ="%0.3f"%@bearddex
+
+-@beardos.each do |b|
+  =image_tag b.beard.url(:thumb)

@@ -1,10 +1,44 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
+  should_route :get, '/users/mml/edit', :action => 'edit', :id=>'mml'
+  should_route :put, '/users/mml', :action => 'update', :id=>'mml'
+  should_route :get, '/users', :action => 'index'
+  should_route :post, '/users', :action => 'create'
+  should_route :get, '/users/new', :action => 'new'
 
-  def test_restful
-    assert_restful_routes(:users)
+
+  context "a logged in user" do
+    setup do
+      @u = Factory.create :user
+      @request.session[:uid]=@u.id
+    end 
+    context "get edit" do
+      setup { get :edit, :id => @u.login }
+      should_render_template 'user_form'
+      should_assign_to :user do
+        assert_equal assigns(:user), @u
+      end
+      should "have the form" do
+        assert_select "form[action=?][enctype=multipart/form-data]", user_path(@u) do
+          assert_select "input[type=file][id=user_beard]"
+          assert_select "input[type=submit]"
+        end
+      end
+    end
+    context "put update" do
+      setup do
+        @ffile = fixture_file_upload("files/beard.jpg")
+        put :update, :id => @u.login, :user=>{:beard=>@ffile}
+      end
+      should_respond_with :redirect
+      should_redirect_to 'bearddex' do 
+        bearddex_path
+      end
+      should_set_the_flash_to "Thanks, bearddex updated."
+    end
   end
+
   def test_new
     get :new
     assert_response :success
@@ -14,12 +48,11 @@ class UsersControllerTest < ActionController::TestCase
   end
 
 
-  def test_destroy
-  end
   def test_index
     get :index
     assert_bounced
   end
+
   def test_index_logged_in
     login
     get :index
@@ -56,9 +89,6 @@ class UsersControllerTest < ActionController::TestCase
     assert_equal ["Password can't be blank"] ,assigns(:user).errors.each_full{}
   end
 
-  def test_update;end
-  def test_edit;end
-  def test_show;end
 
   def test_create2
     post :create, "user"=>{"password_confirmation"=>"standard", "lastname"=>"looney", "firstname"=>"mcclain", "login"=>"tutu", "password"=>"standard", "email"=>"m@loonsoft.com"} 

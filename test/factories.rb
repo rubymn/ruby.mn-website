@@ -16,6 +16,12 @@ Factory.define :user do |f|
   f.lastname "Last"
 end
 
+Factory.define :beardo, :parent=>:user do |f|
+  f.beard_file_name  'mybeard.jpg'
+  f.beard_file_size  300
+  f.beard_content_type 'image/jpeg'
+end
+
 Factory.define :event do |f|
   f.headline "foo"
   f.body "body"

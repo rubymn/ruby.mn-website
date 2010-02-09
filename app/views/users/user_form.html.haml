@@ -1,0 +1,7 @@
+%h1
+  User Editor
+  -form_for @user, :html=>{:multipart=>true} do |f|
+    %label
+      Beard:
+    =f.file_field :beard
+    =submit_tag
