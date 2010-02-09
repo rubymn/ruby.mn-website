@@ -1,44 +1,37 @@
--unless @user.errors.empty?
-  =error_messages_for 'user'
-.form{:title=>"Create Account"}
-  -form_for :user, :url=>users_path do |f|
+%h2= "Sign Up"
+.signup
+  Become a member of the Ruby Users of Minnesota Group. Membership provides several benefits on this website, and helps you connect with local Ruby developers.
+.form{:title => "Create Account"}
+  - form_for :user, :url=>users_path do |f|
+    = error_messages_for 'user'
     %fieldset
-      %legend
-        Sign Up
-
-      %p
-        %label
-          First Name:
+      %div
+        %label= "First Name:"
         %br/
-        =f.text_field "firstname", :class=>'title'
-      %p
-        %label
-          Last Name:
+        = f.text_field "firstname", :class => 'title'
+      %div
+        %label= "Last Name:"
         %br/
-        =f.text_field "lastname", :class=>'text'
-      %p
-        %label
-          Username
+        = f.text_field "lastname", :class => 'text'
+      %div
+        %label= "Username"
         %br/
-        =f.text_field "login", :class=>'text'
-      %p
-        %label
-          Email
+        = f.text_field "login", :class => 'text'
+      %div
+        %label= "Email"
         %br/
-        =f.text_field "email", :class=>'text'
-      %p
-        %label
-          Password
+        = f.text_field "email", :class => 'text'
+      %div
+        %label= "Password"
         %br/
-        =f.password_field "password", :class=>'text'
-      %p
-        %label
-          Confirm Password
+        = f.password_field "password", :class => 'text'
+      %div
+        %label= "Confirm Password"
         %br/
-        =f.password_field "password_confirmation", :class=>'text'
-      %p
-        =get_captcha
-        .submit
-          =submit_tag "signup"
-          =link_to "Cancel", new_session_path
+        = f.password_field "password_confirmation", :class => 'text'
+      %div
+        = get_captcha
+      .submit
+        = submit_tag "Sign Up"
+        = link_to "Cancel", new_session_path, :class => 'cancel'
 

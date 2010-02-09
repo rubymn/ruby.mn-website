@@ -1,19 +1,7 @@
-%h1
-  Events
-
-%p
-  You want to 
-  =link_to "create", new_event_path
-  an event?
-
-
-%h2
-  Your events
-
-
+%h1= "Events"
+%p= "You want to #{link_to 'create', new_event_path} an event?"
+%h2= "Your events"
 %ul
-  =render :partial=>"event", :collection=>@events
-%h3
-  Note: events have to be approved by an administrator before they show up on the front page. If this is a commercial "event", it will probably be denied, unless you contact 
-  =  mail_to 'm@loonsoft.com', 'the administrators'
-  first.
+  = render :partial => "event", :collection => @events
+%p
+  = "Note: events have to be approved by an administrator before they show up on the front page. If this is a commercial <em>event</em>, it will probably be denied, unless you contact #{mail_to 'm@loonsoft.com', 'the administrators'} first."

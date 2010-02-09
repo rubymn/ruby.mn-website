@@ -1,11 +1,13 @@
 %h1
-  The current Ruby.mn BeardDex is:
+  The current Ruby.mn Beard Index is:
 
 
-  %h1
-    - if @bearddex < 0.5
-      (sadly)
-    ="%0.3f"%@bearddex
+%h2
+  ="%0.3f"%@bearddex
 
--@beardos.each do |b|
-  =image_tag b.beard.url(:thumb)
+  - if @bearddex < 0.5
+    (sad)
+%ul
+  -@beardos.each do |b|
+    %li.beardo
+      =image_tag b.beard.url(:thumb)

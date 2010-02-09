@@ -4,6 +4,6 @@ class Opening < ActiveRecord::Base
   validates_presence_of :body, :headline
 
   def deliver_notification
-      Notifier.deliver_notify_opening(self)
+    Notifier.deliver_notify_opening(self)
   end
 end

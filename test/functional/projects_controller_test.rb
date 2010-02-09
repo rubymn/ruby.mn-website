@@ -89,7 +89,7 @@ class ProjectsControllerTest < ActionController::TestCase
     assert_response :success
     assert_template "new"
     assert_select "#errorExplanation" do
-      assert_select "ul>li", 3
+      assert_select "ul>li", 6
     end
     assert_not_nil assigns(:project)
     assert !assigns(:project).valid?
