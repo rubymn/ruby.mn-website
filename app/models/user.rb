@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   has_attached_file :beard, :storage=>:s3, 
     :s3_credentials=>{:access_key_id=>ENV['ACCESS_KEY_ID'], 
     :secret_access_key=>ENV['SECRET_ACCESS_KEY'] }, 
-    :bucket=>'rmn.bdx.tom', :path => ":class/:attachment/:id/:style/:filename", 
+    :bucket=>'rmn.bdx', :path => ":class/:attachment/:id/:style/:filename", 
     :styles=> {:thumb=>"90x90"}
   has_many :events
   has_many :openings
