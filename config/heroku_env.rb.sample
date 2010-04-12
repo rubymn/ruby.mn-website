@@ -1,0 +1,12 @@
+# http://tammersaleh.com/posts/managing-heroku-environment-variables-for-local-development
+# This file contains the ENV vars necessary to run the app locally.  
+# Some of these values are sensitive, and some are developer specific.
+#
+# DO NOT CHECK THIS FILE INTO VERSION CONTROL
+
+ENV['ACCESS_KEY_ID']        = 'sekret'
+ENV['MH_PRIV']              = 'sekret'
+ENV['MH_PUB']               = 'sekret'
+ENV['RCC_PRIV']             = 'sekret'
+ENV['RCC_PUB']              = 'sekret'
+ENV['SECRET_ACCESS_KEY']    = 'sekret'

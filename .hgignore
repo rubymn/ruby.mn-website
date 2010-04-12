@@ -12,3 +12,5 @@ tmp/
 REVISION
 log
 public/stylesheets/all.css
+config/heroku_env.rb
+.rvmrc

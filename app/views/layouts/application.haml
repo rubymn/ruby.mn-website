@@ -7,7 +7,7 @@
     %meta{:content => 'ruby, ruby on rails, minnesota, minneapolis, st. paul, rum', :name => 'keywords'}
     %meta{:content => 'all,follow', :name => 'robots'}
     %meta{:content => 'Ruby Users of Minnesota', :lang => 'en', :name => 'author'}
-    = stylesheet_link_tag 'reset', 'application'
+    = stylesheet_link_tag 'reset', 'typography', 'application' 
     = javascript_include_tag 'jquery-1.3.2.min', 'application'
   %body
     #header
@@ -35,15 +35,19 @@
             = render(:partial => "shared/sidebar")
           .clear
           #bottom-column
-            %h3= "Meeting Location"
+            %h3= "<a name='meeting-info'>Meeting Location</a>"
             %p= "The group meets the <strong>last Monday of each month at 7 PM</strong> (come early to hack Ruby code) at the Refactr office in NE Minneapolis (above the Bulldog restaurant and bar)."
             #map
             #meeting-place
               %h2.refactr= "#{link_to 'Refactr', 'http://www.refactr.com'}"
-              %p.address= "<strong>Eleven North-East Fourth Street</strong> #{link_to 'View Meeting Location on Map', '/map.html', :id => 'view_map'}"
-              %p= "Suite 300"
-              %p= "Minneapolis, MN 55413"
-              %p= "Phone: 612-605-9740"
+              %p.address
+                = "<strong>Eleven Fourth Street NE</strong> #{link_to 'View Meeting Location on Map', '/map.html', :id => 'view_map'}"
+                %br
+                = "Suite 300"
+                %br
+                = "Minneapolis, MN 55413"
+                %br
+                = "Phone: 612-605-9740"
     #footer
       .inner
         #copyright

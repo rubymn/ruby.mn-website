@@ -49,6 +49,9 @@ li.beardo {
   margin:13 auto;
   height:30px
 }
+#navigation ul {
+  margin-bottom:0px;
+}
 #navigation a {
   background:url(/images/main_nav_sprite.png) no-repeat -134px 0px;
   font-family:Arial, sans-serif;
@@ -107,6 +110,9 @@ li.beardo {
   font-style: italic;
   font-size:15px;
   padding:10px 0;
+}
+#body #left-column .introduction a {
+  text-decoration: underline;
 }
 #body #left-column h2 {
   padding:5px 0 0 0;
@@ -262,7 +268,7 @@ form div {
   background:#ddd;
   padding:5px 5px 5px 10px;
   margin:3px;
-  width:100px;
+/*  width:100px;*/
 }
 #links li:hover {
   background:#ccc;

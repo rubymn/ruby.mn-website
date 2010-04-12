@@ -5,3 +5,4 @@ db/schema.rb
 log/*
 db/test.sqlite3
 .rvmrc
+heroku_env.rb
