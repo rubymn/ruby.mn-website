@@ -6,13 +6,14 @@ class EventsController < ApplicationController
     if current_user.admin?
       @events = Event.find(:all, :order=>'scheduled_time DESC')
     else
+      @user = current_user
       @events = @user.events
     end
   end
 
   def user_index
     if logged_in? 
-      if current_user.admin? 
+      if current_user.admin? && params[:user_id]
         @events = User.find(params[:user_id]).events
       else
         @events = current_user.events

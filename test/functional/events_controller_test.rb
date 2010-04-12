@@ -1,6 +1,25 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
 
 class EventsControllerTest < ActionController::TestCase
+  context "Logged in as a user with events" do
+    setup do
+      @user = Factory(:user)
+      @ev1=Factory.create(:event, :user => @user)
+      @ev2=Factory.create(:event, :user => @user)
+      @ev_nappr=Factory.create(:event, :user => @user, :approved=> false)
+      login_as @user
+    end
+    
+    context "on GET to :index" do
+      setup { get :index }
+      
+      should_respond_with :success
+      should_assign_to :events
+      should_assign_to :user
+    end
+  end
+  
+  
   def setup
     @ev1=Factory.create(:event)
     @ev2=Factory.create(:event)
@@ -11,7 +30,7 @@ class EventsControllerTest < ActionController::TestCase
     @admin = Factory.create(:user, :role => 'admin')
   end
 
-
+  
 
 
   def test_create
@@ -42,6 +61,14 @@ class EventsControllerTest < ActionController::TestCase
     assert_template "index"
     assert assigns(:events)
   end
+  
+  def test_index_admin_no_user_id_param
+    login_as(@admin)
+    get :user_index
+    assert_template "index"
+    assert assigns(:events)
+  end
+  
   def test_uindex_notadmin
     login_as(@x)
     get :user_index

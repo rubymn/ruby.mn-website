@@ -28,6 +28,7 @@ class UsersControllerTest < ActionController::TestCase
     end
     context "put update" do
       setup do
+        User.any_instance.stubs(:save_attached_files).returns(true)
         @ffile = fixture_file_upload("files/beard.jpg")
         put :update, :id => @u.login, :user=>{:beard=>@ffile}
       end
