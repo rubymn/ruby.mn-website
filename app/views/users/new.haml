@@ -5,30 +5,24 @@
   - form_for :user, :url=>users_path do |f|
     = error_messages_for 'user'
     %fieldset
-      %div
-        %label= "First Name:"
-        %br/
-        = f.text_field "firstname", :class => 'title'
-      %div
-        %label= "Last Name:"
-        %br/
-        = f.text_field "lastname", :class => 'text'
-      %div
-        %label= "Username"
-        %br/
-        = f.text_field "login", :class => 'text'
-      %div
-        %label= "Email"
-        %br/
-        = f.text_field "email", :class => 'text'
-      %div
-        %label= "Password"
-        %br/
-        = f.password_field "password", :class => 'text'
-      %div
-        %label= "Confirm Password"
-        %br/
-        = f.password_field "password_confirmation", :class => 'text'
+      %label= "First Name:"
+      = f.text_field "firstname", :class => 'title'
+      %br/
+      %label= "Last Name:"
+      = f.text_field "lastname", :class => 'text'
+      %br/
+      %label= "Username"
+      = f.text_field "login", :class => 'text'
+      %br/
+      %label= "Email"
+      = f.text_field "email", :class => 'text'
+      %br/
+      %label= "Password"
+      = f.password_field "password", :class => 'text'
+      %br/
+      %label= "Confirm Password"
+      = f.password_field "password_confirmation", :class => 'text'
+      %br/
       %div
         = get_captcha
       .submit

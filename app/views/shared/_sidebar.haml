@@ -6,17 +6,17 @@
         %li= link_to "Help Wanted", openings_path
         %li= link_to "My Events", events_path
         %li= link_to "Logout", session_path, :method=>'delete'
-        %li
-          Current BDX:
-          =link_to "%0.3f"%User.calc_bdx, bearddex_path
         - if current_user.admin?
           %li= link_to "Admin", :controller=>'admin', :action=>'index' 
       - else
         %li= link_to "Join", new_user_path
         %li= link_to "Login", new_session_path
+  #calendar
+    %h4
+      = link_to "Meeting Dates", "http://www.google.com/calendar/embed?src=4g380qh7p0taroueuulfajauck%40group.calendar.google.com&ctz=America/Chicago", :title => "Click here to see a Google Calendar of our meeting dates.", :alt => "Click here to see a Google Calendar of our meeting dates."
   #email_list
-    %h4 
-      =link_to "Visit Google Group", 'http://groups.google.com/group/rubymn?hl=en'
+    %p
+      = "#{link_to "Our mailing list is hosted on Google Groups", 'http://groups.google.com/group/rubymn?hl=en', :title => 'click here to visit the Ruby.MN Google Group', :alt => 'click here to visit the Ruby.MN Google Group'} and is the primary way to discuss Ruby with our members."
     %form{:action=>"http://groups.google.com/group/rubymn/boxsubscribe"}
       = hidden_field_tag "hl", "en"
       %div

@@ -4,17 +4,15 @@
     = error_messages_for 'event'
     %fieldset
       %legend
-      %div
-        %label= "Headline"
-        %br/
-        = f.text_field  :headline
-      %div
-        %label= "Time &amp; Date"
-        %br/
+      %label= "Headline"
+      = f.text_field  :headline
+      %br/
+      %label= "Time &amp; Date"
+      .select_container
         = f.datetime_select  :scheduled_time
-      %div
-        %label= "Details"
-        %br/
-        = f.text_area  "body"
+      %br/
+      %label= "Details"
+      = f.text_area  "body"
+      %br/
       .submit
         = submit_tag "Submit event"

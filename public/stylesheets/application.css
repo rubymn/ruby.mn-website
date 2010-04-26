@@ -167,7 +167,6 @@ li.beardo {
   float:left;
 }
 #footer .inner #credits {
-  margin-top:-6px;
   font-size:11px;
   float:right;
 }
@@ -192,6 +191,23 @@ li.beardo {
   border-top: solid 1px #C66;
   border-bottom: solid 1px #C66;
 }
+
+.errorExplanation
+{
+  background-color: #FCC;
+  border-top: solid 1px #C66;
+  border-bottom: solid 1px #C66;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.fieldWithErrors
+{
+  background-color: #FCC;
+  padding-bottom: 10px;
+  padding-top: 0px;
+}
+
+  
 
 
 h3 {
@@ -238,6 +254,11 @@ form label {
 form div {
   padding:5px 0;
 }
+
+fieldset label { position: absolute; text-align:right; width:130px;  margin-top: 10px;}
+fieldset input, fieldset textarea, fieldset .select_container { margin-left: 140px; margin-top: 10px; }
+fieldset .select_container { margin-left:132px; margin-top:3px;}
+fieldset label.check, fieldset label.radio { position:relative; text-align:left; }
 
 
 

@@ -1,31 +1,15 @@
 require 'digest/sha1'
 class User < ActiveRecord::Base
-  has_attached_file :beard, :storage=>:s3, 
-    :s3_credentials=>{:access_key_id=>ENV['ACCESS_KEY_ID'], 
-    :secret_access_key=>ENV['SECRET_ACCESS_KEY'] }, 
-    :bucket=>'rmn.bdx', :path => ":class/:attachment/:id/:style/:filename", 
-    :styles=> {:thumb=>"90x90"}
   has_many :events
   has_many :openings
   has_many :projects
   has_one :for_hire
-  named_scope :beardos, :conditions => 'beard_file_name is not null'
   attr_protected :verified, :form
   after_validation :encrypt_password
   validates_confirmation_of :password , :msg=>"Confirmation password should match", :on=>:create
   validates_uniqueness_of :login, :email
   validates_presence_of :login, :email, :firstname, :lastname
   validates_presence_of :password, :on=>:create
-
-  def self.calc_bdx
-    b = beardos.count.to_f
-    a = count.to_f
-    if b > 0
-      (b/a)*100.0
-    else
-      0.0
-    end
-  end
 
   def crypt_new_password
     encrypt_password

@@ -1,14 +1,12 @@
 %h2= "Please Login"
 -form_tag session_path do
   %fieldset
-    %div
-      %label= "Username "
-      %br/
-      = text_field_tag  "login", "", {:size => 30 }
-    %div
-      %label= "Password:"
-      %br/
-      = password_field_tag "password","", {:size => 30}
+    %label= "Username "
+    = text_field_tag  "login", "", {:size => 30 }
+    %br/
+    %label= "Password:"
+    = password_field_tag "password","", {:size => 30}
+    %br/
     .submit
       = submit_tag 'Login'
       %br/

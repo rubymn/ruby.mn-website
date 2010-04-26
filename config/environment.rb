@@ -70,4 +70,6 @@ Rails::Initializer.run do |config|
   RCC_PRIV=ENV['RCC_PRIV']
   MH_PRIV=ENV['MH_PRIV']
   MH_PUB=ENV['MH_PUB']
+  
+  ADMIN_EMAIL = 'admin@ruby.mn'
 end

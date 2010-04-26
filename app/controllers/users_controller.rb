@@ -2,22 +2,6 @@ class UsersController  < ApplicationController
   before_filter :login_required,  :only=>[:index, :set_password]
   before_filter :admin_required, :only=>:destroy
 
-  def edit
-    @user = current_user
-    render 'user_form'
-  end
-
-  def update
-    @user = current_user
-    @user.beard = params[:user][:beard]
-    if @user.save
-      flash[:notice]='Thanks, bearddex updated.'
-      redirect_to bearddex_path
-    else
-      render :template=>'users/user_form'
-    end
-  end
-
   def change_password
     if (u = User.find_by_security_token(params[:key]))
       session[:uid]=u.id
