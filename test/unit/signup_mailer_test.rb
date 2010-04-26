@@ -7,7 +7,7 @@ class SignupMailerTest < ActionMailer::TestCase
     u.generate_security_token
     res = SignupMailer.create_confirm(u)
     assert_equal "RUM Signup Confirmation", res.subject
-    assert_equal "ruby.mn@ruby.mn", res.from[0]
+    assert_equal ADMIN_EMAIL, res.from[0]
     assert_equal u.email, res.to[0]
     assert_match /#{u.security_token}/, res.body
 

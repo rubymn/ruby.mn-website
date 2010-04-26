@@ -1,44 +1,15 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
-  should_route :get, '/users/mml/edit', :action => 'edit', :id=>'mml'
-  should_route :put, '/users/mml', :action => 'update', :id=>'mml'
   should_route :get, '/users', :action => 'index'
   should_route :post, '/users', :action => 'create'
   should_route :get, '/users/new', :action => 'new'
+  should_route :post, "/users/new/set_password", :action => :set_password
+  should_route :get, "/users/new/validate", :action => :validate
+  should_route :get, "/users/new/forgot_password", :action => :forgot_password
+  should_route :post, "/users/new/reset", :action => :reset
+  should_route :get, "/users/new/change_password", :action => :change_password
 
-
-  context "a logged in user" do
-    setup do
-      @u = Factory.create :user
-      @request.session[:uid]=@u.id
-    end 
-    context "get edit" do
-      setup { get :edit, :id => @u.login }
-      should_render_template 'user_form'
-      should_assign_to :user do
-        assert_equal assigns(:user), @u
-      end
-      should "have the form" do
-        assert_select "form[action=?][enctype=multipart/form-data]", user_path(@u) do
-          assert_select "input[type=file][id=user_beard]"
-          assert_select "input[type=submit]"
-        end
-      end
-    end
-    context "put update" do
-      setup do
-        User.any_instance.stubs(:save_attached_files).returns(true)
-        @ffile = fixture_file_upload("files/beard.jpg")
-        put :update, :id => @u.login, :user=>{:beard=>@ffile}
-      end
-      should_respond_with :redirect
-      should_redirect_to 'bearddex' do 
-        bearddex_path
-      end
-      should_set_the_flash_to "Thanks, bearddex updated."
-    end
-  end
 
   def test_new
     get :new
