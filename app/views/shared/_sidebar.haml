@@ -25,3 +25,10 @@
         = text_field_tag :email
       %div
         = submit_tag "Subscribe"
+  #tweets
+    :javascript
+      var twit_data; function storeTwitterData(data) { twit_data = data; }
+    = javascript_include_tag "http://twitter.com/statuses/user_timeline/rubymn.json?callback=storeTwitterData"
+    = javascript_include_tag "jsWidgets/formats/rum_twitter.json"
+    :javascript
+      new _Widget(widget_format).installOver(document.getElementById("tweets"));

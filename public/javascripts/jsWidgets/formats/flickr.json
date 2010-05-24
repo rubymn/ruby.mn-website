@@ -1,0 +1,25 @@
+var widget_format = {
+  base_url : 'http://flickr.com/',
+  base_css_prefs : {
+    base_style  : 'font-family:arial,helvetica,sans-serif;font-size:11px;line-height:14px',
+    link_target : '_blank',
+    link_style  : 'text-decoration:none',
+  },
+  sections : [ 'header', 'photos' ],
+  cssPrefs : '',
+  header : {
+    data      : 'flickr_data',
+    dom_nodes : [ { what : "Public Photos", how: [{ elt: 'h1', style: 'font-size:16px;margin:5px;padding:5px' }, { elt: 'a', url: '{$.link}' }] } ]
+  },
+  photos : {
+    data      : 'flickr_data.items',
+    loop      : true,
+    num_items : 5,
+    style     : 'margin:5px;padding:5px;font-size:12px;',
+    dom_nodes : [ 
+       { what: '{$.title}', how: [{elt: 'h2', style: 'font-size:14px'}] },
+       { how: [{elt: 'img', src: '{$.media.m}'}] },
+       { what: 'Posted by: {$.author} at {$.date_taken}', how: [{elt: 'div'}] }
+    ]
+  }
+};

@@ -1,0 +1,26 @@
+var widget_format = {
+  base_url : 'http://twitter.com/',
+  base_css_prefs : {
+    base_style  : 'margin:0px;padding:0px;',
+    link_target : '_blank',
+    link_style  : 'text-decoration:none',
+  },
+  sections : [ 'header', 'updates' ],
+  cssPrefs : '',
+  header : {
+    data      : 'twit_data',
+    style     : 'margin:0px;padding:0px;',
+    dom_nodes : [ { what : "<a href='http://twitter.com/{$[0].user.screen_name}'>@{$[0].user.screen_name}'s</a> Recent Tweets", how: [{ elt: 'h4', style: 'color:#6E1211'}] } ]
+  },
+  updates : {
+    data      : 'twit_data',
+    loop      : true,
+    num_items : 5,
+    style     : 'margin:0px;padding:0px;',
+    dom_nodes : [ 
+       { what: '{$.text}',      how: [{elt: 'div', style: 'margin:0px;padding:0px;'}] }, 
+       { what: 'Posted at: ',   how: [{elt: 'span', style: 'color:#aaa'}] }, 
+       { what: '{$.created_at}', how: [{elt: 'span', style: 'color:#aaa'}] }
+    ]
+  }
+};
