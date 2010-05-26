@@ -18,9 +18,8 @@ var widget_format = {
     num_items : 5,
     style     : 'margin:0px;padding:0px;',
     dom_nodes : [ 
-       { what: '{$.text}',      how: [{elt: 'div', style: 'margin:0px;padding:0px;'}] }, 
-       { what: 'Posted at: ',   how: [{elt: 'span', style: 'color:#aaa'}] }, 
-       { what: '{$.created_at}', how: [{elt: 'span', style: 'color:#aaa'}] }
+       { what: '{auto_link_tweet($.text)}',      how: [{elt: 'div', style: 'margin:0px;padding:0px;'}] }, 
+       { what: '{relativeTime($.created_at)}', how: [{elt: 'span', style: 'color:#aaa'}] }
     ]
   }
 };
