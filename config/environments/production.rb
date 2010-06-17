@@ -22,3 +22,5 @@ config.action_controller.perform_caching             = true
 # rake db:test:data:load
 config.action_mailer.raise_delivery_errors = true
 TCRBB_LIST_ADDRESS='rubymn@googlegroups.com'
+ADMIN_ADDRESS='admin@ruby.mn'
+NOTIFICATION_ADDRESS='notifications@ruby.mn'

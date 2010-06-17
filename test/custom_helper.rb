@@ -1,6 +1,5 @@
 RCC_PRIV='foo'
 RCC_PUB='bar'
-TCRBB_LIST_ADDRESS='test@example.com'
 module CustomHelper
   def login(attr={})
     u = Factory.create(:user, attr)
