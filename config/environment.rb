@@ -70,8 +70,4 @@ Rails::Initializer.run do |config|
   RCC_PRIV=ENV['RCC_PRIV']
   MH_PRIV=ENV['MH_PRIV']
   MH_PUB=ENV['MH_PUB']
-  
-  TCRBB_LIST_ADDRESS='rubymn@googlegroups.com'
-  ADMIN_ADDRESS='admin@ruby.mn'
-  NOTIFICATION_ADDRESS='notifications@ruby.mn'
 end

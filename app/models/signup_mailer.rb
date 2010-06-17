@@ -2,7 +2,7 @@ class SignupMailer < ActionMailer::Base
   def confirm(user)
     @subject = "RUM Signup Confirmation"
     @recipients=[user.email]
-    @from = ADMIN_EMAIL
+    @from = ADMIN_ADDRESS
     @body[:user]=user
   end
 

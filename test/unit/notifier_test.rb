@@ -6,14 +6,14 @@ class OpeningNotificationTest < ActionMailer::TestCase
     res = Notifier.create_notify_opening(o)
     assert_equal 'test@example.com', *res.to
     assert_equal "New Opening Posted: #{o.headline}", res.subject
-    assert_equal 'notifications@ruby.mn', *res.from
+    assert_equal NOTIFICATION_ADDRESS, *res.from
   end
 
   def test_event_notify
     e = Factory.create :event
     res = Notifier.create_notify_event(e)
-    assert_equal 'm@loonsoft.com', *res.to
+    assert_equal ADMIN_ADDRESS, *res.to
     assert_equal "New Event Posted", res.subject
-    assert_equal 'notifications@ruby.mn', *res.from
+    assert_equal NOTIFICATION_ADDRESS, *res.from
   end
 end

@@ -15,3 +15,6 @@ config.action_controller.perform_caching             = false
 
 # Don't care if the mailer can't send
 config.action_mailer.raise_delivery_errors = false
+TCRBB_LIST_ADDRESS='rubymn@example.com'
+ADMIN_ADDRESS='admin@ruby.mn'
+NOTIFICATION_ADDRESS='notifications@ruby.mn'

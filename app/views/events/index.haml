@@ -4,4 +4,4 @@
 %ul
   = render :partial => "event", :collection => @events
 %p
-  = "Note: events have to be approved by an administrator before they show up on the front page. If this is a commercial <em>event</em>, it will probably be denied, unless you contact #{mail_to ADMIN_EMAIL, 'the administrators'} first."
+  = "Note: events have to be approved by an administrator before they show up on the front page. If this is a commercial <em>event</em>, it will probably be denied, unless you contact #{mail_to ::ADMIN_ADDRESS, 'the administrators'} first."

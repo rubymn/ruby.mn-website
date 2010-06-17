@@ -4,7 +4,7 @@
       - if current_user
         %li= link_to "Member List (#{User.count})", users_path
         %li= link_to "Help Wanted", openings_path
-        %li= link_to "My Events", events_path
+        %li= link_to "My Events", user_index_events_path
         %li= link_to "Logout", session_path, :method=>'delete'
         - if current_user.admin?
           %li= link_to "Admin", :controller=>'admin', :action=>'index' 
