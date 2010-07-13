@@ -35,20 +35,22 @@
           #right-column
             = render(:partial => "shared/sidebar")
           .clear
-          #bottom-column
+          #bottom
             %h3= "<a name='meeting-info'>Meeting Location</a>"
             %p= "The group meets the <strong>last Monday of each month at 7 PM</strong> (come early to hack Ruby code) at the Refactr office in NE Minneapolis (above the Bulldog restaurant and bar)."
-            #map
-            #meeting-place
-              %h2.refactr= "#{link_to 'Refactr', 'http://www.refactr.com'}"
-              %p.address
-                = "<strong>Eleven Fourth Street NE</strong> #{link_to 'View Meeting Location on Map', '/map.html', :id => 'view_map'}"
-                %br
-                = "Suite 300"
-                %br
-                = "Minneapolis, MN 55413"
-                %br
-                = "Phone: 612-605-9740"
+            #container
+              #map
+                %iframe{:width => "420", :height => "350", :frameborder => "0", :scrolling => "no", :src => "http://maps.google.com/maps/ms?ie=UTF8&amp;hl=en&amp;msa=0&amp;msid=110795490152792313911.00044058471e2e0d3f1c0&amp;om=0&amp;ll=44.988666,-93.254855&amp;spn=0,0&amp;output=embed&amp;s=AARTsJpJhpAEX63WWk35O0Ydu7bNR3mOeA"}
+              #meeting-place
+                %h2.refactr= "#{link_to 'Refactr', 'http://www.refactr.com'}"
+                %p.address
+                  = "<strong>Eleven Fourth Street NE</strong>"
+                  %br
+                  = "Suite 300"
+                  %br
+                  = "Minneapolis, MN 55413"
+                  %br
+                  = "Phone: 612-605-9740"
     #footer
       .inner
         #copyright
