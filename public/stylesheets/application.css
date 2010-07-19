@@ -36,7 +36,7 @@ li.beardo {
 }
 #header .logo img#main_header_logo{
   position:absolute;
-  left:-194px;
+  left:-128px;
   top:13px;
 }
 #nav_wrapper {
@@ -95,27 +95,32 @@ li.beardo {
   margin:0 auto;
 }
 #body #left-column {
-  float:left;
-  width:475px;
-  background:#ededed;
-  margin:20px 0;
-  padding:20px;
-  -moz-border-radius:3px;
+  background-color:#ededed;
   border:1px solid #ccc;
   color:#333;
+  float:left;  
+  margin:20px 0;
+  border-radius:3px;
+  -moz-border-radius:3px;
+  -webkit-border-radius:3px;
+  width:475px;
 }
 #body #left-column .introduction {
-  font-family:Georgia, serif;
   color:#444;
-  font-style: italic;
   font-size:15px;
   line-height:16px;
+  padding:20px;
+}
+#body #left-column .introduction h2{
+  font-family:Helvetica, Arial, sans-serif;
+}
+#body #left-column .introduction p {
+  font-family:Georgia, serif;
 }
 #body #left-column .introduction a {
   text-decoration: underline;
 }
 #body #left-column h2 {
-  padding:5px 0 0 0;
   font-size:20px;
   color:#222;
   text-shadow: #fff 1px 1px 0;
@@ -175,7 +180,6 @@ h2.refactr {
   text-indent:-9999px;
   height:56px;
 }
-
 
 #body #bottom h3 {
   text-transform:uppercase;
@@ -302,6 +306,17 @@ fieldset label.check, fieldset label.radio { position:relative; text-align:left;
 #links a:hover {
   text-decoration:none;
 }
+.events h2 {
+  padding:0 20px;
+}
+.events ul li, .projects ul li, .members ul li, .hires ul li {
+  background-color:#ddd;
+  background:-moz-linear-gradient(0% 0% 270deg,#ededed, #DDDDDD);
+  background:-webkit-gradient(linear, 100% 0%, 100% 100%, from(#EDEDED), to(#ddd));
+} 
+.event {
+  padding:20px;
+}
 .event h3 {
   font-size:20px;
   text-decoration:1px 1px 0 #fff;
@@ -312,21 +327,15 @@ fieldset label.check, fieldset label.radio { position:relative; text-align:left;
   color:#777;
   font-style:italic;
 }
-.event .content {
-  background:-moz-linear-gradient(0% 0% 270deg,#ededed, #DDDDDD);
-  padding:0 20px;
-}
 .event .content a{text-decoration:underline;}
 .event .content ul {
   padding-left:15px;
 }
 .event .content ul li {
-  padding:2px 0;
   list-style-type:disc;
 }
 
 .project {
-  background:-moz-linear-gradient(0% 0% 270deg,#ededed, #DDDDDD);
   padding:20px;
 }
 .for_hire a, .project a {

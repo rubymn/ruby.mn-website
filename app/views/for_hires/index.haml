@@ -1,15 +1,15 @@
-%h1
-  Available For Hire
-%p
-  If you're looking for some local Ruby talent to 
-  help with your project, or just hang around drinking beers
-  all day, you could do worse than starting with this list.
+.introduction
+  %h1
+    Available For Hire
+  %p
+    If you're looking for some local Ruby talent to 
+    help with your project, or just hang around drinking beers
+    all day, you could do worse than starting with this list.
 
 - if current_user
   %p
-    If you are a Ruby developer, click 
-    =link_to "here", :action=>'new'
-    to add a listing.
+    = "If you are a Ruby developer, #{link_to 'click here', :action => 'new'} to add a listing."
 
-.list
-  = render :partial => 'for_hire', :collection => @for_hires
+.hires
+  %ul
+    = render :partial => 'for_hire', :collection => @for_hires

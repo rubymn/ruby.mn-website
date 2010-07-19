@@ -1,11 +1,12 @@
-.opening
-  %h3
-    =h(opening.headline)  
-    =h(opening.created_at.to_date.to_s(:db))
-  .body
-    =mup(opening.body)
-  %h4
-    =mail_to opening.user.email, "Contact #{opening.user.firstname} #{opening.user.lastname}", :encode=>'javascript'
-  - if current_user == opening.user || current_user.admin?
-    =link_to "delete", opening_path(opening), :method=>:delete
-    =link_to "edit", edit_opening_path(opening)
+%li
+  .opening
+    %h3
+      =h(opening.headline)  
+      =h(opening.created_at.to_date.to_s(:db))
+    .body
+      =mup(opening.body)
+    %h4
+      =mail_to opening.user.email, "Contact #{opening.user.firstname} #{opening.user.lastname}", :encode=>'javascript'
+    - if current_user == opening.user || current_user.admin?
+      =link_to "delete", opening_path(opening), :method=>:delete
+      =link_to "edit", edit_opening_path(opening)
