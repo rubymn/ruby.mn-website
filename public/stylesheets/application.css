@@ -332,10 +332,11 @@ fieldset label.check, fieldset label.radio { position:relative; text-align:left;
   padding-left:15px;
 }
 .event .content ul li {
+  background:none;
   list-style-type:disc;
 }
 
-.project {
+.project, .for_hire, .new_login {
   padding:20px;
 }
 .for_hire a, .project a {
