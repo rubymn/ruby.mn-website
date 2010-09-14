@@ -15,23 +15,11 @@ h2 {
 	line-height: 1.05em;
 	margin-bottom: 1.05em;
 }
-h3 {
-	margin: 0;
-	font-size: 1.2857142857142858em;
-	line-height: 1.1666666666666667em;
-	margin-bottom: 1.1666666666666667em;
-}
 h4 {
 	margin: 0;
 	font-size: 1.1428571428571428em;
 	line-height: 1.3125em;
 	margin-bottom: 1.3125em;
-}
-p, ul, blockquote, pre, td, th, label {
-	margin: 0;
-	font-size: 1em;
-	line-height: 1.5em;
-	margin-bottom: 1.5em;
 }
 p.small {
 	margin: 0;
