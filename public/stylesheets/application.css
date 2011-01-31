@@ -309,7 +309,7 @@ fieldset label.check, fieldset label.radio { position:relative; text-align:left;
 .events h2 {
   padding:0 20px;
 }
-.events ul li, .projects ul li, .members ul li, .hires ul li {
+.events ul li, .projects ul li, .members ul li, .hires ul li, .sponsors ul li, .past-sponsors ul li {
   background-color:#ddd;
   background:-moz-linear-gradient(0% 0% 270deg,#ededed, #DDDDDD);
   background:-webkit-gradient(linear, 100% 0%, 100% 100%, from(#EDEDED), to(#ddd));
@@ -336,9 +336,22 @@ fieldset label.check, fieldset label.radio { position:relative; text-align:left;
   list-style-type:disc;
 }
 
-.project, .for_hire, .new_login {
+.project, .for_hire, .new_login, .sponsor {
   padding:20px;
 }
 .for_hire a, .project a {
   text-decoration:underline;
 }
+
+.sponsor .logo { padding: 7px;}
+.info-hidden {display:none;}
+h2.past-sponsors {padding-top:20px;padding-left:20px;}
+.past-sponsors li {
+  float:left;
+  width:157px;
+  height: 77px;
+}
+.past-sponsors .logo img {
+  width:143px;
+}
+.past-sponsors .sponsor{padding:0;}

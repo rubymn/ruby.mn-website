@@ -19,5 +19,7 @@ ActionController::Routing::Routes.draw do |map|
   map.root  :controller => "welcome", :action=>'index'
   map.admin '/admin/:action/:id', :controller=>'admin'
   map.admindex '/admin', :controller=>'admin', :action=>'index'
-
+  
+  map.sponsors '/sponsors', :controller => 'static', :action => 'sponsors'
+  map.special_offers '/special-offers', :controller => 'static', :action => 'special_offers'
 end
