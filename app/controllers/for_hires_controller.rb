@@ -15,7 +15,8 @@ class ForHiresController < ApplicationController
 
     if @for_hire.save
       flash[:success]="created for hire profile"
-      redirect_to user_for_hire_path(current_user)
+      # redirect_to user_for_hire_path(current_user)
+      redirect_to for_hires_path
     else
       flash[:error]="error creating for hire profile"
       render :template=>'for_hires/for_hire_form'
