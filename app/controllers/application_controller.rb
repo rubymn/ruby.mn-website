@@ -40,6 +40,7 @@ class ApplicationController < ActionController::Base
     end
     @cu
   end
+  helper_method :current_user
 
   def logged_in?
     !current_user.nil?

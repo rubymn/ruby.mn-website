@@ -10,15 +10,16 @@ ActionController::Routing::Routes.draw do |map|
   # -- just remember to delete public/index.html.
   map.resources :openings
   map.resources :users, :member=>{:login=>:get}, :new=>{:validate=>:get, :forgot_password=>:get, :reset=>:post, :change_password=>:get, :set_password=>:post}, :except => [:edit, :update] do |users|
-    users.resource :for_hire
   end
-  map.resources :for_hires
+  map.resource :for_hire
   map.resources :events, :member=>{:admdestroy=>:delete, :approve=>:put}, :collection=>{:user_index=>:get}
   map.resources :projects
   map.resource :session
   map.root  :controller => "welcome", :action=>'index'
   map.admin '/admin/:action/:id', :controller=>'admin'
   map.admindex '/admin', :controller=>'admin', :action=>'index'
+
+  map.for_hires '/for_hires', :controller => 'for_hires', :action => 'index'
   
   map.sponsors '/sponsors', :controller => 'static', :action => 'sponsors'
   map.special_offers '/special-offers', :controller => 'static', :action => 'special_offers'

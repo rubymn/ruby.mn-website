@@ -7,7 +7,7 @@ module CustomHelper
     u
   end
   def login_as(u)
-    session[:uid]=u.id
+    @request.session[:uid]=u.id
   end
 
   def assert_bounced

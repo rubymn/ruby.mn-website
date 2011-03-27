@@ -11,12 +11,14 @@ module ApplicationHelper
     session[:uid] == user.id
   end
 
-  def current_user
-    if session[:uid] and @uuu.nil?
-      @uuu = User.find(session[:uid])
-    end
-    @uuu
-  end
+  # def current_user
+  #   puts "in ApplicationHelper#current_user"
+  #   
+  #   if session[:uid] and @uuu.nil?
+  #     @uuu = User.find(session[:uid])
+  #   end
+  #   @uuu
+  # end
 
   def get_captcha()
     k = ReCaptcha::Client.new(ENV['RCC_PUB'], ENV['RCC_PRIV'])
