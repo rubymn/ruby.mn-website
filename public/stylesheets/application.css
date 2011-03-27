@@ -1,7 +1,15 @@
 /*global styles*/
-a,a:visited {text-decoration:none;color:#000;}
+a,a:visited {text-decoration:none;color:#000;background-color:#FFD8D2;}
 a:hover{text-decoration:underline;}
 .clear {clear:both;}
+
+h1 a, h1 a:visited,
+h2 a, h2 a:visited,
+h3 a, h3 a:visited,
+h4 a, h4 a:visited,
+.logo a, .logo a:visited {background-color:transparent;}
+
+
 body {
   background:#ddd url(/images/main_bg_plain.png);
   font-family: Helvetica, Arial, sans-serif;
@@ -191,6 +199,7 @@ h2.refactr {
   width:100%;
   min-width:960px;
 }
+#footer a, #footer a:visited {background-color:transparent;}
 #footer .inner a {
   color:#ccc;
   text-decoration:none;
@@ -302,6 +311,7 @@ fieldset label.check, fieldset label.radio { position:relative; text-align:left;
   text-shadow:1px 1px 0 #fff;
   font-size:14px;
   text-decoration:none;
+  background-color:transparent;
 }
 #links a:hover {
   text-decoration:none;
