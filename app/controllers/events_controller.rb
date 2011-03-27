@@ -14,9 +14,9 @@ class EventsController < ApplicationController
   def user_index
     if logged_in? 
       if current_user.admin? && params[:user_id]
-        @events = User.find(params[:user_id]).events
+        @events = User.find(params[:user_id]).events.find(:all, :order=>"scheduled_time desc")
       else
-        @events = current_user.events
+        @events = current_user.events.find(:all, :order=>"scheduled_time desc")
       end
       render :template=>'events/index'
     else
