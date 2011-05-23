@@ -354,6 +354,7 @@ fieldset label.check, fieldset label.radio { position:relative; text-align:left;
 }
 
 .sponsor .logo { padding: 7px;}
+.sponsor .logo.zencoder { background-color:#000; padding-bottom:10px;}
 .info-hidden {display:none;}
 h2.past-sponsors {padding-top:20px;padding-left:20px;}
 .past-sponsors li {
