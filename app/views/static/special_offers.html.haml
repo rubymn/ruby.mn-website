@@ -5,6 +5,14 @@
   
 .special-offers
   %ul
+    %li{:style => "height:220px"}
+      .sponsor
+        .thumb{:style=> "float:left; padding-right:10px;padding-bottom:15px"}
+          = link_to(image_tag('/downloads/RubyMN_FNDTN.png'), '/downloads/RubyMN_FNDTN.pdf', :target => '_blank')
+        .info
+          %h2
+            = link_to('The Foundation Hardware Repair Labor Offer', '/downloads/RubyMN_FNDTN.png', :target => '_blank')
+          %p Ruby.MN members receive 10% off any hardware repair labor at our Depot.
     %li
       .sponsor
         .thumb{:style=> "float:left; padding-right:10px;padding-bottom:15px"}
