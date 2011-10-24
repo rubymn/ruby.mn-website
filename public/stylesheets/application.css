@@ -366,3 +366,7 @@ h2.past-sponsors {padding-top:20px;padding-left:20px;}
   width:143px;
 }
 .past-sponsors .sponsor{padding:0;}
+
+.clear_logo {
+  width:120px!important;
+}
