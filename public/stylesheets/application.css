@@ -124,6 +124,7 @@ li.beardo {
 }
 #body #left-column .introduction p {
   font-family:Georgia, serif;
+  line-height: 1.4em;
 }
 #body #left-column .introduction a {
   text-decoration: underline;
