@@ -1,6 +1,7 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   include ReCaptcha::ViewHelper
+
   def mup(text)
     auto_link(markdown(text))
   end

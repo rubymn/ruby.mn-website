@@ -1,6 +1,6 @@
 .introduction
   %h1 Our Sponsors
-  
+
   %p We are fortunate to have great community sponsors that provide refreshments for our monthly meetings.  Please take a look at what they have to offer and remeber to say "thanks" when you see them at our meetings.  Also be sure to checkout the <a href="/special-offers"><strong>Offers page</strong></a> for services from our sponsors, tailored specifically for Ruby Users of Minnesota.
 .sponsors
   %ul
@@ -9,17 +9,20 @@
         .logo
           = link_to(image_tag('sponsors/FNDTN-horiz_405.png'), 'http://fndtn.com', :target => '_blank')
         .info
-          %p The Foundation provide IT services to the creative industry.  They do it all - help desk, maintencance, implementation, network monitoring, and client and vendor management - check out their <a href='http://fndtn.com/services/'>services page</a> for more detail.
-          %p They also offer the <a href="http://fndtn.com/apple-depot/">Apple Depot</a> - Apple Authorized Service Provider drop-off repair shop for non-emergency and warranty repairs.  A gret alternative to the Genius Bar.
-          %p Call them at <span class="callout">612-465-0700</span> or email <a href="mailto:info@fndtn.com">info@fndtn.com</a>
-      
+          %p The Foundation provide IT services to the creative industry.  They do it all - help desk, maintencance, implementation, network monitoring, and client and vendor management - check out their #{link_to 'services page', 'http://fndtn.com/services/'} for more detail.
+          %p They also offer the #{link_to "Apple Depot", "http://fndtn.com/apple-depot/", } - Apple Authorized Service Provider drop-off repair shop for non-emergency and warranty repairs. A gret alternative to the Genius Bar.
+          %p 
+            Call them at
+            %span{ :class => "callout" } 612-465-0700
+            or email #{ mail_to 'info@fndtn.com' }
+
       %li
         .sponsor
           .logo
             = link_to(image_tag('sponsors/harvest-gradient-300px.png'), 'http://getharvest.com', :target => '_blank')
           .info
-            %p <a href="http://getharvest.com">Harvest</a> is a web-based time tracking and invoicing application relied on by creative freelancers and teams in over 100 countries. Easily track time and invoice your clients from one beautiful web interface. Visit <a href="http://getharvest.com">Harvest</a> to learn more. And don't forget to say hello to our own Ruby user of Minnesota, <a href="http://twitter.com/bjhess">Barry Hess</a>, at an upcoming event!
-          
+            %p #{link_to "Harvest", "http://getharvest.com"} is a web-based time tracking and invoicing application relied on by creative freelancers and teams in over 100 countries. Easily track time and invoice your clients from one beautiful web interface. Visit #{link_to "Harvest", "http://getharvest.com"} to learn more. And don't forget to say hello to our own Ruby user of Minnesota, #{link_to "Barry Hess", "http://twitter.com/bjhess"}, at an upcoming event!
+
 %h2.past-sponsors Community Sponsors
 .past-sponsors
   %ul
@@ -35,8 +38,8 @@
       .sponsor
         .logo
           = link_to(image_tag('sponsors/Wiscota-Logo.png'), 'http://www.wiscota.com/services', :target => '_blank')
-          .info-hidden
-            %p 
+          / .info-hidden
+          /   %p 
 
       %li
         .sponsor
