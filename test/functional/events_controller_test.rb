@@ -13,9 +13,9 @@ class EventsControllerTest < ActionController::TestCase
     context "on GET to :index" do
       setup { get :index }
       
-      should_respond_with :success
-      should_assign_to :events
-      should_assign_to :user
+      should respond_with :success
+      should assign_to :events
+      should assign_to :user
     end
   end
   

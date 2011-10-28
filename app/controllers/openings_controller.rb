@@ -48,7 +48,7 @@ class OpeningsController < ApplicationController
     else
       current_user.openings.find(params[:id]).destroy
     end
-    flash[:success]="Deleted opening."
+    flash[:alert]="Deleted opening."
     redirect_to openings_path
   end
 

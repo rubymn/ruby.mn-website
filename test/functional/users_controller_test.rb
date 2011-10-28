@@ -1,24 +1,26 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
-  should_route :get, '/users', :action => 'index'
-  should_route :post, '/users', :action => 'create'
-  should_route :get, '/users/new', :action => 'new'
-  should_route :post, "/users/new/set_password", :action => :set_password
-  should_route :get, "/users/new/validate", :action => :validate
-  should_route :get, "/users/new/forgot_password", :action => :forgot_password
-  should_route :post, "/users/new/reset", :action => :reset
-  should_route :get, "/users/new/change_password", :action => :change_password
+  should route(:get, '/users').to(:action => 'index')
+  should route(:post, '/users').to(:action => 'create')
+  should route(:get, '/users/new').to(:action => 'new')
+  should route(:post, "/users/new/set_password").to(:action => :set_password)
+  should route(:get, "/users/new/validate").to(:action => :validate)
+  should route(:get, "/users/new/forgot_password").to(:action => :forgot_password)
+  should route(:post, "/users/new/reset").to(:action => :reset)
+  should route(:get, "/users/new/change_password").to(:action => :change_password)
 
 
-  def test_new
-    get :new
-    assert_response :success
-    assert_template 'new'
-    assert assigns(:user)
-    assert assigns(:user).new_record?
+  context "get new" do
+    setup { get :new }
+
+    should respond_with(:success)
+    should render_template(:new)
+    should assign_to(:user)
+    should "assign new user record" do
+      assert assigns(:user).new_record?
+    end
   end
-
 
   def test_index
     get :index
@@ -52,8 +54,9 @@ class UsersControllerTest < ActionController::TestCase
     assert assigns(:user)
     assert_equal ["Password doesn't match confirmation"] ,assigns(:user).errors.each_full{}
   end
+
   def test_empty_pass
-    post :create, "user"=>{ "lastname"=>"looney", "firstname"=>"mcclain", "login"=>"mml",  "email"=>"m@loonsoft.com"} 
+    post :create, :user => { :lastname => "looney", :firstname => "mcclain", :login => "mml",  :email => "m@loonsoft.com" }
 
     assert_response :success
     assert_template 'new'

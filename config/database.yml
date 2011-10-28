@@ -1,6 +1,4 @@
-# MySQL (default setup).  Versions 4.1 and 5.0 are recommended.
-#hey, don't check in passwords here. 
-
+#hey, don't check in passwords here.
 
 development:
   adapter: postgresql
