@@ -4,6 +4,7 @@ class AdminController < ApplicationController
   def index
     @events = Event.unapproved
   end
+
   def approve
     if current_user.admin?
       e = Event.find(params[:id])
@@ -14,19 +15,19 @@ class AdminController < ApplicationController
     else
       bounce
     end
-
   end
 
   private
-  def admin_required
-    if session[:uid]
-      if current_user.role==  'admin'
-        return true
-      else
-        flash[:error]= 'Access Denied (hoser).'
-        redirect_to new_session_path
-        session[:uid]=nil
+
+    def admin_required
+      if session[:uid]
+        if current_user.role == 'admin'
+          return true
+        else
+          flash[:error] = 'Access Denied (hoser).'
+          redirect_to new_session_path
+          session[:uid] = nil
+        end
       end
     end
-  end
 end

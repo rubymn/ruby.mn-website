@@ -2,6 +2,10 @@
 module ApplicationHelper
   include ReCaptcha::ViewHelper
 
+  def markdown(text)
+    RDiscount.new(text).to_html
+  end
+
   def mup(text)
     auto_link(markdown(text))
   end

@@ -1,4 +1,5 @@
 require 'digest/sha1'
+
 class User < ActiveRecord::Base
   has_many :events
   has_many :openings
@@ -10,6 +11,8 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :login, :email
   validates_presence_of :login, :email, :firstname, :lastname
   validates_presence_of :password, :on=>:create
+
+  named_scope :verified, { :conditions => 'verified != 0' }
 
   def crypt_new_password
     encrypt_password

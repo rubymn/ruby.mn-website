@@ -1,7 +1,8 @@
-%h2 Create Your "For Hire" Entry
+.introduction
+  %h2 Create Your "For Hire" Entry
 
-%p [Markdown accepted]
+  %p [Markdown accepted]
 
-.form
-  -form_for @for_hire, :url => for_hire_path do |f| 
-    = render :partial => "for_hires/for_hire_form_fields", :locals => {:f => f}
+  .form
+    -form_for @for_hire, :url => for_hire_path do |f| 
+      = render :partial => "for_hires/for_hire_form_fields", :locals => {:f => f}

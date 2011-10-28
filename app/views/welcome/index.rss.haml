@@ -1,0 +1,12 @@
+!!! XML
+%rss{ :version => "2.0", "xmlns:atom" => "http://www.w3.org/2005/Atom" }
+  %channel
+    %title Ruby.MN
+    %link http://ruby.mn
+    %description A fine group of Ruby enthusiasts from around the Twin Cities metro area.
+    = '<atom:link href="http://ruby.mn" rel="self" type="application/rss+xml" />'
+    - @events.each do |event|
+      %item
+        %title= h event.headline
+        %link= user_index_events_url
+        %description= h event.body

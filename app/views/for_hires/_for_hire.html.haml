@@ -1,0 +1,12 @@
+%li
+  .for_hire
+    %h1= h for_hire.title
+    = mail_to h(for_hire.email), "Email", :encode => 'javascript'
+    %p= mup for_hire.blurb
+    - if i_am for_hire.user
+      %br/
+      .control
+        [
+        =link_to "Edit", :action => 'edit'
+        =link_to "Delete", :for_hire, :method => 'delete', :confirm => 'Are you sure?'
+        ]

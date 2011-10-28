@@ -1,0 +1,7 @@
+.introduction
+  %h1#members_title
+    Members
+    %span#users_size= @users.size
+
+  %ul#users
+    = render :partial => 'user', :collection => @users

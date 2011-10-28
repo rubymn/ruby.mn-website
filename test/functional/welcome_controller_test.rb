@@ -23,8 +23,10 @@ class WelcomeControllerTest < ActionController::TestCase
     end
   end
 
-  def test_rss_feed
-    get :index, :format => 'xml'
-    assert_response :success
+  context "rss feed" do
+    setup { get :index, :format => :xml }
+    should respond_with(:success)
+    should respond_with_content_type(:xml)
+    should_not set_the_flash
   end
 end

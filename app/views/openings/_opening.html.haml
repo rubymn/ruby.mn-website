@@ -8,5 +8,8 @@
     %h4
       = mail_to opening.user.email, "Contact #{opening.user.firstname} #{opening.user.lastname}", :encode => 'javascript'
     - if current_user == opening.user || current_user.admin?
-      = link_to "delete", opening_path(opening), :method => :delete
-      = link_to "edit", edit_opening_path(opening)
+      .control
+        [
+        = link_to "Edit", edit_opening_path(opening)
+        = link_to "Delete", opening_path(opening), :method => :delete, :confirm => 'Are you sure?'
+        ]

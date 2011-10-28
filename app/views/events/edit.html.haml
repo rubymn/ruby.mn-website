@@ -1,0 +1,7 @@
+.introduction
+  %h2 Edit Event
+
+  - h @event.body.try(:gsub!,/\r\n/,"\r")
+
+  .form
+    = render :partial => 'form'

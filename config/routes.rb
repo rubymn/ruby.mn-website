@@ -21,7 +21,6 @@ ActionController::Routing::Routes.draw do |map|
                          :collection => { :user_index => :get }
   map.resources :projects
   map.resource :session
-  map.root  :controller => "welcome", :action => 'index'
   map.admin '/admin/:action/:id', :controller => 'admin'
   map.admindex '/admin', :controller => 'admin', :action => 'index'
 
@@ -29,4 +28,6 @@ ActionController::Routing::Routes.draw do |map|
 
   map.sponsors '/sponsors', :controller => 'static', :action => 'sponsors'
   map.special_offers '/special-offers', :controller => 'static', :action => 'special_offers'
+
+  map.root :controller => "welcome", :action => 'index'
 end

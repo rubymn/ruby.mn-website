@@ -1,0 +1,15 @@
+.introduction
+  %h2 Help Wanted
+  = error_messages_for 'opening'
+  .form
+    - form_for @opening do |f|
+      %fieldset
+        %legend
+        %br/
+        %label Headline 
+        = f.text_field :headline
+        %br/
+        %label Body
+        = f.text_area :body
+        .submit
+          = submit_tag 'Send request'

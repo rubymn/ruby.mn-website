@@ -144,7 +144,8 @@ li.beardo {
   -moz-border-radius:3px;
   border:1px solid #ccc;
 }
-#body #right-column h2 {padding:10px 0;}
+#body #right-column h2 { padding:10px 0; }
+#body #right-column #links { margin-bottom: 1em; }
 #body #bottom {
   width:100%;
   padding:20px;
@@ -193,6 +194,9 @@ h2.refactr {
 #body #bottom h3 {
   text-transform:uppercase;
   text-shadow: #fff -1px -1px 0;
+}
+#body #bottom p {
+  margin: 1em 0;
 }
 #footer {
   height:47px;
@@ -370,4 +374,23 @@ h2.past-sponsors {padding-top:20px;padding-left:20px;}
 
 .clear_logo {
   width:120px!important;
+}
+ul#users {
+  margin: 1em 0;
+}
+ul#users li {
+  margin: 0.5em 0;
+}
+#members_title {
+  line-height: 1.4em;
+}
+#users_size {
+  float: right;
+  line-height: 1.1em;
+  padding: 0.2em 0.6em;
+  color: #fff;
+  background-color: #3d3f3f;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
 }

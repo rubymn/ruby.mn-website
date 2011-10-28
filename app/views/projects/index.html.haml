@@ -1,0 +1,10 @@
+.introduction
+  %h1 Projects by Ruby.mn Members
+  %p These projects are the work of Ruby.MN members. Some are Ruby related. Some are not.
+  - if current_user
+    %br
+    %p= link_to 'Add your project', new_project_path
+
+.projects
+  %ul
+    = render :partial => 'project', :collection => @projects

@@ -5,7 +5,7 @@ gem 'pg',    '~> 0.11.0'
 
 gem "ruby-recaptcha", '~> 1.0.3', :require => 'recaptcha'
 gem "haml",           '~> 3.1.3'
-gem "BlueCloth",      '~> 1.0.1', :require => 'bluecloth'
+gem 'rdiscount',      '~> 1.6.8'
 gem "paperclip",      '~> 2.4.5'
 
 group :test do

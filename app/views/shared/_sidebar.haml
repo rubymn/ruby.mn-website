@@ -2,7 +2,7 @@
   #links
     %ul
       - if current_user
-        %li= link_to "Member List (#{User.count})", users_path
+        %li= link_to "Member List (#{User.verified.count})", users_path
         %li= link_to "Help Wanted", openings_path
         %li= link_to "My Events", user_index_events_path
         %li= link_to "Logout", session_path, :method=>'delete'

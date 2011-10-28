@@ -1,0 +1,9 @@
+.introduction
+  %h1
+    Admin Console
+  %h2
+    Pending Events
+  - if @events.any?
+    = render :partial => 'event', :collection => @events
+  - else
+    %p There are no pending events.

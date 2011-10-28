@@ -12,4 +12,4 @@
       - if event.user == current_user
         = event.approved? ? "Approved" : "Not Approved Yet"
     .content
-      = mup(event.body)
+      = mup event.body
