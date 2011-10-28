@@ -1,10 +1,8 @@
 %li
   .for_hire
-    %h1
-      =h for_hire.title
-    =mail_to h(for_hire.email), "Email", :encode=>'javascript'
-    %p
-      =mup for_hire.blurb
+    %h1= h for_hire.title
+    = mail_to h(for_hire.email), "Email", :encode=>'javascript'
+    %p=mup for_hire.blurb
     -if i_am for_hire.user
       %br/
       .control

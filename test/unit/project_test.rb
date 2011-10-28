@@ -1,7 +1,9 @@
 require 'test_helper'
 
 class ProjectTest < ActiveSupport::TestCase
-  should_belong_to :user
-  should_validate_presence_of :title, :description, :url, :user_id
-
+  should belong_to :user
+  should validate_presence_of :title
+  should validate_presence_of :description
+  should validate_presence_of :url
+  should validate_presence_of :user_id
 end

@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class StaticControllerTest < ActionController::TestCase
-  should_route :get, '/sponsors', :action => 'sponsors', :controller => 'static'
-  should_route :post, '/special-offers', :action => 'special_offers', :controller => 'static'
-  
+  should route(:get, '/sponsors').to(:controller => 'static', :action => 'sponsors')
+  should route(:post, '/special-offers').to(:controller => 'static', :action => 'special_offers')
 end

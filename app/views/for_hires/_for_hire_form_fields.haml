@@ -1,16 +1,15 @@
 %fieldset
-  %label
-    Title
-  =text_field "for_hire", "title"
+  %label Title
+  = f.text_field "title"
   %br/
-  %label
-    Email
-  =text_field "for_hire", "email"
+
+  %label Email
+  = text_field "for_hire", "email"
   %br/
-  %label
-    Blurb
-  =text_area "for_hire", "blurb"
+
+  %label Blurb
+  = text_area "for_hire", "blurb"
   %br/
+
   .submit
-    =submit_tag "Save"
-    
+    = submit_tag "Save"
