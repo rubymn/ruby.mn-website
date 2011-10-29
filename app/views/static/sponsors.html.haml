@@ -10,8 +10,8 @@
           = link_to(image_tag('sponsors/FNDTN-horiz_405.png'), 'http://fndtn.com', :target => '_blank')
         .info
           %p The Foundation provide IT services to the creative industry.  They do it all - help desk, maintencance, implementation, network monitoring, and client and vendor management - check out their #{link_to 'services page', 'http://fndtn.com/services/'} for more detail.
-          %p They also offer the #{link_to "Apple Depot", "http://fndtn.com/apple-depot/", } - Apple Authorized Service Provider drop-off repair shop for non-emergency and warranty repairs. A gret alternative to the Genius Bar.
-          %p 
+          %p They also offer the #{ link_to 'Apple Depot', 'http://fndtn.com/apple-depot/' } - Apple Authorized Service Provider drop-off repair shop for non-emergency and warranty repairs. A gret alternative to the Genius Bar.
+          %p
             Call them at
             %span{ :class => "callout" } 612-465-0700
             or email #{ mail_to 'info@fndtn.com' }
@@ -21,7 +21,7 @@
           .logo
             = link_to(image_tag('sponsors/harvest-gradient-300px.png'), 'http://getharvest.com', :target => '_blank')
           .info
-            %p #{link_to "Harvest", "http://getharvest.com"} is a web-based time tracking and invoicing application relied on by creative freelancers and teams in over 100 countries. Easily track time and invoice your clients from one beautiful web interface. Visit #{link_to "Harvest", "http://getharvest.com"} to learn more. And don't forget to say hello to our own Ruby user of Minnesota, #{link_to "Barry Hess", "http://twitter.com/bjhess"}, at an upcoming event!
+            %p #{ link_to "Harvest", "http://getharvest.com" } is a web-based time tracking and invoicing application relied on by creative freelancers and teams in over 100 countries. Easily track time and invoice your clients from one beautiful web interface. Visit #{link_to "Harvest", "http://getharvest.com"} to learn more. And don't forget to say hello to our own Ruby user of Minnesota, #{ link_to "Barry Hess", "http://twitter.com/bjhess" }, at an upcoming event!
 
 %h2.past-sponsors Community Sponsors
 .past-sponsors
@@ -97,14 +97,13 @@
           /   %p We develop on the Java, Grails, RoR, and PHP platforms. Mobile platforms include iOS, Android, and Blackberry.
           /   %p Our consultants understand business systems and know how to build technology solutions that meet your business goals. We can then run those systems on your behalf. Kettle River is a firm that runs systems world-wide so we have a global reach but a local presence in the Minneapolis/St Paul area.
           /   %p Call them at 612-605-1977 or email <a href="mailto:sales@krc.mn">sales@krc.mn</a>
-
       %li
         .sponsor
           .logo
             = link_to(image_tag('sponsors/clearBasecampLogo.png', :class => 'clear_logo'), 'http://clearsfg.com', :target => '_blank')
-          / .info-hidden
-          /   %p Clear strives to make the world a better place by building great software for companies doing great things.  A software development firm that specializes in web and mobile applications for progressive and forward thinking clients. Using cutting–edge, open source tools like Ruby on Rails to reduce clients' costs and accelerate their time to market. Clear can positively affect change by helping like–minded companies be successful.  <a href="http://clearsfg.com/">Contact Clear</a>
+          .info-hidden
+            %p Clear strives to make the world a better place by building great software for companies doing great things.  A software development firm that specializes in web and mobile applications for progressive and forward thinking clients. Using cutting–edge, open source tools like Ruby on Rails to reduce clients' costs and accelerate their time to market. Clear can positively affect change by helping like–minded companies be successful. #{ link_to "Contact Clear", "http://clearsfg.com/" }
       %li
         .sponsor
-          .logo
-          .info-hidden
+          .logo 
+          .info-hidden 
