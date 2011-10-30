@@ -1,29 +1,31 @@
-%h2= "Sign Up"
-.signup
-  Become a member of the Ruby Users of Minnesota Group. Membership provides several benefits on this website, and helps you connect with local Ruby developers.
+.introduction
+  %h2= "Sign Up"
+  .signup
+    Become a member of the Ruby Users of Minnesota Group. Membership provides several benefits on this website, and helps you connect with local Ruby developers.
 .form{ :title => "Create Account" }
-  - form_for :user, :url => users_path do |f|
+  - form_for :user, :url => users_path, :html => { :id => 'new_user' } do |f|
     = error_messages_for 'user'
     %fieldset
-      %label= "First Name:"
-      = f.text_field "firstname", :class => 'title'
+      = f.label :firstname, 'First Name'
+      = f.text_field :firstname, :class => 'title'
       %br/
-      %label= "Last Name:"
-      = f.text_field "lastname", :class => 'text'
+      = f.label :lastname, 'Last Name'
+      = f.text_field :lastname, :class => 'text'
       %br/
-      %label= "Username"
-      = f.text_field "login", :class => 'text'
+      = f.label :login, 'Username'
+      = f.text_field :login, :class => 'text'
       %br/
-      %label= "Email"
-      = f.text_field "email", :class => 'text'
+      %label Email
+      = f.label :email
+      = f.text_field :email, :class => 'text'
       %br/
-      %label= "Password"
-      = f.password_field "password", :class => 'text'
+      = f.label :password
+      = f.password_field :password, :class => 'text'
       %br/
-      %label= "Confirm Password"
-      = f.password_field "password_confirmation", :class => 'text'
+      = f.label :password_confirmation, 'Confirm Password'
+      = f.password_field :password_confirmation, :class => 'text'
       %br/
-      - if Rails.env.production?
+      - unless Rails.env.development?
         %div= get_captcha
       .submit
         = submit_tag "Sign Up"

@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
   def new
   end
   def destroy
-    flash[:info]='Logged Out'
+    flash[:notice]='Logged Out'
     session[:uid]=nil
     redirect_to :controller=>'welcome', :action=>'index'
   end

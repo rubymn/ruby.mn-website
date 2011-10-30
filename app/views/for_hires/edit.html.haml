@@ -1,7 +1,6 @@
-%h2 Edit Your "For Hire" Entry
+.introduction
+  %h2 Edit Your "For Hire" Entry
 
-%p [Markdown accepted]
+  %p [#{ link_to 'Markdown', 'http://daringfireball.net/projects/markdown/syntax' } accepted]
 
-.form
-  - form_for @for_hire, :url => for_hire_path do |f| 
-    = render :partial => "for_hire_form_fields", :locals => { :f => f }
+.form= render 'form'

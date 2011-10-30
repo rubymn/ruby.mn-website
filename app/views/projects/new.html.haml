@@ -1,4 +1,6 @@
-=error_messages_for 'project'
+.introduction
+  %h2 New Project
+= error_messages_for 'project'
 .form
   -form_for @project do |f|
-    =render :partial => 'form', :object => @project, :locals => {:f => f}
+    = render :partial => 'form', :object => @project, :locals => { :f => f }

@@ -19,5 +19,8 @@ config.action_mailer.raise_delivery_errors = false
 TCRBB_LIST_ADDRESS   = 'rubymn@example.com'
 ADMIN_ADDRESS        = 'admin@ruby.mn'
 NOTIFICATION_ADDRESS = 'notifications@ruby.mn'
-MH_PUB               = 'foo'
-MH_PRIV              = 'oof'
+
+ENV['RCC_PRIV'] = 'foo'
+ENV['RCC_PUB']  = 'bar'
+MH_PUB          = 'foo'
+MH_PRIV         = 'oof'

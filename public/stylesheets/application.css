@@ -38,8 +38,8 @@ li.beardo {
 #header .logo {
   height:258px;
   width:800px;
-  padding:0px;
-  margin:0px auto;
+  padding:0;
+  margin:0 auto;
   position:relative;
 }
 #header .logo img#main_header_logo{
@@ -49,32 +49,41 @@ li.beardo {
 }
 #nav_wrapper {
   height:100px;
-  margin:0px auto;
-  background:url(/images/header_repeated_bg.png) repeat-x 0px -280px;
+  margin:0 auto;
+  background:url(/images/header_repeated_bg.png) repeat-x 0 -280px;
 }
 #navigation {
   width:800px;
-  margin:13 auto;
-  height:30px
+  margin:13px auto;
+  height:61px
 }
 #navigation ul {
-  margin-bottom:0px;
+  margin-bottom:0;
 }
 #navigation a {
-  background:url(/images/main_nav_sprite.png) no-repeat -134px 0px;
+  background:url(/images/main_nav_sprite.png) no-repeat -134px 0;
   font-family:Arial, sans-serif;
   height:61px;
   width:136px;
   float:left;
-  margin:0px -6px 0px 0px;
+  margin:0 -6px 0 0;
   color:#fff;
   text-decoration:none;
 }
 #navigation a:hover {
-  background:url(/images/main_nav_sprite.png) no-repeat -269px 0px;
+  background:url(/images/main_nav_sprite.png) no-repeat -269px 0;
 }
+#navigation a:hover strong { color: #E4E4E4; text-shadow:#410000 1px 1px 0; }
+#navigation a:hover p { color: #FFF; }
 #navigation a.selected {
-  background:url(/images/main_nav_sprite.png) no-repeat -0px 0px;
+  background:url(/images/main_nav_sprite.png) no-repeat -0px 0;
+}
+#navigation a strong,
+#navigation a p {
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
 }
 #navigation a strong {
   font-weight:normal;
@@ -102,16 +111,23 @@ li.beardo {
   width:800px;
   margin:0 auto;
 }
+#body #left-column,
+#body #right-column,
+#bottom {
+  -webkit-box-shadow: 1px 1px 3px #000;
+     -moz-box-shadow: 1px 1px 3px #000;
+          box-shadow: 1px 1px 3px #000;
+}
 #body #left-column {
   background-color:#ededed;
   border:1px solid #ccc;
   color:#333;
-  float:left;  
+  width:475px;
+  float:left;
   margin:20px 0;
   border-radius:3px;
   -moz-border-radius:3px;
   -webkit-border-radius:3px;
-  width:475px;
 }
 #body #left-column .introduction {
   color:#444;
@@ -147,7 +163,7 @@ li.beardo {
 #body #right-column h2 { padding:10px 0; }
 #body #right-column #links { margin-bottom: 1em; }
 #body #bottom {
-  width:100%;
+  width:95%;
   padding:20px;
   margin:30px 0;
   background:#ededed;
@@ -168,7 +184,7 @@ li.beardo {
 
 #body #bottom #container #meeting-place {
   float:left;
-  width:300px;
+  width:285px;
   background:#fff;
   border:1px solid #ccc;
   -moz-border-radius:3px;
@@ -230,7 +246,7 @@ h2.refactr {
 
 
 .notice,.error {
-  padding:5px 8px;
+  padding:5px 20px;
   margin: 10px 0; 
 }
 .notice {
@@ -256,7 +272,7 @@ h2.refactr {
 {
   background-color: #FCC;
   padding-bottom: 10px;
-  padding-top: 0px;
+  padding-top: 0;
 }
 
 
@@ -324,10 +340,15 @@ fieldset label.check, fieldset label.radio { position:relative; text-align:left;
 .events h2 {
   padding:0 20px;
 }
-.events ul li, .projects ul li, .members ul li, .hires ul li, .sponsors ul li, .past-sponsors ul li {
-  background-color:#ddd;
-  background:-moz-linear-gradient(0% 0% 270deg,#ededed, #DDDDDD);
-  background:-webkit-gradient(linear, 100% 0%, 100% 100%, from(#EDEDED), to(#ddd));
+.events ul li, .projects ul li, .members ul li, .hires ul li, .sponsors ul li, .past-sponsors ul li, .openings ul li {
+  background-color: #ededed;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#dddddd));
+  background-image: -webkit-linear-gradient(top, #ededed, #dddddd);
+  background-image:    -moz-linear-gradient(top, #ededed, #dddddd);
+  background-image:     -ms-linear-gradient(top, #ededed, #dddddd);
+  background-image:      -o-linear-gradient(top, #ededed, #dddddd);
+  background-image:         linear-gradient(top, #ededed, #dddddd);
+
 } 
 .event {
   padding:20px;
@@ -351,8 +372,11 @@ fieldset label.check, fieldset label.radio { position:relative; text-align:left;
   list-style-type:disc;
 }
 
-.project, .for_hire, .new_login, .sponsor {
+.project, .for_hire, .new_login, .sponsor, .opening, ul#users {
   padding:20px;
+}
+.new_login input[type='text'], input[type='password'] {
+  width: 66%;
 }
 .for_hire a, .project a {
   text-decoration:underline;
@@ -384,13 +408,50 @@ ul#users li {
 #members_title {
   line-height: 1.4em;
 }
-#users_size {
+#members_title #users_size, #navbar #users_size {
   float: right;
-  line-height: 1.1em;
   padding: 0.2em 0.6em;
   color: #fff;
   background-color: #3d3f3f;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
+  text-shadow: #000 -1px -1px 1px;
+}
+#members_title #users_size {
   border-radius: 10px;
+  line-height: 1.1em;
+}
+#navbar #users_size {
+  border-radius: 6px;
+  line-height: 1.2em;
+  margin-top: 1px;
+  padding: 0.2em 0.7em;
+  font-size: 80%;
+}
+#email_list #email {
+  width: 98%;
+}
+#rubymn_logo_twitter {
+  display: block;
+  float: left;
+  margin: 0 6px -12px 0;
+  border: 1px solid #CCC;
+  border-radius:3px;
+  -moz-border-radius:3px;
+  -webkit-border-radius:3px;
+}
+#new_user input[type='text'], #new_user input[type='password'] {
+  width: 66.5%;
+}
+#new_event fieldset {
+  width: 80%;
+}
+#new_for_hire_blurb,
+#opening_body,
+#event_body,
+#project_description {
+  width: 314px;
+}
+#new_event_link { 
+  margin-left: 20px;
 }

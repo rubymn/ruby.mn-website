@@ -1,0 +1,7 @@
+%ul
+  %li= link_to "<strong>Home</strong><p>Welcome and Events</p>",       root_path,           :class => ('selected' if current_page? root_path)
+  %li= link_to "<strong>Members</strong><p>People and Projects</p>",   projects_path,       :class => ('selected' if current_page? projects_path)
+  %li= link_to "<strong>For Hire</strong><p>Developers for hire</p>",  for_hires_path,      :class => ('selected' if current_page? for_hires_path)
+  %li= link_to "<strong>Need Help?</strong><p>Seeking developers</p>", openings_path,       :class => ('selected' if current_page? openings_path)
+  %li= link_to "<strong>Sponsors</strong><p>Community Supporters</p>", sponsors_path,       :class => ('selected' if current_page? sponsors_path)
+  %li= link_to "<strong>Offers</strong><p>Offers for Rubyists</p>",    special_offers_path, :class => ('selected' if current_page? special_offers_path)

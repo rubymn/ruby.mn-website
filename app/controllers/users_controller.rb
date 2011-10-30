@@ -15,7 +15,7 @@ class UsersController  < ApplicationController
       current_user.password = params[:password]
       current_user.crypt_new_password
       current_user.reload
-      flash[:info] = "Password successfully changed"
+      flash[:notice] = "Password successfully changed"
       redirect_to root_path
     else
       flash[:error] = "Password Confirmation mismatch"

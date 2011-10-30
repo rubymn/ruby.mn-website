@@ -81,7 +81,7 @@ class ForHiresControllerTest < ActionController::TestCase
 
       should redirect_to('for_hires index') { for_hires_path }
       should assign_to(:for_hire)
-      should set_the_flash.to("updated for hire entry")
+      should set_the_flash.to("Updated for hire entry.")
       should "set blurb" do
         assert_equal @fh1.reload.blurb, 'test'
       end

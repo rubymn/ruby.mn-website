@@ -3,5 +3,4 @@
     Members
     %span#users_size= @users.size
 
-  %ul#users
-    = render :partial => 'user', :collection => @users
+%ul#users= render :partial => 'user', :collection => @users

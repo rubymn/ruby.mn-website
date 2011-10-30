@@ -23,3 +23,11 @@ config.action_mailer.delivery_method = :test
 TCRBB_LIST_ADDRESS='test@example.com'
 ADMIN_ADDRESS='admin@example.com'
 NOTIFICATION_ADDRESS='notifications@example.com'
+
+config.after_initialize do 
+  module ReCaptcha::AppHelper
+    def validate_recap( p, errors, options = {} )
+      return true
+    end
+  end
+end

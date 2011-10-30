@@ -1,22 +1,19 @@
 %li
   .project
-    %h1
-      =h project.title
+    %h1= h project.title
     %p
-      Author:
-      = "#{project.user.firstname} #{project.user.lastname}"
-      %br
+      Author: #{project.user.firstname} #{project.user.lastname}
+      %br/
       Project URL:
-      =link_to "#{h(project.url)}", project.url
+      = link_to h(project.url), project.url
       %br
       Source URL:
-      =link_to "#{h(project.source_url)}", project.source_url
-    %p
-      =mup project.description
-    -if i_am project.user
+      = link_to h(project.source_url), project.source_url
+    %p= mup project.description
+    - if i_am project.user
       %br/
       .control
         [
-        =link_to "Edit", edit_project_path(project)
-        =link_to "Delete", project_path(project), :method => :delete, :confirm=>'Are you sure?'
+        = link_to "Edit", edit_project_path(project)
+        = link_to "Delete", project, :method => :delete, :confirm => 'Are you sure?'
         ]

@@ -35,19 +35,16 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   def test_create
-    post :create, {"user"=>{"password_confirmation"=>"standard", "lastname"=>"Looney", 
-      "firstname"=>"MCClain", "login"=>"mogwai", "password"=>"standard", "email"=>"m@loonsoft.com"}}
+    post :create, :user => { :password_confirmation => "standard", :lastname => "Looney", :firstname => "MCClain", :login => "mogwai", :password => "standard", :email => "m@loonsoft.com" }
     assert_response :redirect
-    assert_redirected_to  :controller=>'welcome', :action=>'index'
-    assert_nil flash[:warning]
+    assert_redirected_to root_path
     assert_equal "Please check your registered email account to verify your account.", flash[:notice]
-    assert_nil flash[:warning]
     assert assigns(:user)
     assert_response :redirect
   end
 
   def test_password_conf
-    post :create, "user"=>{"password_confirmation"=>"fu", "lastname"=>"looney", "firstname"=>"mcclain", "login"=>"mml", "password"=>"standard", "email"=>"m@loonsoft.com"} , :recatcha_challenge_field=>'foo', :recaptcha_response_field=>'foo'
+    post :create, :user => { :password_confirmation => "fu", :lastname => "looney", :firstname => "mcclain", :login => "mml", :password => "standard", :email => "m@loonsoft.com" } , :recatcha_challenge_field => 'foo', :recaptcha_response_field => 'foo'
 
     assert_response :success
     assert_template 'users/new'
@@ -66,9 +63,8 @@ class UsersControllerTest < ActionController::TestCase
 
 
   def test_create2
-    post :create, "user"=>{"password_confirmation"=>"standard", "lastname"=>"looney", "firstname"=>"mcclain", "login"=>"tutu", "password"=>"standard", "email"=>"m@loonsoft.com"} 
-    assert_response :redirect
-    assert_redirected_to :controller=>'welcome', :action=>'index'
+    post :create, :user => { :password_confirmation => "standard", :lastname => "looney", :firstname => "mcclain", :login => "tutu", :password => "standard", :email => "m@loonsoft.com" } 
+    assert_redirected_to root_path
     assert flash[:notice]
     u = User.find_by_login('tutu')
     assert_not_nil u
@@ -86,12 +82,12 @@ class UsersControllerTest < ActionController::TestCase
 
   def test_validate
     @request.session[:uid] = nil
-    u = Factory.create(:user, :verified=>false, :security_token=>'meh')
+    u = Factory.create(:user, :verified => false, :security_token => 'meh')
     assert !User.find(u.id).verified?
-    get :validate, "key"=>'meh'
+    get :validate, :key => 'meh'
     assert u.reload.verified?
     assert_response :redirect
-    assert_redirected_to :controller=>'welcome', :action=>'index'
+    assert_redirected_to root_path
   end
 
 end

@@ -13,7 +13,7 @@ class AdminControllerTest < ActionController::TestCase
     assert_redirected_to :controller=>'admin', :action=>'index'
     e.reload
     assert e.approved?
-    assert_equal flash[:info], 'Event Approved'
+    assert_equal flash[:notice], 'Event Approved'
   end
 
   def test_admin_role_required

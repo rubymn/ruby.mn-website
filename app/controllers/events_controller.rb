@@ -63,11 +63,11 @@ class EventsController < ApplicationController
   def destroy
     if current_user && current_user.admin?
       Event.destroy(params[:id])
-      flash[:info] = 'Record Deleted'
+      flash[:notice] = 'Record Deleted'
       redirect_to admin_path
     else
       current_user.events.find(params[:id]).destroy
-      flash[:info] = 'Event was deleted'
+      flash[:notice] = 'Event was deleted'
       redirect_to :action => :user_index
     end
     

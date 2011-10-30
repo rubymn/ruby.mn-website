@@ -1,7 +1,8 @@
-%html{html_attrs}
+!!!
+%html
   %head
     %link{ :rel =>"shortcut icon",  :href => "/favicon.ico" }
-    %link{ :rel => 'alternate', :href => '/pevents/rss', :type => 'application/rss+xml', :title => "Ruby Users of Minnesota Feed" }
+    /%link{ :rel => 'alternate', :href => '/pevents/rss', :type => 'application/rss+xml', :title => "Ruby Users of Minnesota Feed" }
 
     %title Ruby Users of Minnesota
 
@@ -11,38 +12,29 @@
     %meta{ :content => 'Ruby Users of Minnesota', :lang => 'en', :name => 'author' }
 
     = stylesheet_link_tag 'reset', 'typography', 'application'
-    = javascript_include_tag 'jquery-1.3.2.min', 'application'
+    /[if lte IE 0]
+      = stylesheet_link_tag 'ie'
+    
+    = javascript_include_tag 'jquery-1.6.4.min', 'application'
     = javascript_include_tag 'jsWidgets/jsWidget'
   %body
     #header
       .logo
         %h1 Ruby Users of Minnesota
         = image_tag 'header_background.png', :id => 'main_header_logo'
-      #navigation
-        %ul
-          %li= "<a href='#{root_path}' class='#{"selected" if current_page?(root_path)}'><strong>Home</strong><p>Welcome and Events</p></a>"
-          %li= "<a href='#{projects_path}' class='#{"selected" if current_page?(projects_path)}'><strong>Members</strong><p>People and Projects</p></a>"
-          %li= "<a href='#{for_hires_path}' class='#{"selected" if current_page?(for_hires_path)}'><strong>For Hire</strong><p>Developers for hire</p></a>"
-          %li= "<a href='#{openings_path}' class='#{"selected" if current_page?(openings_path)}'><strong>Need Help?</strong><p>Seeking developers</p></a>"
-          %li= "<a href='#{sponsors_path}' class='#{"selected" if current_page?(sponsors_path)}'><strong>Sponsors</strong><p>Community Supporters</p></a>"
-          %li= "<a href='#{special_offers_path}' class='#{"selected" if current_page?(special_offers_path)}'><strong>Offers</strong><p>Offers for Rubyists</p></a>"
+      #navigation= render 'shared/navigation'
     .wrapper
       .inner
         #body
           #left-column
-            - if flash[:success]
-              .success= flash[:success]
-            - if flash[:notice]
-              .notice= flash[:notice]
-            - if flash[:error]
-              .error= flash[:error]
+            = render 'shared/flash_messages'
             = yield
           #right-column
-            = render(:partial => "shared/sidebar")
+            = render 'shared/sidebar'
           .clear
           #bottom
             %h3
-              %a{:name => 'meeting-info'} Meeting Location
+              %a{ :name => 'meeting-info', :id => 'meeting-info' } Meeting Location
             %p
               The group meets the
               %strong last Monday of each month at 7 PM
@@ -54,19 +46,19 @@
                 %h2.refactr= link_to 'Refactr', 'http://www.refactr.com'
                 %p.address
                   %strong Eleven Fourth Street NE
-                  %br
+                  %br/
                   Suite 300
-                  %br
+                  %br/
                   Minneapolis, MN 55413
-                  %br
+                  %br/
                   Phone: 612-605-9740
     #footer
       .inner
         #copyright
           = "&copy; #{Time.now.year} #{link_to 'Ruby Users of Minnesota', '/'}"
         #credits
-          = "Site credits #{link_to 'mml', 'http://www.loonsoft.com'} <span class='amp'>&amp;</span> #{link_to '@marknutter', 'http://nuttersmark.com/'} <span class='amp'>&amp;</span> #{link_to '@webandy', 'http://webandy.com/'} <span class='amp'>&amp;</span> #{link_to '@jrmehle', 'http://twitter.com/jrmehle'}"
-          = "Hosting provided by #{link_to 'Heroku', "http://www.heroku.com"}"
+          Site credits #{link_to 'mml', 'http://www.loonsoft.com'} <span class='amp'>&amp;</span> #{link_to '@marknutter', 'http://nuttersmark.com/'} <span class='amp'>&amp;</span> #{link_to '@webandy', 'http://webandy.com/'} <span class='amp'>&amp;</span> #{link_to '@jrmehle', 'http://twitter.com/jrmehle'}
+          Hosting provided by #{link_to 'Heroku', "http://www.heroku.com"}
 
     - if Rails.env.production?
       %script{ :src=>"http://www.google-analytics.com/urchin.js", :type=>"text/javascript"}

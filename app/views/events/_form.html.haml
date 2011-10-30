@@ -1,19 +1,17 @@
 - form_for @event do |f|
-  .errors= error_messages_for 'event'
+  .errors= error_messages_for :event
   %fieldset
     %legend
-    %label
-      Headline 
+    = f.label :headline
     = f.text_field :headline
     %br/
-    %label Time &amp; Date:
+    = f.label :scheduled_time, 'Time &amp; Date'
     .select_container
       = f.datetime_select :scheduled_time
       %br/
       (That's 24 hour time bub.)
     %br/
-    %label
-      Details
+    = f.label 'Details'
     = f.text_area :body
     .submit
       = submit_tag f.object.new_record? ? "Submit Event" : "Update Event"

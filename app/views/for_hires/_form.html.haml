@@ -1,0 +1,13 @@
+- form_for @for_hire do |f| 
+  %fieldset
+    = f.label :title
+    = f.text_field :title
+    %br/
+    = f.label :email
+    = f.text_field :email
+    %br/
+    = f.label :blurb
+    = f.text_area :blurb, :rows => 20, :cols => 37
+    %br/
+    .submit
+      = submit_tag f.object.new_record? ? 'Create Entry' : 'Edit Entry'

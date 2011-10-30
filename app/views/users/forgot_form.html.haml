@@ -1,12 +1,11 @@
-%p.message
-  Please enter your username, and we'll send reset instructions to
-  your registered address.
-- form_tag reset_new_user_path  do 
-  %fieldset
-    
-    %label
-      Username / Email
-    =text_field_tag "login"
-    .submit
-      =submit_tag "mail it"
+.introduction
+  %h1 Forgot My Password
+
+  %p.message Please enter your username, and we'll send reset instructions to your registered address.
+  - form_tag reset_new_user_path do
+    %fieldset
+      = label_tag :login, 'Username / Email'
+      = text_field_tag :login
+      .submit
+        = submit_tag "Email me"
 

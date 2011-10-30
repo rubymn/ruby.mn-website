@@ -1,19 +1,15 @@
 %fieldset
-  %label
-    Title
-  =text_field "project", "title"
+  = f.label :title
+  = f.text_field :title
   %br/
-  %label
-    Url
-  =text_field "project", "url"
+  = f.label :url, 'URL'
+  = f.text_field :url
   %br/
-  %label
-    Source Url
-  =text_field "project", "source_url"
+  = f.label :source_url, 'Source URL'
+  = f.text_field :source_url
   %br/
-  %label
-    Description
-  =text_area "project", "description"
+  = f.label :description
+  = f.text_area :description
   %br/
   .submit
-    =submit_tag "Save"
+    = submit_tag f.object.new_record? ? 'Submit Project' : 'Update Project'

@@ -6,22 +6,21 @@ class OpeningsControllerTest < ActionController::TestCase
     get :new
     assert assigns(:opening)
     assert_response :success
-    assert_template 'opening_form'
+    assert_template :new
   end
 
   def test_update
     login
     o = Factory.create(:opening)
 
-    put :update, :id=>o.id, :opening=>{:headline=>'feh'}
-    assert_response :redirect 
+    put :update, :id=>o.id, :opening => { :headline=>'feh' }
     assert_redirected_to openings_path
     assert assigns(:opening)
     assert_equal assigns(:opening).headline, 'feh'
     assert !assigns(:opening).new_record?
   end
 
-  def test_requires_login 
+  def test_requires_login
     get :index
     assert_bounced
   end
@@ -36,7 +35,7 @@ class OpeningsControllerTest < ActionController::TestCase
 
   def test_create
     login
-    post :create, :opening=>{:body=>'foo', :headline=>'bar'}
+    post :create, :opening => { :body => 'foo', :headline => 'bar' }
     assert_response :redirect
     assert_redirected_to openings_path
   end

@@ -29,6 +29,6 @@ class SessionsControllerTest < ActionController::TestCase
     assert_response :redirect
     assert_redirected_to :controller=>'welcome', :action=>'index'
     assert_nil session[:uid]
-    assert_equal "Logged Out", flash[:info]
+    assert_equal "Logged Out", flash[:notice]
   end
 end

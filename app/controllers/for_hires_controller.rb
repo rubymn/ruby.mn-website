@@ -18,10 +18,10 @@ class ForHiresController < ApplicationController
     @for_hire = current_user.build_for_hire(params[:for_hire])
 
     if @for_hire.save
-      flash[:alert] = "created for hire entry"
+      flash[:notice] = "Created for hire entry."
       redirect_to for_hires_path
     else
-      flash.now[:error] = "error creating for hire profile"
+      flash.now[:error] = "Error creating for hire profile."
       render :action => :new
     end
   end
@@ -33,7 +33,7 @@ class ForHiresController < ApplicationController
   def update 
     @for_hire = current_user.for_hire
     if @for_hire && @for_hire.update_attributes(params[:for_hire])
-      flash[:alert] = "updated for hire entry"
+      flash[:notice] = "Updated for hire entry."
       redirect_to for_hires_path
     else
       render :action => :edit
@@ -43,10 +43,10 @@ class ForHiresController < ApplicationController
   def destroy
     @for_hire = current_user.for_hire
     if @for_hire && @for_hire.destroy
-      flash[:alert] = "deleted your for hire entry"
+      flash[:notice] = "Deleted your for hire entry."
       redirect_to :action => :index
     else
-      flash[:error] = "error deleting your for hire profile"
+      flash[:error] = "Error deleting your for hire profile."
       redirect_to for_hires_path
     end
   end
@@ -60,5 +60,4 @@ class ForHiresController < ApplicationController
         redirect_to root_path
       end
     end
-
 end

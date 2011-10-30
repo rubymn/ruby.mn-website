@@ -1,12 +1,12 @@
 .new_login
   %h2 Please Login
-  - form_tag session_path do
+  - form_tag session_path do |f|
     %fieldset
-      %label= "Username / Email"
-      = text_field_tag  "login", "", {:size => 30 }
+      = label_tag :login, "Username / Email"
+      = text_field_tag  :login
       %br/
-      %label= "Password"
-      = password_field_tag "password","", {:size => 30}
+      = label_tag :password, "Password"
+      = password_field_tag :password
       %br/
       .submit
         = submit_tag 'Login'
@@ -14,4 +14,4 @@
       %div
         = link_to 'Register for an account', new_user_path
         |
-        = link_to 'Forgot my password', forgot_password_new_user_path 
+        = link_to 'Forgot my password', forgot_password_new_user_path

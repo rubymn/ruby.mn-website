@@ -3,5 +3,4 @@
 
   - h @event.body.try(:gsub!,/\r\n/,"\r")
 
-  .form
-    = render :partial => 'form'
+.form= render 'form'

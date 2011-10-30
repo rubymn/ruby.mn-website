@@ -1,17 +1,15 @@
--form_tag('/user/login') do
+- form_tag :user, :url => '/user/login' do |f|
   %fieldset
-    %legend
-      Please Login
-    %label
-      Username 
-    =text_field "user", "login", :size => 30 
+    %legend Please Login
+    = f.label :login, 'Username'
+    = f.text_field "login", :size => 30 
     %label 
       Password:
-    =password_field "user", "password", :size => 30
+    = f.password_field "password", :size => 30
 
     .submit
-      =submit_tag 'Login' 
+      = submit_tag 'Login' 
       %br/
-      =link_to 'Register for an account', :action => 'signup' 
+      = link_to 'Register for an account', :action => 'signup'
       |
-      = link_to 'Forgot my password', :action => 'forgot_password' 
+      = link_to 'Forgot my password', :action => 'forgot_password'

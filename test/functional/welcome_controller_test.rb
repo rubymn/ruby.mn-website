@@ -24,9 +24,8 @@ class WelcomeControllerTest < ActionController::TestCase
   end
 
   context "rss feed" do
-    setup { get :index, :format => :xml }
+    setup { get :index, :format => :rss }
     should respond_with(:success)
-    should respond_with_content_type(:xml)
     should_not set_the_flash
   end
 end
