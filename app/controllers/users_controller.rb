@@ -1,6 +1,6 @@
 class UsersController  < ApplicationController
-  before_filter :login_required,  :only => [:index, :set_password]
-  before_filter :admin_required, :only => :destroy
+  before_filter :login_required,  :only => [:index, :set_password, :edit, :update]
+  before_filter :admin_required,  :only => :destroy
 
   def change_password
     if (u = User.find_by_security_token(params[:key]))
@@ -56,7 +56,6 @@ class UsersController  < ApplicationController
     else
       redirect_to new_session_path
     end
-
   end
 
   def index
@@ -81,5 +80,22 @@ class UsersController  < ApplicationController
         render :action => :new
       end
     end
+  end
+
+  def edit
+    @user = current_user
+  end
+
+  def update
+    @user = current_user
+    if params[:user].present? && @user.update_attributes(:firstname => params[:user][:firstname], :lastname => params[:user][:lastname], :email => params[:user][:email])
+      flash[:notice] = "User account updated successfully."
+      redirect_to edit_user_path(@user)
+    else
+      Rails.logger.debug @user.errors.inspect
+      render :action => :edit
+    end
+
+    
   end
 end

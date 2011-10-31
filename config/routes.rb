@@ -14,8 +14,7 @@ ActionController::Routing::Routes.draw do |map|
                                      :forgot_password => :get,
                                      :reset           => :post,
                                      :change_password => :get,
-                                     :set_password    => :post },
-                                     :except => [:edit, :update]
+                                     :set_password    => :post }
   map.resource :for_hire
   map.resources :events, :member     => { :admdestroy => :delete, :approve => :put },
                          :collection => { :user_index => :get }

@@ -443,6 +443,9 @@ ul#users li {
 #new_user input[type='text'], #new_user input[type='password'] {
   width: 66.5%;
 }
+.edit_user input[type='text'], .edit_user input[type='password'] {
+  width: 64.5%;
+}
 #new_event fieldset {
   width: 80%;
 }

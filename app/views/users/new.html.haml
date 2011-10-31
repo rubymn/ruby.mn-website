@@ -4,7 +4,7 @@
     Become a member of the Ruby Users of Minnesota Group. Membership provides several benefits on this website, and helps you connect with local Ruby developers.
 .form{ :title => "Create Account" }
   - form_for :user, :url => users_path, :html => { :id => 'new_user' } do |f|
-    = error_messages_for 'user'
+    = error_messages_for :user
     %fieldset
       = f.label :firstname, 'First Name'
       = f.text_field :firstname, :class => 'title'
@@ -25,7 +25,7 @@
       = f.label :password_confirmation, 'Confirm Password'
       = f.password_field :password_confirmation, :class => 'text'
       %br/
-      - unless Rails.env.development?
+      - if Rails.env.production?
         %div= get_captcha
       .submit
         = submit_tag "Sign Up"

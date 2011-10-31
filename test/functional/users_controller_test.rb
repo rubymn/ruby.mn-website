@@ -10,7 +10,6 @@ class UsersControllerTest < ActionController::TestCase
   should route(:post, "/users/new/reset").to(:action => :reset)
   should route(:get, "/users/new/change_password").to(:action => :change_password)
 
-
   context "get new" do
     setup { get :new }
 
@@ -19,6 +18,51 @@ class UsersControllerTest < ActionController::TestCase
     should assign_to(:user)
     should "assign new user record" do
       assert assigns(:user).new_record?
+    end
+  end
+
+  context "get edit" do
+    setup do
+      @user = Factory :user
+      get :edit, :id => @user.to_param
+    end
+
+    should redirect_to('login page') { new_session_path }
+    should set_the_flash.to("Access Denied")
+    should_not assign_to(:user)
+  end
+
+  context "put update" do
+    setup do
+      @user = Factory :user
+      put :update, :id => @user.to_param, :user => { :email => 'foo@example.com' }
+    end
+
+    should redirect_to('login page') { new_session_path }
+    should set_the_flash.to("Access Denied")
+    should_not assign_to(:user)
+  end
+
+  context "logged in" do
+    setup { @user = login }
+    context "get edit" do
+      setup do
+        get :edit, :id => @user.to_param
+      end
+
+      should respond_with(:success)
+      should assign_to(:user)
+      should render_template(:edit)
+    end
+
+    context "put update" do
+      setup do
+        put :update, :id => @user.to_param, :user => { :firstname => "John", :lastname => "Jones", :email => 'johnjones@example.com' }
+      end
+
+      should redirect_to('edit page') { edit_user_path(assigns(:user)) }
+      should set_the_flash.to("User account updated successfully.") 
+      should assign_to(:user)
     end
   end
 
