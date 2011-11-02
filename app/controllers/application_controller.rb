@@ -23,8 +23,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
-
   def login_required
     session['return-to']=request.request_uri
     if not session[:uid]
@@ -52,6 +50,4 @@ class ApplicationController < ActionController::Base
     redirect_to new_session_path
     @current_user = nil
   end
-
-
 end
