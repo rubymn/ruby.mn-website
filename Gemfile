@@ -17,4 +17,5 @@ group :test do
   gem 'turn',     '~> 0.8.3'
   gem 'minitest', '~> 2.7.0'
   gem 'mocha',    '~> 0.10.0'
+  gem 'rdoc'
 end
