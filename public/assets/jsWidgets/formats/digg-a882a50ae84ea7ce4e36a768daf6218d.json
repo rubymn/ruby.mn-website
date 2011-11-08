@@ -1,0 +1,32 @@
+var widget_defaults = {
+  base_url : 'http://digg.com/',
+  base_css_prefs : {
+    base_class  : 'digg_widget',
+    link_target : '_blank'
+  },
+  sections : [ 'header', 'stories' ],
+  header : {
+    data   : 'digg_data',
+    clazz  : 'digg_header',
+    dom_nodes : [
+      { what : 'Recently Dugg Stories', how: [{ elt: 'div', style: 'padding:5px 0'}] },
+      { what : '(Total Number of stories: {$.total})', how: [{elt: 'span', style: 'font-size:11px'}] }
+    ]
+  },
+  stories : {
+    data      : 'digg_data.stories',
+    loop      : true,
+    num_items : 5,
+    clazz     : 'digg_story',
+    dom_nodes : [
+      { if_true : '{$.thumbnail}', how: [{elt: 'img', src: '{$.thumbnail.src}'}] },
+      { what : '{$util.trimString($.title, 150)}', how : [{elt: 'a', url: '{$.link}', clazz: 'digg_story_title'}], suffix: '\n' },
+      { what : 'Digg Story page', how: [{elt: 'a', url: '{$.href}'}], suffix:', ' },
+      { what : '{$.diggs} diggs, {$.comments} comments', suffix: '\n' },
+      { what : 'Topic: ' },
+      { what : '{$.topic.name}', how: [{elt: 'a', url: '{$.topic.short_name}'}] },
+      { what : '; Subject: ' },
+      { what : '{$.container.name}', how: [{elt: 'a', url: '{$.container.short_name}'}] }
+   ]
+  }
+};

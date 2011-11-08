@@ -1,0 +1,20 @@
+var widget_format = {
+  base_url : 'http://newsrack.in',
+  base_css_prefs : {
+    base_style  : 'font-size:10px;line-height:14px',
+    link_target : '_blank',
+    link_style  : 'text-decoration:none'
+  },
+  sections : [ 'stories' ],
+  stories : {
+    data      : '_nr_stories',
+    loop      : true,
+    num_items : 20,
+    style     : 'margin:5px;padding:2px 5px;font-size:11px;',
+    dom_nodes : [
+      { what : '{$.title}', how  : [{ elt: 'a', url: '{$.url}', style: 'text-decoration:none;font-size:12px;font-weight:bold;'}] },
+      { what : '{$.source}', prefix: '\n', how: [{ elt: 'span', style: 'font-weight:bold'}] },
+      { what : '{$util.formatDate($.date, ".", "d.m.y", "d/m/y")}', prefix: ' - ' }
+    ]
+  }
+};

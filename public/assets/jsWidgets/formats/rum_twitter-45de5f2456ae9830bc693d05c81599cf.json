@@ -1,0 +1,25 @@
+var widget_format = {
+  base_url : 'http://twitter.com/',
+  base_css_prefs : {
+    base_style  : 'margin:0;padding:0;',
+    link_target : '_blank',
+    link_style  : 'text-decoration:none',
+  },
+  sections : [ 'header', 'updates' ],
+  cssPrefs : '',
+  header : {
+    data      : 'twit_data',
+    style     : 'margin:0;padding:0;',
+    dom_nodes : [ { what : "Recent Tweets From <a href='http://twitter.com/{$[0].user.screen_name}'><div id=\"rubymn_logo_twitter\"><img src=\"/assets/rumlogo.png\" width=\"40www.google.com\" height=\"40\" alt=\"\" /></div> @{$[0].user.screen_name}</a>", how: [{ elt: 'h4', style: 'margin-bottom:0;color:#6E1211;'}] } ]
+  },
+  updates : {
+    data      : 'twit_data',
+    loop      : true,
+    num_items : 5,
+    style     : 'margin:1em 0;padding:0;',
+    dom_nodes : [ 
+       { what: '{auto_link_tweet($.text)}',      how: [{elt: 'div', style: 'margin:0;padding:0;'}] }, 
+       { what: '{relativeTime($.created_at)}', how: [{elt: 'span', style: 'color:#aaa'}] }
+    ]
+  }
+};
