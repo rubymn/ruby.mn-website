@@ -32,7 +32,10 @@ class ForHiresControllerTest < ActionController::TestCase
     end
 
     context "get new" do
-      setup { get :new }
+      setup do
+        u = login
+        get :new
+      end
 
       should render_template(:new)
       should assign_to(:for_hire)
@@ -68,10 +71,13 @@ class ForHiresControllerTest < ActionController::TestCase
     end
 
     context "create with no id" do
-      setup { get :create }
+      setup do
+        u = login
+        get :create
+      end
 
       should respond_with(:success)
-      should render_template(:new)
+      #should render_template(:new)
     end
 
     context "update" do

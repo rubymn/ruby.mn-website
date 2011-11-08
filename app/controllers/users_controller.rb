@@ -37,7 +37,7 @@ class UsersController  < ApplicationController
     u = User.first :conditions => ['email=? or login=?', params[:login], params[:login]]
     if u
       u.generate_security_token
-      SignupMailer.deliver_pass_inst(u)
+      SignupMailer.pass_inst(u).deliver
       flash.now[:success] = 'Sweet. We sent the mail!'
     else
       flash.now[:error] = "Couldn't find that guy, guy."
@@ -59,11 +59,10 @@ class UsersController  < ApplicationController
   end
 
   def index
-    @users = User.all :order => 'firstname', :conditions => 'verified != 0', :select => 'firstname, lastname, id, email'
+    @users = User.where('verified != 0').select('firstname, lastname, id, email').order(:firstname)
   end
 
-  # Register as a new user. Upon successful registration, the user will be sent to
-  # "/user/login" to enter their details.
+  # Register as a new user. Upon successful registration, the user will be sent to "/user/login" to enter their details.
   def new
     @user = User.new
   end
@@ -71,9 +70,9 @@ class UsersController  < ApplicationController
   def create
     User.transaction do
       @user = User.new(params[:user])
-      if ( validate_recap(params, @user.errors) || Rails.env.production? ) && @user.save
+      if verify_recaptcha(:model => @user, :message => "reCAPTCHA caught you") && @user.save
         key = @user.generate_security_token
-        SignupMailer.deliver_confirm @user
+        SignupMailer.confirm(@user).deliver
         flash[:notice] = 'Please check your registered email account to verify your account.'
         redirect_to root_path
       else

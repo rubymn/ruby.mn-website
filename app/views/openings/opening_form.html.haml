@@ -1,8 +1,8 @@
 .introduction
   %h2 Help Wanted
-= error_messages_for :opening
 .form
-  - form_for @opening do |f|
+  = form_for @opening do |f|
+    = f.error_messages
     %fieldset
       %legend
       %br/

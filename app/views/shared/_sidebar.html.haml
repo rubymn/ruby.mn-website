@@ -1,0 +1,38 @@
+#navbar
+  #links
+    %ul
+      - if current_user
+        %li
+          = link_to "Member List", users_path
+          #users_size{ :title => 'Number of members' }= User.verified.count
+        %li= link_to "Help Wanted", openings_path
+        %li= link_to "My Events", user_index_events_path
+        %li= link_to 'Edit My Account', edit_user_path(current_user)
+        - if current_user.admin?
+          %li= link_to "Admin", admindex_path
+        %li= link_to "Logout", session_path, :method => 'delete'
+      - else
+        %li= link_to "Join", new_user_path
+        %li= link_to "Login", new_session_path
+  #calendar
+    %h4
+      = link_to "Meeting Calendar", "http://www.google.com/calendar/embed?src=4g380qh7p0taroueuulfajauck%40group.calendar.google.com&ctz=America/Chicago", :title => "Click here to see a Google Calendar of our meeting dates.", :alt => "Click here to see a Google Calendar of our meeting dates."
+  #email_list
+    %p
+      #{ link_to "Our mailing list is hosted on Google Groups", 'http://groups.google.com/group/rubymn?hl=en', :title => 'click here to visit the Ruby.MN Google Group', :alt => 'click here to visit the Ruby.MN Google Group' } and is the primary way to discuss Ruby with our members.
+    = form_tag "http://groups.google.com/group/rubymn/boxsubscribe", :id => 'subscribe' do
+      %fieldset
+        = hidden_field_tag :hl, "en"
+        %div
+          = label_tag :email, 'Subscribe By Email'
+          %br/
+          = text_field_tag :email
+        %div
+          = submit_tag "Subscribe"
+  #tweets
+    :javascript
+      var twit_data; function storeTwitterData(data) { twit_data = data; }
+    = javascript_include_tag "http://twitter.com/statuses/user_timeline/rubymn.json?callback=storeTwitterData"
+    = javascript_include_tag "jsWidgets/formats/rum_twitter.json"
+    :javascript
+      new _Widget(widget_format).installOver(document.getElementById("tweets"));

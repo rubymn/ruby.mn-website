@@ -2,10 +2,9 @@
   %h2 Edit User Account
 
 .form
-  - form_for @user do |f|
+  = form_for @user do |f|
     = f.error_messages
     %fieldset
-      %legend
       = f.label :email
       = f.text_field :email
       %br/

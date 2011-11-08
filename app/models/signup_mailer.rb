@@ -1,14 +1,13 @@
 class SignupMailer < ActionMailer::Base
+  default :from => ADMIN_ADDRESS
+
   def confirm(user)
-    @subject     = "RUM Signup Confirmation"
-    @recipients  = [user.email]
-    @from        = ADMIN_ADDRESS
-    @body[:user] = user
+    @user = user
+    mail(:to => "#{user.full_name} <#{user.email}>", :subject => "RUM Signup Confirmation")
   end
 
   def pass_inst(user)
-    @subject     = "RUM Password Change"
-    @recipients  = [user.email]
-    @body[:user] = user
+    @user = user
+    mail(:to => "#{user.full_name} <#{user.email}>", :subject => "RUM Password Change")
   end
 end

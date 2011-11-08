@@ -1,6 +1,6 @@
 .new_login
   %h2 Please Login
-  - form_tag session_path do |f|
+  = form_tag session_path do |f|
     %fieldset
       = label_tag :login, "Username / Email"
       = text_field_tag  :login

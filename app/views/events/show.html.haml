@@ -4,11 +4,11 @@
   %h2
     = h @event.headline
     %br/
-    = @event.scheduled_time
+    = @event.scheduled_time.to_s(:long_meridian)
 
   %p
     Created by:
-    = mail_to(@event.user.email, h(@event.user.login))
+    = mail_to(@event.user.email, h(@event.user.login), :encode => 'javascript')
     %br/
     Created at: 
     = @event.created_at

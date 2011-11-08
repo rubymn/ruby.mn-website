@@ -5,8 +5,7 @@
   %p
     Posted by
     = mail_to event.user.email, h(event.user.login)
-    =link_to "[Delete]", event, :method => :delete
-    =link_to "[Approve]", :controller => 'admin', :action => 'approve', :id => event.id
+    = link_to "[Delete]", event, :method => :delete, :confirm => 'Are you sure?'
+    = link_to "[Approve]", :controller => 'admin', :action => 'approve', :id => event.id
   %p
     = mup event.body
-
