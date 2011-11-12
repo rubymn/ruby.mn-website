@@ -1,14 +1,14 @@
-- form_tag :user, :url => '/user/login' do |f|
+= form_tag :user, :url => '/user/login' do |f|
   %fieldset
     %legend Please Login
     = f.label :login, 'Username'
-    = f.text_field "login", :size => 30 
+    = f.text_field :login, :size => 30 
     %label 
       Password:
-    = f.password_field "password", :size => 30
+    = f.password_field :password, :size => 30
 
     .submit
-      = submit_tag 'Login' 
+      = f.submit 'Login' 
       %br/
       = link_to 'Register for an account', :action => 'signup'
       |

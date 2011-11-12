@@ -5,10 +5,10 @@
       Author: #{project.user.firstname} #{project.user.lastname}
       %br/
       Project URL:
-      = link_to h(project.url), project.url
+      = link_to project.url, project.url
       %br
       Source URL:
-      = link_to h(project.source_url), project.source_url
+      = link_to project.source_url, project.source_url
     %p= mup project.description
     - if i_am project.user
       %br/

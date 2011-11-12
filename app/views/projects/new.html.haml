@@ -1,6 +1,6 @@
 .introduction
   %h2 New Project
-= error_messages_for 'project'
 .form
-  -form_for @project do |f|
+  = form_for @project do |f|
+    = f.error_messages
     = render :partial => 'form', :object => @project, :locals => { :f => f }

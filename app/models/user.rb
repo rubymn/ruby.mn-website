@@ -2,19 +2,24 @@ require 'digest/sha1'
 
 class User < ActiveRecord::Base
   has_many :events
-  has_many :openings
+  has_many :openings, :dependent => :destroy
   has_many :projects
-  has_one :for_hire
+  has_one :for_hire, :dependent => :destroy
 
   after_validation :encrypt_password
-  validates_confirmation_of :password , :msg => "Confirmation password should match", :on => :create
-  validates_uniqueness_of :login, :email
-  validates_presence_of :login, :email, :firstname, :lastname
-  validates_presence_of :password, :on => :create
+
+  validates :password,  :confirmation => { :message => "Confirmation password should match" }, :on => :create
+  validates :password,  :presence     => true, :on => :create
+  validates :login,     :uniqueness   => true
+  validates :email,     :uniqueness   => true
+  validates :login,     :presence     => true
+  validates :email,     :presence     => true
+  validates :firstname, :presence     => true
+  validates :lastname,  :presence     => true
 
   attr_protected :verified, :form, :security_token, :salted_password, :delete_after, :deleted
 
-  named_scope :verified, { :conditions => 'verified != 0' }
+  scope :verified, where('verified != 0')
 
   def crypt_new_password
     encrypt_password
@@ -42,7 +47,11 @@ class User < ActiveRecord::Base
 
   attr_accessor :password, :password_confirmation
   def admin?
-    return role == 'admin'
+    role == 'admin'
+  end
+
+  def full_name
+    [firstname, lastname].compact.join(' ') if firstname? || lastname?
   end
 
   protected
@@ -50,7 +59,7 @@ class User < ActiveRecord::Base
     def new_security_token(hours = 1)
       write_attribute(:security_token, User.hashify(self.salted_password + Time.now.to_i.to_s + rand.to_s))
       write_attribute(:token_expiry, Time.at(Time.now.to_i + hours * 60 * 60))
-      update_without_callbacks
+      save!
       return self.security_token
     end
 
@@ -62,8 +71,6 @@ class User < ActiveRecord::Base
     def encrypt_password
       if password
         salt = User.hashify("salt-#{Time.now}")
-
-        Rails.logger.debug " [User] encrypting password : #{password}"
 
         self[:salted_password] = User.hashify(salt+User.hashify(password))
         self[:salt]            = salt

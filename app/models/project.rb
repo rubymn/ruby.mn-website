@@ -1,4 +1,8 @@
 class Project < ActiveRecord::Base
   belongs_to :user
-  validates_presence_of :title, :description, :url, :user_id
+
+  validates :title,       :presence => true
+  validates :description, :presence => true
+  validates :url,         :presence => true
+  validates :user_id,     :presence => true
 end

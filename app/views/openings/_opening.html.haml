@@ -1,12 +1,12 @@
 %li[opening]
   %h3
-    = h opening.headline
-    = h opening.created_at.to_date.to_s(:db)
+    = opening.headline
+    = opening.created_at.to_date.to_s(:mdy)
   .body
     = mup opening.body
   %h4
     = mail_to opening.user.email, "Contact #{opening.user.firstname} #{opening.user.lastname}", :encode => 'javascript'
-  - if current_user == opening.user || current_user.admin?
+  - if opening.user && (current_user == opening.user || current_user.admin?)
     .control
       [
       = link_to "Edit", edit_opening_path(opening)

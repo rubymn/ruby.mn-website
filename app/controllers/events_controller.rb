@@ -36,7 +36,7 @@ class EventsController < ApplicationController
     @event = current_user.events.create(params[:event])
     if @event.save
       redirect_to user_index_events_path
-      Notifier.deliver_notify_event(@event)
+      Notifier.notify_event(@event).deliver
     else
       render :template => 'events/new'
     end
@@ -64,7 +64,7 @@ class EventsController < ApplicationController
     if current_user && current_user.admin?
       Event.destroy(params[:id])
       flash[:notice] = 'Record Deleted'
-      redirect_to admin_path
+      redirect_to admindex_path
     else
       current_user.events.find(params[:id]).destroy
       flash[:notice] = 'Event was deleted'

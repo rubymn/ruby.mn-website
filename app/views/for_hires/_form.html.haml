@@ -1,4 +1,4 @@
-- form_for @for_hire do |f| 
+= form_for @for_hire, :url => for_hire_path do |f| 
   %fieldset
     = f.label :title
     = f.text_field :title
@@ -10,4 +10,4 @@
     = f.text_area :blurb, :rows => 20, :cols => 37
     %br/
     .submit
-      = submit_tag f.object.new_record? ? 'Create Entry' : 'Edit Entry'
+      = f.submit f.object.new_record? ? 'Create Entry' : 'Edit Entry'

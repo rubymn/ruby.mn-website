@@ -44,11 +44,11 @@ class EventsControllerTest < ActionController::TestCase
     assert_not_nil saved.created_at
   end
 
-  def test_badcreate
+  def test_bad_create
     time = Time.now.strftime("%R %F")
-    post :create, { :user_id => 'bob', :event => {} }
+    post :create, :user_id => 'bob', :event => {}
     assert assigns(:event)
-    assert_equal "can't be blank", assigns(:event).errors[:headline]
+    assert_equal ["can't be blank"], assigns(:event).errors[:headline]
   end
 
   def test_index_admin

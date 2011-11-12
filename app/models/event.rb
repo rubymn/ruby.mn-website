@@ -1,7 +1,11 @@
 class Event < ActiveRecord::Base
   belongs_to :user
-  validates_presence_of :headline, :scheduled_time, :body, :user_id
 
-  named_scope :approved, :include => :user, :conditions => {:approved => true}, :limit => 5
-  named_scope :unapproved, :conditions => {:approved => false}
+  validates :headline,       :presence => true
+  validates :scheduled_time, :presence => true
+  validates :body,           :presence => true
+  validates :user_id,        :presence => true
+
+  scope :approved, includes(:user).where(:approved => true).limit(5)
+  scope :unapproved, where(:approved => false)
 end

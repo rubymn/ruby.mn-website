@@ -1,0 +1,413 @@
+a
+  text-decoration:  none
+  color:  #000
+  background-color:  #FFD8D2
+  &:visited
+    text-decoration:  none
+    color:  #000
+    background-color:  #FFD8D2
+  &:hover
+    text-decoration:  underline
+.clear
+  clear:  both
+
+h1 a, h1 a:visited,
+h2 a, h2 a:visited,
+h3 a, h3 a:visited,
+h4 a, h4 a:visited,
+.logo a, .logo a:visited
+  background-color: transparent
+
+body
+  background: #ddd image-url('main_bg_plain.png')
+  font-family: Helvetica, Arial, sans-serif
+
+li.beardo
+  text-decoration: none
+  display: block
+  margin: 10px
+
+#header
+  width: 100%
+  min-width: 960px
+  overflow: hidden
+  background: image-url('header_repeated_bg.png') repeat-x top center
+  height: 334px
+  position: relative
+  margin: 0 auto
+
+  .logo
+    height: 258px
+    width: 800px
+    padding: 0
+    margin: 0 auto
+    position: relative
+
+    h1
+      text-indent: -9999px
+
+    img#main_header_logo
+      position: absolute
+      left: -128px
+      top: 13px
+
+
+.wrapper
+  width: auto
+  min-width: 960px
+  margin: 0 auto
+
+#nav_wrapper
+  height: 100px
+  margin: 0 auto
+  background: image-url('header_repeated_bg.png') repeat-x 0 -280px
+
+#navigation
+  width:  800px
+  margin:  13px auto
+  height:  61px
+
+  ul
+    margin-bottom:  0
+
+  a
+    background:  image-url('main_nav_sprite.png') no-repeat -134px 0
+    font-family:  Arial, sans-serif
+    height:  61px
+    width:  136px
+    float:  left
+    margin:  0 -6px 0 0
+    color:  #fff
+    text-decoration:  none
+
+    &:hover
+      background:  image-url('main_nav_sprite.png') no-repeat -269px 0
+
+      strong
+        color:  #E4E4E4
+        text-shadow:  #410000 1px 1px 0
+      p
+        color:  #FFF
+  a.selected
+    background:  image-url('main_nav_sprite.png') no-repeat -0px 0
+
+  a strong, a p
+    -webkit-transition:  all 0.2s ease-in-out
+    -moz-transition:  all 0.2s ease-in-out
+    -o-transition:  all 0.2s ease-in-out
+    -ms-transition:  all 0.2s ease-in-out
+
+  a strong
+    font-weight:  normal
+    font-size:  17px
+    position:  relative
+    top:  15px
+    left:  10px
+    text-transform:  uppercase
+    text-shadow:  #660000 -1px -1px 0
+
+  a p
+    font-size:  9px
+    color:  #ddd
+    position:  relative
+    top:  15px
+    left:  10px
+
+  li
+    float:  left
+
+.inner
+  width: 800px
+  margin: 0 auto
+
+#body #left-column,
+#body #right-column,
+#bottom
+  -webkit-box-shadow:  1px 1px 3px #000
+  -moz-box-shadow:  1px 1px 3px #000
+  box-shadow:  1px 1px 3px #000
+
+#body
+  #left-column
+    background-color: #ededed
+    border: 1px solid #ccc
+    color: #333
+    width: 475px
+    float: left
+    margin: 20px 0
+    +border-radius(3px)
+
+  #left-column .introduction
+    color: #444
+    font-size: 15px
+    line-height: 16px
+    padding: 20px
+
+    h2
+      font-family: Helvetica, Arial, sans-serif
+
+    p
+      font-family: Georgia, serif
+      line-height:  1.4em
+
+    a
+      text-decoration:  underline
+
+  h2
+    font-size: 20px
+    color: #222
+    text-shadow:  #fff 1px 1px 0
+    text-transform: uppercase
+
+  #right-column
+    float: right
+    width: 225px
+    background: #ededed
+    margin: 20px 0
+    padding: 20px
+    border: 1px solid #ccc
+    +border-radius(3px)
+
+    h2
+      padding: 10px 0 
+    #links
+      margin-bottom:  1em 
+  #bottom
+    width: 95%
+    padding: 20px
+    margin: 30px 0
+    background: #ededed
+    -moz-border-radius: 3px
+    -webkit-border-radius: 3px
+
+    #container
+      width: 100%
+      height: 360px
+
+      #map
+        float: right
+        width: 420px
+        border: 1px solid #ccc
+        -moz-border-radius: 3px
+        -webkit-border-radius: 3px
+
+
+      #meeting-place
+        float: left
+        width: 285px
+        background: #fff
+        border: 1px solid #ccc
+        -moz-border-radius: 3px
+        -webkit-border-radius: 3px
+        padding: 20px
+
+        .address
+          width: 442px
+
+        #view_map
+          font-family: Arial
+          font-size: 12px
+          font-style: italic
+          color: #555
+          float: right
+
+h2.refactr
+  background: image-url('refactr.gif') no-repeat top left
+  text-indent: -9999px
+  height: 56px
+
+
+#body #bottom
+  h3
+    text-transform: uppercase
+    text-shadow: #fff -1px -1px 0
+
+  p
+    margin:  1em 0
+
+#footer
+  height: 47px
+  background: image-url('footer_repeated_bg.png') repeat-x top left
+  width: 100%
+  min-width: 960px
+
+  a, a:visited
+    background-color: transparent
+  .inner
+    font-family: "helvetica neue"
+    color: #aaa
+    padding-top: 14px
+    font-size: 13px
+    a
+      color: #ccc
+      text-decoration: none
+      font-weight: bold
+      &:hover
+        text-decoration: underline
+
+    #copyright
+      float: left
+
+    #credits
+      font-size: 11px
+      float: right
+
+.amp
+  font-style: "fantasy"
+  font-size: 15px
+  font-style: italic
+
+.opening
+  padding: 20px 0
+
+  .body
+    padding-left: 5px
+    font-style: italic
+    color: #333
+
+
+.cancel
+  font-size: 12px
+  color: #666
+
+.signup
+  font-family: georgia
+  color: #555
+  padding-left: 10px
+  font-size: 14px
+  border-left: 3px solid #aaa
+
+
+#links
+  li
+    background: #ddd
+    padding: 5px 5px 5px 10px
+    margin: 3px 0
+    &:hover
+      background: #ccc
+
+  a
+    font-weight: bold
+    text-transform: uppercase
+    text-shadow: 1px 1px 0 #fff
+    font-size: 14px
+    text-decoration: none
+    background-color: transparent
+    &:hover
+      text-decoration: none
+
+.events h2
+  padding: 0 20px
+
+.events, .projects, .members, .hires, .sponsors, .past-sponsors, .openings
+  ul li
+    background-color:  #ededed
+    background-image:  -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#dddddd))
+    background-image:  -webkit-linear-gradient(top, #ededed, #dddddd)
+    background-image:  -moz-linear-gradient(top, #ededed, #dddddd)
+    background-image:  -ms-linear-gradient(top, #ededed, #dddddd)
+    background-image:  -o-linear-gradient(top, #ededed, #dddddd)
+    background-image:  linear-gradient(top, #ededed, #dddddd)
+
+.event
+  padding: 20px
+
+  h3
+    font-size: 20px
+    text-decoration: 1px 1px 0 #fff
+    color: #444
+
+  .time
+    width: 300px
+    color: #777
+    font-style: italic
+
+  .content
+    a
+      text-decoration: underline
+    ul
+      padding-left: 15px
+      li
+        background: none
+        list-style-type: disc
+
+
+.project, .for_hire, .new_login, .sponsor, .opening, ul#users
+  padding: 20px
+
+.new_login 
+  input[type='text'], input[type='password']
+    width:  66%
+
+.for_hire, .project
+  a
+    text-decoration: underline
+
+
+.sponsor 
+  .logo
+    padding: 7px
+  .logo.zencoder
+    background-color: #000
+    padding-bottom: 10px
+.info-hidden
+  display: none
+.past-sponsors
+  li
+    float: left
+    width: 157px
+    height:  77px
+  .logo img
+    width: 143px
+  .sponsor
+    padding: 0
+h2.past-sponsors
+  padding-top: 20px
+  padding-left: 20px
+
+.clear_logo
+  width: 120px !important
+
+ul#users
+  margin: 1em 0
+  li
+    margin: 0.5em 0
+    #user_name
+      font-size: 120%
+    .email
+      margin-left: 20px
+
+#members_title
+  line-height:  1.4em
+
+#members_title #users_size, #navbar #users_size
+  float:  right
+  padding:  0.2em 0.6em
+  color:  #fff
+  background-color:  #3d3f3f
+  -webkit-border-radius:  10px
+  -moz-border-radius:  10px
+  text-shadow:  #000 -1px -1px 1px
+
+#members_title #users_size
+  border-radius:  10px
+  line-height:  1.1em
+
+#navbar #users_size
+  border-radius:  6px
+  line-height:  1.2em
+  margin-top:  1px
+  padding:  0.2em 0.7em
+  font-size:  80%
+
+#email_list #email
+  width:  98%
+
+#rubymn_logo_twitter
+  display:  block
+  float: left
+  width: 40px
+  height: 40px
+  margin: 0 6px -12px 0
+  border: 1px solid #CCC
+  +border-radius(3px)

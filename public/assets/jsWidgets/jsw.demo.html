@@ -1,0 +1,79 @@
+<html>
+<head>
+<title> Testing the widget framework </title>
+<style>
+.widget { width:350px; float: left; border:1px solid black; padding:0; margin-right:10px }
+.header { font-size:14px; background: #4ac; color: #fff; margin: 0 0 5px 0; padding:10px }
+.digg_widget { background:white;font-family:arial,helvetica,sans-serif;font-size:11px;color:#444;line-height:14px; }
+.digg_header { margin-bottom:10px;padding:5px; border-bottom: 1px solid black; font-size:15px; font-weight:bold;}
+.digg_story  { clear:both; margin:5px;padding:5px 0;font-size:11px; }
+.digg_story img { float:left; margin: 0 5px 5px 5px; }
+.digg_story_title { text-decoration:none;font-size:12px;font-weight:bold;color:#a00; }
+</style>
+<script type="text/javascript" src="jsWidget.js"></script>
+</head>
+
+<body>
+
+<div class="widget">
+<h1 class="header"> NewsRack </h1>
+<div id="nr"></div>
+<script type="text/javascript" src="http://newsrack.in/stories/newstrust/Health+Care/2.json"></script>
+<script type="text/javascript" src="formats/oorvani-2.json"></script>
+<script type="text/javascript"> new _Widget(widget_format).installOver(document.getElementById("nr")); </script>
+</div>
+
+<div class="widget">
+<h1 class="header"> NewsTrust </h1>
+<div id="nt"></div>
+<script type="text/javascript" src="http://newstrust.net/stories/top_stories.json"></script>
+<script type="text/javascript" src="formats/nt.json"></script>
+<script type="text/javascript"> new _Widget(widget_defaults).installOver(document.getElementById("nt")); </script>
+</div>
+
+<div class="widget">
+<h1 class="header"> Digg </h1>
+<div id="digg"></div>
+<script type="text/javascript"> var digg_data; function storeDiggData(data) { digg_data = data; } </script>
+<script type="text/javascript" src="http://digg.com/tools/services?endPoint=/stories/popular&type=javascript&callback=storeDiggData&count=10"></script>
+<script type="text/javascript" src="formats/digg.json"></script>
+<script type="text/javascript"> new _Widget(widget_defaults).installOver(document.getElementById("digg")); </script>
+</div>
+
+<div style="clear:both">&nbsp;</div>
+
+<div class="widget">
+<h1 class="header"> Twitter </h1>
+<div id="twitter"></div>
+<script type="text/javascript"> var twit_data; function storeTwitterData(data) { twit_data = data; } </script>
+<script type="text/javascript" src="http://twitter.com/statuses/user_timeline/rubymn.json?callback=storeTwitterData"></script>
+<script type="text/javascript" src="formats/twitter.json"></script>
+<script type="text/javascript"> new _Widget(widget_format).installOver(document.getElementById("twitter")); </script>
+</div>
+
+<div class="widget">
+<h1 class="header"> Delicious </h1>
+<div id="delicious"></div>
+<script type="text/javascript" src="http://del.icio.us/feeds/json/subbu_ss?count=10"></script>
+<script type="text/javascript" src="formats/delicious.json"></script>
+<script type="text/javascript"> new _Widget(widget_defaults).installOver(document.getElementById("delicious")); </script>
+</div>
+
+<div class="widget">
+<h1 class="header"> NT+NR+Digg headlines mashup </h1>
+<div id="mashup"></div>
+<script type="text/javascript" src="formats/mashup.json"></script>
+<script type="text/javascript"> new _Widget(widget_format).installOver(document.getElementById("mashup")); </script>
+</div>
+
+<div class="widget">
+<h1 class="header"> Flickr </h1>
+<div id="flickr"></div>
+<script type="text/javascript"> var flickr_data; function jsonFlickrFeed(data) { flickr_data = data; } </script>
+<script type="text/javascript" src="http://api.flickr.com/services/feeds/photos_public.gne?format=json"></script>
+<script type="text/javascript" src="formats/flickr.json"></script>
+<script type="text/javascript"> new _Widget(widget_format).installOver(document.getElementById("flickr")); </script>
+</div>
+
+</body>
+</html>

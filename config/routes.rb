@@ -1,32 +1,44 @@
-ActionController::Routing::Routes.draw do |map|
-  # Add your own custom routes here.
-  # The priority is based upon order of creation: first created -> highest priority.
+RubyMnWebsite::Application.routes.draw do
+  resources :users do
+    member do
+      get :login
+    end
 
-  # Here's a sample route:
-  # map.connect 'products/:id', :controller => 'catalog', :action => 'view'
-  # Keep in mind you can assign values other than :controller and :action
+    new do
+      get  :validate
+      get  :forgot_password
+      post :reset
+      get  :change_password
+      post :set_password
+    end
+  end
 
-  # You can have the root of your site routed by hooking up ''
-  # -- just remember to delete public/index.html.
-  map.resources :openings
-  map.resources :users, :member => { :login => :get },
-                        :new    => { :validate        => :get,
-                                     :forgot_password => :get,
-                                     :reset           => :post,
-                                     :change_password => :get,
-                                     :set_password    => :post }
-  map.resource :for_hire
-  map.resources :events, :member     => { :admdestroy => :delete, :approve => :put },
-                         :collection => { :user_index => :get }
-  map.resources :projects
-  map.resource :session
-  map.admin '/admin/:action/:id', :controller => 'admin'
-  map.admindex '/admin', :controller => 'admin', :action => 'index'
+  resource :for_hire
+  match '/for_hires' => 'for_hires#index', :as => :for_hires
 
-  map.for_hires '/for_hires', :controller => 'for_hires', :action => 'index'
+  resources :events do
+    member do
+      delete :admdestroy
+      put    :approve
+    end
 
-  map.sponsors '/sponsors', :controller => 'static', :action => 'sponsors'
-  map.special_offers '/special-offers', :controller => 'static', :action => 'special_offers'
+    collection do
+      get :user_index
+    end
+  end
 
-  map.root :controller => "welcome", :action => 'index'
+  resources :openings
+  resources :projects
+  resource :session
+
+  # map.admin '/admin/:action/:id', :controller => 'admin'
+  #match '/admin/:action/:id' => 'admin', :as => :admin
+
+  match 'admin/approve' => 'admin#approve', :as => :admin_approve
+  match '/admin'        => 'admin#index',   :as => :admindex
+
+  match '/sponsors'       => 'static#sponsors',       :as => :sponsors
+  match '/special-offers' => 'static#special_offers', :as => :special_offers
+
+  root :to => 'welcome#index'
 end

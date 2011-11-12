@@ -1,5 +1,5 @@
-RCC_PRIV='foo'
-RCC_PUB='bar'
+RCC_PRIV ='foo'
+RCC_PUB  ='bar'
 
 module CustomHelper
   def login(attr={})

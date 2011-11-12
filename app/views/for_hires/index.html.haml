@@ -6,10 +6,10 @@
   - if current_user
     %br
     - unless current_user.for_hire
-      %p If you are a Ruby developer, #{link_to 'add your listing', :action => 'new'}.
+      %p If you are a Ruby developer, #{ link_to 'add your listing', new_for_hire_path }.
     - else
       %p You already have a "For Hire" entry.  You may edit it #{link_to 'here', :action => 'edit'}.
 
 .hires
   %ul
-    = render :partial => 'for_hire', :collection => @for_hires
+    = render @for_hires

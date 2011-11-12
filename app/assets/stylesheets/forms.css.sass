@@ -1,0 +1,66 @@
+form
+  padding: 10px 0
+  label
+    color: #333
+  div
+    padding: 5px 0
+
+fieldset
+  label
+    position: absolute
+    text-align: right
+    width: 130px
+    margin-top: 10px
+  input, textarea
+    padding: 2px
+    border: 1px solid #AAA
+    +border-radius(3px)
+    &:focus
+      border-color: #333
+  input, textarea, .select_container
+    margin-left: 138px
+    margin-top: 10px
+  .select_container
+    margin-top: 3px
+  label.check, label.radio
+    position: relative
+    text-align: left
+  input[type="submit"]
+    background-color: #E3E3E3
+    color: #222
+    cursor: pointer
+    &:focus
+      border-color: #333
+    &:active
+      background-color: #CCC
+      border-color: #000
+
+form#subscribe fieldset
+  label
+    text-align: left
+    width: auto
+  input[type="text"]
+    margin: 10px 0 0 0
+  input[type="submit"]
+    margin: 0
+
+form#new_user
+  #recaptcha
+    margin-left: 138px
+
+#new_user
+  input[type='text'], input[type='password']
+    width:  66.5%
+
+.edit_user
+  input[type='text'], input[type='password']
+    width:  64.5%
+
+#new_event fieldset
+  width:  80%
+
+#new_for_hire_blurb, #opening_body, #event_body, #project_description
+  width: 314px
+
+#new_event_link 
+  margin-left: 20px

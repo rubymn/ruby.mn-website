@@ -1,5 +1,6 @@
 - if user
   %li[user]
-    %span.firstname= user.firstname
-    %span.lastname= user.lastname
-    %span.email= mail_hide user.email
+    #user_name
+      %span.firstname= user.firstname
+      %span.lastname= user.lastname
+    %span.email= user.email
