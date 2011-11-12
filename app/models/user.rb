@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   after_validation :encrypt_password
 
-  validates :password,  :confirmation => { :message => "Confirmation password should match" }, :on => :create
+  validates :password,  :confirmation => { :message => "doesn't match confirmation" }, :on => :create
   validates :password,  :presence     => true, :on => :create
   validates :login,     :uniqueness   => true
   validates :email,     :uniqueness   => true
