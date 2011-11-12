@@ -4,7 +4,7 @@ class EventsController < ApplicationController
 
   def index
     if current_user.admin?
-      @events = Event.all :order => 'scheduled_time DESC'
+      @events = Event.order('scheduled_time DESC')
     else
       @user   = current_user
       @events = @user.events
@@ -14,9 +14,9 @@ class EventsController < ApplicationController
   def user_index
     if logged_in? 
       if current_user.admin? && params[:user_id]
-        @events = User.find(params[:user_id]).events.find(:all, :order => "scheduled_time desc")
+        @events = User.find(params[:user_id]).events.order("scheduled_time desc")
       else
-        @events = current_user.events.find(:all, :order => "scheduled_time desc")
+        @events = current_user.events.order("scheduled_time desc")
       end
       render :template => 'events/index'
     else
@@ -38,7 +38,7 @@ class EventsController < ApplicationController
       redirect_to user_index_events_path
       Notifier.notify_event(@event).deliver
     else
-      render :template => 'events/new'
+      render :action => :new
     end
   end
 
@@ -52,7 +52,7 @@ class EventsController < ApplicationController
         redirect_to :action => :user_index
       end
     else
-      render :template => 'events/edit'
+      render :action => :edit
     end
   end
 
@@ -63,7 +63,7 @@ class EventsController < ApplicationController
   def destroy
     if current_user && current_user.admin?
       Event.destroy(params[:id])
-      flash[:notice] = 'Record Deleted'
+      flash[:notice] = 'Event Deleted'
       redirect_to admindex_path
     else
       current_user.events.find(params[:id]).destroy

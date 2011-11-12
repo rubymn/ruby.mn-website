@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   before_filter :find_project,   :only => [:edit, :update, :destroy]
 
   def index
-    @projects = Project.all :order => :title
+    @projects = Project.includes(:user).order(:title)
   end
 
   def new
