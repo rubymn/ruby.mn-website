@@ -1,4 +1,5 @@
 = form_for @for_hire, :url => for_hire_path do |f| 
+  = f.error_messages
   %fieldset
     = f.label :title
     = f.text_field :title

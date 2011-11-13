@@ -34,9 +34,8 @@ class ApplicationController < ActionController::Base
     end
 
     def bounce
-      flash[:error] = "Access Denied"
       session[:uid] = nil
-      redirect_to new_session_path
+      redirect_to new_session_path, :alert => "Access Denied"
       @current_user = nil
     end
 end

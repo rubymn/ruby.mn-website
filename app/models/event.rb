@@ -8,4 +8,5 @@ class Event < ActiveRecord::Base
 
   scope :approved, includes(:user).where(:approved => true).limit(5)
   scope :unapproved, where(:approved => false)
+  scope :order_scheduled_time_desc, order('scheduled_time desc')
 end

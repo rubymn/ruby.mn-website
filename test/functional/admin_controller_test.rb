@@ -21,7 +21,7 @@ class AdminControllerTest < ActionController::TestCase
     get :index
     assert_response :redirect
     assert_redirected_to new_session_path
-    assert_equal flash[:error], 'Access Denied'
+    assert_equal flash[:alert], 'Access Denied'
     assert_nil session[:uid]
   end
 

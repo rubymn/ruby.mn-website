@@ -4,7 +4,7 @@ class EventsController < ApplicationController
 
   def index
     if current_user.admin?
-      @events = Event.order('scheduled_time DESC')
+      @events = Event.order_scheduled_time_desc
     else
       @user   = current_user
       @events = @user.events
@@ -14,10 +14,12 @@ class EventsController < ApplicationController
   def user_index
     if logged_in? 
       if current_user.admin? && params[:user_id]
-        @events = User.find(params[:user_id]).events.order("scheduled_time desc")
+        @user = User.find(params[:user_id])
       else
-        @events = current_user.events.order("scheduled_time desc")
+        @user = current_user
       end
+
+      @events = @user.events.order_scheduled_time_desc
       render :template => 'events/index'
     else
       bounce
@@ -26,14 +28,16 @@ class EventsController < ApplicationController
 
   def approve
     if current_user and current_user.admin?
-      Event.find(params[:id]).approved=true
+      @event = Event.find(params[:id])
     else
-      current_user.events.find(params[:id]).approved=true
+      current_user.events.find(params[:id])
     end
+
+    @event.approved = true
   end
 
   def create
-    @event = current_user.events.create(params[:event])
+    @event = current_user.events.build(params[:event])
     if @event.save
       redirect_to user_index_events_path
       Notifier.notify_event(@event).deliver
@@ -44,10 +48,9 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
-    @event.update_attributes(params[:event])
-    if @event.save
+    if @event.update_attributes(params[:event])
       if current_user && current_user.admin?
-        redirect_to event_path(@event)
+        redirect_to event_path(@event), :notice => 'Event updated.'
       else
         redirect_to :action => :user_index
       end
@@ -63,12 +66,10 @@ class EventsController < ApplicationController
   def destroy
     if current_user && current_user.admin?
       Event.destroy(params[:id])
-      flash[:notice] = 'Event Deleted'
-      redirect_to admindex_path
+      redirect_to admin_index_path, :notice => 'Event Deleted'
     else
       current_user.events.find(params[:id]).destroy
-      flash[:notice] = 'Event was deleted'
-      redirect_to :action => :user_index
+      redirect_to user_index_events_path, :notice => 'Event was deleted'
     end
     
   end

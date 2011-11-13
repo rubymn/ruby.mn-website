@@ -1,6 +1,8 @@
 require 'digest/sha1'
 
 class User < ActiveRecord::Base
+  HUMANIZED_COLUMNS = { :firstname => 'First Name', :lastname => 'Last Name' }
+  
   has_many :events
   has_many :openings, :dependent => :destroy
   has_many :projects
@@ -20,6 +22,11 @@ class User < ActiveRecord::Base
   attr_protected :verified, :form, :security_token, :salted_password, :delete_after, :deleted
 
   scope :verified, where('verified != 0')
+
+  # rename a couple of the attribute names in the form labels
+  def self.human_attribute_name(name, options = {})
+    HUMANIZED_COLUMNS[name] || super
+  end
 
   def crypt_new_password
     encrypt_password

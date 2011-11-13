@@ -35,7 +35,7 @@ RubyMnWebsite::Application.routes.draw do
   #match '/admin/:action/:id' => 'admin', :as => :admin
 
   match 'admin/approve' => 'admin#approve', :as => :admin_approve
-  match '/admin'        => 'admin#index',   :as => :admindex
+  match '/admin'        => 'admin#index',   :as => :admin_index
 
   match '/sponsors'       => 'static#sponsors',       :as => :sponsors
   match '/special-offers' => 'static#special_offers', :as => :special_offers

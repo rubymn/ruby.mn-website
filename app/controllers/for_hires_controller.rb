@@ -21,7 +21,7 @@ class ForHiresController < ApplicationController
       flash[:notice] = "Created for hire entry."
       redirect_to for_hires_path
     else
-      flash.now[:error] = "Error creating for hire profile."
+      flash.now[:alert] = "Error creating for hire profile."
       render :action => :new
     end
   end
@@ -44,7 +44,7 @@ class ForHiresController < ApplicationController
     if @for_hire && @for_hire.destroy
       flash[:notice] = "Deleted your for hire entry."
     else
-      flash[:error] = "Error deleting your for hire profile."
+      flash[:alert] = "Error deleting your for hire profile."
     end
 
     redirect_to for_hires_path

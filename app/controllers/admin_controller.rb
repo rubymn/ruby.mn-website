@@ -10,8 +10,7 @@ class AdminController < ApplicationController
       e = Event.find(params[:id])
       e.approved = true
       e.save!
-      flash[:notice] = 'Event Approved'
-      redirect_to admindex_path
+      redirect_to admin_index_path, :notice => 'Event Approved'
     else
       bounce
     end
