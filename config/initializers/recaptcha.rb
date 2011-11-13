@@ -16,3 +16,11 @@ Recaptcha.configure do |config|
   config.public_key  = RCC_PUB
   config.private_key = RCC_PRIV
 end
+
+if Rails.env.development?
+  module Recaptcha::Verify
+    def verify_recaptcha(options)
+      true
+    end
+  end
+end
