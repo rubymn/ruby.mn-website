@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :opening do |t|
-    headline "some opening"
-    body "some body"
+    headline { Faker::Lorem.sentence }
+    body { Faker::Lorem.paragraph }
     user
   end
 end

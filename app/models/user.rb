@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   attr_protected :verified, :form, :security_token, :salted_password, :delete_after, :deleted
 
   scope :verified, where('verified != 0')
+  scope :non_admin, where(:role => nil)
 
   # rename a couple of the attribute names in the form labels
   def self.human_attribute_name(name, options = {})

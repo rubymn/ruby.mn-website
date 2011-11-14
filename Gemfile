@@ -45,4 +45,6 @@ end
 group :test, :development do
   gem 'factory_girl',       '~> 2.2.0'
   gem 'factory_girl_rails', '~> 1.3.0'
+  gem 'faker',              '~> 1.0.1'
+  gem 'progress_bar',       '~> 0.4.0'
 end

@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :for_hire do |t|
-    blurb "some blurb"
-    email "some@example.com"
-    title "some title"
+    blurb { Faker::Lorem.paragraph }
+    email { Faker::Internet.email }
+    title { Faker::Lorem.sentence }
     user
   end
 end
