@@ -22,10 +22,11 @@ class ApplicationController < ActionController::Base
     end
 
     def current_user
-      unless @cu
-        @cu = User.find(session[:uid]) if session[:uid]
+      begin
+        @cu ||= User.find(session[:uid]) if session[:uid]
+      rescue Exception => e
+        session[:uid] = nil unless @cu
       end
-      @cu
     end
     helper_method :current_user
 
