@@ -46,7 +46,8 @@ module RubyMnWebsite
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
-    config.assets.precompile += ['ie.css']
+    #config.assets.precompile += ['ie.css']
+    config.assets.precompile += [ /\w+\.(?!js|css).+/, "application.js", "application.css" ]
 
     config.sass.preferred_syntax = :sass
     config.generators do |g|
