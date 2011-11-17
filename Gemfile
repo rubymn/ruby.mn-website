@@ -50,6 +50,6 @@ group :test, :development do
 end
 
 group :production do
-  gem 'rack-cache', '~> 1.1'
-
+  gem 'rack-cache',   '~> 1.1'
+  gem 'rack-contrib', '~> 1.1.0'
 end
