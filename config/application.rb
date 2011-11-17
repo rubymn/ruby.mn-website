@@ -65,7 +65,7 @@ module RubyMnWebsite
           /robots.txt
           /favicon.ico
         ),
-        root: "public_cached"
+        root: "public"
     end
   end
 end
