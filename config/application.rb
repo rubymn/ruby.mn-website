@@ -55,5 +55,17 @@ module RubyMnWebsite
       g.template_engine :haml
       g.stylesheet_engine :sass
     end
+
+    if Rails.env.production?
+      config.middleware.use Rack::StaticCache,
+        urls: %w(
+          /stylesheets
+          /images
+          /javascripts
+          /robots.txt
+          /favicon.ico
+        ),
+        root: "public_cached"
+    end
   end
 end
