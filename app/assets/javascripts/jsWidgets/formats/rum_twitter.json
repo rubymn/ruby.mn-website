@@ -10,7 +10,8 @@ var widget_format = {
   header : {
     data      : 'twit_data',
     style     : 'margin:0;padding:0;',
-    dom_nodes : [ { what : "Recent Tweets From <a href='http://twitter.com/{$[0].user.screen_name}'><div id=\"rubymn_logo_twitter\"><img src=\"/assets/rumlogo.png\" width=\"40www.google.com\" height=\"40\" alt=\"\" /></div> @{$[0].user.screen_name}</a>", how: [{ elt: 'h4', style: 'margin-bottom:0;color:#6E1211;'}] } ]
+    dom_nodes : [ { what : "Recent Tweets From <a href='http://twitter.com/{$[0].user.screen_name}'><div id=\"rubymn_logo_twitter\"><img src=\"/assets/rumlogo.png\" width=\"40www.google.com\" height=\"40\" alt=\"\" /></div> @{$[0].user.screen_name}</a>", 
+                    how: [{ elt: 'h4', style: 'margin-bottom:0;color:#6E1211;'}] } ]
   },
   updates : {
     data      : 'twit_data',
