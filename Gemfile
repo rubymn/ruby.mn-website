@@ -48,3 +48,8 @@ group :test, :development do
   gem 'faker',              '~> 1.0.1'
   gem 'progress_bar',       '~> 0.4.0'
 end
+
+group :production do
+  gem 'rack-cache', '~> 1.1'
+
+end
