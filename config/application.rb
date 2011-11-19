@@ -46,26 +46,12 @@ module RubyMnWebsite
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
-    config.assets.precompile += [ /\w+\.(?!js|css).+/, "application.js", "application.css", "ie.css" ]
-
     config.sass.preferred_syntax = :sass
     config.generators do |g|
       #g.test_framework :rspec, :views => false, :fixture => true
       g.fixture_replacement :factory_girl, :dir => 'test/factories'
       g.template_engine :haml
       g.stylesheet_engine :sass
-    end
-
-    if Rails.env.production?
-      config.middleware.use Rack::StaticCache,
-        urls: %w(
-          /stylesheets
-          /images
-          /javascripts
-          /robots.txt
-          /favicon.ico
-        ),
-        root: "public"
     end
   end
 end
