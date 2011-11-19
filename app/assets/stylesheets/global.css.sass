@@ -79,39 +79,33 @@ li.beardo
     margin:  0 -6px 0 0
     color:  #fff
     text-decoration:  none
-
     &:hover
       background:  image-url('main_nav_sprite.png') no-repeat -269px 0
 
       strong
         color:  #E4E4E4
-        text-shadow:  #410000 1px 1px 0
+        +text-shadow(#410000 1px 1px 0)
       p
         color:  #FFF
+    strong
+      font-weight:  normal
+      font-size:  17px
+      position:  relative
+      top:  15px
+      left:  10px
+      text-transform:  uppercase
+      +text-shadow(#660000 -1px -1px 0)
+    p
+      font-size:  9px
+      color:  #ddd
+      position:  relative
+      top:  15px
+      left:  10px
   a.selected
     background:  image-url('main_nav_sprite.png') no-repeat -0px 0
 
   a strong, a p
-    -webkit-transition:  all 0.2s ease-in-out
-    -moz-transition:  all 0.2s ease-in-out
-    -o-transition:  all 0.2s ease-in-out
-    -ms-transition:  all 0.2s ease-in-out
-
-  a strong
-    font-weight:  normal
-    font-size:  17px
-    position:  relative
-    top:  15px
-    left:  10px
-    text-transform:  uppercase
-    text-shadow:  #660000 -1px -1px 0
-
-  a p
-    font-size:  9px
-    color:  #ddd
-    position:  relative
-    top:  15px
-    left:  10px
+    +transition(all 0.2s ease-in-out)
 
   li
     float:  left
@@ -123,9 +117,7 @@ li.beardo
 #body #left-column,
 #body #right-column,
 #bottom
-  -webkit-box-shadow:  1px 1px 3px #000
-  -moz-box-shadow:  1px 1px 3px #000
-  box-shadow:  1px 1px 3px #000
+  +box-shadow(2px 2px 3px #000)
 
 #body
   #left-column
@@ -156,7 +148,7 @@ li.beardo
   h2
     font-size: 20px
     color: #222
-    text-shadow:  #fff 1px 1px 0
+    +text-shadow(#fff 1px 1px 0)
     text-transform: uppercase
 
   #right-column
@@ -177,8 +169,7 @@ li.beardo
     padding: 20px
     margin: 30px 0
     background: #ededed
-    -moz-border-radius: 3px
-    -webkit-border-radius: 3px
+    +border-radius(3px)
 
     #container
       width: 100%
@@ -188,8 +179,7 @@ li.beardo
         float: right
         width: 420px
         border: 1px solid #ccc
-        -moz-border-radius: 3px
-        -webkit-border-radius: 3px
+        +border-radius(3px)
 
 
       #meeting-place
@@ -197,8 +187,7 @@ li.beardo
         width: 285px
         background: #fff
         border: 1px solid #ccc
-        -moz-border-radius: 3px
-        -webkit-border-radius: 3px
+        +border-radius(3px)
         padding: 20px
 
         .address
@@ -220,7 +209,7 @@ h2.refactr
 #body #bottom
   h3
     text-transform: uppercase
-    text-shadow: #fff -1px -1px 0
+    +text-shadow(#fff -1px -1px 0)
 
   p
     margin:  1em 0
@@ -283,13 +272,15 @@ h2.refactr
     background: #ddd
     padding: 5px 5px 5px 10px
     margin: 3px 0
+    +transition(all 0.2s ease-in-out)
     &:hover
       background: #ccc
 
   a
+    display: block
     font-weight: bold
     text-transform: uppercase
-    text-shadow: 1px 1px 0 #fff
+    +text-shadow(1px 1px 0 #fff)
     font-size: 14px
     text-decoration: none
     background-color: transparent
@@ -334,10 +325,6 @@ h2.refactr
 
 .project, .for_hire, .new_login, .sponsor, .opening, ul#users
   padding: 20px
-
-.new_login 
-  input[type='text'], input[type='password']
-    width:  66%
 
 .for_hire, .project
   a
@@ -385,16 +372,15 @@ h1#members_title
   padding:  0.2em 0.6em
   color:  #fff
   background-color:  #3d3f3f
-  -webkit-border-radius:  10px
-  -moz-border-radius:  10px
-  text-shadow:  #000 -1px -1px 1px
+  +border-radius(10px)
+  +text-shadow(#000 -1px -1px 1px)
 
 #members_title #users_size
-  border-radius:  10px
+  +border-radius(10px)
   line-height:  1.1em
 
 #navbar #users_size
-  border-radius:  6px
+  +border-radius(6px)
   line-height:  1.2em
   margin-top:  1px
   padding:  0.2em 0.7em
