@@ -26,9 +26,6 @@ RubyMnWebsite::Application.configure do
   config.assets.js_compressor  = :uglifier
   config.assets.css_compressor = :scss
 
-  $cache = Memcache.new
-  config.middleware.use Rack::Cache, :metastore => $cache, :entitystore => 'file:tmp/cache/entity'
-
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
 
