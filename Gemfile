@@ -20,6 +20,7 @@ gem 'rdiscount',      '~> 1.6.8'
 gem "paperclip",      '~> 2.4.5'
 gem 'rails_autolink', '~> 1.0.4'
 gem 'dynamic_form',   '~> 1.1.4'
+gem 'gravatarify',    '~> 3.0.0'
 
 gem 'unicorn', '~> 4.0.0'
 
