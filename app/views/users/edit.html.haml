@@ -5,13 +5,16 @@
   = form_for @user do |f|
     = f.error_messages
     %fieldset
-      = f.label :email
-      = f.text_field :email
-      %br/
       = f.label :firstname, 'First Name'
       = f.text_field :firstname
       %br/
       = f.label :lastname, 'Last Name'
       = f.text_field :lastname
-
+      %br/
+      = f.label :email
+      = f.text_field :email
+      %br/
+      = f.label :gravatar_email, 'Gravatar Email'
+      = f.text_field :gravatar_email
+      %br/
       = f.submit 'Update Account'
