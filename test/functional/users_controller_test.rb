@@ -93,7 +93,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
     assert_template 'users/new'
     assert assigns(:user)
-    assert_equal ["Password doesn't match confirmation"] ,assigns(:user).errors.each_full{}
+    assert_equal ["doesn't match confirmation"], assigns(:user).errors[:password]
   end
 
   def test_empty_pass
@@ -102,7 +102,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
     assert_template 'new'
     assert assigns(:user)
-    assert_equal ["Password can't be blank"] ,assigns(:user).errors.each_full{}
+    assert_equal ["can't be blank"], assigns(:user).errors[:password]
   end
 
 

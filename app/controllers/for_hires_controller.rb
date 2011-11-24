@@ -3,7 +3,7 @@ class ForHiresController < ApplicationController
   before_filter :bounce_foreign_access, :only => [:edit, :update, :destroy]
 
   def index
-    @for_hires = ForHire.all :order => :title
+    @for_hires = ForHire.includes(:user).order(:title)
   end
 
   def new
@@ -11,7 +11,7 @@ class ForHiresController < ApplicationController
   end
 
   def show
-    redirect_to :action => :index
+    redirect_to for_hires_path
   end
 
   def create
@@ -21,7 +21,7 @@ class ForHiresController < ApplicationController
       flash[:notice] = "Created for hire entry."
       redirect_to for_hires_path
     else
-      flash.now[:error] = "Error creating for hire profile."
+      flash.now[:alert] = "Error creating for hire profile."
       render :action => :new
     end
   end
@@ -33,8 +33,7 @@ class ForHiresController < ApplicationController
   def update 
     @for_hire = current_user.for_hire
     if @for_hire && @for_hire.update_attributes(params[:for_hire])
-      flash[:notice] = "Updated for hire entry."
-      redirect_to for_hires_path
+      redirect_to for_hires_path, :notice => "Updated for hire entry."
     else
       render :action => :edit
     end
@@ -44,11 +43,11 @@ class ForHiresController < ApplicationController
     @for_hire = current_user.for_hire
     if @for_hire && @for_hire.destroy
       flash[:notice] = "Deleted your for hire entry."
-      redirect_to :action => :index
     else
-      flash[:error] = "Error deleting your for hire profile."
-      redirect_to for_hires_path
+      flash[:alert] = "Error deleting your for hire profile."
     end
+
+    redirect_to for_hires_path
   end
 
 

@@ -15,10 +15,9 @@ class UsersController  < ApplicationController
       current_user.password = params[:password]
       current_user.crypt_new_password
       current_user.reload
-      flash[:notice] = "Password successfully changed"
-      redirect_to root_path
+      redirect_to root_path, :notice => "Password successfully changed"
     else
-      flash[:error] = "Password Confirmation mismatch"
+      flash[:alert] = "Password Confirmation mismatch"
       render :template => 'users/change_password'
     end
   end
@@ -37,10 +36,10 @@ class UsersController  < ApplicationController
     u = User.first :conditions => ['email=? or login=?', params[:login], params[:login]]
     if u
       u.generate_security_token
-      SignupMailer.deliver_pass_inst(u)
-      flash.now[:success] = 'Sweet. We sent the mail!'
+      SignupMailer.pass_inst(u).deliver
+      flash.now[:notice] = 'Sweet. We sent the mail!'
     else
-      flash.now[:error] = "Couldn't find that guy, guy."
+      flash.now[:alert] = "Couldn't find that guy, guy."
       render :template => 'users/forgot_form'
     end
   end
@@ -51,19 +50,17 @@ class UsersController  < ApplicationController
       u.verified = 1
       u.save!
       session[:uid] = u.id
-      flash[:notice] = 'Your account has been confirmed. Thanks!'
-      redirect_to root_path
+      redirect_to root_path, :notice => 'Your account has been confirmed. Thanks!'
     else
       redirect_to new_session_path
     end
   end
 
   def index
-    @users = User.all :order => 'firstname', :conditions => 'verified != 0', :select => 'firstname, lastname, id, email'
+    @users = User.where('verified != 0').select('firstname, lastname, id, email, gravatar_email').order('LOWER(firstname), lastname')
   end
 
-  # Register as a new user. Upon successful registration, the user will be sent to
-  # "/user/login" to enter their details.
+  # Register as a new user. Upon successful registration, the user will be sent to "/user/login" to enter their details.
   def new
     @user = User.new
   end
@@ -71,11 +68,10 @@ class UsersController  < ApplicationController
   def create
     User.transaction do
       @user = User.new(params[:user])
-      if ( validate_recap(params, @user.errors) || Rails.env.production? ) && @user.save
+      if verify_recaptcha(:model => @user, :message => "Problem with captcha") && @user.save
         key = @user.generate_security_token
-        SignupMailer.deliver_confirm @user
-        flash[:notice] = 'Please check your registered email account to verify your account.'
-        redirect_to root_path
+        SignupMailer.confirm(@user).deliver
+        redirect_to root_path, :notice => 'Please check your registered email account to verify your account.'
       else
         render :action => :new
       end
@@ -89,13 +85,9 @@ class UsersController  < ApplicationController
   def update
     @user = current_user
     if params[:user].present? && @user.update_attributes(:firstname => params[:user][:firstname], :lastname => params[:user][:lastname], :email => params[:user][:email])
-      flash[:notice] = "User account updated successfully."
-      redirect_to edit_user_path(@user)
+      redirect_to edit_user_path(@user), :notice => "User account updated successfully."
     else
-      Rails.logger.debug @user.errors.inspect
       render :action => :edit
     end
-
-    
   end
 end

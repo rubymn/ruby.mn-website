@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   def index
-    @events = Event.approved.all(:order => "scheduled_time desc")
+    @events = Event.approved.order_scheduled_time_desc
 
     respond_to do |format|
       format.html

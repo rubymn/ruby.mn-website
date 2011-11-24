@@ -9,7 +9,7 @@ class ProjectsControllerTest < ActionController::TestCase
   def test_login_not_required
     get :index
     assert_response :success
-    assert_template 'index'
+    assert_template :index
   end
   
   def test_get_with_id
@@ -17,14 +17,14 @@ class ProjectsControllerTest < ActionController::TestCase
     assert_response :success
     assert assigns(:project)
     assert_equal @p1, assigns(:project)
-    assert_template 'edit'
+    assert_template :edit
   end
   
   def test_index
     get :index
     assert_response :success
     assert assigns(:projects)
-    assert_template 'index'
+    assert_template :index
   end
   
   def test_create_post
@@ -34,7 +34,7 @@ class ProjectsControllerTest < ActionController::TestCase
                                 :source_url => 'http://example.com',
                                 :description => "desc"}}
     assert_response :redirect
-    assert_redirected_to :action => 'index', :controller=> 'projects'
+    assert_redirected_to :action => :index, :controller => :projects
     p = Project.find_by_title 'title'
     assert_not_nil p
     assert_equal @p1.user, p.user
@@ -43,7 +43,7 @@ class ProjectsControllerTest < ActionController::TestCase
   def test_create_get_noid
     get :create
     assert_response :success
-    assert_template 'new'
+    assert_template :new
   end
   
   def test_create_post_with_id
@@ -53,21 +53,21 @@ class ProjectsControllerTest < ActionController::TestCase
                                 :description => "desc",
                                 :id => @p1.id}}
     assert_response :redirect
-    assert_redirected_to :action => 'index', :controller => 'projects'
+    assert_redirected_to :action => :index, :controller => :projects
     assert @p1.reload.description = 'desc'
   end
   
   def test_evil_edit
     get :edit, :id => @p2.id
     assert_response :redirect
-    assert_redirected_to :controller => 'welcome', :action => 'index'
+    assert_redirected_to :controller => :welcome, :action => :index
     assert_nil session[:uid]
   end
   
   def test_destroy
     get :destroy, :id => @p1.id
     assert_response :redirect
-    assert_redirected_to :action=>'index', :controller => 'projects'
+    assert_redirected_to :action => :index, :controller => :projects
     begin
       Project.find(1)
       fail "shouldn't be able to find deleted item"
@@ -79,7 +79,7 @@ class ProjectsControllerTest < ActionController::TestCase
     p = @p2
     get :destroy, :id => p.id
     assert_response :redirect
-    assert_redirected_to :controller=>'welcome', :action=>'index'
+    assert_redirected_to :controller => :welcome, :action => :index
     assert_nil session[:uid]
     assert Project.find(p.id)
   end
@@ -88,9 +88,6 @@ class ProjectsControllerTest < ActionController::TestCase
     post :create
     assert_response :success
     assert_template "new"
-    assert_select "#errorExplanation" do
-      assert_select "ul>li", 3
-    end
     assert_not_nil assigns(:project)
     assert !assigns(:project).valid?
   end
@@ -98,8 +95,7 @@ class ProjectsControllerTest < ActionController::TestCase
     assert_not_nil  @p1.user
     put :update, :id=>@p1.id, :project=>{:title=>''}
     assert_response :success
-    assert_template "edit"
-    assert_select "#errorExplanation"
+    assert_template :edit
     assert_not_nil assigns(:project)
     assert !assigns(:project).valid?
   end

@@ -6,19 +6,18 @@ class EventsControllerTest < ActionController::TestCase
       @user     = Factory(:user)
       @ev1      = Factory.create(:event, :user => @user)
       @ev2      = Factory.create(:event, :user => @user)
-      @ev_nappr = Factory.create(:event, :user => @user, :approved=> false)
+      @ev_nappr = Factory.create(:event, :user => @user, :approved => false)
       login_as @user
     end
-    
+
     context "on GET to :index" do
       setup { get :index }
-      
+
       should respond_with :success
       should assign_to :events
       should assign_to :user
     end
   end
-
 
   def setup
     @ev1      = Factory.create(:event)
@@ -32,7 +31,7 @@ class EventsControllerTest < ActionController::TestCase
 
   def test_create
     time = Time.now.strftime("%R %F")
-    post :create, {:event=>{:headline=>"foo", :body=>"bar", :scheduled_time=>time}}
+    post :create, {:event=>{:headline => "foo", :body => "bar", :scheduled_time => time}}
     assert assigns(:event)
     assert_equal @owner, assigns(:event).user
     saved = assigns(:event)
@@ -44,11 +43,11 @@ class EventsControllerTest < ActionController::TestCase
     assert_not_nil saved.created_at
   end
 
-  def test_badcreate
+  def test_bad_create
     time = Time.now.strftime("%R %F")
-    post :create, { :user_id => 'bob', :event => {} }
+    post :create, :user_id => 'bob', :event => {}
     assert assigns(:event)
-    assert_equal "can't be blank", assigns(:event).errors[:headline]
+    assert_equal ["can't be blank"], assigns(:event).errors[:headline]
   end
 
   def test_index_admin
@@ -89,7 +88,7 @@ class EventsControllerTest < ActionController::TestCase
   def test_destroy_as_admin
     login_as(@admin)
     delete :destroy, :id => @ev1.id
-    assert_redirected_to admindex_path
+    assert_redirected_to admin_index_path
     assert !Event.exists?(@ev1.id)
   end
 

@@ -1,10 +1,10 @@
 .introduction
-  %h2= "Sign Up"
+  %h2 Sign Up
   .signup
     Become a member of the Ruby Users of Minnesota Group. Membership provides several benefits on this website, and helps you connect with local Ruby developers.
 .form{ :title => "Create Account" }
-  - form_for :user, :url => users_path, :html => { :id => 'new_user' } do |f|
-    = error_messages_for :user
+  = form_for @user, :html => { :id => 'new_user' } do |f|
+    = f.error_messages
     %fieldset
       = f.label :firstname, 'First Name'
       = f.text_field :firstname, :class => 'title'
@@ -15,7 +15,6 @@
       = f.label :login, 'Username'
       = f.text_field :login, :class => 'text'
       %br/
-      %label Email
       = f.label :email
       = f.text_field :email, :class => 'text'
       %br/
@@ -25,8 +24,8 @@
       = f.label :password_confirmation, 'Confirm Password'
       = f.password_field :password_confirmation, :class => 'text'
       %br/
-      - if Rails.env.production?
-        %div= get_captcha
+      #recaptcha
+        = recaptcha_tags if Rails.env.production?
       .submit
         = submit_tag "Sign Up"
         = link_to "Cancel", new_session_path, :class => 'cancel'

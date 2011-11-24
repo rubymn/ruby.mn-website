@@ -2,7 +2,7 @@ class OpeningsController < ApplicationController
   before_filter :login_required
 
   def index
-    @openings = Opening.all :order => 'created_at DESC'
+    @openings = Opening.includes(:user).order('created_at DESC')
   end
 
   def new
@@ -12,19 +12,17 @@ class OpeningsController < ApplicationController
   def update
     @opening = Opening.find(params[:id])
     if @opening.update_attributes params[:opening]
-      flash.now[:notice] = "Event created, admin notified."
-      redirect_to openings_path
+      redirect_to openings_path, :notice => "Event created, admin notified."
     else
       render :action => :edit
     end
   end
 
   def create
-    @opening = Opening.new(params[:opening])
-    @opening.user=current_user
+    @opening      = Opening.new(params[:opening])
+    @opening.user = current_user
     if @opening.save
-      flash[:notice] = "Opening Created. Thanks."
-      redirect_to openings_path
+      redirect_to openings_path, :notice => "Opening Created. Thanks."
     else
       render :action => :new
     end
@@ -47,7 +45,7 @@ class OpeningsController < ApplicationController
     else
       current_user.openings.find(params[:id]).destroy
     end
-    flash[:notice] = "Deleted opening."
-    redirect_to openings_path
+
+    redirect_to openings_path, :notice => "Deleted opening."
   end
 end

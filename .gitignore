@@ -1,7 +1,10 @@
+.bundle
+db/*.sqlite3
+log/
+tmp/
+.sass-cache/
+.rvmrc
 .hg
 *~
-db/*.sqlite3
-log/*
-.rvmrc
 heroku_env.rb
 rdoc/*
