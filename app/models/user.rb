@@ -2,7 +2,7 @@ require 'digest/sha1'
 
 class User < ActiveRecord::Base
   HUMANIZED_COLUMNS = { :firstname => 'First Name', :lastname => 'Last Name' }
-  
+
   has_many :events
   has_many :openings, :dependent => :destroy
   has_many :projects

@@ -356,9 +356,28 @@ h2.past-sponsors
   width: 120px !important
 
 ul#users
+  margin: 0 -0.5em
   li
-    margin: 0.5em 0
-    #user_name
+    border-bottom: 1px dotted #CCC
+    padding: 1em 0.5em
+    +clearfix
+    +transition(all 0.2s ease-in-out)
+    &:hover
+      background-color: rgba(0, 0, 0, 0.1)
+      .gravatar
+        +transform(scale(1.075))
+        +box-shadow(2px 2px 1px rgba(0, 0, 0, 0.5))
+    &:last-child
+      border-bottom: 0
+    .gravatar
+      float: left
+      width: 80px
+      height: 80px
+      margin-right: 0.75em
+      +border-radius(6px)
+      border: 1px solid #999
+      +transition(all 0.2s ease-in-out)
+    .user_name
       font-size: 120%
     .email
       margin-left: 20px

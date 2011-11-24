@@ -57,7 +57,7 @@ class UsersController  < ApplicationController
   end
 
   def index
-    @users = User.where('verified != 0').select('firstname, lastname, id, email').order(:firstname)
+    @users = User.where('verified != 0').select('firstname, lastname, id, email, gravatar_email').order('LOWER(firstname), lastname')
   end
 
   # Register as a new user. Upon successful registration, the user will be sent to "/user/login" to enter their details.
