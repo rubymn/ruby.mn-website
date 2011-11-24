@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090128221821) do
+ActiveRecord::Schema.define(:version => 20111124050202) do
 
   create_table "engine_schema_info", :id => false, :force => true do |t|
     t.string  "engine_name"
@@ -32,6 +32,21 @@ ActiveRecord::Schema.define(:version => 20090128221821) do
     t.string  "email",   :limit => 200, :default => "", :null => false
     t.string  "title",   :limit => 200, :default => "", :null => false
     t.integer "user_id"
+  end
+
+  create_table "list_mails", :force => true do |t|
+    t.string   "subject", :limit => 256,                 :null => false
+    t.string   "replyto", :limit => 256
+    t.string   "from",    :limit => 128,                 :null => false
+    t.string   "to",      :limit => 128,                 :null => false
+    t.datetime "stamp",                                  :null => false
+    t.text     "body",                                   :null => false
+    t.string   "mailid",  :limit => 256, :default => "", :null => false
+  end
+
+  create_table "messages_messages", :id => false, :force => true do |t|
+    t.integer "parent_id", :null => false
+    t.integer "child_id",  :null => false
   end
 
   create_table "openings", :force => true do |t|
@@ -73,6 +88,7 @@ ActiveRecord::Schema.define(:version => 20090128221821) do
     t.datetime "logged_in_at"
     t.date     "delete_after"
     t.string   "role",            :limit => 10
+    t.string   "gravatar_email"
   end
 
   add_index "users", ["login"], :name => "uidx"
