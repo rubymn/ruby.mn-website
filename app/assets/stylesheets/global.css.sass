@@ -379,12 +379,18 @@ h1#members_title
   +border-radius(10px)
   line-height:  1.1em
 
-#navbar #users_size
-  +border-radius(6px)
-  line-height:  1.2em
-  margin-top:  1px
-  padding:  0.2em 0.7em
-  font-size:  80%
+#navbar
+  .members_list
+    position: relative
+    #users_size
+      position: absolute
+      right: 0.5em
+      top: 26%
+      +border-radius(6px)
+      line-height:  1.2em
+      // margin-top:  -19px
+      padding:  0.2em 0.7em
+      font-size:  80%
 
 #email_list #email
   width:  98%
