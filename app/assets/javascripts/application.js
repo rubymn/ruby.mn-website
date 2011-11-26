@@ -6,5 +6,6 @@
 //
 //= require jquery-1.7.min
 //= require jquery_ujs
+//= require jquery.tweet
+//= require sidebar_tweets
 //= require global
-//= require 'jsWidgets/jsWidget'
