@@ -7,7 +7,7 @@ module ApplicationHelper
     auto_link(markdown(text))
   end
 
-  def i_am user
+  def i_am(user)
     session[:uid] == user.id
   end
 end

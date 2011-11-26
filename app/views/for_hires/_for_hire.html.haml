@@ -1,12 +1,12 @@
 %li
   .for_hire
     %h1= for_hire.title
-    = mail_to h(for_hire.email), "Email", :encode => 'javascript'
     %p= mup for_hire.blurb
-    - if i_am for_hire.user
+    .author
+      - if for_hire.user.gravatar_email.present?
+        .gravatar{ :style => "background-image: url(#{gravatar_url(for_hire.user.gravatar_email, :size => 35)})" }
+      = mail_to for_hire.email, "Email", :encode => 'javascript'
+    - if i_am(for_hire.user) || current_user.admin?
       %br/
       .control
-        [
-        = link_to "Edit", edit_for_hire_path
-        = link_to "Delete", :for_hire, :method => :delete, :confirm => 'Are you sure?'
-        ]
+        [ #{link_to "Edit", edit_for_hire_path} #{link_to "Delete", :for_hire, :method => :delete, :confirm => 'Are you sure?'} ]
