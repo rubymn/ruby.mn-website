@@ -246,9 +246,13 @@ h2.refactr
   font-size: 15px
   font-style: italic
 
-.opening
-  padding: 20px 0
+.gravatar
+  border: 1px solid #999
 
+.opening
+  h4
+    line-height: 37px
+    margin-top: 0.5em
   .body
     padding-left: 5px
     font-style: italic
@@ -299,7 +303,8 @@ h2.refactr
     background-image:  -ms-linear-gradient(top, #ededed, #dddddd)
     background-image:  -o-linear-gradient(top, #ededed, #dddddd)
     background-image:  linear-gradient(top, #ededed, #dddddd)
-
+    li
+      background: transparent
 .event
   padding: 20px
 
@@ -326,12 +331,51 @@ h2.refactr
 .project, .for_hire, .new_login, .sponsor, .opening, ul#users
   padding: 20px
 
+.project, .opening
+  overflow: hidden
+  &:hover
+    overflow: visible
+  .gravatar
+    width: 35px
+    height: 35px
+    float: left
+    margin-right: 0.25em
+    +border-radius(3px)
+
 .for_hire, .project
   a
     text-decoration: underline
 
+.project
+  overflow: hidden
+  &:hover
+    overflow: visible
+  .author, .project_url, .source_url
+    margin-bottom: 0.25em
+  .author
+    +clearfix
+    line-height: 37px
+    .gravatar
+      width: 35px
+      height: 35px
+      float: left
+      margin-right: 0.25em
+      +border-radius(3px)
+  .description
+    margin-top: 0.5em
 
-.sponsor 
+.for_hire
+  .author
+    margin-top: 1.25em
+    line-height: 37px
+    .gravatar
+      width: 35px
+      height: 35px
+      float: left
+      margin-right: 0.5em
+      +border-radius(3px)
+
+.sponsor
   .logo
     padding: 7px
   .logo.zencoder
@@ -375,7 +419,6 @@ ul#users
       height: 80px
       margin-right: 0.75em
       +border-radius(6px)
-      border: 1px solid #999
       +transition(all 0.2s ease-in-out)
     .user_name
       font-size: 120%

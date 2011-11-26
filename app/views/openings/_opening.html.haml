@@ -1,14 +1,13 @@
 %li[opening]
   %h3
     = opening.headline
-    = opening.created_at.to_date.to_s(:mdy)
+    = opening.created_at.to_s(:mdy)
   .body
     = mup opening.body
   %h4
-    = mail_to opening.user.email, "Contact #{opening.user.firstname} #{opening.user.lastname}", :encode => 'javascript'
-  - if opening.user && (current_user == opening.user || current_user.admin?)
+    - if opening.user.gravatar_email.present?
+      .gravatar{ :style => "background-image: url(#{gravatar_url(opening.user.gravatar_email, :size => 35)})" }
+    = mail_to opening.user.email, "Contact #{opening.user.full_name}", :encode => 'javascript'
+  - if (opening.user && i_am(opening.user)) || current_user.admin?
     .control
-      [
-      = link_to "Edit", edit_opening_path(opening)
-      = link_to "Delete", opening_path(opening), :method => :delete, :confirm => 'Are you sure?'
-      ]
+      [ #{link_to "Edit", edit_opening_path(opening)} #{link_to "Delete", opening_path(opening), :method => :delete, :confirm => 'Are you sure?'} ]

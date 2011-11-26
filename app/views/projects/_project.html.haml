@@ -1,19 +1,20 @@
 %li
   .project
     %h1= h project.title
-    %p
-      Author: #{project.user.firstname} #{project.user.lastname}
-      %br/
+    .author
+      - if project.user.gravatar_email.present?
+        .gravatar{ :style => "background-image: url(#{gravatar_url(project.user.gravatar_email, :size => 35)})" }
+      #{project.user.full_name}
+    .project_url
       Project URL:
       = link_to project.url, project.url
-      %br
-      Source URL:
-      = link_to project.source_url, project.source_url
-    %p= mup project.description
+    - if project.source_url.present?
+      .source_url
+        Source URL:
+        = link_to project.source_url, project.source_url
+
+    .description= mup project.description
     - if i_am project.user
       %br/
       .control
-        [
-        = link_to "Edit", edit_project_path(project)
-        = link_to "Delete", project, :method => :delete, :confirm => 'Are you sure?'
-        ]
+        [ #{link_to "Edit", edit_project_path(project)} #{link_to "Delete", project, :method => :delete, :confirm => 'Are you sure?'} ]
