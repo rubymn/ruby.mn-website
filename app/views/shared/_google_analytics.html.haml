@@ -1,0 +1,5 @@
+- if Rails.env.production?
+  %script{ :src => "http://www.google-analytics.com/urchin.js", :type => "text/javascript" }
+  :javascript
+    _uacct = "UA-755912-2";
+    urchinTracker();

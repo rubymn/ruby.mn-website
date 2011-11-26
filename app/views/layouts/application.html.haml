@@ -15,8 +15,6 @@
     = stylesheet_link_tag 'application'
     /[if lte IE 0]
       = stylesheet_link_tag 'ie'
-
-    = javascript_include_tag 'application'
   %body
     #header
       .logo
@@ -60,8 +58,6 @@
           Site credits #{ link_to 'mml', 'http://www.loonsoft.com' } #{ content_tag :span, '&amp;'.html_safe, :class => :amp } #{link_to '@marknutter', 'http://nuttersmark.com/'} #{ content_tag :span, '&amp;'.html_safe, :class => :amp } #{link_to '@webandy', 'http://webandy.com/'} #{ content_tag :span, '&amp;'.html_safe, :class => :amp } #{link_to '@jrmehle', 'http://twitter.com/jrmehle'}
           Hosting provided by #{ link_to 'Heroku', "http://www.heroku.com" }
 
-    - if Rails.env.production?
-      %script{ :src=>"http://www.google-analytics.com/urchin.js", :type=>"text/javascript"}
-      :javascript
-        _uacct = "UA-755912-2";
-        urchinTracker();
+    = javascript_include_tag 'application'
+    = yield :after_javascripts
+    = render 'shared/google_analytics'
