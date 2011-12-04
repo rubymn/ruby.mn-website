@@ -21,6 +21,7 @@ gem "paperclip",      '~> 2.4.5'
 gem 'rails_autolink', '~> 1.0.4'
 gem 'dynamic_form',   '~> 1.1.4'
 gem 'gravatarify',    '~> 3.0.0'
+gem 'kaminari',       '~> 0.12.4'
 
 group :development do
   gem 'haml-rails',         '0.3.4'
