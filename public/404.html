@@ -1,26 +1,82 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>The page you were looking for doesn't exist (404)</title>
-  <style type="text/css">
-    body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
-    div.dialog {
-      width: 25em;
-      padding: 0 4em;
-      margin: 4em auto 0 auto;
-      border: 1px solid #ccc;
-      border-right-color: #999;
-      border-bottom-color: #999;
-    }
-    h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
-  </style>
-</head>
+  <head>
+    <link href='/favicon.ico' rel='shortcut icon'>
 
-<body>
-  <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <h1>The page you were looking for doesn't exist.</h1>
-    <p>You may have mistyped the address or the page may have moved.</p>
-  </div>
-</body>
+    <title>Ruby Users of Minnesota - The page you were looking for doesn't exist (404)</title>
+    <meta content='Ruby Users of Minnesota is a monthly meeting held by programmers discussing varied topics' name='description'>
+    <meta content='ruby, ruby on rails, minnesota, minneapolis, st. paul, rum' name='keywords'>
+    <style>
+      body {
+        margin: 0;
+        background: #dddddd url(/assets/main_bg_plain.png);
+        font-family: Helvetica, Arial, sans-serif;
+      }
+      #header {
+        width: 100%;
+        min-width: 960px;
+        overflow: hidden;
+        background: url(/assets/header_repeated_bg.png) repeat-x top center;
+        height: 273px;
+        position: relative;
+        margin: 0 auto;
+      }
+      #header .logo h1 {
+        text-indent: -9999px;
+      }
+      #header .logo img#main_header_logo {
+        display: block;
+        margin: -66px auto 0 auto;
+      }
+      .wrapper {
+        width: auto;
+        min-width: 960px;
+        margin: 0 auto;
+      }
+      .inner {
+        width: 800px;
+        margin: 0 auto;
+      }
+      #body {
+        padding: 20px;
+        margin: 30px 0;
+        background: #ededed;
+        -moz-border-radius: 3px;
+        -webkit-border-radius: 3px;
+        -o-border-radius: 3px;
+        -ms-border-radius: 3px;
+        -khtml-border-radius: 3px;
+        border-radius: 3px;
+        -moz-box-shadow: 2px 2px 3px black;
+        -webkit-box-shadow: 2px 2px 3px black;
+        -o-box-shadow: 2px 2px 3px black;
+        box-shadow: 2px 2px 3px black;
+      }
+      #body h2 {
+        font-size: 20px;
+        color: #222222;
+        text-shadow: white 1px 1px 0;
+        text-transform: uppercase;
+      }
+    </style>
+  </head>
+  <body>
+    <div id='header'>
+      <div class='logo'>
+        <h1>Ruby Users of Minnesota</h1>
+        <a href="http://ruby.mn">
+          <img alt="Header_background" id="main_header_logo" src="/assets/header_background.png" />
+        </a>
+      </div>
+    </div>
+    <div class='wrapper'>
+      <div class='inner'>
+        <div id='body'>
+          <h2>The page you were looking for doesn't exist.</h2>
+          <p>You may have mistyped the address or the page may have moved.</p>
+          <p>HTTP 404</p>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
