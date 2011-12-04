@@ -24,6 +24,8 @@ class User < ActiveRecord::Base
   scope :verified, where('verified != 0')
   scope :non_admin, where(:role => nil)
 
+  paginates_per 50
+
   # rename a couple of the attribute names in the form labels
   def self.human_attribute_name(name, options = {})
     HUMANIZED_COLUMNS[name] || super

@@ -316,15 +316,10 @@ h2.refactr
 
 .events, .projects, .members, .hires, .sponsors, .past-sponsors, .openings
   ul li
-    background-color:  #ededed
-    background-image:  -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#dddddd))
-    background-image:  -webkit-linear-gradient(top, #ededed, #dddddd)
-    background-image:  -moz-linear-gradient(top, #ededed, #dddddd)
-    background-image:  -ms-linear-gradient(top, #ededed, #dddddd)
-    background-image:  -o-linear-gradient(top, #ededed, #dddddd)
-    background-image:  linear-gradient(top, #ededed, #dddddd)
+    +soft-grey-gradient
     li
       background: transparent
+
 .event
   padding: 20px
 
@@ -422,6 +417,7 @@ h2.past-sponsors
 ul#users
   margin: 0 -0.5em
   li
+    +soft-grey-gradient
     border-bottom: 1px dotted #CCC
     padding: 1em 0.5em
     +clearfix
@@ -438,6 +434,7 @@ ul#users
       width: 80px
       height: 80px
       margin-right: 0.75em
+      background: transparent image-url('default_gravatar.jpg') no-repeat top left
       +border-radius(6px)
       +transition(all 0.2s ease-in-out)
     .user_name

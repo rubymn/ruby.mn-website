@@ -1,5 +1,7 @@
 RubyMnWebsite::Application.routes.draw do
   resources :users do
+    get 'page/:page', :action => :index, :on => :collection
+
     member do
       get :login
     end

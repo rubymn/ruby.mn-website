@@ -1,7 +1,6 @@
 - if user
   %li[user]
-    - if user.gravatar_email.present?
-      .gravatar{ :style => "background-image: url(#{gravatar_url(user.gravatar_email, :size => 80)})" }
+    .gravatar{ :style => ("background-image: url(#{user_gravatar user})" if user.gravatar_email.present?) }
     .user_name
       %span.firstname= user.firstname.try(:humanize)
       %span.lastname= user.lastname.try(:humanize)

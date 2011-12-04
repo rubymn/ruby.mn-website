@@ -14,4 +14,8 @@ module ApplicationHelper
   def emdash
     '&mdash;'.html_safe
   end
+
+  def user_gravatar(user)
+    gravatar_url user.gravatar_email, :size => 80
+  end
 end
