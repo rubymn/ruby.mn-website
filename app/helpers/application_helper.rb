@@ -10,4 +10,8 @@ module ApplicationHelper
   def i_am(user)
     session[:uid] == user.id
   end
+
+  def emdash
+    '&mdash;'.html_safe
+  end
 end

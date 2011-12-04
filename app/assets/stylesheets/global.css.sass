@@ -161,9 +161,9 @@ li.beardo
     +border-radius(3px)
 
     h2
-      padding: 10px 0 
+      padding: 10px 0
     #links
-      margin-bottom:  1em 
+      margin-bottom: 1em
   #bottom
     width: 95%
     padding: 20px
@@ -199,6 +199,26 @@ li.beardo
           font-style: italic
           color: #555
           float: right
+
+  nav.pagination
+    margin: 5px 20px
+    .page
+      margin: 0
+    .current
+      padding: 0.25em 0.5em
+    span
+      color: #AAA
+      &.current
+        font-weight: bold
+      a
+        background-color: transparent
+        color: #3E3E3E
+        padding: 0.25em 0.4em
+        +transition(all 0.2s ease-in-out)
+        &:hover
+          background-color: #CBCBCB
+          color: #333
+          text-decoration: none
 
 h2.refactr
   background: image-url('refactr.gif') no-repeat top left
@@ -251,8 +271,8 @@ h2.refactr
 
 .opening
   h4
-    line-height: 37px
-    margin-top: 0.5em
+    line-height: 1.5em
+    margin: 0.5em 0 0 0
   .body
     padding-left: 5px
     font-style: italic

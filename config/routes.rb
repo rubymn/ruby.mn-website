@@ -27,7 +27,9 @@ RubyMnWebsite::Application.routes.draw do
     end
   end
 
-  resources :openings
+  resources :openings do
+    get 'page/:page', :action => :index, :on => :collection
+  end
   resources :projects
   resource :session
 

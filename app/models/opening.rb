@@ -6,6 +6,8 @@ class Opening < ActiveRecord::Base
   validates :body,     :presence => true
   validates :headline, :presence => true
 
+  paginates_per 10
+
   protected
 
     def deliver_notification

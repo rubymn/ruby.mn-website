@@ -2,7 +2,7 @@ class OpeningsController < ApplicationController
   before_filter :login_required
 
   def index
-    @openings = Opening.includes(:user).order('created_at DESC')
+    @openings = Opening.includes(:user).order('created_at DESC').page(params[:page])
   end
 
   def new
