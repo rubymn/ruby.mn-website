@@ -3,7 +3,7 @@
   = form_tag session_path do |f|
     %fieldset
       = label_tag :login, "Username / Email"
-      = text_field_tag  :login
+      = text_field_tag :login, params[:login], :placeholder => 'email address or username'
       %br/
       = label_tag :password, "Password"
       = password_field_tag :password

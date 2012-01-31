@@ -3,7 +3,7 @@ FactoryGirl.define do
     headline { Faker::Lorem.sentence }
     body { Faker::Lorem.paragraph }
     approved true
-    scheduled_time 1.day.from_now
+    formatted_scheduled_time 1.day.from_now
     user
   end
 end

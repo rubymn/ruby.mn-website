@@ -1,9 +1,9 @@
 .introduction
   %h1 Events
-  %p
-    You want to #{link_to 'create', new_event_path} an event?
+  %p You want to #{ link_to 'create', new_event_path } an event?
   %br/
-  %h2 Your events
-  %ul
-    = render @events
-  %p Note: events have to be approved by an administrator before they show up on the front page. If this is a commercial #{ content_tag :em, 'event' }, it will probably be denied, unless you contact #{ mail_to ::ADMIN_ADDRESS, 'the administrators' } first.
+  %h2.your_events Your events
+%ul.events= render @events
+%p.note
+  %strong Note:
+  Events must be approved by an administrator before they appear on the front page. If this is a commercial #{ content_tag :em, 'event' }, it will probably be denied, unless you contact #{ mail_to ::ADMIN_ADDRESS, 'the administrators' } first.

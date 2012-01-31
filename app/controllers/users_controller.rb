@@ -84,7 +84,7 @@ class UsersController  < ApplicationController
 
   def update
     @user = current_user
-    if params[:user].present? && @user.update_attributes(:firstname => params[:user][:firstname], :lastname => params[:user][:lastname], :email => params[:user][:email])
+    if params[:user].present? && @user.update_attributes(:firstname => params[:user][:firstname], :lastname => params[:user][:lastname], :email => params[:user][:email], :gravatar_email => params[:user][:gravatar_email])
       redirect_to edit_user_path(@user), :notice => "User account updated successfully."
     else
       render :action => :edit

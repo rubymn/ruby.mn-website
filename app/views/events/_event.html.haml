@@ -1,15 +1,18 @@
+- show_approved ||= false
 %li
   .event
     - if event.scheduled_time
       %h3= event.headline
       .time= event.scheduled_time.to_s(:short)
-    - if current_user and (event.user == current_user || current_user.admin?)
-      = link_to "Delete", event_path(event), :method=>:delete
-      = link_to "Edit", edit_event_path(event)
-    - if current_user and current_user.admin?
+      [
+      - if (current_user && current_user.admin?) && event.unapproved?
+        #{ link_to "Approve", admin_approve_event_path(event), :method => :put }
+      - if current_user and (event.user == current_user || current_user.admin?)
+        #{ link_to "Edit", edit_event_path(event) }
+        #{ link_to "Delete", event_path(event), :method => :delete, :confirm => 'Are you sure?' }
       = link_to "Details", event_path(event)
-    %h4
-      - if event.user == current_user
-        = event.approved? ? "Approved" : "Not Approved Yet"
+      ]
+    - if show_approved
+      %h4= event.approved? ? "Approved" : "Not Approved Yet" if event.user == current_user
     .content
       = mup event.body

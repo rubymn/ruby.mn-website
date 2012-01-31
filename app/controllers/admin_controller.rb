@@ -6,13 +6,9 @@ class AdminController < ApplicationController
   end
 
   def approve
-    if current_user.admin?
-      e = Event.find(params[:id])
-      e.approved = true
-      e.save!
-      redirect_to admin_index_path, :notice => 'Event Approved'
-    else
-      bounce
-    end
+    event = Event.find(params[:id])
+    event.approved = true
+    event.save
+    redirect_to admin_index_path, :notice => 'Event Approved'
   end
 end

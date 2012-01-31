@@ -1,16 +1,25 @@
-= form_for @event do |f|
+- content_for :after_stylesheets do
+  = stylesheet_link_tag 'jquery-ui-1.8.16'
+- content_for :after_javascripts do
+  = javascript_include_tag 'events_form'
+
+= form_for @event, :html => { :class => 'event_form' } do |f|
   = f.error_messages
   %fieldset
     = f.label :headline
     = f.text_field :headline
     %br/
-    = f.label :scheduled_time, 'Time &amp; Date'.html_safe
-    .select_container
-      = f.datetime_select :scheduled_time
-      %br/
-      (That's 24 hour time bub.)
+    = f.label :formatted_scheduled_time, 'Time &amp; Date'.html_safe
+    = f.text_field :formatted_scheduled_time, :class => 'datepicker'
     %br/
     = f.label :body, 'Details'
     = f.text_area :body
+
+    - if current_user.admin?
+      %br/
+      .checkbox_input
+        = f.check_box :approved
+        = f.label :approved
+
     .submit
       = submit_tag f.object.new_record? ? "Submit Event" : "Update Event"

@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
 class EventsControllerTest < ActionController::TestCase
   context "Logged in as a user with events" do
@@ -20,27 +20,25 @@ class EventsControllerTest < ActionController::TestCase
   end
 
   def setup
-    @ev1      = Factory.create(:event)
-    @ev2      = Factory.create(:event)
-    @ev_nappr = Factory.create(:event, :approved => false)
-    login_as(@ev1.user)
+    @ev1      = Factory(:event)
+    @ev2      = Factory(:event)
+    @ev_nappr = Factory(:event, :approved => false)
+    login_as @ev1.user
     @owner = @ev1.user
     @x     = Factory.create(:user)
     @admin = Factory.create(:user, :role => 'admin')
   end
 
-  def test_create
-    time = Time.now.strftime("%R %F")
-    post :create, {:event=>{:headline => "foo", :body => "bar", :scheduled_time => time}}
+  test "create" do
+    time = Time.now.strftime("%F %r")
+    post :create, { :event => { :headline => "foo", :body => "bar", :formatted_scheduled_time => time } }
     assert assigns(:event)
     assert_equal @owner, assigns(:event).user
     saved = assigns(:event)
     assert_not_nil saved
     assert_equal "bar", saved.body
     assert_equal "foo", saved.headline
-    assert_equal time, saved.scheduled_time.strftime("%R %F")
     assert_equal @owner, saved.user
-    assert_not_nil saved.created_at
   end
 
   def test_bad_create
@@ -56,27 +54,19 @@ class EventsControllerTest < ActionController::TestCase
     assert_template :index
     assert assigns(:events)
   end
-  
+
   def test_index_admin_no_user_id_param
     login_as(@admin)
     get :user_index
     assert_template :index
     assert assigns(:events)
   end
-  
-  def test_uindex_notadmin
+
+  test "user index not admin" do
     login_as(@x)
     get :user_index
     assert_template :index
     assert assigns(:events)
-  end
-
-  def test_approve_badlogin
-    login_as(@x)
-    assert_raises ActiveRecord::RecordNotFound do
-      put :approve, :id => @ev_nappr.id, :user_id => @x.login
-    end
-    assert !@ev_nappr.approved?
   end
 
   def test_destroy
@@ -118,11 +108,10 @@ class EventsControllerTest < ActionController::TestCase
 
   def test_evil_edit
     login_as(@x)
-    assert_raises ActiveRecord::RecordNotFound do 
+    assert_raises ActiveRecord::RecordNotFound do
       get :edit, :id => @ev1.id, :user_id => @owner.id
     end
   end
-  
 
   def test_edit_permission
     login_as(@x)
@@ -131,7 +120,6 @@ class EventsControllerTest < ActionController::TestCase
     end
   end
 
-
   def test_update
     login_as(@owner)
     put :update, :id => @ev1.id, :event => { :headline => 'fubar' }
@@ -139,7 +127,6 @@ class EventsControllerTest < ActionController::TestCase
     assert_redirected_to user_index_events_path
     assert_equal "fubar", assigns(:event).headline
   end
-
 
   def test_show
     login_as(@admin)

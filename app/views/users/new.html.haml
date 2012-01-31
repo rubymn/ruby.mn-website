@@ -4,7 +4,7 @@
     Become a member of the Ruby Users of Minnesota Group. Membership provides several benefits on this website, and helps you connect with local Ruby developers.
 .form{ :title => "Create Account" }
   = form_for @user, :html => { :id => 'new_user' } do |f|
-    = f.error_messages
+    = f.error_messages :header_message => "#{@user.errors.count} errors prohibited this sign up"
     %fieldset
       = f.label :firstname, 'First Name'
       = f.text_field :firstname, :class => 'title'

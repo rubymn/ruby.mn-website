@@ -5,36 +5,45 @@ form
   div
     padding: 5px 0
 
-fieldset
-  label
-    position: absolute
-    text-align: right
-    width: 130px
-    margin-top: 10px
-  input, textarea
-    padding: 4px
-    border: 1px solid #AAA
-    +border-radius(3px)
-    &:focus
-      border-color: #333
-  input, textarea, .select_container
-    margin-left: 138px
-    margin-top: 10px
-  .select_container
-    margin-top: 3px
-  label.check, label.radio
-    position: relative
-    text-align: left
-  input[type="submit"]
-    background-color: #E3E3E3
-    color: #222
-    padding: 0.5em
-    cursor: pointer
-    &:focus
-      border-color: #333
-    &:active
-      background-color: #CCC
-      border-color: #000
+  fieldset
+    label
+      position: absolute
+      text-align: right
+      width: 130px
+      margin-top: 10px
+    input, textarea
+      padding: 4px
+      border: 1px solid #AAA
+      +border-radius(3px)
+      +transition(all 0.2s ease-in-out)
+      &:focus
+        border-color: #333
+    input, textarea, .select_container
+      margin-left: 138px
+      margin-top: 10px
+    .select_container
+      margin-top: 3px
+    label.check, label.radio
+      position: relative
+      text-align: left
+    input[type="submit"]
+      background-color: #E3E3E3
+      color: #222
+      padding: 0.5em
+      cursor: pointer
+      &:hover
+        background-color: #F3F3F3
+        border-color: #CCC
+        color: #555
+      &:focus
+        border-color: #333
+      &:active
+        background-color: #CCC
+        border-color: #000
+        color: #000
+
+  #new_for_hire_blurb, #opening_body, #event_body, #project_description
+    width: 314px
 
 form#subscribe fieldset
   label
@@ -49,26 +58,31 @@ form#new_user
   #recaptcha
     margin-left: 138px
 
-#new_user
-  input[type='text'], input[type='password']
+  input[type="text"], input[type="password"]
     width:  66.5%
 
 .edit_user
-  input[type='text'], input[type='password']
+  input[type="text"], input[type="password"]
     width:  64.5%
+
+.event_form
+  input[type="text"]
+    width: 68%
+  .checkbox_input label
+    width: 65px
+    margin-top: 8px
 
 #new_event fieldset
   width:  80%
 
-#new_for_hire_blurb, #opening_body, #event_body, #project_description
-  width: 314px
-
 #new_event_link
   margin-left: 20px
+
 
 .new_login
   input[type="text"], input[type="password"]
     width: 66%
+
 
 #forgot_password_form
   input[type="text"]

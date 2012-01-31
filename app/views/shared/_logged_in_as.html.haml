@@ -1,0 +1,7 @@
+#logged_in_as
+  #logged_in_text
+    
+  .user_login
+    - if current_user.gravatar_email.present?
+      .gravatar{ :style => "background-image: url(#{gravatar_url(current_user.gravatar_email, :size => 18)})" }
+    .login= current_user.login

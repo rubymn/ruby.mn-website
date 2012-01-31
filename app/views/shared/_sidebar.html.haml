@@ -1,3 +1,4 @@
+= render 'shared/logged_in_as' if logged_in?
 #navbar
   #links
     %ul
@@ -15,11 +16,10 @@
         %li= link_to "Join", new_user_path
         %li= link_to "Login", new_session_path
   #calendar
-    %h4
-      = link_to "Meeting Calendar", "http://www.google.com/calendar/embed?src=4g380qh7p0taroueuulfajauck%40group.calendar.google.com&ctz=America/Chicago", :title => "Click here to see a Google Calendar of our meeting dates.", :alt => "Click here to see a Google Calendar of our meeting dates."
+    %h4= link_to "Meeting Calendar", "http://www.google.com/calendar/embed?src=4g380qh7p0taroueuulfajauck%40group.calendar.google.com&ctz=America/Chicago", :title => "View our meeting dates in Google Calendar.", :alt => "View our meeting dates in Google Calendar."
   #email_list
     %p
-      #{ link_to "Our mailing list is hosted on Google Groups", 'http://groups.google.com/group/rubymn?hl=en', :title => 'click here to visit the Ruby.MN Google Group', :alt => 'click here to visit the Ruby.MN Google Group' } and is the primary way to discuss Ruby with our members.
+      #{ link_to "Our mailing list is hosted on Google Groups", 'http://groups.google.com/group/rubymn?hl=en', :title => 'Visit the Ruby.MN Google Group', :alt => 'Visit the Ruby.MN Google Group' } and is the primary way to discuss Ruby with our members.
     = form_tag "http://groups.google.com/group/rubymn/boxsubscribe", :id => 'subscribe' do
       %fieldset
         = hidden_field_tag :hl, "en"

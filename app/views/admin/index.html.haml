@@ -1,6 +1,8 @@
 .introduction
   %h1 Admin Console
-  %h2 Pending Events
+
+.admin_events
+  %h2.pending_events Pending Events
   - if @events.any?
     = render :partial => 'event', :collection => @events
   - else

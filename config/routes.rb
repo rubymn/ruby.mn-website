@@ -21,7 +21,7 @@ RubyMnWebsite::Application.routes.draw do
   resources :events do
     member do
       delete :admdestroy
-      put    :approve
+      #put    :approve
     end
 
     collection do
@@ -38,7 +38,7 @@ RubyMnWebsite::Application.routes.draw do
   # map.admin '/admin/:action/:id', :controller => 'admin'
   #match '/admin/:action/:id' => 'admin', :as => :admin
 
-  match 'admin/approve' => 'admin#approve', :as => :admin_approve
+  match 'admin/events/:id/approve' => 'admin#approve', :as => :admin_approve_event, :method => :put
   match '/admin'        => 'admin#index',   :as => :admin_index
 
   match '/sponsors'       => 'static#sponsors',       :as => :sponsors

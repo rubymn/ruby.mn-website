@@ -13,6 +13,7 @@
     = csrf_meta_tags
 
     = stylesheet_link_tag 'application'
+    = yield :after_stylesheets
     /[if lte IE 0]
       = stylesheet_link_tag 'ie'
   %body

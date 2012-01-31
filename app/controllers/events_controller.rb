@@ -4,7 +4,7 @@ class EventsController < ApplicationController
 
   def index
     if current_user.admin?
-      @events = Event.order_scheduled_time_desc
+      @events = Event.includes(:user).order_scheduled_time_desc
     else
       @user   = current_user
       @events = @user.events
@@ -26,18 +26,9 @@ class EventsController < ApplicationController
     end
   end
 
-  def approve
-    if current_user and current_user.admin?
-      @event = Event.find(params[:id])
-    else
-      current_user.events.find(params[:id])
-    end
-
-    @event.approved = true
-  end
-
   def create
     @event = current_user.events.build(params[:event])
+
     if @event.save
       redirect_to user_index_events_path
       Notifier.notify_event(@event).deliver
@@ -49,30 +40,29 @@ class EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     if @event.update_attributes(params[:event])
-      if current_user && current_user.admin?
-        redirect_to event_path(@event), :notice => 'Event updated.'
-      else
-        redirect_to :action => :user_index
-      end
+      redirect_to user_index_events_path, :notice => 'Event Updated'
     else
       render :action => :edit
     end
   end
 
   def new
-    @event = Event.new
+    @event = Event.new :formatted_scheduled_time => Time.now
   end
 
   def destroy
     if current_user && current_user.admin?
-      Event.destroy(params[:id])
-      redirect_to admin_index_path, :notice => 'Event Deleted'
+      @event = Event.find(params[:id])
+      redirect_path = admin_index_path
     else
-      current_user.events.find(params[:id]).destroy
-      redirect_to user_index_events_path, :notice => 'Event was deleted'
+      @event = current_user.events.find(params[:id])
+      redirect_path = user_index_events_path
     end
-    
+
+    @event.destroy
+    redirect_to redirect_path, :notice => 'Event Deleted'
   end
+  
 
   def edit
     if current_user && current_user.admin?
