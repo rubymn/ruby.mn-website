@@ -3,7 +3,7 @@
   .event
     - if event.scheduled_time
       %h3= event.headline
-      .time= event.scheduled_time.to_s(:short)
+      .time= event.scheduled_time.to_s(:short_meridian)
       [
       - if (current_user && current_user.admin?) && event.unapproved?
         #{ link_to "Approve", admin_approve_event_path(event), :method => :put }
