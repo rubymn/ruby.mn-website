@@ -20,7 +20,7 @@ class Event < ActiveRecord::Base
   def formatted_scheduled_time=(unformatted_time)
     self.scheduled_time = Chronic.parse(unformatted_time.to_s)
   end
-  
+
   def unapproved?
     !approved?
   end
