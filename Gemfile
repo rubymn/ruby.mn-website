@@ -8,11 +8,11 @@ gem 'unicorn', '~> 4.2.0'
 # in production environments by default.
 group :assets do
   gem 'coffee-rails',  '~> 3.2.2'
-  gem 'sass-rails',    '~> 3.2.2'
   gem 'uglifier',      '>= 1.2.0'
   gem 'compass-rails', '~> 1.0.0'
 end
 
+gem 'sass-rails',     '~> 3.2.2'
 gem 'jquery-rails',   '~> 2.0.0'
 gem "recaptcha",      '~> 0.3.1', :require => "recaptcha/rails"
 gem "haml",           '~> 3.1.3'
