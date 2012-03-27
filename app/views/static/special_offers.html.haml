@@ -1,25 +1,24 @@
 .introduction
   %h1 Special Offers
-  
+
   %p Our sponsors provide special offers to Ruby Users of Minnesota members
-  
+
 .special-offers
   %ul
-    %li{:style => "height:220px"}
+    %li{ :style => "height:220px" }
       .sponsor
-        .thumb{:style=> "float:left; padding-right:10px;padding-bottom:15px"}
-          = link_to(image_tag('/downloads/RubyMN_FNDTN.png'), '/downloads/RubyMN_FNDTN.pdf', :target => '_blank')
+        .thumb{ :style => "float:left; padding-right:10px;padding-bottom:15px" }
+          = link_to(image_tag('offers/RubyMN_FNDTN.png'), '/downloads/RubyMN_FNDTN.pdf', :target => '_blank')
         .info
           %h2
-            = link_to('The Foundation Hardware Repair Labor Offer', '/downloads/RubyMN_FNDTN.png', :target => '_blank')
+            = link_to('The Foundation Hardware Repair Labor Offer', '/downloads/RubyMN_FNDTN.pdf', :target => '_blank')
           %p Ruby.MN members receive 10% off any hardware repair labor at our Depot.
     %li
       .sponsor
-        .thumb{:style=> "float:left; padding-right:10px;padding-bottom:15px"}
-          = link_to(image_tag('/downloads/Ruby-Users-of-MN-Colo.png'), '/downloads/Ruby Users of MN Colo.pdf', :target => '_blank')
+        .thumb{ :style => "float:left; padding-right:10px;padding-bottom:15px" }
+          = link_to(image_tag('offers/RubyUsersColocation__sheet.png'), '/downloads/RubyUsersColocation__sheet.pdf', :target => '_blank')
         .info
           %h2
-            = link_to('Ruby Users of Minnesota Server Colocation Packages', '/downloads/Ruby Users of MN Colo.pdf', :target => '_blank')
-          %p Whatever your needs, colocation has never been easier. Place your servers where there is an overflow of bandwidth. Place your server in a secure environment. Make remote access far more effective. Back up critical applications and data. The possibilities are endless.
-          %p Atomic Data Centers is offering these specially designed and priced service tiers exclusively to the Ruby Users of Minnesota member community
-          %p Contact their sales team at 612.466.2000 or 800.285.5179 to find out what our managed data center services can do for your business.
+            = link_to('Ruby Users of Minnesota Server Colocation Packages', '/downloads/RubyUsersColocation__sheet.pdf', :target => '_blank')
+          %p As Minnesota's IT Solutions Provider, Atomic Data is a proud sponsor of the Ruby Users of Minnesota. Atomic Data offers a wide range of private cloud services and is dedicated to helping businesses take control of their IT infrastructure and data. They specialize in moving businesses to the cloud, hosting network data, providing 24/7/365 security and Help Desk support, and assisting in iPad deployments; all while keeping it simple, safe and smart.
+          %p Learn more at #{ link_to 'www.atomicdata.com', 'http://www.atomicdata.com' }. Call them at 612-466-2000 or email at #{ mail_to 'info@atomicdata.com', 'info@atomicdata.com' }
