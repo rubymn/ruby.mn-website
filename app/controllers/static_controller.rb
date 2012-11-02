@@ -6,4 +6,8 @@ class StaticController < ApplicationController
   def special_offers
     
   end
+
+  def community
+
+  end
 end

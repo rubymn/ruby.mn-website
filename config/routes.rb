@@ -43,6 +43,8 @@ RubyMnWebsite::Application.routes.draw do
 
   match '/sponsors'       => 'static#sponsors',       :as => :sponsors
   match '/special-offers' => 'static#special_offers', :as => :special_offers
+  match '/community' => 'static#community', :as => :community
+
 
   root :to => 'welcome#index'
 end
