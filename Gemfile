@@ -37,7 +37,7 @@ group :test do
   # gem 'guard',              '~> 0.6.1'
   # gem 'guard-test',         '~> 0.3.0'
   # gem 'guard-bundler',      '~> 0.1.3'
-  gem 'rb-fsevent',         '~> 0.4.3.1', :require => false
+  gem 'rb-fsevent',         '~> 0.9.2', :require => false
   gem 'rb-fchange',         '~> 0.0.5',   :require => false
 end
 
