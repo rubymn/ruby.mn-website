@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   HUMANIZED_COLUMNS = { :firstname => 'First Name', :lastname => 'Last Name' }
 
   has_many :events
+  has_many :event_registrations, :through => :events
   has_many :openings, :dependent => :destroy
   has_many :projects
   has_one :for_hire, :dependent => :destroy

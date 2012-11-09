@@ -11,11 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111124050202) do
+ActiveRecord::Schema.define(:version => 20121109150835) do
+
+  create_table "amenities", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "engine_schema_info", :id => false, :force => true do |t|
     t.string  "engine_name"
     t.integer "version"
+  end
+
+  create_table "event_registrations", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.string   "email"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "events", :force => true do |t|
@@ -34,21 +48,6 @@ ActiveRecord::Schema.define(:version => 20111124050202) do
     t.integer "user_id"
   end
 
-  create_table "list_mails", :force => true do |t|
-    t.string   "subject", :limit => 256,                 :null => false
-    t.string   "replyto", :limit => 256
-    t.string   "from",    :limit => 128,                 :null => false
-    t.string   "to",      :limit => 128,                 :null => false
-    t.datetime "stamp",                                  :null => false
-    t.text     "body",                                   :null => false
-    t.string   "mailid",  :limit => 256, :default => "", :null => false
-  end
-
-  create_table "messages_messages", :id => false, :force => true do |t|
-    t.integer "parent_id", :null => false
-    t.integer "child_id",  :null => false
-  end
-
   create_table "openings", :force => true do |t|
     t.datetime "created_at"
     t.string   "headline",   :limit => 100, :default => "", :null => false
@@ -64,6 +63,13 @@ ActiveRecord::Schema.define(:version => 20111124050202) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "registration_amenities", :force => true do |t|
+    t.integer  "amenities_events_id"
+    t.integer  "event_registration_id"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
   end
 
   create_table "sessions", :force => true do |t|
