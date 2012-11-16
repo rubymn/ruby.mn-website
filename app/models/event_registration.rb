@@ -4,6 +4,7 @@ class EventRegistration < ActiveRecord::Base
   has_many :amenities_events, :through => :registration_amenities
   has_many :registration_amenities
   accepts_nested_attributes_for :amenities_events
+  validates :email, :presence => true
 
   attr_accessor :amenities_events_ids
 

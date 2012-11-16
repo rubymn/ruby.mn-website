@@ -3,6 +3,11 @@
   .event
     - if event.scheduled_time
       %h3= event.headline
+      - @event = event
+      - @event_registration = EventRegistration.new
+      - @event.amenities.each do |a|
+        - @event_registration.amenities_events.build(:amenity_id => a.id, :event_id => @event.id)
+      = render 'event_registrations/form'
       .time= event.scheduled_time.to_s(:short_meridian)
       [
       - if (current_user && current_user.admin?) && event.unapproved?

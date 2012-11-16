@@ -16,7 +16,7 @@ class EventRegistrationsController < ApplicationController
     if @event_registration.save
         redirect_to root_path, :notice => 'Thanks For Registering!'
      else
-        redirect_to new_event_registration_path, :notice => 'That didnt work'
+        redirect_to new_event_event_registration_path, :alert => 'Please provide an email address or sign in!'
      end
   end
 
