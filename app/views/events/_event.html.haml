@@ -3,11 +3,6 @@
   .event
     - if event.scheduled_time
       %h3= event.headline
-      - @event = event
-      - @event_registration = EventRegistration.new
-      - @event.amenities.each do |a|
-        - @event_registration.amenities_events.build(:amenity_id => a.id, :event_id => @event.id)
-      = render 'event_registrations/form'
       .time= event.scheduled_time.to_s(:short_meridian)
       [
       - if (current_user && current_user.admin?) && event.unapproved?
@@ -16,8 +11,16 @@
         #{ link_to "Edit", edit_event_path(event) }
         #{ link_to "Delete", event_path(event), :method => :delete, :confirm => 'Are you sure?' }
       = link_to "Details", event_path(event)
+      .register_for_event{:style => 'display: inline'}
+        Attend!
       ]
     - if show_approved
       %h4= event.approved? ? "Approved" : "Not Approved Yet" if event.user == current_user
     .content
       = mup event.body
+    .event_registration_form.form{:style => 'display: none' }
+      - @event = event
+      - @event_registration = EventRegistration.new
+      - @event.amenities.each do |a|
+        - @event_registration.amenities_events.build(:amenity_id => a.id, :event_id => @event.id)
+      = render 'event_registrations/form'
