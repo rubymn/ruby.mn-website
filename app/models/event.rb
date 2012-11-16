@@ -4,6 +4,8 @@ class Event < ActiveRecord::Base
   has_and_belongs_to_many :amenities
   has_many :event_registrations
   has_many :users, :through => :event_registrations
+  has_many :amenities_events
+  has_many :amenities, :through => :amenities_events
 
   # Validations
   validates :headline,       :presence => true

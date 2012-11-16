@@ -1,10 +1,14 @@
-= form_for @event_registration do |f|
+= form_for [@event, @event_registration] do |f|
   - if current_user.present?
     = f.hidden_field :user_id
     = f.hidden_field :event_id
     = f.label :email
     = f.text_field :email
     %br
-
+    = f.fields_for :amenities_events do |ff|
+      = ff.label ff.object.amenity.name
+      = check_box_tag "event_registration[amenities_events_ids][]", ff.object.amenity.id, true
+      %br
   - else
     = f.textfield :email
+  = f.submit

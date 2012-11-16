@@ -19,6 +19,13 @@ ActiveRecord::Schema.define(:version => 20121109150835) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "amenities_events", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "amenity_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "engine_schema_info", :id => false, :force => true do |t|
     t.string  "engine_name"
     t.integer "version"
@@ -66,7 +73,7 @@ ActiveRecord::Schema.define(:version => 20121109150835) do
   end
 
   create_table "registration_amenities", :force => true do |t|
-    t.integer  "amenities_events_id"
+    t.integer  "amenities_event_id"
     t.integer  "event_registration_id"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false

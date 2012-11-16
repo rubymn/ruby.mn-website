@@ -1,4 +1,4 @@
 class Amenity < ActiveRecord::Base
-  has_and_belongs_to_many :events
-
+  has_many :amenities_events
+  has_many :events, :through => :amenities_events
 end

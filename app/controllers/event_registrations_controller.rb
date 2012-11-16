@@ -5,12 +5,16 @@ class EventRegistrationsController < ApplicationController
     @event_registration.user_id  = current_user.id if current_user.present?
     @event_registration.email    = current_user.email if current_user.present?
     @event_registration.event_id = @event.id
+    @event.amenities.each do |a|
+      @event_registration.amenities_events.build(:amenity_id => a.id, :event_id => @event.id)
+    end
   end
 
   def create
-    @event_registration = EventRegistration.new(params[:id])
+    @event_registration = EventRegistration.new(params[:event_registration])
+
     if @event_registration.save
-        redirect_to event_registration_path(@event_registration), :notice => 'Thanks For Registering!'
+        redirect_to root_path, :notice => 'Thanks For Registering!'
      else
         redirect_to new_event_registration_path, :notice => 'That didnt work'
      end
