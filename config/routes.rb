@@ -19,6 +19,7 @@ RubyMnWebsite::Application.routes.draw do
   match '/for_hires' => 'for_hires#index', :as => :for_hires
 
   resources :events do
+    resources :event_registrations
     member do
       delete :admdestroy
       #put    :approve
@@ -34,6 +35,8 @@ RubyMnWebsite::Application.routes.draw do
   end
   resources :projects
   resource :session
+
+  resources :amenities
 
   # map.admin '/admin/:action/:id', :controller => 'admin'
   #match '/admin/:action/:id' => 'admin', :as => :admin
