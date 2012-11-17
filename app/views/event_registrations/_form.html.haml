@@ -10,5 +10,5 @@
       = check_box_tag "event_registration[amenities_event_ids][]", ff.object.amenity.id, true
       %br
   - else
-    = f.textfield :email
+    = f.text_field :email
   = f.submit
