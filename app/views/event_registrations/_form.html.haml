@@ -7,7 +7,7 @@
     %br
     = f.fields_for :amenities_events do |ff|
       = ff.label ff.object.amenity.name
-      = check_box_tag "event_registration[amenities_events_ids][]", ff.object.amenity.id, true
+      = check_box_tag "event_registration[amenities_event_ids][]", ff.object.amenity.id, true
       %br
   - else
     = f.textfield :email
