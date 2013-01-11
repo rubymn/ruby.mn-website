@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class AdminControllerTest < ActionController::TestCase
-  
+
   def test_admin_approve
     u = login(:role => 'admin')
     assert u.admin?

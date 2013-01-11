@@ -1,6 +1,6 @@
 source :rubygems
 
-gem 'rails',   '3.2.2'
+gem 'rails',   '3.2.11'
 gem 'pg',      '~> 0.12.0'
 gem 'unicorn', '~> 4.2.0'
 
@@ -37,8 +37,8 @@ group :test do
   # gem 'guard',              '~> 0.6.1'
   # gem 'guard-test',         '~> 0.3.0'
   # gem 'guard-bundler',      '~> 0.1.3'
-  gem 'rb-fsevent',         '~> 0.4.3.1', :require => false
-  gem 'rb-fchange',         '~> 0.0.5',   :require => false
+  gem 'rb-fsevent',         '~> 0.9.3', :require => false
+  gem 'rb-fchange',         '~> 0.0.5', :require => false
 end
 
 group :test, :development do
