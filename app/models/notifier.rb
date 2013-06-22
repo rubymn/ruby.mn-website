@@ -8,6 +8,6 @@ class Notifier < ActionMailer::Base
 
   def notify_event(event)
     @event = event
-    mail(:to => TCRBB_LIST_ADDRESS, :subject => "New Event Posted")
+    mail(:to => TCRBB_LIST_ADDRESS, :subject => @event.headline)
   end
 end
