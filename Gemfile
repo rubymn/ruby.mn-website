@@ -51,4 +51,5 @@ group :production do
   gem 'rack-cache',   '~> 1.2'
   gem 'rack-contrib', '~> 1.1.0'
   gem 'dalli',        '~> 1.1.5'
+  gem 'memcachier',   '0.0.2'
 end

@@ -1,5 +1,5 @@
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     actionmailer (3.2.11)
       actionpack (= 3.2.11)
@@ -85,6 +85,7 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    memcachier (0.0.2)
     metaclass (0.0.1)
     mime-types (1.19)
     mocha (0.10.3)
@@ -185,6 +186,7 @@ DEPENDENCIES
   haml-rails (= 0.3.4)
   jquery-rails (~> 2.0.0)
   kaminari (~> 0.13.0)
+  memcachier (= 0.0.2)
   mocha (~> 0.10.0)
   paperclip (~> 2.4.5)
   pg (~> 0.12.0)
