@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111124050202) do
+ActiveRecord::Schema.define(:version => 20140126212501) do
 
   create_table "engine_schema_info", :id => false, :force => true do |t|
     t.string  "engine_name"
@@ -73,6 +73,19 @@ ActiveRecord::Schema.define(:version => 20111124050202) do
   end
 
   add_index "sessions", ["session_id"], :name => "sessions_session_id_index"
+
+  create_table "sponsors", :force => true do |t|
+    t.string   "name"
+    t.string   "logo_image_small"
+    t.string   "logo_image_large"
+    t.string   "phone"
+    t.text     "description"
+    t.string   "contact_email"
+    t.string   "contact_url"
+    t.boolean  "current"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "login",           :limit => 80, :default => "", :null => false

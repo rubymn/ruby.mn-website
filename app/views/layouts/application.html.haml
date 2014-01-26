@@ -56,7 +56,16 @@
         #copyright
           &copy; #{Time.now.year} #{link_to 'Ruby Users of Minnesota', '/'}
         #credits
-          Site credits #{ link_to 'mml', 'http://www.loonsoft.com' } #{ content_tag :span, '&amp;'.html_safe, :class => :amp } #{link_to '@marknutter', 'http://nuttersmark.com/'} #{ content_tag :span, '&amp;'.html_safe, :class => :amp } #{link_to '@webandy', 'http://webandy.com/'} #{ content_tag :span, '&amp;'.html_safe, :class => :amp } #{link_to '@jrmehle', 'http://twitter.com/jrmehle'}
+          Site credits 
+          =link_to 'mml', 'http://www.loonsoft.com' 
+          %span.amp &amp;
+          =link_to '@marknutter', 'http://nuttersmark.com/'
+          %span.amp &amp;
+          =link_to '@webandy', 'http://webandy.com/'
+          %span.amp &amp;
+          =link_to '@jrmehle', 'http://twitter.com/jrmehle'
+          %span.amp &amp;
+          =link_to '@caseyhelbling', 'http://softwareforgood.com'
           Hosting provided by #{ link_to 'Heroku', "http://www.heroku.com" }
 
     = javascript_include_tag 'application'
