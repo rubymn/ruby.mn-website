@@ -15,8 +15,14 @@
       - else
         %li= link_to "Join", new_user_path
         %li= link_to "Login", new_session_path
-  #calendar
-    %h4= link_to "Meeting Calendar", "http://www.google.com/calendar/embed?src=4g380qh7p0taroueuulfajauck%40group.calendar.google.com&ctz=America/Chicago", :title => "View our meeting dates in Google Calendar.", :alt => "View our meeting dates in Google Calendar."
+  -##calendar
+    -#%h4= link_to "Meeting Calendar", "http://www.google.com/calendar/embed?src=4g380qh7p0taroueuulfajauck%40group.calendar.google.com&ctz=America/Chicago", :title => "View our meeting dates in Google Calendar.", :alt => "View our meeting dates in Google Calendar."
+  #register
+    .next-meeting
+      %h3 Register now for the next meeting
+      <a class="unii-listing-button unii-medium unii-pink" href="https://www.uniiverse.com/listings/ruby-users-of-mn-minneapolis-registration-TJ25Q">Book it!</a>
+      <script type="text/javascript" src="https://www.uniiverse.com/embed.js"/></script>
+
   #email_list
     %p
       #{ link_to "Our mailing list is hosted on Google Groups", 'http://groups.google.com/group/rubymn?hl=en', :title => 'Visit the Ruby.MN Google Group', :alt => 'Visit the Ruby.MN Google Group' } and is the primary way to discuss Ruby with our members.

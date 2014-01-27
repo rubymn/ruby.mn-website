@@ -1,11 +1,9 @@
 a
   text-decoration: none
   color: #000
-  background-color: #FFD8D2
   &:visited
     text-decoration: none
     color: #000
-    background-color: #FFD8D2
   &:hover
     text-decoration: underline
 .clear
@@ -320,9 +318,16 @@ h2.smartthings
 
 .welcome_events, .projects, .members, .hires, .sponsors, .past-sponsors, .openings
   ul li
-    +soft-grey-gradient
     li
       background: transparent
+
+#register
+  padding: 10px 0 32px 0
+
+  .next-meeting
+    h3
+      font-size: 20px
+      padding: 10px 0
 
 .admin_events, .welcome_events, .events
   .event
@@ -371,6 +376,7 @@ h2.smartthings
     padding-left: 20px
   p
     margin: 20px
+
 .note, .project, .for_hire, .new_login, .sponsor, .opening, ul#users, ul.events .event
   padding: 20px
 
@@ -421,26 +427,29 @@ h2.smartthings
 .sponsor
   .logo
     padding: 7px
-  .logo.zencoder
-    background-color: #000
-    padding-bottom: 10px
-.info-hidden
-  display: none
+
+.current-sponsor, .past-sponsors
+  padding-left: 15px
+
 .past-sponsors
-  li
+  li.sponsor
     float: left
-    width: 157px
-    height:  77px
-  .logo img
-    width: 143px
-  .sponsor
-    padding: 0
+    width: 175px
+    height: 100px
+    padding: 10px 
+    overflow: hidden
+    a
+      background-color: none
+      margin: 0 auto
+      text-align: center
+      img
+        text-align: center
+        margin: 0 auto
+
 h2.past-sponsors
   padding-top: 20px
   padding-left: 20px
 
-.clear_logo
-  width: 120px !important
 
 ul#users
   margin: 0 -0.5em
@@ -565,5 +574,3 @@ h1#members_title
     p
       margin: 1em 0
 
-.foo
-  border: 1px solid red

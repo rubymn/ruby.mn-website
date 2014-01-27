@@ -34,6 +34,7 @@ RubyMnWebsite::Application.routes.draw do
   end
   resources :projects
   resource :session
+  resources :sponsors
 
   # map.admin '/admin/:action/:id', :controller => 'admin'
   #match '/admin/:action/:id' => 'admin', :as => :admin
@@ -41,7 +42,6 @@ RubyMnWebsite::Application.routes.draw do
   match 'admin/events/:id/approve' => 'admin#approve', :as => :admin_approve_event, :method => :put
   match '/admin'        => 'admin#index',   :as => :admin_index
 
-  match '/sponsors'       => 'static#sponsors',       :as => :sponsors
   match '/special-offers' => 'static#special_offers', :as => :special_offers
 
   root :to => 'welcome#index'
