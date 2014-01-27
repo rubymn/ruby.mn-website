@@ -9,10 +9,11 @@ gem 'pg'
 # in production environments by default.
 group :assets do
   gem 'coffee-rails', '~> 3.2'
-  gem 'sass-rails',   '~> 3.2'
   gem 'uglifier'
   gem 'compass-rails'
 end
+
+gem 'sass-rails',   '~> 3.2'
 
 gem 'jquery-rails'
 #gem "ruby-recaptcha", '~> 1.0.3', :require => 'recaptcha'
