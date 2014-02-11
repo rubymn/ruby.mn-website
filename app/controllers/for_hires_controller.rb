@@ -3,7 +3,7 @@ class ForHiresController < ApplicationController
   before_filter :bounce_foreign_access, :only => [:edit, :update, :destroy]
 
   def index
-    @for_hires = ForHire.includes(:user).order(:title)
+    @for_hires = ForHire.includes(:user).order('RANDOM()')
   end
 
   def new
