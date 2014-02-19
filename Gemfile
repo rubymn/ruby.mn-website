@@ -26,7 +26,7 @@ gem 'rails_autolink', '~> 1.0.4'
 gem 'dynamic_form',   '~> 1.1.4'
 gem 'gravatarify',    '~> 3.0.0'
 gem 'kaminari',       '~> 0.13.0'
-gem 'chronic',        '~> 0.6.6'
+gem 'chronic',        '~> 0.9.1'
 gem 'unicorn'
 
 group :development do
@@ -37,7 +37,7 @@ end
 group :test do
   gem 'shoulda',            '~> 3.0.1'
   gem 'test-unit',          '~> 2.4.8'
-  gem 'mocha',              '~> 0.10.0'
+  gem 'mocha',              '~> 1.0.0'
   gem 'rdoc'
   gem 'rb-fsevent',         '~> 0.9.3', :require => false
   gem 'rb-fchange',         '~> 0.0.5', :require => false
