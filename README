@@ -1,2 +1,18 @@
+DEVELOPMENT SETUP PROCEDURE
+1.  From this app's root directory, enter the command "bundle install".
+2.  This app uses PostgreSQL.  You may need to give yourself superuser 
+privileges in PostgreSQL by following the procedure in the next section 
+of this README file.
+3.  Set up the development database by entering the command  "createdb rubymn_dev".
+4.  Set up the test database by entering the command "createdb rubymn_test".
+5.  Enter the command "rake db:migrate".
+
+GIVING YOURSELF POSTGRESQL SUPERUSER PRIVILEGES
+1.  To enter Postgres mode, enter the command "sudo su postgres -c psql".
+2.  Provide Postgres privileges for your username by entering the command 
+"CREATE ROLE [username] SUPERUSER LOGIN;", where [username] is your username.
+3.  Exit Postgres mode by entering the command "\q".
+
+NOTES
 - recaptcha removed from user validation. Optionally add this back in if invalid/spam user signups really are a problem.
 - WARNING: ignoring activemailer delivery errors in production. This is because the new site is in a test mode. If merged back into the main site, will probably want to flip this back. This setting is in config/environments/production.rb.
