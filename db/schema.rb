@@ -34,21 +34,6 @@ ActiveRecord::Schema.define(:version => 20140126212501) do
     t.integer "user_id"
   end
 
-  create_table "list_mails", :force => true do |t|
-    t.string   "subject", :limit => 256,                 :null => false
-    t.string   "replyto", :limit => 256
-    t.string   "from",    :limit => 128,                 :null => false
-    t.string   "to",      :limit => 128,                 :null => false
-    t.datetime "stamp",                                  :null => false
-    t.text     "body",                                   :null => false
-    t.string   "mailid",  :limit => 256, :default => "", :null => false
-  end
-
-  create_table "messages_messages", :id => false, :force => true do |t|
-    t.integer "parent_id", :null => false
-    t.integer "child_id",  :null => false
-  end
-
   create_table "openings", :force => true do |t|
     t.datetime "created_at"
     t.string   "headline",   :limit => 100, :default => "", :null => false
