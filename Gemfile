@@ -41,7 +41,6 @@ group :test do
   gem 'rdoc'
   gem 'rb-fsevent',         '~> 0.9.3', :require => false
   gem 'rb-fchange',         '~> 0.0.5', :require => false
-  gem 'factory_girl_rails', '~> 1.5.0'
   gem 'guard',              '~> 0.6.1'
   gem 'guard-test',         '~> 0.3.0'
   gem 'guard-bundler',      '~> 0.1.3'
@@ -50,6 +49,7 @@ end
 group :test, :development do
   gem 'faker'
   gem 'progress_bar',       '~> 0.4.0'
+  gem 'factory_girl_rails', '~> 1.5.0'
 end
 
 group :production do
