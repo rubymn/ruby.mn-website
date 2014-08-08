@@ -21,6 +21,7 @@ num_users = 100
 users_bar = ProgressBar.new(num_users)
 puts "Seeing #{num_users} users..."
 Factory :admin
+Factory :user, :verified => true, :login => "007", :firstname => "James", :lastname => "Bond"
 num_users.times do
   users_bar.increment!
   Factory :user, :verified => [true, true, false].sample
