@@ -8,7 +8,7 @@
 
 # Cleaning data
 puts "Cleaning existing data..."
-classes = %w{ User ForHire Event Opening Project }
+classes = %w{ User ForHire Event Opening Project Sponsor }
 clean_bar = ProgressBar.new(classes.size)
 classes.each do |klass|
   clean_bar.increment!
@@ -28,6 +28,16 @@ num_users.times do
 end
 puts "done\n\n"
 users = User.non_admin.verified
+
+# For Sponsors
+puts "Seeding for sponsors"
+num_sponsors = 10
+sponsors_bar = ProgressBar.new(num_sponsors)
+num_sponsors.times do
+  sponsors_bar.increment!
+  Factory :sponsor
+end
+puts "done\n\n"
 
 # For Hires
 puts "Seeding for hires..."
