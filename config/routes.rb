@@ -42,7 +42,5 @@ RubyMnWebsite::Application.routes.draw do
   match 'admin/events/:id/approve' => 'admin#approve', :as => :admin_approve_event, :method => :put
   match '/admin'        => 'admin#index',   :as => :admin_index
 
-  match '/special-offers' => 'static#special_offers', :as => :special_offers
-
   root :to => 'welcome#index'
 end
