@@ -1,5 +1,11 @@
 require 'test_helper'
 
+class SponsorsControllerTest < ActionController::TestCase
+  should route(:get, '/sponsors').to(:action => 'index')
+
+end
+
+=begin
 class StaticControllerTest < ActionController::TestCase
   should route(:get, '/sponsors').to(:controller => 'static', :action => 'sponsors')
   
@@ -12,3 +18,4 @@ class StaticControllerTest < ActionController::TestCase
   end
 
 end
+=end
