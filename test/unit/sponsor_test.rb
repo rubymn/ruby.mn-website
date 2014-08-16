@@ -1,7 +1,5 @@
 require 'test_helper'
 
 class SponsorTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  subject { Factory.create :sponsor }
 end
