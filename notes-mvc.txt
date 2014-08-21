@@ -44,14 +44,14 @@ users
 welcome
 
 CONTROLLERS
-admin
-application
-events
-for_hires
-openings
-projects
-sessions
-sponsors
-static
-users
-welcome
+admin (index, approve)
+application (admin_required, login_required, current_user, logged_in?, bounce)
+events (index, user_index, create, update, new, destroy, edit, show)
+for_hires (index, new, show, create, edit, update, destroy, bounce_foreign_access)
+openings (index, new, update, create, edit, destroy)
+projects (index, new, create, edit, update, destroy, find_project)
+sessions (show, new, destroy, create)
+sponsors (index)
+static (sponsors)
+users (change_password, set_password, forgot_password, reset, validate, index, new, create, edit, update)
+welcome (index)
