@@ -19,7 +19,7 @@ puts "done\n\n"
 # Users
 num_users = 100
 users_bar = ProgressBar.new(num_users)
-puts "Seeing #{num_users} users..."
+puts "Seeding #{num_users} users..."
 Factory :admin
 Factory :user, :verified => true, :login => "007", :firstname => "James", :lastname => "Bond"
 num_users.times do
