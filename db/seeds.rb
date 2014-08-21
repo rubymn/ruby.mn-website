@@ -56,7 +56,11 @@ events_bar = ProgressBar.new(users.size)
 users.each do |user|
   events_bar.increment!
   if [true, false].sample
-    Factory :event, :user => user
+    if [true, false].sample
+      Factory :event, :user => user
+    else
+      Factory :event, :user => user, :approved => false
+    end
   end
 end
 puts "done\n\n"
