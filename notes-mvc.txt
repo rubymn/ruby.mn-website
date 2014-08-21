@@ -1,0 +1,57 @@
+DATABASE TABLES:
+engine_schema_info
+events
+for_hires
+openings
+projects
+schema_migrations
+sessions
+sponsors
+users
+
+DATABASE PARAMETERS:
+events
+for_hires
+openings
+projects
+sponsors
+users
+
+MODELS:
+event (user)
+for_hire (user)
+notifier
+opening (user)
+project (user)
+signup_mailer
+sponsor
+user
+
+VIEWS:
+admin
+events
+for_hires
+layouts
+notifier
+openings
+pevents
+projects
+sessions
+shared
+signup_mailer
+sponsors
+users
+welcome
+
+CONTROLLERS
+admin
+application
+events
+for_hires
+openings
+projects
+sessions
+sponsors
+static
+users
+welcome
