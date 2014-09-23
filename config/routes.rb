@@ -39,7 +39,7 @@ RubyMnWebsite::Application.routes.draw do
   # map.admin '/admin/:action/:id', :controller => 'admin'
   #match '/admin/:action/:id' => 'admin', :as => :admin
 
-  match '/admin/events/:id/approve' => 'admin#approve', :as => :admin_approve_event, :method => :put
+  put '/admin/events/:id/approve' => 'admin#approve', :as => :admin_approve_event
   match '/admin'        => 'admin#index',   :as => :admin_index
 
   root :to => 'welcome#index'
