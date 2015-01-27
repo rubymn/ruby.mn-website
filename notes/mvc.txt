@@ -1,0 +1,288 @@
+MIGRATIONS
+db/migrate
+  20090128221821_kaboom.rb
+    create_table "engine_schema_info" (engine_name, verison)
+    create_table "events" (created_at, scheduled_time, headline, body, user_id, approved)
+    create_table "for_hires" (blurb, email, title, user_id)
+    create_table "openings" (created_at, headline, body, user_id)
+    create_table "projects" (user_id, title, url, source_url, description, created_at, updated_at)
+    create_table "sessions" (sessions_id, data, updated_at)
+    add_index "sessions"
+    create_table "users" (login, salted_password, email, firstname, lastname, salt, verified, security_token, 
+      token_expiry, deleted, logged_in_at, delete_after, role)
+    add_index "users"
+  20111124050202_add_gravatar_email_to_users.rb
+    def up
+      change_table :users do |t|
+        t.string :gravatar_email
+      User.all.each do |user|
+        user.gravatar_email = user.email
+        user.save
+    def down
+      change_table :users do |t|
+        t.remove :gravatar_email
+  20140126212501_create_sponsors.rb
+    create_table :sponsors (name, logo_image_small, logo_image_large, phone, description, contact_email, 
+      contact_url, current)
+    end
+  
+ADMIN
+app/controllers/admin_controller.rb
+  before_filter :admin_required
+  def index
+  def approve
+app/views/admin
+  _event.html.haml
+  index.html.haml
+
+APPLICATION
+app/controllers/application_controller.rb
+  protect_from_forgery
+  helper_method :logged_in?
+  protected
+    def admin_required
+    def login_required
+    def current_user
+    helper_method :current_user
+    def logged_in?
+    def bounce
+application_helper.rb
+  def markdown(text)
+  def mup(text)
+  def i_am(user)
+  def emdash
+  def user_gravatar(user)
+
+ARCHIVES
+app/helpers/archive_helper.rb
+  def get_replies(msg, ar)
+
+EVENTS
+app/controllers/events_controller.rb
+  before_filter :login_required
+  before_filter :admin_required, :only => :show
+  def index
+  def user_index
+  def create
+  def update
+  def new
+  def destroy
+  def edit
+  def show
+app/models/event.rb
+  belongs_to :user
+  validates :headline,       :presence => true
+  validates :scheduled_time, :presence => true
+  validates :body,           :presence => true
+  validates :user_id,        :presence => true
+  scope :approved, includes(:user).where(:approved => true).limit(5)
+  scope :unapproved, where(:approved => false)
+  scope :order_scheduled_time_desc, order('scheduled_time desc')
+    def formatted_scheduled_time
+    self.scheduled_time.try(:to_s, :jquery_datepicker)
+  def formatted_scheduled_time=(unformatted_time)
+  def unapproved?
+app/views/events
+  edit.html.haml
+  _event.html.haml
+  _form.html.haml
+  index.html.haml
+  new.html.haml
+  show.html.haml
+
+FOR HIRES
+app/controllers/for_hires_controller.rb
+  before_filter :login_required, :except => :index
+  before_filter :bounce_foreign_access, :only => [:edit, :update, :destroy]
+  def index
+  def new
+  def show
+  def create
+  def edit
+  def update 
+  def destroy
+  private
+    def bounce_foreign_access
+app/models/for_hire.rb
+  belongs_to :user
+  validates :user_id, :presence => true
+  validates :title,   :presence => true
+  validates :email,   :presence => true
+  validates :blurb,   :presence => true
+app/views/for_hires
+  edit.html.haml
+  _for_hire.html.haml
+  _form.html.haml
+  index.html.haml
+  new.html.haml
+
+LAYOUTS
+app/views/layouts
+  application.html.haml
+
+NOTIFIER
+app/models/notifier.rb
+  default :from => NOTIFICATION_ADDRESS
+  def notify_opening(opening)
+  def notify_event(event)
+app/views/notifier
+  notify_event.text.haml
+  notify_opening.text.haml
+
+OPENINGS
+app/controllers/openings_controller.rb
+  before_filter :login_required
+  def index 
+  def new
+  def update
+  def create
+  def edit
+  def destroy
+app/models/opening.rb
+  after_create :deliver_notification
+  belongs_to :user
+  validates :body,     :presence => true
+  validates :headline, :presence => true
+  paginates_per 10
+  protected
+    def deliver_notification
+app/views/openings
+  edit.html.haml
+  _form.html.haml
+  index.html.haml
+  new.html.haml
+  opening_form.html.haml
+  _opening.html.haml
+
+PEVENTS
+app/views/pevents
+  show.html.haml
+
+PROJECTS
+app/controllers/projects_controller.rb
+  before_filter :login_required, :except => :index
+  before_filter :find_project,   :only => [:edit, :update, :destroy]
+  def index
+  def new
+  def create
+  def edit
+  def update
+  def destroy
+  protected
+    def find_project
+app/models/project.rb
+  HUMANIZED_COLUMNS = { :url => 'URL' }
+  belongs_to :user
+  validates :title,       :presence => true
+  validates :description, :presence => true
+  validates :url,         :presence => true
+  validates :user_id,     :presence => true
+  def self.human_attribute_name(name, options = {})
+app/views/projects
+  edit.html.haml
+  _form.html.haml
+  index.html.haml
+  new.html.haml
+  _project.html.haml
+
+SESSIONS
+app/controllers/sessions_controller.rb
+  def show
+  def new
+  def destroy
+  def create
+app/views/sessions
+  new.html.haml
+
+SHARED
+app/views/shared
+  _flash_messages.html.haml
+  _google_analytics.html.haml
+  _logged_in_as.html.haml
+  _navigation.html.haml
+  _sidebar.html.haml
+
+SIGNUP MAILER
+app/models/signup_mailer.rb
+  default :from => ADMIN_ADDRESS
+  def confirm(user)
+  def pass_inst(user)
+app/views/signup_mailer
+  confirm.text.haml
+  pass_inst.text.haml
+
+SPONSORS
+app/controllers/sponsors_controller.rb
+  def index
+app/models/sponsor.rb
+  attr_accessible :contact_email, :contact_url, :current, :description, :logo_image_large, :logo_image_small, 
+    :name, :phone
+app/views/sponsors
+  index.html.haml
+
+STATIC PAGES
+app/controllers/static_controller.rb
+  def sponsors
+
+USERS
+app/controllers/users_controller.rb
+  before_filter :login_required,  :only => [:index, :set_password, :edit, :update]
+  before_filter :admin_required,  :only => :destroy
+  def change_password
+  def set_password
+  def forgot_password
+  def reset
+  def validate
+  def index
+  def new
+  def create
+  def edit
+  def update
+app/models/user.rb
+  HUMANIZED_COLUMNS = { :firstname => 'First Name', :lastname => 'Last Name' }
+  has_many :events
+  has_many :openings, :dependent => :destroy
+  has_many :projects
+  has_one :for_hire, :dependent => :destroy
+  after_validation :encrypt_password
+  validates :password,  :confirmation => { :message => "doesn't match confirmation" }, :on => :create
+  validates :password,  :presence     => true, :on => :create
+  validates :login,     :uniqueness   => true
+  validates :email,     :uniqueness   => true
+  validates :login,     :presence     => true
+  validates :email,     :presence     => true
+  validates :firstname, :presence     => true
+  validates :lastname,  :presence     => true
+  attr_protected :verified, :form, :security_token, :salted_password, :delete_after, :deleted
+  scope :verified, where('verified != 0')
+  scope :non_admin, where(:role => nil)
+  paginates_per 50
+  def self.human_attribute_name(name, options = {})
+  def crypt_new_password
+  def to_param
+  def generate_security_token(hours = 1)
+  def self.authenticate(login, password)
+  attr_accessor :password, :password_confirmation
+  def admin?
+  def full_name
+  protected
+    def new_security_token(hours = 1)
+    def self.hashify(str)
+    def encrypt_password
+app/views/users
+  change_password.html.haml
+  edit.html.haml
+  forgot_form.html.haml
+  home.html.haml
+  index.html.haml
+  new.html.haml
+  reset.html.haml
+  _user.html.haml
+  validate.html.haml
+
+WELCOME
+app/controllers/welcome_controller.rb
+  def index
+app/views/welcome
+  index.html.haml
+  index.rss.haml
