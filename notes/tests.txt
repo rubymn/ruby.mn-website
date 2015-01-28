@@ -1,55 +1,228 @@
-test:
 custom_helper.rb
+  def login(attr={})
+  def login_as(u)
+  def assert_bounced
 factories
+  event.rb
+    factory :event do |f|
+      headline { Faker::Lorem.sentence }
+      body { Faker::Lorem.paragraph }
+      approved true
+      formatted_scheduled_time 1.day.from_now
+      user
+  for_hire.rb
+    factory :for_hire do |t|
+      blurb { Faker::Lorem.paragraph }
+      email { Faker::Internet.email }
+      title { Faker::Lorem.sentence }
+      user
+  opening.rb
+    factory :opening do |t|
+      headline { Faker::Lorem.sentence }
+      body { Faker::Lorem.paragraph }
+      user
+  project.rb
+    factory :project do |t|
+      title { Faker::Lorem.sentence }
+      url { "http://#{Faker::Internet.domain_name}" }
+      source_url { "http://#{Faker::Internet.domain_name}/#{Faker::Lorem.words(1).first}" }
+      description { Faker::Lorem.paragraph }
+      user
+  sponsor.rb
+    factory :sponsor do |f|
+      name { Faker::Company.name }
+      description { Faker::Lorem.sentence }
+      current { [true, false].sample }
+  user.rb
 factories.rb
+  sequence :email do |n|
+    "user#{n+Time.now.to_i}@example.com"
+  sequence :username do |n|
+    "user#{n}#{Time.now.to_i}"
 fixtures
+  files
+    beard.jpg
+  sponsors.yml
+    one:
+      name: MyString
+      logo_image_small: MyString
+      logo_image_large: MyString
+      phone: MyString
+      description: MyText
+      contact_email: MyString
+      contact_url: MyString
+      current: false
+    two:
+      name: MyString
+      logo_image_small: MyString
+      logo_image_large: MyString
+      phone: MyString
+      description: MyText
+      contact_email: MyString
+      contact_url: MyString
+      current: false
 functional
+  admin_controller_test.rb
+    def test_admin_approve
+    def test_admin_role_required
+    def test_index
+  events_controller_test.rb
+    context "Logged in as a user with events" do
+      setup do
+        @user     = Factory(:user)
+        @ev1      = Factory.create(:event, :user => @user)
+        @ev2      = Factory.create(:event, :user => @user)
+        @ev_nappr = Factory.create(:event, :user => @user, :approved => false)
+        login_as @user
+      context "on GET to :index" do
+    def setup
+    test "create" do
+    def test_bad_create
+    def test_index_admin
+    def test_index_admin_no_user_id_param
+    test "user index not admin" do
+    def test_destroy
+    def test_destroy_as_admin
+    def test_destroy_as_not_admin
+    def test_destroy_permission
+    def test_edit
+    def test_evil_edit
+    def test_edit_permission
+    def test_update
+    def test_show
+    def test_new
+  for_hires_controller_test.rb
+    context "when routing for this 'has_one' resource" do
+    context "not logged in" do
+      setup do
+        @request.session[:uid] = nil
+      context "on GET to :index" do
+    context "logged in" do
+      setup do
+        @u   = login
+        @fh1 = Factory.create(:for_hire, :user => @u)
+        @fh2 = Factory.create(:for_hire)
+      context "get new" do
+      context "get edit with id" do
+      context "index" do
+      def test_create
+      context "create with no id" do
+      context "update" do
+      context "a malicious edit with a id" do
+      context "a malicious update with a id" do
+      context "destroy" do
+      context "a malicious delete with a id" do
+        setup do
+          @fh = Factory :for_hire
+          get :destroy, :id => @fh.id
+        should "bounce if an id is supplied to this has_one resource" do
+  openings_controller_test.rb
+    def test_new
+    def test_update
+    def test_requires_login
+    def test_index
+    def test_create
+  projects_controller_test.rb
+    def setup
+    def test_login_not_required
+    def test_get_with_id
+    def test_index
+    def test_create_post
+    def test_create_get_noid
+    def test_create_post_with_id
+    def test_evil_edit
+    def test_destroy
+    def test_evil_destroy
+    def test_bad_create_shows_errors
+    def test_bad_edit_shows_errors
+  sessions_controller_test.rb
+    def test_show
+    def test_new
+    def test_create
+    def test_destroy
+  sponsors_controller_test.rb
+    should route(:get, '/sponsors').to(:action => 'index')
+  users_controller_test.rb
+    should route(:get, '/users').to(:action => 'index')
+    should route(:post, '/users').to(:action => 'create')
+    should route(:get, '/users/new').to(:action => 'new')
+    should route(:post, "/users/new/set_password").to(:action => :set_password)
+    should route(:get, "/users/new/validate").to(:action => :validate)
+    should route(:get, "/users/new/forgot_password").to(:action => :forgot_password)
+    should route(:post, "/users/new/reset").to(:action => :reset)
+    should route(:get, "/users/new/change_password").to(:action => :change_password)
+    context "get new" do
+    context "get edit" do
+    context "put update" do
+    context "logged in" do
+      setup { @user = login }
+      context "get edit" do
+      context "put update" do
+    def test_index
+    def test_index_logged_in
+    def test_create
+    def test_password_conf
+    def test_empty_pass
+    def test_create2
+    def test_validate 
+  welcome_controller_test.rb
+    should route(:get, "/").to(:controller => :welcome, :action => :index)
+    def test_works_logged_in
+    def test_no_jacket_required
+    def test_lists_events  
 integration
 performance
+  browsing_test.rb
+    def test_homepage
 test_helper.rb
+  include CustomHelper
 unit
-
-test/factories:
-event.rb
-for_hire.rb
-opening.rb
-project.rb
-sponsor.rb
-user.rb
-
-test/fixtures:
-files
-sponsors.yml
-
-test/fixtures/files:
-beard.jpg
-
-test/functional:
-admin_controller_test.rb
-events_controller_test.rb
-for_hires_controller_test.rb
-openings_controller_test.rb
-projects_controller_test.rb
-sessions_controller_test.rb
-sponsors_controller_test.rb
-users_controller_test.rb
-welcome_controller_test.rb
-
-test/integration:
-
-test/performance:
-browsing_test.rb
-
-test/unit:
-event_test.rb
-for_hire_test.rb
-helpers
-notifier_test.rb
-opening_test.rb
-project_test.rb
-signup_mailer_test.rb
-sponsor_test.rb
-user_test.rb
-
-test/unit/helpers:
-static_helper_test.rb
+  event_test.rb
+    should validate_presence_of :headline
+    should validate_presence_of :scheduled_time
+    should validate_presence_of :body
+    should validate_presence_of :user_id
+    context "formatted scheduled time" do
+      setup do
+        @event = Factory.build :event
+      should "display formatted scheduled time" do
+  for_hire_test.rb
+    should belong_to :user
+    should validate_presence_of :user_id
+    should validate_presence_of :title
+    should validate_presence_of :email
+    should validate_presence_of :blurb
+  helpers
+    static_helper_test.rb
+  notifier_test.rb
+    def test_opening_notify
+    def test_event_notify
+  opening_test.rb
+    should belong_to :user
+    should validate_presence_of :body
+    should validate_presence_of :headline
+    context "an instance" do
+      setup do
+        @u = Factory.create(:user)
+        @o = @u.openings.build(:body => 'foo', :headline => 'meh')
+        @o.expects(:deliver_notification)
+      should "call deliver" do
+  project_test.rb
+    should belong_to :user
+    should validate_presence_of :title
+    should validate_presence_of :description
+    should validate_presence_of :url
+    should validate_presence_of :user_id
+  signup_mailer_test.rb
+    def test_signup_mail
+  sponsor_test.rb
+    subject { Factory.create :sponsor }
+  user_test.rb
+    subject { Factory.create :user }
+    should have_one :for_hire
+    should have_many :events
+    should have_many :openings
+    should have_many :projects
+    should validate_presence_of :login
+    should validate_uniqueness_of :login
+    should validate_uniqueness_of :email
