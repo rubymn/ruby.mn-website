@@ -1,5 +1,4 @@
 $ ->
-  window.sidebarTweets = new sidebarTweets()
   window.loginFormEnhancements = new loginFormEnhancements()
 
   $(".scroll").on 'click', (e) ->
