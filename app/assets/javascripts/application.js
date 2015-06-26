@@ -8,7 +8,6 @@
 //= require jquery-ui-1.8.16.min
 //= require jquery-ui-timepicker-addon
 //= require jquery_ujs
-//= require jquery.tweet
 //= require sidebar_tweets
 //= require login_form
 //= require global
