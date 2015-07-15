@@ -224,3 +224,6 @@ DEPENDENCIES
   test-unit (~> 2.4.8)
   uglifier
   unicorn
+
+BUNDLED WITH
+   1.10.4
