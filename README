@@ -1,22 +1,15 @@
-DEVELOPMENT SETUP PROCEDURE
-1.  From this app's root directory, enter the command "bundle install".
-2.  This app uses PostgreSQL.  You may need to give yourself superuser 
-privileges in PostgreSQL by following the procedure in the next section 
-of this README file.
-3.  Set up the development database by entering the command  "createdb rubymn_dev".
-4.  Set up the test database by entering the command "createdb rubymn_test".
-5.  Enter the command "rake db:migrate".
+DEVELOPMENT SETUP:
+Just enter the following commands:
+1.  git clone https://github.com/rubymn/ruby.mn-website.git
+2.  cd ruby.mn-website
+3.  Enter the command "sh test_app.sh".
 
-GIVING YOURSELF POSTGRESQL SUPERUSER PRIVILEGES
-1.  To enter Postgres mode, enter the command "sudo su postgres -c psql".
-2.  Provide Postgres privileges for your username by entering the command 
-"CREATE ROLE [username] SUPERUSER LOGIN;", where [username] is your username.
-3.  Exit Postgres mode by entering the command "\q".
-
-NOTES
+DATABASE SEEDING
 - Running "rake db:seed" provides an admin user (username of "admin1" and 
 password of "railsrocks") and a VERIFIED user (username of "007" and password 
 of "railsrocks").
+
+NOTES
 - recaptcha removed from user validation. Optionally add this back in if invalid/spam user signups really are a problem.
 - WARNING: ignoring activemailer delivery errors in production. This is because the new site is in a test mode. If merged back into the main site, will probably want to flip this back. This setting is in config/environments/production.rb.
 - If running rake gives you the error message "ERROR: encoding UTF8 does not match locale en_US Detail: The chosen LC_CTYPE setting requires encoding LATIN1.", 
