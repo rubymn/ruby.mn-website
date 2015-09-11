@@ -9,4 +9,5 @@ tmp/
 heroku_env.rb
 rdoc/*
 .DS_Store
+db/backup
 tmp*
