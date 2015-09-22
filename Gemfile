@@ -56,3 +56,10 @@ group :production do
   gem 'dalli',        '~> 1.1.5'
   gem 'memcachier',   '0.0.2'
 end
+
+# ADDITION: DIAGRAMS
+gem 'rails-erd'
+gem 'railroady'
+
+# ADDITION: ANNOTATE
+gem 'annotate'

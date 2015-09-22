@@ -11,3 +11,7 @@ rdoc/*
 .DS_Store
 db/backup
 tmp*
+
+# Ignore *.dot and *.svg files
+notes/*.dot
+notes/*.svg

@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: events
+#
+#  id             :integer          not null, primary key
+#  created_at     :datetime
+#  scheduled_time :datetime
+#  headline       :string(200)      default(""), not null
+#  body           :text             not null
+#  user_id        :integer          default(0), not null
+#  approved       :boolean          default(FALSE)
+#
+
 require 'test_helper'
 
 class EventTest < ActiveSupport::TestCase

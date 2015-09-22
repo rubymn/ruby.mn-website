@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: openings
+#
+#  id         :integer          not null, primary key
+#  created_at :datetime
+#  headline   :string(100)      default(""), not null
+#  body       :text             not null
+#  user_id    :integer
+#
+
 require 'test_helper'
 
 class OpeningTest < ActiveSupport::TestCase
