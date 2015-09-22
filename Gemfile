@@ -63,3 +63,15 @@ gem 'railroady'
 
 # ADDITION: ANNOTATE
 gem 'annotate'
+
+# ADDITIONS: code checking
+group :development do
+  gem 'sandi_meter'
+  gem 'brakeman'
+  # gem 'guard-brakeman'
+  gem 'bundler-audit'
+  # gem 'guard-bundler-audit'
+end
+
+# ADDITION: GEMSURANCE
+gem 'gemsurance'

@@ -15,3 +15,6 @@ tmp*
 # Ignore *.dot and *.svg files
 notes/*.dot
 notes/*.svg
+
+# Ignore the Gemsurance Report
+gemsurance_report.html
