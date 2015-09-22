@@ -1,3 +1,6 @@
+VAGRANT BOX:
+For a Vagrant box customized to this project, go to https://github.com/jhsu802701/vagrant-debian-jessie-rvm-rubymn .  Because Ruby 2.1.6 and Rails 3.2 are pre-installed, the process of setting up this project after you install or reinstall this box is much quicker.
+
 DEVELOPMENT SETUP:
 Just enter the following commands:
 1.  git clone https://github.com/rubymn/ruby.mn-website.git
