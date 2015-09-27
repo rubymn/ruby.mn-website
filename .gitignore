@@ -18,3 +18,6 @@ notes/*.svg
 
 # Ignore the Gemsurance Report
 gemsurance_report.html
+
+# Ignore the gems in vendor/cache (too much source code bloat)
+vendor/cache
