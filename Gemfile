@@ -1,25 +1,25 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 3.2'
+gem 'rails', '~> 3.2.22'
 gem 'pg'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
   gem 'coffee-rails', '~> 3.2'
-  gem 'uglifier'
+  gem 'uglifier', '~> 2.7.2'
   gem 'compass-rails'
 end
 
 gem 'sass-rails',   '~> 3.2'
 
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 3.1.3'
 #gem "ruby-recaptcha", '~> 1.0.3', :require => 'recaptcha'
 gem "recaptcha",      '~> 0.3.1', :require => "recaptcha/rails"
 gem "haml"
 gem 'haml-rails'
 gem 'rdiscount'
-gem "paperclip"
+gem "paperclip", '~> 4.3.1'
 gem 'rails_autolink', '~> 1.0.4'
 gem 'dynamic_form',   '~> 1.1.4'
 gem 'gravatarify',    '~> 3.0.0'

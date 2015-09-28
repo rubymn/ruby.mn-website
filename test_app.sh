@@ -26,10 +26,10 @@ echo '--------------'
 echo 'bundle install'
 bundle install
 
-echo '---------------'
-echo 'rake db:migrate'
-rake db:migrate
+echo '---------------------------'
+echo 'bundle exec rake db:migrate'
+bundle exec rake db:migrate
 
-echo '---------'
-echo 'rake test'
-rake test
+echo '---------------------'
+echo 'bundle exec rake test'
+bundle exec rake test
