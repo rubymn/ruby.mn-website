@@ -31,4 +31,11 @@ RubyMnWebsite::Application.configure do
   TCRBB_LIST_ADDRESS   = 'rubymn@example.com'
   ADMIN_ADDRESS        = 'admin@ruby.mn'
   NOTIFICATION_ADDRESS = 'notifications@ruby.mn'
+  
+  # From https://github.com/plataformatec/devise
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  # From http://mailcatcher.me/
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { address: 'localhost', port: 1025 }
 end
