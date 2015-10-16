@@ -117,8 +117,6 @@ RubyMnWebsite::Application.routes.draw do
 end
 ----------------
 
-
-
 test/integration:
 
 app/views:
