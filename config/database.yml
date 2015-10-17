@@ -1,13 +1,32 @@
-#hey, don't check in passwords here.
+# PostgreSQL parameters are provided here for the
+# development and testing environments ONLY.
+
+# Use the test_app.sh script to AUTOMATICALLY configure PostgreSQL to
+# allow this Rails app to work in your development environment.  If you
+# are working on this app in the Vagrant environment, you can view the
+# development environment database with pgAdmin from your host OS.
+
+# pgAdmin parameters for the setup at
+# https://github.com/jhsu802701/vagrant-debian-jessie-rbenv-rubymn:
+
+# Host: localhost
+# Port: 15432
+# Maintenance DB: postgres
+# Username: rubymn_user
+# Password: rubymn_password
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  timeout: 5000
+  username: rubymn_user
+  password: rubymn_password
 
 development:
-  adapter: postgresql
+  <<: *default
   database: rubymn_dev
-  pool: 5
-  timeout: 5000
-
+  
 test:
-  adapter: postgresql
+  <<: *default
   database: rubymn_test
-  pool: 5
-  timeout: 5000
