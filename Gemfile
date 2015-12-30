@@ -31,6 +31,11 @@ gem 'chronic',        '~> 0.9.1'
 gem 'unicorn'
 
 group :development do
+  gem 'sandi_meter'
+  gem 'brakeman'
+  # gem 'guard-brakeman'
+  gem 'bundler-audit'
+  # gem 'guard-bundler-audit'
   gem 'rails3-generators',  '0.17.4'
   gem 'foreman'
 end
@@ -54,27 +59,13 @@ group :test, :development do
 end
 
 group :production do
-  gem 'rack-cache',   '~> 1.2'
-  gem 'rack-contrib', '~> 1.1.0'
+  #gem 'rack-cache',   '~> 1.2'
+  #gem 'rack-contrib', '~> 1.1.0'
   gem 'dalli',        '~> 1.1.5'
   gem 'memcachier',   '0.0.2'
 end
 
-# ADDITION: DIAGRAMS
 gem 'rails-erd'
 gem 'railroady'
-
-# ADDITION: ANNOTATE
 gem 'annotate'
-
-# ADDITIONS: code checking
-group :development do
-  gem 'sandi_meter'
-  gem 'brakeman'
-  # gem 'guard-brakeman'
-  gem 'bundler-audit'
-  # gem 'guard-bundler-audit'
-end
-
-# ADDITION: GEMSURANCE
 gem 'gemsurance'
