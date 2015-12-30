@@ -20,4 +20,4 @@ notes/*.svg
 gemsurance_report.html
 
 # Ignore the gems in vendor/cache (too much source code bloat)
-vendor/cache
+# vendor/cache
