@@ -272,6 +272,7 @@ DEPENDENCIES
   rails-erd
   rails3-generators (= 0.17.4)
   rails_autolink (~> 1.0.4)
+  rake
   rb-fchange (~> 0.0.5)
   rb-fsevent (~> 0.9.3)
   rdiscount
@@ -283,6 +284,3 @@ DEPENDENCIES
   test-unit (~> 2.4.8)
   uglifier (~> 2.7.2)
   unicorn
-
-BUNDLED WITH
-   1.10.6
