@@ -57,21 +57,21 @@ group :production do
   gem 'memcachier',   '0.0.2'
 end
 
-# ADDITION: DIAGRAMS
-gem 'rails-erd'
-gem 'railroady'
+group :development, :test do
+  # ADDITION: DIAGRAMS
+  gem 'rails-erd'
+  gem 'railroady'
 
-# ADDITION: ANNOTATE
-gem 'annotate'
+  # ADDITION: ANNOTATE
+  gem 'annotate'
 
-# ADDITIONS: code checking
-group :development do
+  # ADDITIONS: code checking
   gem 'sandi_meter'
   gem 'brakeman'
   # gem 'guard-brakeman'
   gem 'bundler-audit'
   # gem 'guard-bundler-audit'
-end
 
-# ADDITION: GEMSURANCE
-gem 'gemsurance'
+  # ADDITION: GEMSURANCE
+  gem 'gemsurance'
+end
